@@ -1,7 +1,7 @@
 <footer class="app-footer">
       <div class="row">
         <div class="col-xs-12">
-          <div class="footer-copyright">Copyright © <?php echo date('Y');?> <a href="http://www.viaviweb.com" target="_blank">Viaviweb.com</a>. Todos os direitos reservados.</div>
+          <div class="footer-copyright">Copyright © <?php echo date('Y');?> Todos os direitos reservados.</div>
         </div>
       </div>
     </footer>

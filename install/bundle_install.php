@@ -2,6 +2,8 @@
 
 session_start();
 
+require_once __DIR__ . '/guard.php';
+
 require_once '../includes/lb_helper_bundle.php'; // Include LicenseBox external/client api helper file
 $api = new LicenseBoxAPI(); // Initialize a new LicenseBoxAPI object
  
@@ -161,11 +163,10 @@ $product_info=$api->get_latest_version();
                         <div class="notification is-danger"><?php echo ucfirst($msg); ?></div>
                         <div class="field">
                           <label class="label">Envato Username
-                              <p class="control-label-help">https://codecanyon.net/user/<u style="color: #e91e63">viaviwebtech</u></p>
-                              <p class="control-label-help">(<u style="color: #e91e63">viaviwebtech</u> is username)</p>
+                              <p class="control-label-help">Informe o usuário usado na compra pela Envato.</p>
                           </label>
                           <div class="control">
-                            <input class="input" type="text" placeholder="viaviwebtech" name="client" required>
+                            <input class="input" type="text" placeholder="seu_usuario_envato" name="client" required>
                           </div>
                         </div>
                         <div class="field">
@@ -194,11 +195,10 @@ $product_info=$api->get_latest_version();
                     <form action="bundle_install.php?step=0" method="POST">
                       <div class="field">
                         <label class="label">Envato Username
-                            <p class="control-label-help">https://codecanyon.net/user/<u style="color: #e91e63">viaviwebtech</u></p>
-                            <p class="control-label-help">(<u style="color: #e91e63">viaviwebtech</u> is username)</p>
+                            <p class="control-label-help">Informe o usuário usado na compra pela Envato.</p>
                         </label>
                         <div class="control">
-                          <input class="input" type="text" placeholder="viaviwebtech" name="client" required>
+                          <input class="input" type="text" placeholder="seu_usuario_envato" name="client" required>
                         </div>
                       </div>
                       <div class="field">
@@ -411,7 +411,7 @@ $product_info=$api->get_latest_version();
     </div>
   </div>
   <div class="content has-text-centered">
-    <p>Copyright <?php echo date('Y'); ?> Viaviweb.com, All rights reserved.</p><br>
+    <p>Copyright © <?php echo date('Y'); ?> Todos os direitos reservados.</p><br>
   </div>
 </body>
 </html>

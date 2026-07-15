@@ -327,7 +327,7 @@
                           <div class="form-group">
                             <label class="col-md-4 control-label">External Link :-<br/>(Optional)</label>
                             <div class="col-md-8">
-                              <input type="text" name="external_link" id="external_link" class="form-control" value="" placeholder="http://www.viaviweb.com">
+                              <input type="text" name="external_link" id="external_link" class="form-control" value="" placeholder="https://seusite.com.br">
                             </div>
                           </div>   
                         </div>   

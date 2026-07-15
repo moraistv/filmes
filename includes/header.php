@@ -237,7 +237,7 @@
 
         <li <?php if($currentFile=="verification.php"){?>class="active"<?php }?>> <a href="verification.php">
           <div class="icon"> <i class="fa fa-check-square-o" aria-hidden="true"></i> </div>
-          <div class="title">Verificar licença</div>
+          <div class="title">Identificação do app</div>
           </a> 
         </li>
 

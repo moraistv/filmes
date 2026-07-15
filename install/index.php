@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/guard.php'; ?>
 <!DOCTYPE html>
 <html>
 	<head>

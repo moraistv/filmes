@@ -34,9 +34,10 @@
 <link rel="stylesheet" type="text/css" href="assets/css/theme/blue.css">
 <link rel="stylesheet" type="text/css" href="assets/css/theme/red.css">
 <link rel="stylesheet" type="text/css" href="assets/css/theme/yellow.css">
+<link rel="stylesheet" type="text/css" href="assets/css/admin-modern.css?v=1.0.0">
 
 </head>
-<body>
+<body class="login-shell">
 <div class="app app-default">
   <div class="app-container app-login">
     <div class="flex-center">
@@ -44,20 +45,10 @@
         <div class="app-block">
           <div class="app-form login-form">
             <div class="form-header">
+              <div class="login-logo"><img src="images/<?php echo APP_LOGO;?>" alt="Logo"></div>
               <div class="app-brand"><?php echo APP_NAME;?></div>
+              <p class="login-subtitle">Acesse o painel de administração</p>
             </div>
-			<div class="login_title_lineitem">
-				<div class="line_1"></div>
-				  <div class="flipInX-1 blind icon">
-					 <span class="icon">
-						 <i class="fa fa-gg"></i>&nbsp;
-						 <i class="fa fa-gg"></i>&nbsp;
-						 <i class="fa fa-gg"></i>
-				   </span>
-				   </div>
-				<div class="line_2"></div>
-			</div>
-			<div class="clearfix"></div>
             <form action="login_db.php" method="post">
 			        <div class="input-group" style="border:0px;">
                 <?php if(isset($_SESSION['msg'])){?>
@@ -65,13 +56,13 @@
                 <?php unset($_SESSION['msg']);}?>
               </div>
               <div class="input-group"> <span class="input-group-addon" id="basic-addon1"> <i class="fa fa-user" aria-hidden="true"></i></span>
-                <input type="text" name="username" id="username" class="form-control" placeholder="Usuário" aria-describedby="basic-addon1" value="admin">
+                <input type="text" name="username" id="username" class="form-control" placeholder="Usuário" aria-describedby="basic-addon1" autocomplete="username" required>
               </div>
               <div class="input-group"> <span class="input-group-addon" id="basic-addon2"> <i class="fa fa-key" aria-hidden="true"></i></span>
-                <input type="password" name="password" id="password" class="form-control" placeholder="Senha" aria-describedby="basic-addon2" value="admin">
+                <input type="password" name="password" id="password" class="form-control" placeholder="Senha" aria-describedby="basic-addon2" autocomplete="current-password" required>
               </div>
               <div class="text-center">
-                <input type="submit" class="btn btn-success btn-submit" value="Entrar">
+                <input type="submit" class="btn btn-success btn-submit" value="Entrar no painel">
               </div>
             </form>
           </div>

@@ -37,6 +37,7 @@
 <link rel="stylesheet" type="text/css" href="assets/css/theme/yellow.css">
 
 <link rel="stylesheet" type="text/css" href="assets/sweetalert/sweetalert.css">
+<link rel="stylesheet" type="text/css" href="assets/css/admin-modern.css?v=1.0.0">
 
  <script src="assets/ckeditor/ckeditor.js"></script>
 
@@ -106,10 +107,10 @@
 </style>
 
 </head>
-<body>
+<body class="admin-shell page-<?=htmlspecialchars(pathinfo($currentFile, PATHINFO_FILENAME), ENT_QUOTES, 'UTF-8')?>">
 <div class="app app-default">
   <aside class="app-sidebar" id="sidebar">
-    <div class="sidebar-header"> <a class="sidebar-brand" href="home.php"><img src="images/<?php echo APP_LOGO;?>" alt="app logo" /></a>
+    <div class="sidebar-header"> <a class="sidebar-brand" href="home.php"><img src="images/<?php echo APP_LOGO;?>" alt="Logo" /><span class="brand-label"><?php echo APP_NAME;?></span></a>
       <button type="button" class="sidebar-toggle"> <i class="fa fa-times"></i> </button>
     </div>
     <div class="sidebar-menu">
@@ -274,7 +275,7 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-left">
-            <li class="navbar-title"><?=APP_NAME?></li>
+            <li class="navbar-title"><span class="navbar-eyebrow">Administração</span><?=isset($page_title) ? htmlspecialchars($page_title, ENT_QUOTES, 'UTF-8') : APP_NAME?></li>
              
           </ul>
           <ul class="nav navbar-nav navbar-right">

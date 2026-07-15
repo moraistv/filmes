@@ -1,5 +1,5 @@
 <?php 
-    $page_title="Dashboard";
+    $page_title="Visão geral";
     $active_page="dashboard";
 
     include("includes/header.php");
@@ -38,6 +38,8 @@
     $no_data_status=false;
     $count=$monthCount=0;
 
+    $month_names = array(1 => 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez');
+
     for ($mon=1; $mon<=12; $mon++) {
 
         if(date('n') < $mon){
@@ -48,13 +50,13 @@
 
           $year=$_GET['filterByYear'];
 
-          $month = date('M', mktime(0,0,0,$mon, 1, $year));
+          $month = $month_names[$mon];
 
           $sql_user="SELECT `id` FROM tbl_users WHERE DATE_FORMAT(FROM_UNIXTIME(`register_on`), '%c') = '$mon' AND DATE_FORMAT(FROM_UNIXTIME(`register_on`), '%Y') = '$year'";
         }
         else{
 
-          $month = date('M', mktime(0,0,0,$mon, 1, date('Y')));
+          $month = $month_names[$mon];
 
           $sql_user="SELECT `id` FROM tbl_users WHERE DATE_FORMAT(FROM_UNIXTIME(`register_on`), '%c') = '$mon'";
         }
@@ -85,7 +87,7 @@
     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <a href="manage_category.php" class="card card-banner card-green-light">
       <div class="card-body"> <i class="icon fa fa-sitemap fa-4x"></i>
         <div class="content">
-          <div class="title">Categories</div>
+          <div class="title">Categorias</div>
           <div class="value"><span class="sign"></span><?php echo thousandsNumberFormat($total_category);?></div>
         </div>
       </div>
@@ -95,7 +97,7 @@
     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <a href="manage_movies.php" class="card card-banner card-yellow-light">
       <div class="card-body"> <i class="icon fa fa-video-camera fa-4x"></i>
         <div class="content">
-          <div class="title">Movies</div>
+          <div class="title">Filmes</div>
           <div class="value"><span class="sign"></span><?php echo thousandsNumberFormat($total_movies);?></div>
         </div>
       </div>
@@ -105,7 +107,7 @@
     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <a href="manage_series.php" class="card card-banner card-blue-light">
       <div class="card-body"> <i class="icon fa fa-list fa-4x"></i>
         <div class="content">
-          <div class="title">TV Series</div>
+          <div class="title">Séries</div>
           <div class="value"><span class="sign"></span><?php echo thousandsNumberFormat($total_series);?></div>
         </div>
       </div>
@@ -115,7 +117,7 @@
     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <a href="manage_channels.php" class="card card-banner card-pink-light">
       <div class="card-body"> <i class="icon fa fa-tv fa-4x"></i>
         <div class="content">
-          <div class="title">Channels</div>
+          <div class="title">Canais</div>
           <div class="value"><span class="sign"></span><?php echo thousandsNumberFormat($total_channels);?></div>
         </div>
       </div>
@@ -125,7 +127,7 @@
     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <a href="manage_comments.php" class="card card-banner card-alicerose-light">
       <div class="card-body"> <i class="icon fa fa-comments fa-4x"></i>
         <div class="content">
-          <div class="title">Comments</div>
+          <div class="title">Comentários</div>
           <div class="value"><span class="sign"></span><?php echo thousandsNumberFormat($total_comments);?></div>
         </div>
       </div>
@@ -135,7 +137,7 @@
     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <a href="manage_reports.php" class="card card-banner card-pink-light">
       <div class="card-body"> <i class="icon fa fa-bug fa-4x"></i>
         <div class="content">
-          <div class="title">Reports</div>
+          <div class="title">Denúncias</div>
           <div class="value"><span class="sign"></span><?php echo thousandsNumberFormat($total_reports);?></div>
         </div>
       </div>
@@ -145,7 +147,7 @@
     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <a href="manage_users.php" class="card card-banner card-orange-light">
       <div class="card-body"> <i class="icon fa fa-users fa-4x"></i>
         <div class="content">
-          <div class="title">Users</div>
+          <div class="title">Usuários</div>
           <div class="value"><span class="sign"></span><?php echo thousandsNumberFormat($total_users);?></div>
         </div>
       </div>
@@ -199,8 +201,8 @@
 <div class="row">
   <div class="col-lg-4">
     <div class="container-fluid" style="background: #FFF;box-shadow: 0px 5px 10px 0px #CCC;border-radius: 2px">
-      <h3>Most viewed series</h3>
-      <p>Series with more views.</p>
+      <h3>Séries mais assistidas</h3>
+      <p>Conteúdos com mais visualizações.</p>
       <table class="table table-hover">
         <?php 
           $sql="SELECT * FROM tbl_series WHERE `total_views` > 5 ORDER BY `total_views` DESC LIMIT 10";
@@ -228,7 +230,7 @@
                         echo $row['series_name'];
                       }
                     ?>
-                    <p style="font-weight: 500"><span class="label label-default" style="font-size: 10px;padding: 2px 8px;">Views: <?=thousandsNumberFormat($row['total_views'])?></p> 
+                    <p style="font-weight: 500"><span class="label label-default" style="font-size: 10px;padding: 2px 8px;">Visualizações: <?=thousandsNumberFormat($row['total_views'])?></span></p> 
                   </a>
                 </div>
               </td>
@@ -239,7 +241,7 @@
             else{
               ?>
               <tr>
-                <td class="text-center">No data available !</td>
+                <td class="text-center">Nenhum dado disponível.</td>
               </tr>
               <?php
             }
@@ -249,8 +251,8 @@
   </div>
   <div class="col-lg-4">
     <div class="container-fluid" style="background: #FFF;box-shadow: 0px 5px 10px 0px #CCC;border-radius: 2px">
-      <h3>Most viewed movies</h3>
-      <p>Movies with more views.</p>
+      <h3>Filmes mais assistidos</h3>
+      <p>Conteúdos com mais visualizações.</p>
       <table class="table table-hover">
         <?php 
           $sql="SELECT * FROM tbl_movies WHERE `total_views` > 5 ORDER BY `total_views` DESC LIMIT 10";
@@ -279,7 +281,7 @@
                         echo $row['movie_title'];
                       }
                     ?>
-                    <p style="font-weight: 500"><span class="label label-default" style="font-size: 10px;padding: 2px 8px;">Views: <?=thousandsNumberFormat($row['total_views'])?></p> 
+                    <p style="font-weight: 500"><span class="label label-default" style="font-size: 10px;padding: 2px 8px;">Visualizações: <?=thousandsNumberFormat($row['total_views'])?></span></p> 
                   </a>
                 </div>
               </td>
@@ -291,7 +293,7 @@
             else{
               ?>
               <tr>
-                <td class="text-center">No data available !</td>
+                <td class="text-center">Nenhum dado disponível.</td>
               </tr>
               <?php
             }
@@ -302,8 +304,8 @@
 
   <div class="col-lg-4">
     <div class="container-fluid" style="background: #FFF;box-shadow: 0px 5px 10px 0px #CCC;border-radius: 2px">
-      <h3>Most viewed channels</h3>
-      <p>Channels with more views.</p>
+      <h3>Canais mais assistidos</h3>
+      <p>Conteúdos com mais visualizações.</p>
       <table class="table table-hover">
         <?php 
           $sql="SELECT * FROM tbl_channels WHERE `total_views` > 5 ORDER BY `total_views` DESC LIMIT 10";
@@ -332,7 +334,7 @@
                         echo $row['channel_title'];
                       }
                     ?>
-                    <p style="font-weight: 500"><span class="label label-default" style="font-size: 10px;padding: 2px 8px;">Views: <?=thousandsNumberFormat($row['total_views'])?></p> 
+                    <p style="font-weight: 500"><span class="label label-default" style="font-size: 10px;padding: 2px 8px;">Visualizações: <?=thousandsNumberFormat($row['total_views'])?></span></p> 
                   </a>
                 </div>
               </td>
@@ -344,7 +346,7 @@
             else{
               ?>
               <tr>
-                <td class="text-center">No data available !</td>
+                <td class="text-center">Nenhum dado disponível.</td>
               </tr>
               <?php
             }
@@ -366,8 +368,8 @@
     function drawChart() {
 
       var data = new google.visualization.DataTable();
-      data.addColumn('string', 'Month');
-      data.addColumn('number', 'Users');
+      data.addColumn('string', 'Mês');
+      data.addColumn('number', 'Usuários');
 
       data.addRows([<?=$countStr?>]);
 
@@ -375,7 +377,7 @@
         curveType: 'function',
         fontSize: 15,
         hAxis: {
-          title: "Months of <?=(isset($_GET['filterByYear'])) ? $_GET['filterByYear'] : date('Y')?>",
+          title: "Meses de <?=(isset($_GET['filterByYear'])) ? (int)$_GET['filterByYear'] : date('Y')?>",
           titleTextStyle: {
             color: '#000',
             bold:'true',
@@ -383,7 +385,7 @@
           },
         },
         vAxis: {
-          title: "Nos of Users",
+          title: "Novos usuários",
           titleTextStyle: {
             color: '#000',
             bold:'true',

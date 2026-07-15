@@ -5,10 +5,10 @@
 # Arquivos gerados pelo instalador no servidor
 /api.php
 /runtime/
+/includes/.lic
 
 # Arquivos temporarios e logs
 *.log
 *.tmp
 .DS_Store
 Thumbs.db
-

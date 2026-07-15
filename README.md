@@ -18,5 +18,4 @@ No primeiro deploy, acesse `http://IP_DO_SERVIDOR:8088/install/` e informe:
 - usuario: valor de `DB_USER`
 - senha: valor de `DB_PASSWORD`
 
-Os arquivos gerados pelo instalador, as imagens, os uploads e o banco ficam em volumes persistentes para sobreviver aos proximos deploys.
-
+Os arquivos gerados pelo instalador, a licenca, as imagens, os uploads e o banco ficam em volumes persistentes para sobreviver aos proximos deploys.

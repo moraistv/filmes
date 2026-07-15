@@ -168,8 +168,8 @@
   <div class="col-lg-12">
     <div class="container-fluid" style="background: #FFF;box-shadow: 0px 5px 10px 0px #CCC;border-radius: 2px;">
       <div class="col-lg-10">
-        <h3>Users Analysis</h3>
-        <p>New registrations</p>
+        <h3>Análise de usuários</h3>
+        <p>Novos cadastros</p>
       </div>
       <div class="col-lg-2" style="padding-top: 20px">
         <form method="get" id="graphFilter">
@@ -191,7 +191,7 @@
         <?php 
           if($no_data_status){
             ?>
-            <h3 class="text-muted text-center" style="padding-bottom: 2em">No data found !</h3>
+            <h3 class="text-muted text-center" style="padding-bottom: 2em">Nenhum dado encontrado!</h3>
             <?php
           }
           else{

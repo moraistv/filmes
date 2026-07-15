@@ -1,50 +1,50 @@
 <?php
 	  $client_lang = array();
 	  
-	  $client_lang['1'] = "Please enter user name...";
+	  $client_lang['1'] = "Informe o nome de usuário.";
 	   
-	  $client_lang['2'] ="Please enter password...";
+	  $client_lang['2'] ="Informe a senha.";
   
-	  $client_lang['3'] ="Response message has been sent..";
+	  $client_lang['3'] ="A mensagem foi enviada.";
 	   
-	  $client_lang['4'] ="Please enter correct user name or passwrod..";
+	  $client_lang['4'] ="Usuário ou senha incorretos.";
 	   
-	  $client_lang['5'] ="Response message not sent..";
+	  $client_lang['5'] ="A mensagem não foi enviada.";
 	   
-	  $client_lang['6'] ="Password has been sent to in your email address..";
+	  $client_lang['6'] ="A senha foi enviada para o seu e-mail.";
 	   
-	  $client_lang['7'] ="Email not sent..please try again";
+	  $client_lang['7'] ="E-mail não enviado. Tente novamente.";
 	   
-	  $client_lang['8'] ="Email address is not available in our database..";
+	  $client_lang['8'] ="O endereço de e-mail não foi encontrado.";
 		
-	  $client_lang['9'] = "Please enter email address..";
+	  $client_lang['9'] = "Informe o endereço de e-mail.";
 
 
-	  $client_lang['10'] = "Added successfully...";
+	  $client_lang['10'] = "Adicionado com sucesso.";
 
-	  $client_lang['11'] = "Updated successfully...";
+	  $client_lang['11'] = "Atualizado com sucesso.";
 
-	  $client_lang['12'] = "Delete successfully...";
+	  $client_lang['12'] = "Excluído com sucesso.";
 
-	  $client_lang['13'] = "Enable successfully...";
+	  $client_lang['13'] = "Ativado com sucesso.";
 
-	  $client_lang['14'] = "Disable successfully...";
+	  $client_lang['14'] = "Desativado com sucesso.";
 
-	  $client_lang['15'] = "Featured enable successfully...";
+	  $client_lang['15'] = "Destaque ativado com sucesso.";
 
-	  $client_lang['16'] = "Featured disable successfully...";
+	  $client_lang['16'] = "Destaque desativado com sucesso.";
 	  
-	  $client_lang['17'] = "Notification send successfully...";
+	  $client_lang['17'] = "Notificação enviada com sucesso.";
 	   
-	  $client_lang['18'] = "Envato username or purchase code is wrong!"; 
+	  $client_lang['18'] = "Usuário ou código de compra da Envato incorreto!"; 
 
-	  $client_lang['19'] = "Verified successfully!"; 
+	  $client_lang['19'] = "Licença verificada com sucesso!"; 
 
-	  $client_lang['20'] = "Successfully set on slider..."; 
+	  $client_lang['20'] = "Adicionado ao banner rotativo com sucesso."; 
 
-	  $client_lang['21'] = "Successfully remove from slider..."; 
+	  $client_lang['21'] = "Removido do banner rotativo com sucesso."; 
 
-	  $client_lang['remove_subtitle_success'] = "Subtitle is successfully remove..."; 
+	  $client_lang['remove_subtitle_success'] = "Legenda removida com sucesso."; 
 
-	  $client_lang['remove_quality_success'] = "Quality is successfully remove..."; 	  
+	  $client_lang['remove_quality_success'] = "Qualidade removida com sucesso."; 	  
 ?>

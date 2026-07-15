@@ -24,7 +24,7 @@
 <meta name="description" content="">
 <meta http-equiv="Content-Type"content="text/html;charset=UTF-8"/>
 <meta name="viewport"content="width=device-width, initial-scale=1.0">
-<title><?php echo APP_NAME;?> | Login</title>
+<title><?php echo APP_NAME;?> | Entrar</title>
 <link rel="icon" href="images/<?php echo APP_LOGO;?>" sizes="16x16">
 <link rel="stylesheet" type="text/css" href="assets/css/vendor.css">
 <link rel="stylesheet" type="text/css" href="assets/css/flat-admin.css">
@@ -65,13 +65,13 @@
                 <?php unset($_SESSION['msg']);}?>
               </div>
               <div class="input-group"> <span class="input-group-addon" id="basic-addon1"> <i class="fa fa-user" aria-hidden="true"></i></span>
-                <input type="text" name="username" id="username" class="form-control" placeholder="Username" aria-describedby="basic-addon1" value="admin">
+                <input type="text" name="username" id="username" class="form-control" placeholder="Usuário" aria-describedby="basic-addon1" value="admin">
               </div>
               <div class="input-group"> <span class="input-group-addon" id="basic-addon2"> <i class="fa fa-key" aria-hidden="true"></i></span>
-                <input type="password" name="password" id="password" class="form-control" placeholder="Password" aria-describedby="basic-addon2" value="admin">
+                <input type="password" name="password" id="password" class="form-control" placeholder="Senha" aria-describedby="basic-addon2" value="admin">
               </div>
               <div class="text-center">
-                <input type="submit" class="btn btn-success btn-submit" value="Login">
+                <input type="submit" class="btn btn-success btn-submit" value="Entrar">
               </div>
             </form>
           </div>
@@ -81,6 +81,6 @@
   </div>
 </div>
 
-
+<script type="text/javascript" src="assets/js/admin-pt-BR.js"></script>
 </body>
 </html>

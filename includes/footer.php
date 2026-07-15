@@ -1,7 +1,7 @@
 <footer class="app-footer">
       <div class="row">
         <div class="col-xs-12">
-          <div class="footer-copyright">Copyright © <?php echo date('Y');?> <a href="http://www.viaviweb.com" target="_blank">Viaviweb.com</a>. All Rights Reserved.</div>
+          <div class="footer-copyright">Copyright © <?php echo date('Y');?> <a href="http://www.viaviweb.com" target="_blank">Viaviweb.com</a>. Todos os direitos reservados.</div>
         </div>
       </div>
     </footer>
@@ -16,6 +16,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script type="text/javascript" src="assets/sweetalert/sweetalert.min.js"></script>
+<script type="text/javascript" src="assets/js/admin-pt-BR.js"></script>
 
 <?php if(isset($_SESSION['msg'])){?>
 <script type="text/javascript">

@@ -116,14 +116,14 @@
       <ul class="sidebar-nav">
         <li <?php if(isset($active_page) && $active_page=="dashboard"){?>class="active"<?php }?>> <a href="home.php">
           <div class="icon"> <i class="fa fa-dashboard" aria-hidden="true"></i> </div>
-          <div class="title">Dashboard</div>
+          <div class="title">Painel</div>
           </a> 
         </li>
        
         <li class="dropdown-li movies <?php if(isset($active_page) && $active_page=="movies"){ echo 'active'; }?>">
           <a href="javascript:void(0)" class="dropdown-a">
             <div class="icon"> <i class="fa fa-video-camera" aria-hidden="true"></i> </div>
-            <div class="title">Movies</div>
+            <div class="title">Filmes</div>
             <i class="fa fa-angle-right pull-right" style="padding-top: 7px;color: #fff;"></i>
           </a> 
         </li>
@@ -132,18 +132,18 @@
           <ul class="cust-dropdown">
             <li> 
               <a href="manage_language.php" class="<?php if(isset($current_page) && $current_page=="language"){ echo 'active'; }?>">
-                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Languages</div>
+                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Idiomas</div>
               </a> 
             </li>
 
             <li>
               <a href="manage_genres.php" class="<?php if(isset($current_page) && $current_page=="genre"){ echo 'active'; }?>">
-                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Genre</div>
+                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Gêneros</div>
               </a> 
             </li> 
              <li>
               <a href="manage_movies.php" class="<?php if(isset($current_page) && $current_page=="movies"){ echo 'active'; }?>">
-                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Movie</div>
+                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Filmes</div>
               </a> 
             </li>   
           </ul>
@@ -152,7 +152,7 @@
         <li class="dropdown-li series <?php if(isset($active_page) && $active_page=="series"){ echo 'active'; }?>">
           <a href="javascript:void(0)" class="dropdown-a">
             <div class="icon"> <i class="fa fa-list" aria-hidden="true"></i> </div>
-            <div class="title">TV Series</div>
+            <div class="title">Séries</div>
             <i class="fa fa-angle-right pull-right" style="padding-top: 7px;color: #fff;"></i>
           </a> 
         </li>
@@ -160,18 +160,18 @@
           <ul class="cust-dropdown">
             <li> 
               <a href="manage_series.php" class="<?php if(isset($current_page) && $current_page=="series"){ echo 'active'; }?>">
-                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Series</div>
+                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Séries</div>
               </a> 
             </li>
 
             <li>
               <a href="manage_season.php" class="<?php if(isset($current_page) && $current_page=="season"){ echo 'active'; }?>">
-                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Season</div>
+                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Temporadas</div>
               </a> 
             </li> 
              <li>
               <a href="manage_episode.php" class="<?php if(isset($current_page) && $current_page=="episode"){ echo 'active'; }?>">
-                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Episode List</div>
+                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Episódios</div>
               </a> 
             </li>   
           </ul>
@@ -180,7 +180,7 @@
         <li class="dropdown-li channel <?php if(isset($active_page) && $active_page=="channel"){ echo 'active'; }?>">
           <a href="javascript:void(0)" class="dropdown-a">
             <div class="icon"> <i class="fa fa-tv" aria-hidden="true"></i> </div>
-            <div class="title">Live TV</div>
+            <div class="title">TV ao vivo</div>
             <i class="fa fa-angle-right pull-right" style="padding-top: 7px;color: #fff;"></i>
           </a> 
         </li>
@@ -188,12 +188,12 @@
           <ul class="cust-dropdown">
             <li>
               <a href="manage_category.php" class="<?php if(isset($current_page) && $current_page=="category"){ echo 'active'; }?>">
-                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Category</div>
+                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Categorias</div>
               </a> 
             </li> 
              <li>
               <a href="manage_channels.php" class="<?php if(isset($current_page) && $current_page=="channel"){ echo 'active'; }?>">
-                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Channel</div>
+                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Canais</div>
               </a> 
             </li>   
           </ul>
@@ -201,50 +201,50 @@
                
         <li <?php if($currentFile=="manage_users.php" or $currentFile=="add_user.php"){?>class="active"<?php }?>> <a href="manage_users.php">
           <div class="icon"> <i class="fa fa-users" aria-hidden="true"></i> </div>
-          <div class="title">Users</div>
+          <div class="title">Usuários</div>
           </a> 
         </li>
 
         <li <?php if($currentFile=="manage_comments.php"){?>class="active"<?php }?>> <a href="manage_comments.php">
           <div class="icon"> <i class="fa fa-comments" aria-hidden="true"></i> </div>
-          <div class="title">Comments</div>
+          <div class="title">Comentários</div>
           </a> 
         </li>
 
         <li <?php if($currentFile=="manage_reports.php" OR (isset($active_page) AND $active_page=='report')){?>class="active"<?php }?>> <a href="manage_reports.php">
           <div class="icon"> <i class="fa fa-bug" aria-hidden="true"></i> </div>
-          <div class="title">Reports</div>
+          <div class="title">Denúncias</div>
           </a> 
         </li>
          
         <li <?php if($currentFile=="send_notification.php"){?>class="active"<?php }?>> <a href="send_notification.php">
           <div class="icon"> <i class="fa fa-bell" aria-hidden="true"></i> </div>
-          <div class="title">Notification</div>
+          <div class="title">Notificações</div>
           </a> 
         </li>
 
         <li <?php if($currentFile=="smtp_settings.php"){?>class="active"<?php }?>> <a href="smtp_settings.php">
           <div class="icon"> <i class="fa fa-envelope" aria-hidden="true"></i> </div>
-          <div class="title">SMTP Settings</div>
+          <div class="title">Configurações de SMTP</div>
           </a> 
         </li>
 
         <li <?php if($currentFile=="settings.php"){?>class="active"<?php }?>> <a href="settings.php">
           <div class="icon"> <i class="fa fa-cog" aria-hidden="true"></i> </div>
-          <div class="title">Settings</div>
+          <div class="title">Configurações</div>
           </a> 
         </li>
 
         <li <?php if($currentFile=="verification.php"){?>class="active"<?php }?>> <a href="verification.php">
           <div class="icon"> <i class="fa fa-check-square-o" aria-hidden="true"></i> </div>
-          <div class="title">Verify Purchase</div>
+          <div class="title">Verificar licença</div>
           </a> 
         </li>
 
         <?php if(file_exists('api.php') OR file_exists('ios_api.php')){?>
         <li <?php if($currentFile=="api_urls.php"){?>class="active"<?php }?>> <a href="api_urls.php">
           <div class="icon"> <i class="fa fa-exchange" aria-hidden="true"></i> </div>
-          <div class="title">API URLS</div>
+          <div class="title">URLs da API</div>
           </a> 
         </li> 
         <?php }?>
@@ -283,15 +283,15 @@
                 <?php }else{?>
                   <img class="profile-img" src="assets/images/profile.png">
                 <?php }?>
-              <div class="title">Profile</div>
+              <div class="title">Perfil</div>
               </a>
               <div class="dropdown-menu">
                 <div class="profile-info">
                   <h4 class="username">Admin</h4>
                 </div>
                 <ul class="action">
-                  <li><a href="profile.php">Profile</a></li>                  
-                  <li><a href="logout.php">Logout</a></li>
+                  <li><a href="profile.php">Perfil</a></li>                  
+                  <li><a href="logout.php">Sair</a></li>
                 </ul>
               </div>
             </li>

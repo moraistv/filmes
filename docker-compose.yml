@@ -1,0 +1,37 @@
+services:
+  painel:
+    build:
+      context: .
+    restart: unless-stopped
+    ports:
+      - "${PANEL_PORT:-8088}:80"
+    depends_on:
+      banco:
+        condition: service_healthy
+    volumes:
+      - painel_runtime:/var/www/html/runtime
+      - painel_images:/var/www/html/images
+      - painel_uploads:/var/www/html/uploads
+
+  banco:
+    image: mariadb:10.11
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: "${DB_NAME:-live_tv_app}"
+      MARIADB_USER: "${DB_USER:-livetv}"
+      MARIADB_PASSWORD: "${DB_PASSWORD}"
+      MARIADB_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - painel_database:/var/lib/mysql
+
+volumes:
+  painel_runtime:
+  painel_images:
+  painel_uploads:
+  painel_database:
+

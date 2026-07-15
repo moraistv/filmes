@@ -27,11 +27,10 @@ services:
       timeout: 5s
       retries: 10
     volumes:
-      - painel_database:/var/lib/mysql
+      - painel_database_v2:/var/lib/mysql
 
 volumes:
   painel_runtime:
   painel_images:
   painel_uploads:
-  painel_database:
-
+  painel_database_v2:

@@ -115,12 +115,13 @@
     </div>
     <div class="sidebar-menu">
       <ul class="sidebar-nav">
+        <li class="nav-section"><span>Visão geral</span></li>
         <li <?php if(isset($active_page) && $active_page=="dashboard"){?>class="active"<?php }?>> <a href="home.php">
           <div class="icon"> <i class="fa fa-dashboard" aria-hidden="true"></i> </div>
           <div class="title">Painel</div>
           </a> 
         </li>
-       
+        <li class="nav-section"><span>Catálogo</span></li>
         <li class="dropdown-li movies <?php if(isset($active_page) && $active_page=="movies"){ echo 'active'; }?>">
           <a href="javascript:void(0)" class="dropdown-a">
             <div class="icon"> <i class="fa fa-video-camera" aria-hidden="true"></i> </div>
@@ -199,7 +200,7 @@
             </li>   
           </ul>
         </li>
-               
+        <li class="nav-section"><span>Gestão</span></li>
         <li <?php if($currentFile=="manage_users.php" or $currentFile=="add_user.php"){?>class="active"<?php }?>> <a href="manage_users.php">
           <div class="icon"> <i class="fa fa-users" aria-hidden="true"></i> </div>
           <div class="title">Usuários</div>
@@ -224,6 +225,7 @@
           </a> 
         </li>
 
+        <li class="nav-section"><span>Sistema</span></li>
         <li <?php if($currentFile=="smtp_settings.php"){?>class="active"<?php }?>> <a href="smtp_settings.php">
           <div class="icon"> <i class="fa fa-envelope" aria-hidden="true"></i> </div>
           <div class="title">Configurações de SMTP</div>
@@ -252,7 +254,17 @@
          
       </ul>
     </div>
-     
+    <div class="sidebar-account">
+      <a href="profile.php" class="sidebar-account-link">
+        <?php if(PROFILE_IMG){?>
+          <img src="images/<?php echo PROFILE_IMG;?>" alt="Perfil">
+        <?php }else{?>
+          <img src="assets/images/profile.png" alt="Perfil">
+        <?php }?>
+        <span class="sidebar-account-copy"><strong>Administrador</strong><small>Minha conta</small></span>
+      </a>
+      <a href="logout.php" class="sidebar-logout" title="Sair" aria-label="Sair"><i class="fa fa-sign-out"></i></a>
+    </div>
   </aside>   
   <div class="app-container">
     <nav class="navbar navbar-default" id="navbar">

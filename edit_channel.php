@@ -1,6 +1,6 @@
 <?php
   
-  $page_title="Edit Channel";
+  $page_title="Editar Canal";
   $current_page="channel";
   $active_page="channel";
    
@@ -50,7 +50,7 @@
       $obj_img->NewHeight = 390;
       if (!$obj_img->create_thumbnail_images()) 
       {
-        echo $_SESSION['msg']="Thumbnail not created... please upload image again";
+        echo $_SESSION['msg']="Miniatura não criada... por favor, envie a imagem novamente";
         exit;
       }
     }else{
@@ -78,7 +78,7 @@
       $obj_img->NewHeight = 350;
       if (!$obj_img->create_thumbnail_images()) 
       {
-        echo $_SESSION['msg']="Thumbnail not created... please upload image again";
+        echo $_SESSION['msg']="Miniatura não criada... por favor, envie a imagem novamente";
         exit;
       }
 
@@ -124,7 +124,7 @@
         <div class="card">
           <div class="page_title_block">
             <div class="col-md-5 col-xs-12">
-              <div class="page_title">Edit Channel</div>
+              <div class="page_title">Editar Canal</div>
             </div>
           </div>
           <div class="clearfix"></div>
@@ -134,10 +134,10 @@
               <div class="section">
                 <div class="section-body">
                   <div class="form-group">
-                    <label class="col-md-3 control-label">Select Category :-</label>
+                    <label class="col-md-3 control-label">Selecionar Categoria :-</label>
                     <div class="col-md-6">
                       <select name="category_id" id="category_id" class="select2">
-                        <option value="">--Select Category--</option>
+                        <option value="">-- Selecionar Categoria --</option>
           							<?php
           									while($row=mysqli_fetch_array($result))
           									{
@@ -160,42 +160,42 @@
                     </div>
                   </div>                  
                   <div class="form-group">
-                    <label class="col-md-3 control-label">Channel Title :-</label>
+                    <label class="col-md-3 control-label">Título do Canal :-</label>
                     <div class="col-md-6">
                       <input type="text" name="channel_title" id="channel_title" value="<?php echo $viv_row['channel_title'];?>" class="form-control">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-md-3 control-label">Type :-</label>
+                    <label class="col-md-3 control-label">Tipo :-</label>
                     <div class="col-md-6">
                       <select name="channel_type" id="channel_type" class="select2">
-                        <option value="live_url" <?php if($viv_row['channel_type']=="live_url"){?>selected<?php }?>>Live URL</option>
+                        <option value="live_url" <?php if($viv_row['channel_type']=="live_url"){?>selected<?php }?>>URL ao vivo</option>
                         <option value="youtube" <?php if($viv_row['channel_type']=="youtube"){?>selected<?php }?>>YouTube</option>
-                        <option value="embedded_url" <?php if($viv_row['channel_type']=="embedded_url"){?>selected<?php }?>>Embedded URL (Open Load, Very Stream, Daily motion, Vimeo)</option>
+                        <option value="embedded_url" <?php if($viv_row['channel_type']=="embedded_url"){?>selected<?php }?>>URL incorporada (Open Load, Very Stream, Daily motion, Vimeo)</option>
                       </select>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-md-3 control-label">Channel Url :-</label>
+                    <label class="col-md-3 control-label">URL do Canal :-</label>
                     <div class="col-md-6">
                       <input type="text" name="channel_url" id="channel_url" value="<?php echo $viv_row['channel_url'];?>" class="form-control">
                     </div>
                   </div>
                   <div class="or_link_item">
-                  <h2>OR</h2>
+                  <h2>OU</h2>
                   </div>
                   <div class="form-group">
-                    <label class="col-md-3 control-label">iOS Type :-</label>
+                    <label class="col-md-3 control-label">Tipo iOS :-</label>
                     <div class="col-md-6">
                       <select name="channel_type_ios" id="channel_type_ios" class="select2">
-                        <option value="live_url" <?php if($viv_row['channel_type_ios']=="live_url"){?>selected<?php }?>>Live URL</option>
+                        <option value="live_url" <?php if($viv_row['channel_type_ios']=="live_url"){?>selected<?php }?>>URL ao vivo</option>
                         <option value="youtube" <?php if($viv_row['channel_type_ios']=="youtube"){?>selected<?php }?>>YouTube</option>
-                        <option value="embedded_url" <?php if($viv_row['channel_type_ios']=="embedded_url"){?>selected<?php }?>>Embedded URL (Open Load, Very Stream, Daily motion, Vimeo)</option>
+                        <option value="embedded_url" <?php if($viv_row['channel_type_ios']=="embedded_url"){?>selected<?php }?>>URL incorporada (Open Load, Very Stream, Daily motion, Vimeo)</option>
                       </select>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-md-3 control-label">iOS Channel Url :-
+                    <label class="col-md-3 control-label">URL do Canal iOS :-
                       <p class="control-label-help">(M3u8,MP4)</p>
                     </label>
                     <div class="col-md-6">
@@ -204,8 +204,8 @@
                   </div>
 
                   <div class="form-group">
-                    <label class="col-md-3 control-label">Channel Poster Image:-
-                      <p class="control-label-help" id="square_lable_info">(Recommended resolution: 185x278 portrait)</p>
+                    <label class="col-md-3 control-label">Imagem do Pôster do Canal:-
+                      <p class="control-label-help" id="square_lable_info">(Resolução recomendada: 185x278 retrato)</p>
                     </label>
                     <div class="col-md-6">
                       <div class="fileupload_block">
@@ -220,15 +220,15 @@
                               $img_src='images/'.$viv_row['channel_poster'];
                             }
                           ?>
-                          <img type="image" src="<?=$img_src?>" alt="no poster image" style="width: 80px;height: 115px" />
+                          <img type="image" src="<?=$img_src?>" alt="sem imagem do pôster" style="width: 80px;height: 115px" />
                         </div>
                       </div>
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label class="col-md-3 control-label">Channel Cover Image:-
-                      <p class="control-label-help" id="square_lable_info">(Recommended resolution: 300x150 landscape)</p>
+                    <label class="col-md-3 control-label">Imagem de Capa do Canal:-
+                      <p class="control-label-help" id="square_lable_info">(Resolução recomendada: 300x150 paisagem)</p>
                     </label>
                     <div class="col-md-6">
                       <div class="fileupload_block">
@@ -244,7 +244,7 @@
                             }
 
                           ?>
-                          <img type="image" src="<?=$img_src?>" alt="poster image" style="width: 150px;height: 86px"/>
+                          <img type="image" src="<?=$img_src?>" alt="imagem do pôster" style="width: 150px;height: 86px"/>
                         </div>
                       </div>
                     </div>
@@ -253,7 +253,7 @@
                   
                   <div class="form-group">
                     <div class="col-md-3">
-                      <label class="control-label">Channel Description :-</label>
+                      <label class="control-label">Descrição do Canal :-</label>
                     </div>
                     <div class="col-md-6">
                       <textarea name="channel_desc" id="channel_desc" rows="5" class="form-control"><?php echo $viv_row['channel_desc'];?></textarea>
@@ -267,23 +267,23 @@
                     <label class="col-md-3 control-label">User Agent :-</label>
                     <div class="col-md-6">
                       <select name="user_agent" id="user_agent" class="select2">
-                        <option value="false" <?=($viv_row['user_agent']=='false') ? 'selected="selected"' : '';?>>False</option>
-                        <option value="true" <?=($viv_row['user_agent']=='true') ? 'selected="selected"' : '';?>>True</option>
+                        <option value="false" <?=($viv_row['user_agent']=='false') ? 'selected="selected"' : '';?>>Falso</option>
+                        <option value="true" <?=($viv_row['user_agent']=='true') ? 'selected="selected"' : '';?>>Verdadeiro</option>
                       </select>
                     </div>
                   </div>
                   <div class="user_agent" style="display: none">
                       <div class="form-group">
-                        <label class="col-md-3 control-label">User Agent Type :-</label>
+                        <label class="col-md-3 control-label">Tipo de User Agent :-</label>
                         <div class="col-md-6">
                           <select name="user_agent_type" id="user_agent_type" class="select2">
-                            <option value="setting" <?=($viv_row['user_agent_type']=='setting') ? 'selected="selected"' : '';?>>Get from setting</option>
-                            <option value="custom" <?=($viv_row['user_agent_type']=='custom') ? 'selected="selected"' : '';?>>Custom</option>
+                            <option value="setting" <?=($viv_row['user_agent_type']=='setting') ? 'selected="selected"' : '';?>>Obter das configurações</option>
+                            <option value="custom" <?=($viv_row['user_agent_type']=='custom') ? 'selected="selected"' : '';?>>Personalizado</option>
                           </select>
                         </div>
                       </div>
                       <div class="form-group" style="display: none">
-                        <label class="col-md-3 control-label">User Agent Name :-</label>
+                        <label class="col-md-3 control-label">Nome do User Agent :-</label>
                         <div class="col-md-6">
                           <input type="text" name="user_agent_name" value="<?=($viv_row['user_agent_type']=='custom') ? $viv_row['user_agent_name'] : '';?>" id="user_agent_name" class="form-control">
                         </div>
@@ -291,7 +291,7 @@
                   </div>
                   <div class="form-group">
                     <div class="col-md-9 col-md-offset-3">
-                      <button type="submit" name="submit" class="btn btn-primary">Save</button>
+                      <button type="submit" name="submit" class="btn btn-primary">Salvar</button>
                     </div>
                   </div>
                 </div>

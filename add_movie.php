@@ -1,9 +1,9 @@
 <?php 
   if(isset($_GET['movie_id'])){ 
-    $page_title= 'Edit Movies';
+    $page_title= 'Editar Filme';
   }
   else{ 
-    $page_title='Add Movies'; 
+    $page_title='Adicionar Filme'; 
   }
   $current_page="movies";
   $active_page="movies";
@@ -81,7 +81,7 @@
         {
           $movie_url=$movie_url;
         } else {
-          echo "Error in uploading video file !!";
+          echo "Erro ao enviar o arquivo de vídeo!!";
           exit;
         }
         $video_id='';
@@ -106,7 +106,7 @@
           $obj_img->NewHeight = 390;
           if (!$obj_img->create_thumbnail_images()) 
           {
-            echo "Thumbnail not created... please upload image again";
+            echo "Miniatura não criada... por favor, envie a imagem novamente";
           }
       }
       else{
@@ -128,7 +128,7 @@
           $obj_img->NewHeight = 300;
           if (!$obj_img->create_thumbnail_images()) 
           {
-            echo "Thumbnail not created... please upload image again";
+            echo "Miniatura não criada... por favor, envie a imagem novamente";
           }
       }
 
@@ -149,7 +149,7 @@
       $obj_img->NewHeight = 350;
       if (!$obj_img->create_thumbnail_images()) 
       {
-        echo "Thumbnail not created... please upload image again";
+        echo "Miniatura não criada... por favor, envie a imagem novamente";
       }
           
       $data = array( 
@@ -196,7 +196,7 @@
                   {
                     $video_url=$video_url;
                   }else {
-                    echo "Error in uploading quality video file !!";
+                    echo "Erro ao enviar o arquivo de vídeo de qualidade!!";
                   }                
               }
               else{
@@ -270,7 +270,7 @@
                   {
                       $subtitle_url=$subtitle_url;
                   } else {
-                      echo "Error in uploading subtitle file !!";
+                      echo "Erro ao enviar o arquivo de legenda!!";
                       exit;
                   }
               }
@@ -349,7 +349,7 @@
         {
             $movie_url=$movie_url;
         }else {
-            echo "Error in uploading video file !!";
+            echo "Erro ao enviar o arquivo de vídeo!!";
             exit;
         }
       }
@@ -383,7 +383,7 @@
       $obj_img->NewHeight = 390;
       if (!$obj_img->create_thumbnail_images()) 
       {
-        echo "Thumbnail not created... please upload image again";
+        echo "Miniatura não criada... por favor, envie a imagem novamente";
         exit;
       }
     }else{
@@ -412,7 +412,7 @@
       $obj_img->NewHeight = 350;
       if (!$obj_img->create_thumbnail_images()) 
       {
-        echo "Thumbnail not created... please upload image again";
+        echo "Miniatura não criada... por favor, envie a imagem novamente";
         exit;
       }
 
@@ -476,7 +476,7 @@
                 {
                   $video_url=$video_url;
                 }else {
-                  echo "Error in uploading quality video file !!";
+                  echo "Erro ao enviar o arquivo de vídeo de qualidade!!";
                 }                
             }
             else{
@@ -632,7 +632,7 @@
                 {
                     $subtitle_url=$subtitle_url;
                 } else {
-                    echo "Error in uploading subtitle file !!";
+                    echo "Erro ao enviar o arquivo de legenda!!";
                     exit;
                 }
             }
@@ -696,7 +696,7 @@
           <div class="alert alert-danger">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span></button>
-              Please set OMDb API key <a href="settings.php#omdbapi_id" target="_blank">here</a>
+              Defina a chave da API OMDb <a href="settings.php#omdbapi_id" target="_blank">aqui</a>
           </div>
           <br/>
           <?php }else{ ?>
@@ -704,16 +704,16 @@
           <div class="col-md-12">
             <div class="col-md-3">
               <p>
-                <strong>Import From IMDb</strong>
+                <strong>Importar do IMDb</strong>
                 <br/>
-                <span style="font-size: 12px">(Recommended : Search by IMDb ID for better result)</span>
+                <span style="font-size: 12px">(Recomendado: pesquise pelo IMDb ID para um resultado melhor)</span>
               </p>
             </div>
             <div class="col-md-7">
-              <input type="text" name="imdb_id_title" id="imdb_id_title" class="form-control" placeholder="Enter IMDb ID (e.g. tt2161930)" <?php if($settings_details['omdb_api_key']==''){ echo 'disabled=""';}?> style="height: 44px">
+              <input type="text" name="imdb_id_title" id="imdb_id_title" class="form-control" placeholder="Informe o IMDb ID (ex.: tt2161930)" <?php if($settings_details['omdb_api_key']==''){ echo 'disabled=""';}?> style="height: 44px">
             </div>
             <div class="col-md-1">
-              <button type="button" <?php if($settings_details['omdb_api_key']==''){ echo 'disabled=""';}?> class="btn btn-primary btn-sm btn_fetch">Fetch</button>
+              <button type="button" <?php if($settings_details['omdb_api_key']==''){ echo 'disabled=""';}?> class="btn btn-primary btn-sm btn_fetch">Buscar</button>
             </div>
           </div>
           <div class="col-md-12">
@@ -732,10 +732,10 @@
           <div class="section">
             <div class="section-body">
               <div class="form-group">
-                <label class="col-md-3 control-label">Language :-</label>
+                <label class="col-md-3 control-label">Idioma :-</label>
                 <div class="col-md-8">
                   <select name="language_id" id="language_id" class="select2" required>
-                    <option value="">--Select Language--</option>
+                    <option value="">-- Selecionar Idioma --</option>
                     <?php
                         while($data=mysqli_fetch_array($cat_result))
                         {
@@ -748,10 +748,10 @@
                 </div>
               </div> 
                <div class="form-group">
-                <label class="col-md-3 control-label">Genre :-</label>
+                <label class="col-md-3 control-label">Gênero :-</label>
                 <div class="col-md-8">
                   <select name="genre_id[]" id="genre_id" class="select2" required multiple="">
-                    <option value="">--Select Genre--</option>
+                    <option value="">-- Selecionar Gênero --</option>
                     <?php
                         while($genre_row=mysqli_fetch_array($genre_result))
                         {
@@ -766,20 +766,20 @@
                 </div>
               </div>                 
               <div class="form-group">
-                <label class="col-md-3 control-label">Movie Title :-</label>
+                <label class="col-md-3 control-label">Título do Filme :-</label>
                 <div class="col-md-8">
                   <input type="text" name="movie_title" id="movie_title" value="<?php if(isset($_GET['movie_id'])){echo $row['movie_title'];}?>" class="form-control" required>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-md-3 control-label">Video Upload Type :-</label>
+                <label class="col-md-3 control-label">Tipo de Envio de Vídeo :-</label>
                 <div class="col-md-8">                       
                   <select name="video_file_type" id="video_file_type" class="select2" required>
-                        <option value="">--Select Type--</option>
+                        <option value="">-- Selecionar Tipo --</option>
                         <option value="youtube_url" <?php if(isset($_GET['movie_id']) && $row['movie_type']=='youtube_url'){ echo 'selected'; } ?>>YouTube URL</option>
-                        <option value="server_url" <?php if(isset($_GET['movie_id']) && $row['movie_type']=='server_url'){ echo 'selected'; } ?>>Live URL</option>
-                        <option value="local" <?php if(isset($_GET['movie_id']) && $row['movie_type']=='local'){ echo 'selected'; } ?>>Local System</option>
-                        <option value="embedded_url" <?php if(isset($_GET['movie_id']) && $row['movie_type']=='embedded_url'){ echo 'selected'; } ?>>Embedded URL (Open Load, Very Stream, Daily motion, Vimeo)</option>
+                        <option value="server_url" <?php if(isset($_GET['movie_id']) && $row['movie_type']=='server_url'){ echo 'selected'; } ?>>URL ao vivo</option>
+                        <option value="local" <?php if(isset($_GET['movie_id']) && $row['movie_type']=='local'){ echo 'selected'; } ?>>Sistema Local</option>
+                        <option value="embedded_url" <?php if(isset($_GET['movie_id']) && $row['movie_type']=='embedded_url'){ echo 'selected'; } ?>>URL incorporada (Open Load, Very Stream, Daily motion, Vimeo)</option>
                         
                   </select>
                 </div>
@@ -788,23 +788,23 @@
               
               
               <div id="movie_url_holder" class="form-group" style="display:none;">
-                <label class="col-md-3 control-label">Enter URL :-
-                  <p style="color:#F00;font-weight: 500">(This is default play video url on app player)</p>
+                <label class="col-md-3 control-label">Informe a URL :-
+                  <p style="color:#F00;font-weight: 500">(Esta é a URL de vídeo padrão no player do app)</p>
                 </label>
                 <div class="col-md-8">
                   <input type="text" name="movie_url" value="<?php if(isset($_GET['movie_id'])){ echo $row['movie_url'];}?>" class="form-control">
                 </div>
               </div>
               <div id="movie_local_holder" class="form-group" style="display:none;">
-                <label class="col-md-3 control-label">Browse Video :-
-                  <p style="color:#F00;font-weight: 500">(This is default play video on app player)</p>
+                <label class="col-md-3 control-label">Procurar Vídeo :-
+                  <p style="color:#F00;font-weight: 500">(Este é o vídeo padrão no player do app)</p>
                 </label>
                 <div class="col-md-8">
                   <input type="file" name="video_local" value="" class="form-control video_local">
                     <?php 
                       if(isset($_GET['movie_id']) && $row['is_quality']=='false'){
                      ?> 
-                      <div style="word-break: break-all;"><label class="control-label">Current URL :-</label><?php echo $file_path.'uploads/'.$row['movie_url']?></div><br>
+                      <div style="word-break: break-all;"><label class="control-label">URL Atual :-</label><?php echo $file_path.'uploads/'.$row['movie_url']?></div><br>
                       <?php  
                     }
                     ?>
@@ -817,36 +817,36 @@
               <div id="quality_holder" style="display: none">
                 <div class="form-group">
                   <div class="col-md-offset-3 col-md-8">
-                    <span style="color:#F00;font-weight: 500">(You can add video with different qualities)</span>
+                    <span style="color:#F00;font-weight: 500">(Você pode adicionar vídeo com diferentes qualidades)</span>
                     <br/>
                   </div>
                 </div>  
                 <br/>
 
                 <div class="form-group">
-                  <label class="col-md-3 control-label">Quality ON/OFF :-</label>
+                  <label class="col-md-3 control-label">Qualidade LIGADA/DESLIGADA :-</label>
                   <div class="col-md-8">                       
                     <select name="quality_status" id="quality_status" class="select2">
-                      <option value="false" <?=(isset($_GET['movie_id']) && $row['is_quality']=='false') ? 'selected="selected"' : ''?>>OFF</option>
-                      <option value="true"<?=(isset($_GET['movie_id']) && $row['is_quality']=='true') ? 'selected="selected"' : ''?>>ON</option>
+                      <option value="false" <?=(isset($_GET['movie_id']) && $row['is_quality']=='false') ? 'selected="selected"' : ''?>>DESLIGADO</option>
+                      <option value="true"<?=(isset($_GET['movie_id']) && $row['is_quality']=='true') ? 'selected="selected"' : ''?>>LIGADO</option>
                     </select>
                   </div>
                 </div>
                 <div id="quality_server_url" style="display: none;">
                   <div class="form-group">
-                    <label class="col-md-3 control-label">Enter URL for 480p :-</label>
+                    <label class="col-md-3 control-label">Informe a URL para 480p :-</label>
                     <div class="col-md-8">
                       <input type="text" name="quality_url[480]" value="<?=(isset($_GET['movie_id']) && $row['is_quality']=='true') ? quality_info_data($row['id'], 'quality_480') : ''?>" class="form-control">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-md-3 control-label">Enter URL for 720p :-</label>
+                    <label class="col-md-3 control-label">Informe a URL para 720p :-</label>
                     <div class="col-md-8">
                       <input type="text" name="quality_url[720]" value="<?=(isset($_GET['movie_id']) && $row['is_quality']=='true') ? quality_info_data($row['id'], 'quality_720') : ''?>" class="form-control">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-md-3 control-label">Enter URL for 1080p :-</label>
+                    <label class="col-md-3 control-label">Informe a URL para 1080p :-</label>
                     <div class="col-md-8">
                       <input type="text" name="quality_url[1080]" value="<?=(isset($_GET['movie_id']) && $row['is_quality']=='true') ? quality_info_data($row['id'], 'quality_1080') : ''?>" class="form-control">
                     </div>
@@ -855,13 +855,13 @@
                 <div id="quality_local" style="display: none;">
 
                   <div class="form-group">
-                    <label class="col-md-3 control-label">Browse Video for 480p :-</label>
+                    <label class="col-md-3 control-label">Procurar Vídeo para 480p :-</label>
                     <div class="col-md-8">
                       <input type="file" name="quality_local[480]" class="form-control video_local">
                       <?php 
                         if(isset($_GET['movie_id']) && $row['is_quality']=='true' && $row['movie_type']=='local' && quality_info_data($row['id'], 'quality_480')!=''){
                        ?> 
-                        <div style="word-break: break-all;"><label class="control-label">Current URL :-</label><?php echo $file_path.'uploads/'.quality_info_data($row['id'], 'quality_480')?></div><br>
+                        <div style="word-break: break-all;"><label class="control-label">URL Atual :-</label><?php echo $file_path.'uploads/'.quality_info_data($row['id'], 'quality_480')?></div><br>
                         <?php  
                       }
                       ?>
@@ -873,20 +873,20 @@
                         if(isset($_GET['movie_id']) && $row['is_quality']=='true' && $row['movie_type']=='local' && quality_info_data($row['id'], 'quality_480')!=''){
                        ?>
                       <div style="text-align: right;margin-bottom: 20px">
-                        <a href="javascript:void(0)" class="remove_quality" data-column="quality_480" data-id="<?=quality_info_data($row['id'], 'id')?>">&times; Remove</a>
+                        <a href="javascript:void(0)" class="remove_quality" data-column="quality_480" data-id="<?=quality_info_data($row['id'], 'id')?>">&times; Remover</a>
                       </div>
                       <?php } ?>
                     </div>
 
                   </div>
                   <div class="form-group">
-                    <label class="col-md-3 control-label">Browse Video for 720p :-</label>
+                    <label class="col-md-3 control-label">Procurar Vídeo para 720p :-</label>
                     <div class="col-md-8">
                       <input type="file" name="quality_local[720]" class="form-control video_local">
                       <?php 
                         if(isset($_GET['movie_id']) && $row['is_quality']=='true' && $row['movie_type']=='local' && quality_info_data($row['id'], 'quality_720')!=''){
                        ?> 
-                        <div style="word-break: break-all;"><label class="control-label">Current URL :-</label><?php echo $file_path.'uploads/'.quality_info_data($row['id'], 'quality_720')?></div><br>
+                        <div style="word-break: break-all;"><label class="control-label">URL Atual :-</label><?php echo $file_path.'uploads/'.quality_info_data($row['id'], 'quality_720')?></div><br>
                         <?php  
                       }
                       ?>
@@ -898,20 +898,20 @@
                         if(isset($_GET['movie_id']) && $row['is_quality']=='true' && $row['movie_type']=='local' && quality_info_data($row['id'], 'quality_720')!=''){
                        ?>
                       <div style="text-align: right;margin-bottom: 20px">
-                        <a href="javascript:void(0)" class="remove_quality" data-column="quality_720" data-id="<?=quality_info_data($row['id'], 'id')?>">&times; Remove</a>
+                        <a href="javascript:void(0)" class="remove_quality" data-column="quality_720" data-id="<?=quality_info_data($row['id'], 'id')?>">&times; Remover</a>
                       </div>
                       <?php } ?>
 
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-md-3 control-label">Browse Video for 1080p :-</label>
+                    <label class="col-md-3 control-label">Procurar Vídeo para 1080p :-</label>
                     <div class="col-md-8">
                       <input type="file" name="quality_local[1080]" class="form-control video_local">
                       <?php 
                         if(isset($_GET['movie_id']) && $row['is_quality']=='true' && $row['movie_type']=='local' && quality_info_data($row['id'], 'quality_1080')!=''){
                        ?> 
-                        <div style="word-break: break-all;"><label class="control-label">Current URL :-</label><?php echo $file_path.'uploads/'.quality_info_data($row['id'], 'quality_1080')?></div><br>
+                        <div style="word-break: break-all;"><label class="control-label">URL Atual :-</label><?php echo $file_path.'uploads/'.quality_info_data($row['id'], 'quality_1080')?></div><br>
                         <?php  
                       }
                       ?>
@@ -923,7 +923,7 @@
                         if(isset($_GET['movie_id']) && $row['is_quality']=='true' && $row['movie_type']=='local' && quality_info_data($row['id'], 'quality_1080')!=''){
                        ?>
                       <div style="text-align: right;margin-bottom: 20px">
-                        <a href="javascript:void(0)" class="remove_quality" data-column="quality_1080" data-id="<?=quality_info_data($row['id'], 'id')?>">&times; Remove</a>
+                        <a href="javascript:void(0)" class="remove_quality" data-column="quality_1080" data-id="<?=quality_info_data($row['id'], 'id')?>">&times; Remover</a>
                       </div>
                       <?php } ?>
 
@@ -935,11 +935,11 @@
 
               <div class="subtitle" style="margin: 10px 0px;display: none;">
                 <div class="form-group">
-                  <label class="col-md-3 control-label">Subtitle ON/OFF :-</label>
+                  <label class="col-md-3 control-label">Legenda LIGADA/DESLIGADA :-</label>
                   <div class="col-md-8">                       
                     <select name="subtitle" id="subtitle" class="select2">
-                      <option value="false" <?=(isset($_GET['movie_id']) && $row['subtitle']=='false') ? 'selected="selected"' : ''?>>OFF</option>
-                      <option value="true"<?=(isset($_GET['movie_id']) && $row['subtitle']=='true') ? 'selected="selected"' : ''?>>ON</option>
+                      <option value="false" <?=(isset($_GET['movie_id']) && $row['subtitle']=='false') ? 'selected="selected"' : ''?>>DESLIGADO</option>
+                      <option value="true"<?=(isset($_GET['movie_id']) && $row['subtitle']=='true') ? 'selected="selected"' : ''?>>LIGADO</option>
                     </select>
                   </div>
                 </div>
@@ -950,29 +950,29 @@
                 <div class="subtitle_fields" style="display: none">
                   <div class="subtitle_container">
                     <div class="form-group subtitle_lang">
-                      <label class="col-md-3 control-label">Subtitle Language :-</label>
+                      <label class="col-md-3 control-label">Idioma da Legenda :-</label>
                       <div class="col-md-8">
                         <input type="text" name="subtitle_lang[]" value="" class="form-control">
                       </div>
                     </div>
                     <div class="form-group subtitle_type">
-                      <label class="col-md-3 control-label">Subtitle Upload Type :-</label>
+                      <label class="col-md-3 control-label">Tipo de Envio da Legenda :-</label>
                       <div class="col-md-8">                       
                         <select name="subtitle_type[]" class="select2">
-                          <option value="">---Select Type---</option>
-                          <option value="live_url">Live Url</option>
-                          <option value="local">Local System</option>
+                          <option value="">--- Selecionar Tipo ---</option>
+                          <option value="live_url">URL ao vivo</option>
+                          <option value="local">Sistema Local</option>
                         </select>
                       </div>
                     </div>
                     <div class="form-group subtitle_url" style="display: none">
-                      <label class="col-md-3 control-label">Enter URL :-</label>
+                      <label class="col-md-3 control-label">Informe a URL :-</label>
                       <div class="col-md-8">
                         <input type="text" name="subtitle_url[]" value="" class="form-control">
                       </div>
                     </div>
                     <div class="form-group subtitle_local" style="display: none">
-                      <label class="col-md-3 control-label">Browse Subtitle :-</label>
+                      <label class="col-md-3 control-label">Procurar Legenda :-</label>
                       <div class="col-md-8">
                         <input type="file" name="subtitle_local[]" accept=".srt" value="" class="form-control">
                       </div>
@@ -985,7 +985,7 @@
 
                   <div class="form-group">
                     <label class="col-md-3 col-md-offset-3">
-                      <button type="button" class="add_more btn btn-danger" style="font-size: 12px; padding: 6px 9px;">+ Add More</button>
+                      <button type="button" class="add_more btn btn-danger" style="font-size: 12px; padding: 6px 9px;">+ Adicionar mais</button>
                     </label>
                   </div>
                   
@@ -1010,29 +1010,29 @@
                       <input type="hidden" name="old_subtitle_type" value="<?=$row_subtitle['subtitle_type']?>">
 
                       <div class="form-group subtitle_lang">
-                        <label class="col-md-3 control-label">Subtitle Language :-</label>
+                        <label class="col-md-3 control-label">Idioma da Legenda :-</label>
                         <div class="col-md-8">
                           <input type="text" name="subtitle_lang[]" value="<?=$row_subtitle['language']?>" class="form-control">
                         </div>
                       </div>
                       <div class="form-group subtitle_type">
-                        <label class="col-md-3 control-label">Subtitle Upload Type :-</label>
+                        <label class="col-md-3 control-label">Tipo de Envio da Legenda :-</label>
                         <div class="col-md-8">                       
                           <select name="subtitle_type[]" class="select2">
-                            <option value="" selected="">---Select Type---</option>
-                            <option value="live_url" <?=($row_subtitle['subtitle_type']=='live_url') ? 'selected="selected"' : ''?>>Live Url</option>
-                            <option value="local" <?=($row_subtitle['subtitle_type']=='local') ? 'selected="selected"' : ''?>>Local System</option>
+                            <option value="" selected="">--- Selecionar Tipo ---</option>
+                            <option value="live_url" <?=($row_subtitle['subtitle_type']=='live_url') ? 'selected="selected"' : ''?>>URL ao vivo</option>
+                            <option value="local" <?=($row_subtitle['subtitle_type']=='local') ? 'selected="selected"' : ''?>>Sistema Local</option>
                           </select>
                         </div>
                       </div>
                       <div class="form-group subtitle_url" style="display: none">
-                        <label class="col-md-3 control-label">Enter URL :-</label>
+                        <label class="col-md-3 control-label">Informe a URL :-</label>
                         <div class="col-md-8">
                           <input type="text" name="subtitle_url[]" value="<?=$row_subtitle['subtitle_url']?>" class="form-control">
                         </div>
                       </div>
                       <div class="form-group subtitle_local" style="display: none">
-                        <label class="col-md-3 control-label">Browse Subtitle :-</label>
+                        <label class="col-md-3 control-label">Procurar Legenda :-</label>
                         <div class="col-md-8">
                           <input type="hidden" name="subtitle_local_url[]" value="<?=$row_subtitle['subtitle_url']?>" class="form-control">
                           <input type="file" name="subtitle_local[]" accept=".srt" value="" class="form-control">
@@ -1041,13 +1041,13 @@
                             if($row_subtitle['subtitle_type']=='local')
                             {
                           ?>
-                          <div style="word-break: break-all;"><label class="control-label">Current URL :-</label><?php echo $file_path.'uploads/'.$row_subtitle['subtitle_url']?></div><br>
+                          <div style="word-break: break-all;"><label class="control-label">URL Atual :-</label><?php echo $file_path.'uploads/'.$row_subtitle['subtitle_url']?></div><br>
                           <?php } ?>
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="col-md-offset-3 col-md-8 text-right">
-                          <a href="javascript:void(0)" class="removeSubtitle" data-id="<?=$row_subtitle['id']?>">&times; Remove</a>
+                          <a href="javascript:void(0)" class="removeSubtitle" data-id="<?=$row_subtitle['id']?>">&times; Remover</a>
                         </label>
                       </div>
                   </div>
@@ -1060,29 +1060,29 @@
                 ?>
                   <div class="subtitle_container">
                     <div class="form-group subtitle_lang">
-                      <label class="col-md-3 control-label">Subtitle Language :-</label>
+                      <label class="col-md-3 control-label">Idioma da Legenda :-</label>
                       <div class="col-md-8">
                         <input type="text" name="subtitle_lang[]" value="" class="form-control">
                       </div>
                     </div>
                     <div class="form-group subtitle_type">
-                      <label class="col-md-3 control-label">Subtitle Upload Type :-</label>
+                      <label class="col-md-3 control-label">Tipo de Envio da Legenda :-</label>
                       <div class="col-md-8">                       
                         <select name="subtitle_type[]" class="select2">
-                          <option value="" selected="">---Select Type---</option>
-                          <option value="live_url">Live Url</option>
-                          <option value="local">Local System</option>
+                          <option value="" selected="">--- Selecionar Tipo ---</option>
+                          <option value="live_url">URL ao vivo</option>
+                          <option value="local">Sistema Local</option>
                         </select>
                       </div>
                     </div>
                     <div class="form-group subtitle_url" style="display: none">
-                      <label class="col-md-3 control-label">Enter URL :-</label>
+                      <label class="col-md-3 control-label">Informe a URL :-</label>
                       <div class="col-md-8">
                         <input type="text" name="subtitle_url[]" value="" class="form-control">
                       </div>
                     </div>
                     <div class="form-group subtitle_local" style="display: none">
-                      <label class="col-md-3 control-label">Browse Subtitle :-</label>
+                      <label class="col-md-3 control-label">Procurar Legenda :-</label>
                       <div class="col-md-8">
                         <input type="file" name="subtitle_local[]" accept=".srt" value="" class="form-control">
                       </div>
@@ -1094,7 +1094,7 @@
                   <div class="moreContainer"></div>
                   <div class="form-group">
                     <label class="col-md-3 col-md-offset-3">
-                      <button type="button" class="add_more btn btn-danger" style="font-size: 12px; padding: 6px 9px;">+ Add More</button>
+                      <button type="button" class="add_more btn btn-danger" style="font-size: 12px; padding: 6px 9px;">+ Adicionar mais</button>
                     </label>
                   </div>
 
@@ -1109,8 +1109,8 @@
                 
               </div>
               <div class="form-group">
-                <label class="col-md-3 control-label">Poster Image:-
-                  <p class="control-label-help" id="square_lable_info">(Recommended resolution: 185x278 portrait)</p>
+                <label class="col-md-3 control-label">Imagem do Pôster:-
+                  <p class="control-label-help" id="square_lable_info">(Resolução recomendada: 185x278 retrato)</p>
                 </label>
                 <div class="col-md-8">
                   <div class="fileupload_block">
@@ -1127,15 +1127,15 @@
                         }
 
                       ?>
-                      <img type="image" src="<?=$img_src?>" class="poster_img" alt="poster image" style="width: 80px;height: 115px" />
+                      <img type="image" src="<?=$img_src?>" class="poster_img" alt="imagem do pôster" style="width: 80px;height: 115px" />
                     </div>
                   </div>
                 </div>
               </div>
 
               <div class="form-group">
-                <label class="col-md-3 control-label">Cover Image:-
-                  <p class="control-label-help" id="square_lable_info">(Recommended resolution: 500x282 landscape)</p>
+                <label class="col-md-3 control-label">Imagem de Capa:-
+                  <p class="control-label-help" id="square_lable_info">(Resolução recomendada: 500x282 paisagem)</p>
                 </label>
                 <div class="col-md-8">
                   <div class="fileupload_block">
@@ -1152,7 +1152,7 @@
                         }
 
                       ?>
-                      <img type="image" src="<?=$img_src?>" alt="cover image" style="width: 150px;height: 86px" />
+                      <img type="image" src="<?=$img_src?>" alt="imagem de capa" style="width: 150px;height: 86px" />
                     </div>
                   </div>
                 </div>
@@ -1160,7 +1160,7 @@
               
               <div class="form-group">
                 <div class="col-md-3">
-                  <label class="control-label">Movie Description :-</label>
+                  <label class="control-label">Descrição do Filme :-</label>
                 </div>
                 <div class="col-md-8">
                   <textarea name="movie_desc" id="movie_desc" rows="5" class="form-control"><?php if(isset($_GET['movie_id'])){ echo $row['movie_desc']; } ?></textarea>
@@ -1173,7 +1173,7 @@
               <div class="form-group">&nbsp;</div>
               <div class="form-group">
                 <div class="col-md-9 col-md-offset-3">
-                  <button type="submit" name="submit" class="btn btn-primary">Save</button>
+                  <button type="submit" name="submit" class="btn btn-primary">Salvar</button>
                 </div>
               </div>
             </div>
@@ -1205,7 +1205,7 @@
 
           $('.notifyjs-corner').empty();
           $.notify(
-            'Only video files are allowed to upload.',
+            'Somente arquivos de vídeo são permitidos para envio.',
             { position:"top center",className: 'error'}
           );
 
@@ -1256,7 +1256,7 @@
           $(this).val('');
           $('.notifyjs-corner').empty();
           $.notify(
-          'Only jpg/jpeg, png, gif and svg files are allowed!',
+          'Somente arquivos jpg/jpeg, png, gif e svg são permitidos!',
           { position:"top center",className: 'error'}
           );
         }
@@ -1288,7 +1288,7 @@
           $(this).val('');
           $('.notifyjs-corner').empty();
           $.notify(
-          'Only jpg/jpeg, png, gif and svg files are allowed!',
+          'Somente arquivos jpg/jpeg, png, gif e svg são permitidos!',
           { position:"top center",className: 'error'}
           );
         }
@@ -1509,16 +1509,16 @@
 
 
     if(is_empty!=0){
-      alert("Previous subtitle data must be filled !");
+      alert("Preencha os dados da legenda anterior!");
       return false;
     }
 
 
     $("select.select2-hidden-accessible").select2('destroy');
 
-    var _html='<div class="form-group subtitle_lang"><label class="col-md-3 control-label">Subtitle Language :-</label><div class="col-md-8"><input type="text" name="subtitle_lang[]" value="" class="form-control" required="required"></div></div><div class="form-group subtitle_type"><label class="col-md-3 control-label">Subtitle Upload Type :-</label><div class="col-md-8"><select name="subtitle_type[]" class="select2" required="required"><option value="" selected>---Select Type---</option><option value="live_url">Live Url</option><option value="local">Local System</option></select></div></div><div class="form-group subtitle_url" style="display: none"><label class="col-md-3 control-label">Enter URL :-</label><div class="col-md-8"><input type="text" name="subtitle_url[]" value="" class="form-control"></div></div><div class="form-group subtitle_local" style="display: none"><label class="col-md-3 control-label">Browse Subtitle :-</label><div class="col-md-8"><input type="file" name="subtitle_local[]" accept=".srt" value="" class="form-control"></div></div>';
+    var _html='<div class="form-group subtitle_lang"><label class="col-md-3 control-label">Idioma da Legenda :-</label><div class="col-md-8"><input type="text" name="subtitle_lang[]" value="" class="form-control" required="required"></div></div><div class="form-group subtitle_type"><label class="col-md-3 control-label">Tipo de Envio da Legenda :-</label><div class="col-md-8"><select name="subtitle_type[]" class="select2" required="required"><option value="" selected>--- Selecionar Tipo ---</option><option value="live_url">URL ao vivo</option><option value="local">Sistema Local</option></select></div></div><div class="form-group subtitle_url" style="display: none"><label class="col-md-3 control-label">Informe a URL :-</label><div class="col-md-8"><input type="text" name="subtitle_url[]" value="" class="form-control"></div></div><div class="form-group subtitle_local" style="display: none"><label class="col-md-3 control-label">Procurar Legenda :-</label><div class="col-md-8"><input type="file" name="subtitle_local[]" accept=".srt" value="" class="form-control"></div></div>';
 
-    $(".moreContainer").append('<div class="content">'+_html+'<div class="form-group"><label class="col-md-offset-3 col-md-8 text-right"><a href="" class="removeMore">&times; Remove</a></span></div></div>');
+    $(".moreContainer").append('<div class="content">'+_html+'<div class="form-group"><label class="col-md-offset-3 col-md-8 text-right"><a href="" class="removeMore">&times; Remover</a></span></div></div>');
 
 
     $(".removeMore").click(function(event){
@@ -1572,7 +1572,7 @@
           $(this).val('');
           $('.notifyjs-corner').empty();
           $.notify(
-            'Please select only .srt file',
+            'Selecione apenas arquivo .srt',
             { position:"top center",className: 'error'}
           );
         }
@@ -1589,7 +1589,7 @@
 
     var post_id=$("input[name='movie_id']").val();
 
-    if(confirm("Do you really want to remove this subtitle?")){
+    if(confirm("Deseja realmente remover esta legenda?")){
         $.ajax({
           type:'post',
           url:'processData.php',
@@ -1655,7 +1655,7 @@
     var id=$(this).data("id");
     var column=$(this).data("column");
 
-    if(confirm("Do you really want to remove this quality?")){
+    if(confirm("Deseja realmente remover esta qualidade?")){
         $.ajax({
           type:'post',
           url:'processData.php',
@@ -1683,14 +1683,14 @@
     var btn=$(this);
 
     $(this).attr("disabled", true);
-    $(this).text("Please wait..");
+    $(this).text("Aguarde...");
 
     var imdb_id_title=$("#imdb_id_title").val();
 
     if(imdb_id_title==''){
-      swal("Enter IMDb ID (e.g. tt2161930)");
+      swal("Informe o IMDb ID (ex.: tt2161930)");
       btn.attr("disabled", false);
-      btn.text("Fetch");
+      btn.text("Buscar");
       return;
     }
     else{
@@ -1703,7 +1703,7 @@
         success:function(res){
 
             btn.attr("disabled", false);
-            btn.text("Fetch");
+            btn.text("Buscar");
 
             $('.notifyjs-corner').empty();
             $.notify(
@@ -1746,7 +1746,7 @@
           $(this).val('');
           $('.notifyjs-corner').empty();
           $.notify(
-            'Please select only .srt file',
+            'Selecione apenas arquivo .srt',
             { position:"top center",className: 'error'}
           );
         }

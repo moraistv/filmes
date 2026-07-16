@@ -1,6 +1,6 @@
 <?php 
   
-  $page_title=(isset($_GET['user_id'])) ? 'Edit User' : 'Add User'; 
+  $page_title=(isset($_GET['user_id'])) ? 'Editar Usuário' : 'Adicionar Usuário'; 
 
   include('includes/header.php');
   include('includes/function.php');
@@ -92,25 +92,25 @@
           <div class="section">
             <div class="section-body">
               <div class="form-group">
-                <label class="col-md-3 control-label">Name :-</label>
+                <label class="col-md-3 control-label">Nome :-</label>
                 <div class="col-md-6">
                   <input type="text" name="name" id="name" value="<?php if(isset($_GET['user_id'])){echo $user_row['name'];}?>" class="form-control" required>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-md-3 control-label">Email :-</label>
+                <label class="col-md-3 control-label">E-mail :-</label>
                 <div class="col-md-6">
                   <input type="email" name="email" id="email" value="<?php if(isset($_GET['user_id'])){echo $user_row['email'];}?>" class="form-control" required>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-md-3 control-label">Password :-</label>
+                <label class="col-md-3 control-label">Senha :-</label>
                 <div class="col-md-6">
                   <input type="password" name="password" id="password" value="" class="form-control" <?php if(!isset($_GET['user_id'])){?>required<?php }?>>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-md-3 control-label">Phone :-</label>
+                <label class="col-md-3 control-label">Telefone :-</label>
                 <div class="col-md-6">
                   <input type="text" name="phone" id="phone" value="<?php if(isset($_GET['user_id'])){echo $user_row['phone'];}?>" class="form-control">
                 </div>
@@ -118,7 +118,7 @@
                
               <div class="form-group">
                 <div class="col-md-9 col-md-offset-3">
-                  <button type="submit" name="submit" class="btn btn-primary">Save</button>
+                  <button type="submit" name="submit" class="btn btn-primary">Salvar</button>
                 </div>
               </div>
             </div>

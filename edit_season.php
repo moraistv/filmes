@@ -1,5 +1,5 @@
 <?php 
-  $page_title= 'Edit Season';
+  $page_title= 'Editar Temporada';
   $current_page="season";
   $active_page="series";
 
@@ -60,10 +60,10 @@
                 <div class="section-body">
                   
                   <div class="form-group">
-                    <label class="col-md-3 control-label">Series :-</label>
+                    <label class="col-md-3 control-label">Série :-</label>
                     <div class="col-md-6">
                       <select name="series_id" id="series_id" class="select2" required>
-                        <option value="">--Select Series--</option>
+                        <option value="">-- Selecionar Série --</option>
                         <?php
                             while($data=mysqli_fetch_array($result_series))
                             {
@@ -77,7 +77,7 @@
                   </div> 
                   <div class="input-container">
                     <div class="form-group">
-                      <label class="col-md-3 control-label">Season name :-</label>
+                      <label class="col-md-3 control-label">Nome da Temporada :-</label>
                       <div class="col-md-6">
                         <input type="text" name="season_name" class="form-control" value="<?=$row['season_name']?>" required>
                       </div>
@@ -87,7 +87,7 @@
                   <br>
                   <div class="form-group">
                     <div class="col-md-9 col-md-offset-3">
-                      <button type="submit" name="submit" class="btn btn-primary">Save</button>
+                      <button type="submit" name="submit" class="btn btn-primary">Salvar</button>
                     </div>
                   </div>
                 </div>

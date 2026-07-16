@@ -1,5 +1,5 @@
 <?php 
-  $page_title="Manage Genre";
+  $page_title="Gêneros";
   $current_page="genre";
   $active_page="movies";
 
@@ -69,11 +69,11 @@
           <div class="search_list">
             <div class="search_block">
               <form  method="post" action="">
-              <input class="form-control input-sm" placeholder="Search genre..." aria-controls="DataTables_Table_0" type="search" name="search_value" value="<?php if(isset($_POST['search_value'])){ echo $_POST['search_value']; }?>" required>
+              <input class="form-control input-sm" placeholder="Pesquisar gênero..." aria-controls="DataTables_Table_0" type="search" name="search_value" value="<?php if(isset($_POST['search_value'])){ echo $_POST['search_value']; }?>" required>
                     <button type="submit" name="data_search" class="btn-search"><i class="fa fa-search"></i></button>
               </form>  
             </div>
-            <div class="add_btn_primary"> <a href="add_genre.php?add=yes">Add Genre</a> </div>
+            <div class="add_btn_primary"> <a href="add_genre.php?add=yes">Adicionar Gênero</a> </div>
           </div>
         </div>
       </div>
@@ -90,8 +90,8 @@
               <div class="wall_image_title">
                 <h2><a href="manage_movies.php?genre=<?=$row['gid']?>" style="text-shadow: 1px 1px 1px #000"><?php echo $row['genre_name'];?> <span>(<?php echo get_total_item($row['gid']);?>)</span></a></h2>
                 <ul>                
-                  <li><a href="add_genre.php?g_id=<?php echo $row['gid'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Edit"><i class="fa fa-edit"></i></a></li>               
-                  <li><a href="" data-id="<?php echo $row['gid'];?>" class="btn_delete_a" data-toggle="tooltip" data-tooltip="Delete"><i class="fa fa-trash"></i></a></li>
+                  <li><a href="add_genre.php?g_id=<?php echo $row['gid'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Editar"><i class="fa fa-edit"></i></a></li>               
+                  <li><a href="" data-id="<?php echo $row['gid'];?>" class="btn_delete_a" data-toggle="tooltip" data-tooltip="Excluir"><i class="fa fa-trash"></i></a></li>
                 </ul>
               </div>
               <span><img src="images/<?php echo $row['genre_image'];?>" style="height: 150px !important;"/></span>
@@ -127,14 +127,14 @@
     var _table='tbl_genres';
 
     swal({
-        title: "Are you sure?",
-        text: "Do you really want to delete this.",
+        title: "Tem certeza?",
+        text: "Deseja realmente excluir isto?",
         type: "warning",
         showCancelButton: true,
         confirmButtonClass: "btn-danger",
         cancelButtonClass: "btn-warning",
-        confirmButtonText: "Yes",
-        cancelButtonText: "No",
+        confirmButtonText: "Sim",
+        cancelButtonText: "Não",
         closeOnConfirm: false,
         closeOnCancel: false,
         showLoaderOnConfirm: true
@@ -151,8 +151,8 @@
                 console.log(res);
                 if(res.status=='1'){
                   swal({
-                      title: "Successfully", 
-                      text: "Genre is deleted...", 
+                      title: "Sucesso", 
+                      text: "Gênero excluído...", 
                       type: "success"
                   },function() {
                       location.reload();

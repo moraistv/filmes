@@ -1,6 +1,6 @@
 <?php 
   
-  $page_title="Manage Reports";
+  $page_title="Denúncias";
   include("includes/header.php");
 
   require("includes/function.php");
@@ -66,9 +66,9 @@
       <div class="clearfix"></div>
       <div class="col-md-12" style="padding: 0px">
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#series_report" aria-controls="series_report" role="tab" data-toggle="tab">Series Report</a></li>
-            <li role="presentation"><a href="#movie_report" aria-controls="movie_report" role="tab" data-toggle="tab">Movie Report</a></li>
-            <li role="presentation"><a href="#channel_report" aria-controls="channel_report" role="tab" data-toggle="tab">Channel Report</a></li>
+            <li role="presentation" class="active"><a href="#series_report" aria-controls="series_report" role="tab" data-toggle="tab">Denúncias de Séries</a></li>
+            <li role="presentation"><a href="#movie_report" aria-controls="movie_report" role="tab" data-toggle="tab">Denúncias de Filmes</a></li>
+            <li role="presentation"><a href="#channel_report" aria-controls="channel_report" role="tab" data-toggle="tab">Denúncias de Canais</a></li>
         </ul>
       
         <div class="tab-content">
@@ -78,10 +78,10 @@
                 <table class="datatable table table-striped table-bordered table-hover">
                   <thead>
                     <tr>
-                      <th>Series</th>
-                      <th>Total Reports</th>
-                      <th>Last Report On</th> 
-                      <th class="cat_action_list">Action</th>
+                      <th>Série</th>
+                      <th>Total de Denúncias</th>
+                      <th>Última Denúncia em</th> 
+                      <th class="cat_action_list">Ações</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -105,12 +105,12 @@
                         <td><?php echo get_post($row['post_id'],$row['type'])['series_name'];?></td>
                         <td>
                           <a href="view_series_reports.php?post_id=<?=$row['post_id']?>">
-                            <?php echo get_total_reports($row['post_id'],$row['type']);?> Reports
+                            <?php echo get_total_reports($row['post_id'],$row['type']);?> Denúncias
                           </a>
                         </td>
                         <td nowrap=""><?php echo calculate_time_span($row['report_on'],true);?></td>
                         <td>
-                          <a href="" data-post="<?php echo $row['post_id'];?>" data-type="<?=$row['type']?>" class="btn btn-danger btn_delete"><i class="fa fa-trash"></i> Delete</a>
+                          <a href="" data-post="<?php echo $row['post_id'];?>" data-type="<?=$row['type']?>" class="btn btn-danger btn_delete"><i class="fa fa-trash"></i> Excluir</a>
                         </td>
                       </tr>
                       <?php
@@ -130,10 +130,10 @@
                 <table class="datatable table table-striped table-bordered table-hover">
                   <thead>
                     <tr>
-                      <th>Movie</th>
-                      <th>Total Reports</th>
-                      <th>Last Report On</th> 
-                      <th class="cat_action_list">Action</th>
+                      <th>Filme</th>
+                      <th>Total de Denúncias</th>
+                      <th>Última Denúncia em</th> 
+                      <th class="cat_action_list">Ações</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -156,12 +156,12 @@
                       <td><?php echo get_post($row['post_id'],$row['type'])['movie_title'];?></td>
                       <td>
                         <a href="view_movie_reports.php?post_id=<?=$row['post_id']?>">
-                          <?php echo get_total_reports($row['post_id'],$row['type']);?> Reports
+                          <?php echo get_total_reports($row['post_id'],$row['type']);?> Denúncias
                         </a>
                       </td>
                       <td nowrap=""><?php echo calculate_time_span($row['report_on'],true);?></td>
                       <td>
-                        <a href="" data-post="<?php echo $row['post_id'];?>" data-type="<?=$row['type']?>" class="btn btn-danger btn_delete"><i class="fa fa-trash"></i> Delete</a>
+                        <a href="" data-post="<?php echo $row['post_id'];?>" data-type="<?=$row['type']?>" class="btn btn-danger btn_delete"><i class="fa fa-trash"></i> Excluir</a>
                       </td>
                     </tr>
                     <?php
@@ -180,10 +180,10 @@
                 <table class="datatable table table-striped table-bordered table-hover">
                   <thead>
                     <tr>
-                      <th>Channel</th>
-                      <th>Total Reports</th>
-                      <th>Last Report On</th> 
-                      <th class="cat_action_list">Action</th>
+                      <th>Canal</th>
+                      <th>Total de Denúncias</th>
+                      <th>Última Denúncia em</th> 
+                      <th class="cat_action_list">Ações</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -206,12 +206,12 @@
                         <td><?php echo get_post($row['post_id'],$row['type'])['channel_title'];?></td>
                         <td>
                           <a href="view_channel_reports.php?post_id=<?=$row['post_id']?>">
-                            <?php echo get_total_reports($row['post_id'],$row['type']);?> Reports
+                            <?php echo get_total_reports($row['post_id'],$row['type']);?> Denúncias
                           </a>
                         </td>
                         <td nowrap=""><?php echo calculate_time_span($row['report_on'],true);?></td>
                         <td>
-                          <a href="" data-post="<?php echo $row['post_id'];?>" data-type="<?=$row['type']?>" class="btn btn-danger btn_delete"><i class="fa fa-trash"></i> Delete</a>
+                          <a href="" data-post="<?php echo $row['post_id'];?>" data-type="<?=$row['type']?>" class="btn btn-danger btn_delete"><i class="fa fa-trash"></i> Excluir</a>
                         </td>
                       </tr>
                       <?php
@@ -249,14 +249,14 @@
       var _type=$(this).data("type");
 
       swal({
-          title: "Are you sure?",
-          text: "All reports will be deleted of this.",
+          title: "Tem certeza?",
+          text: "Todas as denúncias deste item serão excluídas.",
           type: "warning",
           showCancelButton: true,
           confirmButtonClass: "btn-danger",
           cancelButtonClass: "btn-warning",
-          confirmButtonText: "Yes",
-          cancelButtonText: "No",
+          confirmButtonText: "Sim",
+          cancelButtonText: "Não",
           closeOnConfirm: false,
           closeOnCancel: false,
           showLoaderOnConfirm: true
@@ -273,8 +273,8 @@
                   console.log(res);
                   if(res.status=='1'){
                     swal({
-                        title: "Successfully", 
-                        text: "Reports are deleted...", 
+                        title: "Sucesso", 
+                        text: "Denúncias excluídas...", 
                         type: "success"
                     },function() {
                         location.reload();

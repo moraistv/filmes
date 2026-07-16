@@ -1,9 +1,9 @@
 <?php 
   if(isset($_GET['id'])){ 
-    $page_title= 'Edit Language';
+    $page_title= 'Editar Idioma';
   }
   else{ 
-    $page_title='Add Language'; 
+    $page_title='Adicionar Idioma'; 
   }
   $current_page="language";
   $active_page="movies";
@@ -79,15 +79,15 @@
           <div class="section">
             <div class="section-body">
               <div class="form-group">
-                <label class="col-md-3 control-label">Language Title :-
+                <label class="col-md-3 control-label">Título do Idioma :-
                 
                 </label>
                 <div class="col-md-6">
-                  <input type="text" name="language_name" placeholder="Enter language title" id="language_name" value="<?php if(isset($_GET['id'])){echo $row['language_name'];}?>" class="form-control" required>
+                  <input type="text" name="language_name" placeholder="Informe o título do idioma" id="language_name" value="<?php if(isset($_GET['id'])){echo $row['language_name'];}?>" class="form-control" required>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-md-3 control-label">Select Background-Color :-</label>
+                <label class="col-md-3 control-label">Selecionar Cor de Fundo :-</label>
                 <div class="col-md-6">
                   <input value="<?php if(isset($_GET['id'])){echo $row['language_background'];}else{ echo 'e91e63';}?>" name="bg_color" class="form-control jscolor {width:243, height:150, position:'right',
                   borderColor:'#000', insetColor:'#FFF', backgroundColor:'#ddd'}">
@@ -96,7 +96,7 @@
               <br>
               <div class="form-group">
                 <div class="col-md-9 col-md-offset-3">
-                  <button type="submit" name="submit" class="btn btn-primary">Save</button>
+                  <button type="submit" name="submit" class="btn btn-primary">Salvar</button>
                 </div>
               </div>
             </div>

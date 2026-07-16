@@ -58,7 +58,7 @@
 			Delete('tbl_comments','id='.$id);
 
 	      	$response['status']=1;
-	      	$response['message']='Something went to wrong !';
+	      	$response['message']='Ocorreu um erro!';
 	      	echo json_encode($response);
 			break;
 
@@ -77,7 +77,7 @@
 			Delete('tbl_reports','id='.$id);
 
 	      	$response['status']=1;
-	      	$response['message']='Something went to wrong !';
+	      	$response['message']='Ocorreu um erro!';
 	      	echo json_encode($response);
 			break;
 
@@ -89,11 +89,11 @@
 			
 			if(mysqli_query($mysqli, $deleteSql)){
 				$response['status']=1;
-	      		$response['message']='Something went to wrong !';	
+	      		$response['message']='Ocorreu um erro!';	
 			}
 			else{
 				$response['status']=-2;
-	      		$response['message']='Something went to wrong !';
+	      		$response['message']='Ocorreu um erro!';
 			}
 
 	      	

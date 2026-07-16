@@ -28,7 +28,7 @@
         <div class="card">
           <div class="page_title_block">
             <div class="col-md-5 col-xs-12">
-              <div class="page_title"><?php echo $viv_row['channel_title'];?> Ratings</div>
+              <div class="page_title"><?php echo $viv_row['channel_title'];?> Avaliações</div>
             </div>      
           </div> 
       <div class="clearfix"></div>  
@@ -42,7 +42,7 @@
              <?php if($viv_row['channel_thumbnail']) {?>
                               <img src="images/<?php echo $viv_row['channel_thumbnail'];?>" class="thumbnail"/>
               <?php }else{ ?>
-               <img type="image" src="assets/images/add-image.png" alt="add image" class="thumbnail" /> 
+               <img type="image" src="assets/images/add-image.png" alt="adicionar imagem" class="thumbnail" /> 
               <?php }?>
            </div>                           
            
@@ -52,7 +52,7 @@
         <div class="card" style="margin-top:0px;">
           <div class="status-bar"></div>
           <div class="action-bar"> <a href="#" class="zmdi zmdi-star"></a>
-          <h3 style="padding-left:20px;margin-bottom:20px;"><b>Rating</b></h3>
+          <h3 style="padding-left:20px;margin-bottom:20px;"><b>Avaliação</b></h3>
           </div>
           <div class="list-group lg-alt lg-even-black">
           <table width="100%">

@@ -1,5 +1,5 @@
 <?php 
-  $page_title="Manage Language";
+  $page_title="Idiomas";
   $current_page="language";
   $active_page="movies";
 
@@ -100,11 +100,11 @@
           <div class="search_list">
             <div class="search_block">
               <form  method="post" action="">
-              <input class="form-control input-sm" placeholder="Search language..." aria-controls="DataTables_Table_0" type="search" name="search_value" value="<?php if(isset($_POST['search_value'])){ echo $_POST['search_value']; }?>" required>
+              <input class="form-control input-sm" placeholder="Pesquisar idioma..." aria-controls="DataTables_Table_0" type="search" name="search_value" value="<?php if(isset($_POST['search_value'])){ echo $_POST['search_value']; }?>" required>
                     <button type="submit" name="data_search" class="btn-search"><i class="fa fa-search"></i></button>
               </form>  
             </div>
-            <div class="add_btn_primary"> <a href="add_language.php?add=yes">Add Language</a> </div>
+            <div class="add_btn_primary"> <a href="add_language.php?add=yes">Adicionar Idioma</a> </div>
           </div>
         </div>
       </div>
@@ -121,16 +121,16 @@
               <div class="wall_image_title">
                 <h2><a href="manage_movies.php?language=<?=$row['id']?>" style="text-shadow: 1px 1px 1px #000"><?php echo $row['language_name'];?> <span>(<?php echo get_total_item($row['id']);?>)</span></a></h2>
                 <ul> 
-                  <li><a href="add_language.php?id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Edit"><i class="fa fa-edit"></i></a></li>               
-                  <li><a href="" data-id="<?php echo $row['id']?>" class="btn_delete_a" data-toggle="tooltip" data-tooltip="Delete"><i class="fa fa-trash"></i></a></li>
+                  <li><a href="add_language.php?id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Editar"><i class="fa fa-edit"></i></a></li>               
+                  <li><a href="" data-id="<?php echo $row['id']?>" class="btn_delete_a" data-toggle="tooltip" data-tooltip="Excluir"><i class="fa fa-trash"></i></a></li>
                   
                   <?php if($row['status']!="0"){
                   ?>
-                  <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?php echo $row['id'];?>" data-action="deactive" data-column="status" data-toggle="tooltip" data-tooltip="ENABLE"><img src="assets/images/btn_enabled.png" alt="wallpaper_1" /></a></div></li>
+                  <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?php echo $row['id'];?>" data-action="deactive" data-column="status" data-toggle="tooltip" data-tooltip="ATIVAR"><img src="assets/images/btn_enabled.png" alt="wallpaper_1" /></a></div></li>
 
                   <?php }else{
                   ?>
-                  <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?=$row['id']?>" data-action="active" data-column="status" data-toggle="tooltip" data-tooltip="DISABLE"><img src="assets/images/btn_disabled.png" alt="wallpaper_1" /></a></div></li>
+                  <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?=$row['id']?>" data-action="active" data-column="status" data-toggle="tooltip" data-tooltip="DESATIVAR"><img src="assets/images/btn_disabled.png" alt="wallpaper_1" /></a></div></li>
               
                   <?php }?>
                 </ul>
@@ -168,14 +168,14 @@
       var _table='tbl_language';
 
       swal({ 
-        title: "Are you sure?", 
-        text:'<label class="chk_confirm"><input type="checkbox" name="chk_confirm"> Do you want to remove all thing related to this language</label>', 
+        title: "Tem certeza?", 
+        text:'<label class="chk_confirm"><input type="checkbox" name="chk_confirm"> Deseja remover tudo relacionado a este idioma</label>', 
         showCancelButton: true, 
         showCancelButton: true,
         confirmButtonClass: "btn-danger",
         cancelButtonClass: "btn-warning",
-        confirmButtonText: "Yes",
-        cancelButtonText: "No", 
+        confirmButtonText: "Sim",
+        cancelButtonText: "Não", 
         closeOnConfirm: false, 
         closeOnCancel: false, 
         html:true , 
@@ -199,8 +199,8 @@
                   console.log(res);
                   if(res.status=='1'){
                     swal({
-                        title: "Successfully", 
-                        text: "Language is deleted...", 
+                        title: "Sucesso", 
+                        text: "Idioma excluído...", 
                         type: "success"
                     },function() {
                         location.reload();

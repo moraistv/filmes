@@ -1,6 +1,6 @@
 <?php 
 
-  $page_title="Manage Category";
+  $page_title="Categorias";
   $current_page="category";
   $active_page="channel";
 
@@ -74,11 +74,11 @@
           <div class="search_list">
             <div class="search_block">
               <form  method="post" action="">
-                <input class="form-control input-sm" placeholder="Search..." aria-controls="DataTables_Table_0" type="search" value="<?php if(isset($_POST['search_value'])){ echo $_POST['search_value']; } ?>" name="search_value" required>
+                <input class="form-control input-sm" placeholder="Pesquisar..." aria-controls="DataTables_Table_0" type="search" value="<?php if(isset($_POST['search_value'])){ echo $_POST['search_value']; } ?>" name="search_value" required>
                 <button type="submit" name="data_search" class="btn-search"><i class="fa fa-search"></i></button>
               </form>  
             </div>
-            <div class="add_btn_primary"> <a href="add_category.php?add=yes">Add Category</a> </div>
+            <div class="add_btn_primary"> <a href="add_category.php?add=yes">Adicionar Categoria</a> </div>
           </div>
         </div>
       </div>
@@ -95,14 +95,14 @@
                 <div class="wall_image_title">
                   <h2><a href="manage_channels.php?category=<?=$row['cid']?>" style="text-shadow: 1px 1px 1px #000"><?php echo $row['category_name'];?> <span>(<?php echo get_total_channels($row['cid']);?>)</span></a></h2>
                   <ul>                
-                    <li><a href="add_category.php?cat_id=<?php echo $row['cid'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Edit"><i class="fa fa-edit"></i></a></li>               
-                    <li><a href="" data-id="<?php echo $row['cid'];?>" class="btn_delete_a" data-toggle="tooltip" data-tooltip="Delete"><i class="fa fa-trash"></i></a></li>
+                    <li><a href="add_category.php?cat_id=<?php echo $row['cid'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Editar"><i class="fa fa-edit"></i></a></li>               
+                    <li><a href="" data-id="<?php echo $row['cid'];?>" class="btn_delete_a" data-toggle="tooltip" data-tooltip="Excluir"><i class="fa fa-trash"></i></a></li>
 
                     <?php if($row['status']!="0"){?>
-                      <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?php echo $row['cid'];?>" data-action="deactive" data-column="status" data-toggle="tooltip" data-tooltip="ENABLE"><img src="assets/images/btn_enabled.png" alt="wallpaper_1" /></a></div></li>
+                      <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?php echo $row['cid'];?>" data-action="deactive" data-column="status" data-toggle="tooltip" data-tooltip="ATIVAR"><img src="assets/images/btn_enabled.png" alt="wallpaper_1" /></a></div></li>
 
                     <?php }else{?>
-                      <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?=$row['cid']?>" data-action="active" data-column="status" data-toggle="tooltip" data-tooltip="DISABLE"><img src="assets/images/btn_disabled.png" alt="wallpaper_1" /></a></div></li>
+                      <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?=$row['cid']?>" data-action="active" data-column="status" data-toggle="tooltip" data-tooltip="DESATIVAR"><img src="assets/images/btn_disabled.png" alt="wallpaper_1" /></a></div></li>
                     <?php }?>
                   </ul>
                 </div>
@@ -164,14 +164,14 @@
     var _table='tbl_category';
 
     swal({
-      title: "Are you sure?",
-      text: "All data will be remove which belong to this.",
+      title: "Tem certeza?",
+      text: "Todos os dados relacionados a este item serão excluídos.",
       type: "warning",
       showCancelButton: true,
       confirmButtonClass: "btn-danger",
       cancelButtonClass: "btn-warning",
-      confirmButtonText: "Yes",
-      cancelButtonText: "No",
+      confirmButtonText: "Sim",
+      cancelButtonText: "Não",
       closeOnConfirm: false,
       closeOnCancel: false,
       showLoaderOnConfirm: true
@@ -188,8 +188,8 @@
             console.log(res);
             if(res.status=='1'){
               swal({
-                title: "Successfully", 
-                text: "Category is deleted...", 
+                title: "Sucesso", 
+                text: "Categoria excluída...", 
                 type: "success"
               },function() {
                 location.reload();

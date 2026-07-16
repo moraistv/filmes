@@ -1,5 +1,5 @@
 <?php 
-	$page_title="Manage Season";
+	$page_title="Temporadas";
 	$current_page="season";
 	$active_page="series";
 
@@ -64,11 +64,11 @@
           <div class="search_list">
             <div class="search_block">
               <form  method="post" action="">
-                <input class="form-control input-sm" placeholder="Search..." aria-controls="DataTables_Table_0" type="search" name="search_value" value="<?php if(isset($_POST['search_value'])){ echo $_POST['search_value']; }?>" required>
+                <input class="form-control input-sm" placeholder="Pesquisar..." aria-controls="DataTables_Table_0" type="search" name="search_value" value="<?php if(isset($_POST['search_value'])){ echo $_POST['search_value']; }?>" required>
                 <button type="submit" name="search" class="btn-search"><i class="fa fa-search"></i></button>
               </form>  
             </div>
-            <div class="add_btn_primary"> <a href="add_season.php?add=yes">Add Season</a> </div>
+            <div class="add_btn_primary"> <a href="add_season.php?add=yes">Adicionar Temporada</a> </div>
           </div>
         </div>
       </div>
@@ -77,9 +77,9 @@
         <table class="table table-striped table-bordered table-hover">
           <thead>
             <tr>
-              <th>Series</th>						 
-			  <th>Season</th>				   
-              <th class="cat_action_list">Action</th>
+              <th>Série</th>						 
+			  <th>Temporada</th>				   
+              <th class="cat_action_list">Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -92,8 +92,8 @@
                <td><?php echo $row['series_name'];?></td>
 	           <td><?php echo $row['season_name'];?></td>   
 	            
-               <td><a href="edit_season.php?id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>" class="btn btn-primary btn_edit" data-tooltip="Edit"><i class="fa fa-edit"></i></a>
-                <a href="" data-id="<?php echo $row['id'];?>" data-tooltip="Delete" class="btn btn-danger btn_delete btn_delete_a"><i class="fa fa-trash"></i></a></td>
+               <td><a href="edit_season.php?id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>" class="btn btn-primary btn_edit" data-tooltip="Editar"><i class="fa fa-edit"></i></a>
+                <a href="" data-id="<?php echo $row['id'];?>" data-tooltip="Excluir" class="btn btn-danger btn_delete btn_delete_a"><i class="fa fa-trash"></i></a></td>
             </tr>
            <?php
 				}
@@ -126,14 +126,14 @@
 	    var _table='tbl_season';
 
 	    swal({
-	        title: "Are you sure?",
-        	text: "Do you really want to delete this season.",
+	        title: "Tem certeza?",
+        	text: "Deseja realmente excluir esta temporada?",
 	        type: "warning",
 	        showCancelButton: true,
 	        confirmButtonClass: "btn-danger",
 	        cancelButtonClass: "btn-warning",
-	        confirmButtonText: "Yes",
-	        cancelButtonText: "No",
+	        confirmButtonText: "Sim",
+	        cancelButtonText: "Não",
 	        closeOnConfirm: false,
 	        closeOnCancel: false,
 	        showLoaderOnConfirm: true
@@ -150,8 +150,8 @@
 	                console.log(res);
 	                if(res.status=='1'){
 	                  swal({
-	                      title: "Successfully", 
-	                      text: "Season is deleted...", 
+	                      title: "Sucesso", 
+	                      text: "Temporada excluída...", 
 	                      type: "success"
 	                  },function() {
 	                      location.reload();

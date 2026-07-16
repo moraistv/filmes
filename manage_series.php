@@ -1,6 +1,6 @@
 <?php 
   
-  $page_title="Manage TV Series";
+  $page_title="Séries";
   $current_page="series";
   $active_page="series";
 
@@ -78,11 +78,11 @@
           <div class="search_list">
             <div class="search_block">
               <form  method="post" action="">
-              <input class="form-control input-sm" placeholder="Search..." aria-controls="DataTables_Table_0" type="search" name="search_value" value="<?php if(isset($_POST['search_value'])){ echo $_POST['search_value']; }?>" required>
+              <input class="form-control input-sm" placeholder="Pesquisar..." aria-controls="DataTables_Table_0" type="search" name="search_value" value="<?php if(isset($_POST['search_value'])){ echo $_POST['search_value']; }?>" required>
                     <button type="submit" name="search" class="btn-search"><i class="fa fa-search"></i></button>
               </form>  
             </div>
-            <div class="add_btn_primary"> <a href="add_series.php?add=yes">Add Series</a> </div>
+            <div class="add_btn_primary"> <a href="add_series.php?add=yes">Adicionar Série</a> </div>
           </div>
         </div>
       </div>
@@ -100,7 +100,7 @@
                 <?php if($row['is_slider']!="0"){?>
                   <a class="toggle_btn_a" data-id="<?=$row['id']?>" data-action="deactive" data-column="is_slider" data-toggle="tooltip" data-tooltip="Slider" style="margin-left: 5px"><div style="color:green;"><i class="fa fa-sliders"></i></div></a>
                 <?php }else{?>
-                    <a class="toggle_btn_a" data-id="<?=$row['id']?>" data-action="active" data-column="is_slider" data-toggle="tooltip" data-tooltip="Set Slider" style="margin-left: 5px"><i class="fa fa-sliders"></i>
+                    <a class="toggle_btn_a" data-id="<?=$row['id']?>" data-action="active" data-column="is_slider" data-toggle="tooltip" data-tooltip="Definir slider" style="margin-left: 5px"><i class="fa fa-sliders"></i>
                     </a>
                 <?php }?>
 
@@ -108,10 +108,10 @@
               <div class="wall_image_title">
                 <h2><a href="javascript:void(0)" style="text-shadow: 1px 1px 1px #000"><?php echo $row['series_name'];?></a></h2>
                 <ul> 
-                  <li><a href="javascript:void(0)" data-toggle="tooltip" data-tooltip="<?php echo $row['total_views'];?> Views"><i class="fa fa-eye"></i></a></li>  
+                  <li><a href="javascript:void(0)" data-toggle="tooltip" data-tooltip="<?php echo $row['total_views'];?> Visualizações"><i class="fa fa-eye"></i></a></li>  
                   
                   <li>
-                    <a href="javascript:void(0)" data-title="<?php if(strlen($row['series_name']) > 25){ echo substr(stripslashes($row['series_name']), 0, 25).'...';}else{ echo $row['series_name'];} ?>" class="btn_show_rate" data-toggle="tooltip" data-tooltip="View Rates"><i class="fa fa-star"></i></a>
+                    <a href="javascript:void(0)" data-title="<?php if(strlen($row['series_name']) > 25){ echo substr(stripslashes($row['series_name']), 0, 25).'...';}else{ echo $row['series_name'];} ?>" class="btn_show_rate" data-toggle="tooltip" data-tooltip="Ver avaliações"><i class="fa fa-star"></i></a>
 
                       <div class="rating_container" style="display: none">
                         <div class="list-group lg-alt lg-even-black">
@@ -176,15 +176,15 @@
                   </li>
                   
 
-                  <li><a href="add_series.php?series_id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Edit"><i class="fa fa-edit"></i></a></li>               
-                  <li><a href="" data-id="<?php echo $row['id'];?>" class="btn_delete_a" data-toggle="tooltip" data-tooltip="Delete"><i class="fa fa-trash"></i></a></li>
+                  <li><a href="add_series.php?series_id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Editar"><i class="fa fa-edit"></i></a></li>               
+                  <li><a href="" data-id="<?php echo $row['id'];?>" class="btn_delete_a" data-toggle="tooltip" data-tooltip="Excluir"><i class="fa fa-trash"></i></a></li>
                   
                   <?php if($row['status']!="0"){?>
-                  <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?php echo $row['id'];?>" data-action="deactive" data-column="status" data-toggle="tooltip" data-tooltip="ENABLE"><img src="assets/images/btn_enabled.png" alt="wallpaper_1" /></a></div></li>
+                  <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?php echo $row['id'];?>" data-action="deactive" data-column="status" data-toggle="tooltip" data-tooltip="ATIVAR"><img src="assets/images/btn_enabled.png" alt="wallpaper_1" /></a></div></li>
 
                   <?php }else{?>
                   
-                  <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?=$row['id']?>" data-action="active" data-column="status" data-toggle="tooltip" data-tooltip="DISABLE"><img src="assets/images/btn_disabled.png" alt="wallpaper_1" /></a></div></li>
+                  <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?=$row['id']?>" data-action="active" data-column="status" data-toggle="tooltip" data-tooltip="DESATIVAR"><img src="assets/images/btn_disabled.png" alt="wallpaper_1" /></a></div></li>
               
                   <?php }?>
 
@@ -228,7 +228,7 @@
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
       </div>
     </div>
 
@@ -280,14 +280,14 @@
     var _table='tbl_series';
 
     swal({
-        title: "Are you sure?",
-        text: "Do you really want to delete this series.",
+        title: "Tem certeza?",
+        text: "Deseja realmente excluir esta série?",
         type: "warning",
         showCancelButton: true,
         confirmButtonClass: "btn-danger",
         cancelButtonClass: "btn-warning",
-        confirmButtonText: "Yes",
-        cancelButtonText: "No",
+        confirmButtonText: "Sim",
+        cancelButtonText: "Não",
         closeOnConfirm: false,
         closeOnCancel: false,
         showLoaderOnConfirm: true
@@ -304,8 +304,8 @@
                 console.log(res);
                 if(res.status=='1'){
                   swal({
-                      title: "Successfully", 
-                      text: "Series is deleted...", 
+                      title: "Sucesso", 
+                      text: "Série excluída...", 
                       type: "success"
                   },function() {
                       location.reload();

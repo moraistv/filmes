@@ -37,7 +37,7 @@
 <link rel="stylesheet" type="text/css" href="assets/css/theme/yellow.css">
 
 <link rel="stylesheet" type="text/css" href="assets/sweetalert/sweetalert.css">
-<link rel="stylesheet" type="text/css" href="assets/css/admin-modern.css?v=1.0.0">
+<link rel="stylesheet" type="text/css" href="assets/css/admin-modern.css?v=1.1.0">
 
  <script src="assets/ckeditor/ckeditor.js"></script>
 
@@ -45,34 +45,24 @@
   .btn_edit, .btn_delete, .btn_cust{
     padding: 5px 10px !important;
   }
-  .form-control{
-    border-width: 2px !important;
-    border-color: #ccc !important;
-  }
 
   .dropdown-li{
     margin-bottom: 0px !important;
   }
   .cust-dropdown-container{
-    background: #E7EDEE;
     display: none;
   }
   .cust-dropdown{
     list-style: none;
-    background: #eee;
   }
   .cust-dropdown li a{
     padding: 8px 10px;
     width: 100%;
     display: block;
-    color: #444;
     float: left;
     text-decoration: none;
     transition: all linear 0.2s;
     font-weight: 500;
-  }
-  .cust-dropdown li a:hover, .cust-dropdown li a.active{
-    color: #e91e63;
   }
   p.not_data{
     font-size: 16px;

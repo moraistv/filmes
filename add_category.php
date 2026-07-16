@@ -1,9 +1,9 @@
 <?php 
 	if(isset($_GET['cat_id'])){ 
-		$page_title= 'Edit Category';
+		$page_title= 'Editar Categoria';
 	}
 	else{ 
-		$page_title='Add Category'; 
+		$page_title='Adicionar Categoria'; 
 	}
 
 	$current_page="category";
@@ -34,7 +34,7 @@
 		$obj_img->NewHeight = 300;
 		if (!$obj_img->create_thumbnail_images()) 
 		{
-			echo "Thumbnail not created... please upload image again";
+			echo "Miniatura não criada... por favor, envie a imagem novamente";
 		}
           
         $data = array( 
@@ -84,7 +84,7 @@
 			$obj_img->NewHeight = 300;
 			if (!$obj_img->create_thumbnail_images()) 
 			{
-				echo "Thumbnail not created... please upload image again";
+				echo "Miniatura não criada... por favor, envie a imagem novamente";
 			}
 
 			$data = array(
@@ -133,14 +133,14 @@
           <div class="section">
             <div class="section-body">
               <div class="form-group">
-                <label class="col-md-3 control-label">Category Name :-</label>
+                <label class="col-md-3 control-label">Nome da Categoria :-</label>
                 <div class="col-md-6">
                   <input type="text" name="category_name" id="category_name" value="<?php if(isset($_GET['cat_id'])){echo $row['category_name'];}?>" class="form-control" required>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-md-3 control-label">Select Image :-
-                <p class="control-label-help">(Recommended resolution: 300x150)</p>
+                <label class="col-md-3 control-label">Selecionar Imagem :-
+                <p class="control-label-help">(Resolução recomendada: 300x150)</p>
                 </label>
                 <div class="col-md-6">
                   <div class="fileupload_block">
@@ -155,14 +155,14 @@
                       		$img_src='images/'.$row['category_image'];
                     	}
                   	?>
-                  	<img type="image" src="<?=$img_src?>" alt="poster image" style="width: 150px;height: 86px" />
+                  	<img type="image" src="<?=$img_src?>" alt="imagem do pôster" style="width: 150px;height: 86px" />
                     </div>	 
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-md-9 col-md-offset-3">
-                  <button type="submit" name="submit" class="btn btn-primary">Save</button>
+                  <button type="submit" name="submit" class="btn btn-primary">Salvar</button>
                 </div>
               </div>
             </div>
@@ -199,7 +199,7 @@
 	          $(this).val('');
 	          $('.notifyjs-corner').empty();
 	          $.notify(
-	          'Only jpg/jpeg, png, gif and svg files are allowed!',
+	          'Somente arquivos jpg/jpeg, png, gif e svg são permitidos!',
 	          { position:"top center",className: 'error'}
 	          );
 	        }

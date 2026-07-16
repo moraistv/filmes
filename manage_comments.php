@@ -1,6 +1,6 @@
 <?php 
 	
-	$page_title="Manage Comments";
+	$page_title="Comentários";
 
 	include('includes/header.php'); 
 
@@ -134,10 +134,10 @@
         <div class="col-md-3">
         	<form id="filterForm" accept="" method="GET">
         		<select name="type" class="form-control select2 filter" style="padding: 5px 10px;height: 40px;">
-        			<option value="">--Comments of--</option>
-        			<option value="movie" <?php if(isset($_GET['type']) && $_GET['type']=='movie'){ echo 'selected';} ?>>Movies</option>
-        			<option value="series" <?php if(isset($_GET['type']) && $_GET['type']=='series'){ echo 'selected';} ?>>TV Series</option>
-        			<option value="channel" <?php if(isset($_GET['type']) && $_GET['type']=='channel'){ echo 'selected';} ?>>Channels</option>
+        			<option value="">-- Comentários de --</option>
+        			<option value="movie" <?php if(isset($_GET['type']) && $_GET['type']=='movie'){ echo 'selected';} ?>>Filmes</option>
+        			<option value="series" <?php if(isset($_GET['type']) && $_GET['type']=='series'){ echo 'selected';} ?>>Séries</option>
+        			<option value="channel" <?php if(isset($_GET['type']) && $_GET['type']=='channel'){ echo 'selected';} ?>>Canais</option>
         		</select>
         	</form>
         </div>
@@ -165,7 +165,7 @@
 						</span> 
 					</a> 
 					<span class="pull-right text-center"> 
-					<a href="" class="btn_delete_a" data-id="<?php echo $users_row['id'];?>" data-toggle="tooltip" data-tooltip="Delete"> <i class="fa fa-trash" style="color:red"></i> </a> 
+					<a href="" class="btn_delete_a" data-id="<?php echo $users_row['id'];?>" data-toggle="tooltip" data-tooltip="Excluir"> <i class="fa fa-trash" style="color:red"></i> </a> 
 					 </span> 
 				</div>
 				<div class="timeline-body">
@@ -183,7 +183,7 @@
 		  }
 		  else{
 		  	?>
-		  	<p class="not_data"><strong>Sorry!</strong> no data found !</p>
+		  	<p class="not_data"><strong>Desculpe!</strong> nenhum dado encontrado!</p>
 		  	<?php
 		  }
 		?>
@@ -222,14 +222,14 @@
       var _id=$(this).data("id");
 
       swal({
-          title: "Are you sure?",
-          text: "Do you want to delete this comment.",
+          title: "Tem certeza?",
+          text: "Deseja excluir este comentário?",
           type: "warning",
           showCancelButton: true,
           confirmButtonClass: "btn-danger",
           cancelButtonClass: "btn-warning",
-          confirmButtonText: "Yes",
-          cancelButtonText: "No",
+          confirmButtonText: "Sim",
+          cancelButtonText: "Não",
           closeOnConfirm: false,
           closeOnCancel: false,
           showLoaderOnConfirm: true
@@ -246,8 +246,8 @@
                   console.log(res);
                   if(res.status=='1'){
                     swal({
-                        title: "Successfully", 
-                        text: "Comment is deleted...", 
+                        title: "Sucesso", 
+                        text: "Comentário excluído...", 
                         type: "success"
                     },function() {
                         location.reload();

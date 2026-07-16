@@ -1,6 +1,6 @@
 <?php 
   
-  $page_title="Send Notification";
+  $page_title="Enviar Notificação";
 
   include("includes/header.php");
 
@@ -174,8 +174,8 @@
       <div class="card-body mrg_bottom" style="padding: 0px"> 
 
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#notification_settings" name="Notification Settings" aria-controls="notification_settings" role="tab" data-toggle="tab"><i class="fa fa-wrench"></i> Notification Settings</a></li>
-            <li role="presentation"><a href="#send_notification" aria-controls="send_notification" name="Send notification" role="tab" data-toggle="tab"><i class="fa fa-send"></i> Send Notification</a></li>
+            <li role="presentation" class="active"><a href="#notification_settings" name="Configurações de Notificação" aria-controls="notification_settings" role="tab" data-toggle="tab"><i class="fa fa-wrench"></i> Configurações de Notificação</a></li>
+            <li role="presentation"><a href="#send_notification" aria-controls="send_notification" name="Enviar Notificação" role="tab" data-toggle="tab"><i class="fa fa-send"></i> Enviar Notificação</a></li>
             
         </ul>
 
@@ -203,7 +203,7 @@
                         </div>              
                         <div class="form-group">
                         <div class="col-md-9 col-md-offset-3">
-                          <button type="submit" name="notification_submit" class="btn btn-primary">Save</button>
+                          <button type="submit" name="notification_submit" class="btn btn-primary">Salvar</button>
                         </div>
                         </div>
                       </div>
@@ -223,46 +223,46 @@
                         <div class="section-body">
 
                           <div class="form-group">
-                            <label class="col-md-3 control-label">Title :-</label>
+                            <label class="col-md-3 control-label">Título :-</label>
                             <div class="col-md-6">
                               <input type="text" name="notification_title" id="notification_title" class="form-control" value="" placeholder="" required>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="col-md-3 control-label">Message :-</label>
+                            <label class="col-md-3 control-label">Mensagem :-</label>
                             <div class="col-md-6">
                                 <textarea name="notification_msg" id="notification_msg" class="form-control" required></textarea>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="col-md-3 control-label">Image :-<br/>(Optional)<p class="control-label-help">(Recommended resolution: 600x293 or 650x317 or 700x342 or 750x366)</p></label>
+                            <label class="col-md-3 control-label">Imagem :-<br/>(Opcional)<p class="control-label-help">(Resolução recomendada: 600x293 ou 650x317 ou 700x342 ou 750x366)</p></label>
 
                             <div class="col-md-6">
                               <div class="fileupload_block">
                                  <input type="file" name="big_picture" value="" id="fileupload">
-                                 <div class="fileupload_img"><img type="image" src="assets/images/add-image.png" alt="category image" /></div>    
+                                 <div class="fileupload_img"><img type="image" src="assets/images/add-image.png" alt="imagem da categoria" /></div>    
                               </div>
                             </div>
                           </div>
                           <div class="col-md-9 mrg_bottom link_block">
                             <div class="form-group">
-                              <label class="col-md-4 control-label">Notification for :-<br/>(Optional)</label>
+                              <label class="col-md-4 control-label">Notificação para :-<br/>(Opcional)</label>
                               <div class="col-md-8">
                                 <select name="type" id="type" class="select2" required>
-                                  <option value="">--Select Type--</option>
-                                  <option value="movie" selected="">Movies</option>
-                                  <option value="series">Series</option>
-                                  <option value="channel">Channel</option>
+                                  <option value="">-- Selecionar Tipo --</option>
+                                  <option value="movie" selected="">Filmes</option>
+                                  <option value="series">Séries</option>
+                                  <option value="channel">Canal</option>
                                 </select>
                               </div>
                             </div>
 
                             <div class="form-group forMovie">
-                              <label class="col-md-4 control-label">Movie :-<br/>(Optional)
-                              <p class="control-label-help">To directly open single movie when click on notification</p></label>
+                              <label class="col-md-4 control-label">Filme :-<br/>(Opcional)
+                              <p class="control-label-help">Para abrir diretamente o filme ao clicar na notificação</p></label>
                               <div class="col-md-8">
                                 <select name="movie_id" class="select2" required>
-                                  <option value="0">--Select Movie--</option>
+                                  <option value="0">-- Selecionar Filme --</option>
                                   <?php
 
                                     $sql="SELECT * FROM tbl_movies WHERE tbl_movies.`status`='1'";
@@ -279,11 +279,11 @@
                               </div>
                           </div> 
                           <div class="form-group forSeries" style="display: none;">
-                              <label class="col-md-4 control-label">Series :-<br/>(Optional)
-                              <p class="control-label-help">To directly open single series when click on notification</p></label>
+                              <label class="col-md-4 control-label">Série :-<br/>(Opcional)
+                              <p class="control-label-help">Para abrir diretamente a série ao clicar na notificação</p></label>
                               <div class="col-md-8">
                                 <select name="series_id" class="select2" required>
-                                  <option value="0">--Select Series--</option>
+                                  <option value="0">-- Selecionar Série --</option>
                                   <?php
 
                                     $sql="SELECT * FROM tbl_series WHERE tbl_series.`status`='1'";
@@ -301,11 +301,11 @@
                           </div> 
 
                           <div class="form-group forChannel" style="display: none;">
-                            <label class="col-md-4 control-label">Channel :-<br/>(Optional)
-                            <p class="control-label-help">To directly open single channel when click on notification</p></label>
+                            <label class="col-md-4 control-label">Canal :-<br/>(Opcional)
+                            <p class="control-label-help">Para abrir diretamente o canal ao clicar na notificação</p></label>
                             <div class="col-md-8">
                               <select name="channel_id" class="select2" required>
-                                <option value="0">--Select Channel--</option>
+                                <option value="0">-- Selecionar Canal --</option>
                                 <?php
                                     $data_qry="SELECT * FROM tbl_channels ORDER BY channel_title";
                                     $data_result=mysqli_query($mysqli,$data_qry); 
@@ -322,10 +322,10 @@
                           </div> 
                           
                           <div class="or_link_item">
-                          <h2>OR</h2>
+                          <h2>OU</h2>
                           </div>
                           <div class="form-group">
-                            <label class="col-md-4 control-label">External Link :-<br/>(Optional)</label>
+                            <label class="col-md-4 control-label">Link Externo :-<br/>(Opcional)</label>
                             <div class="col-md-8">
                               <input type="text" name="external_link" id="external_link" class="form-control" value="" placeholder="https://seusite.com.br">
                             </div>
@@ -333,7 +333,7 @@
                         </div>   
                           <div class="form-group">
                             <div class="col-md-9 col-md-offset-3">
-                              <button type="submit" name="submit" class="btn btn-primary">Send</button>
+                              <button type="submit" name="submit" class="btn btn-primary">Enviar</button>
                             </div>
                           </div>
                         </div>

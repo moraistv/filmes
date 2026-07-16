@@ -1,6 +1,6 @@
 <?php 
       
-    $page_title="Settings";
+    $page_title="Configurações";
 
     include("includes/header.php");
     require("includes/function.php");
@@ -174,12 +174,12 @@
       <div class="card-body mrg_bottom" style="padding: 0px">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#app_settings" aria-controls="app_settings" role="tab" data-toggle="tab">App Settings</a></li>
-            <li role="presentation"><a href="#admob_settings" aria-controls="admob_settings" role="tab" data-toggle="tab">Ads Settings</a></li>
+            <li role="presentation" class="active"><a href="#app_settings" aria-controls="app_settings" role="tab" data-toggle="tab">Aplicativo</a></li>
+            <li role="presentation"><a href="#admob_settings" aria-controls="admob_settings" role="tab" data-toggle="tab">Anúncios</a></li>
             <li role="presentation"><a href="#user_agent" aria-controls="user_agent" role="tab" data-toggle="tab">User Agent</a></li>
-            <li role="presentation"><a href="#api_settings" aria-controls="api_settings" role="tab" data-toggle="tab">API Settings</a></li>
+            <li role="presentation"><a href="#api_settings" aria-controls="api_settings" role="tab" data-toggle="tab">API</a></li>
             <li role="presentation"><a href="#omdb_api" aria-controls="omdb_api" role="tab" data-toggle="tab">OMDb API</a></li>             
-            <li role="presentation"><a href="#api_privacy_policy" aria-controls="api_privacy_policy" role="tab" data-toggle="tab">App Privacy Policy</a></li>
+            <li role="presentation"><a href="#api_privacy_policy" aria-controls="api_privacy_policy" role="tab" data-toggle="tab">Política de Privacidade</a></li>
         </ul>
         
         <div class="rows">
@@ -190,28 +190,28 @@
                     <div class="section">
                       <div class="section-body">
                         <div class="form-group">
-                          <label class="col-md-3 control-label">App Name :-</label>
+                          <label class="col-md-3 control-label">Nome do App :-</label>
                           <div class="col-md-6">
                             <input type="text" name="app_name" id="app_name" value="<?php echo $settings_row['app_name'];?>" class="form-control">
                           </div>
                         </div>
                         <div class="form-group">
-                          <label class="col-md-3 control-label">App Logo :-</label>
+                          <label class="col-md-3 control-label">Logo do App :-</label>
                           <div class="col-md-6">
                             <div class="fileupload_block">
                               <input type="file" name="app_logo" id="fileupload">
 
                               <?php if($settings_row['app_logo']!="") {?>
-                                <div class="fileupload_img"><img type="image" src="images/<?php echo $settings_row['app_logo'];?>" alt="image" style="width: 100px;height: 100px;" /></div>
+                                <div class="fileupload_img"><img type="image" src="images/<?php echo $settings_row['app_logo'];?>" alt="imagem" style="width: 100px;height: 100px;" /></div>
                               <?php } else {?>
-                                <div class="fileupload_img"><img type="image" src="assets/images/add-image.png" alt="image" /></div>
+                                <div class="fileupload_img"><img type="image" src="assets/images/add-image.png" alt="imagem" /></div>
                               <?php }?>
 
                             </div>
                           </div>
                         </div>
                         <div class="form-group">
-                          <label class="col-md-3 control-label">App Description :-</label>
+                          <label class="col-md-3 control-label">Descrição do App :-</label>
                           <div class="col-md-6">
 
                             <textarea name="app_description" id="app_description" class="form-control"><?php echo $settings_row['app_description'];?></textarea>
@@ -221,44 +221,44 @@
                         </div>
                         <div class="form-group">&nbsp;</div>                 
                         <div class="form-group">
-                          <label class="col-md-3 control-label">App Version :-</label>
+                          <label class="col-md-3 control-label">Versão do App :-</label>
                           <div class="col-md-6">
                             <input type="text" name="app_version" id="app_version" value="<?php echo $settings_row['app_version'];?>" class="form-control">
                           </div>
                         </div>
                         <div class="form-group">
-                          <label class="col-md-3 control-label">Author :-</label>
+                          <label class="col-md-3 control-label">Autor :-</label>
                           <div class="col-md-6">
                             <input type="text" name="app_author" id="app_author" value="<?php echo $settings_row['app_author'];?>" class="form-control">
                           </div>
                         </div>
                         <div class="form-group">
-                          <label class="col-md-3 control-label">Contact :-</label>
+                          <label class="col-md-3 control-label">Contato :-</label>
                           <div class="col-md-6">
                             <input type="text" name="app_contact" id="app_contact" value="<?php echo $settings_row['app_contact'];?>" class="form-control">
                           </div>
                         </div>     
                         <div class="form-group">
-                          <label class="col-md-3 control-label">Email :-</label>
+                          <label class="col-md-3 control-label">E-mail :-</label>
                           <div class="col-md-6">
                             <input type="text" name="app_email" id="app_email" value="<?php echo $settings_row['app_email'];?>" class="form-control">
                           </div>
                         </div>                 
                         <div class="form-group">
-                          <label class="col-md-3 control-label">Website :-</label>
+                          <label class="col-md-3 control-label">Site :-</label>
                           <div class="col-md-6">
                             <input type="text" name="app_website" id="app_website" value="<?php echo $settings_row['app_website'];?>" class="form-control">
                           </div>
                         </div> 
                         <div class="form-group">
-                          <label class="col-md-3 control-label">Developed By :-</label>
+                          <label class="col-md-3 control-label">Desenvolvido por :-</label>
                           <div class="col-md-6">
                             <input type="text" name="app_developed_by" id="app_developed_by" value="<?php echo $settings_row['app_developed_by'];?>" class="form-control">
                           </div>
                         </div> 
                         <div class="form-group">
                           <div class="col-md-9 col-md-offset-3">
-                            <button type="submit" name="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" name="submit" class="btn btn-primary">Salvar</button>
                           </div>
                         </div>
                       </div>
@@ -277,7 +277,7 @@
                                 <div class="col-md-12">
                                    
                                   <div class="form-group">
-                                    <label class="col-md-3 control-label">Publisher ID :-</label>
+                                    <label class="col-md-3 control-label">ID do Publisher :-</label>
                                     <div class="col-md-9">
                                       <input type="text" name="publisher_id" id="publisher_id" value="<?php echo $settings_row['publisher_id'];?>" class="form-control">
                                     </div>
@@ -285,7 +285,7 @@
                                   </div>
                                    
                                   <div class="form-group">
-                                    <label class="col-md-3 control-label">Wortise App ID:-</label>
+                                    <label class="col-md-3 control-label">ID do App Wortise:-</label>
                                     <div class="col-md-9">
                                       <input type="text" name="wortise_app_id" id="wortise_app_id" value="<?php echo $settings_row['wortise_app_id']; ?>" class="form-control">
                                     </div>
@@ -296,7 +296,7 @@
                                 <div class="col-md-6">
                                   <div class="banner_ads_block">
                                     <div class="banner_ad_item">
-                                      <label class="control-label">Banner Ads :-</label>
+                                      <label class="control-label">Anúncios de Banner :-</label>
                                       <div class="row toggle_btn">
                                         <input type="checkbox" id="chk_banner" name="banner_ad" value="true" class="cbx hidden" <?=($settings_row['banner_ad']=='true') ? 'checked=""' : '' ?>>
                                         <label for="chk_banner" class="lbl"></label>
@@ -304,7 +304,7 @@
                                     </div>
                                     <div class="col-md-12">
                                       <div class="form-group">
-                                        <p class="field_lable">Banner Ad Type :-</p>
+                                        <p class="field_lable">Tipo de Anúncio de Banner :-</p>
                                         <div class="col-md-12">
                                          <select name="banner_ad_type" id="banner_ad_type" class="select2">
                                             <option value="admob" <?php if($settings_row['banner_ad_type']=='admob'){ echo 'selected="selected"'; }?>>Admob</option>
@@ -314,7 +314,7 @@
                                         </div>
                                       </div>
                                       <div class="form-group">
-                                        <p class="field_lable">Banner ID :-</p>
+                                        <p class="field_lable">ID do Banner :-</p>
 
                                         <div class="col-md-12 banner_ad_id" style="display: none">
                                           <input type="text" name="banner_ad_id" id="banner_ad_id" value="<?php echo $settings_row['banner_ad_id'];?>" class="form-control">
@@ -334,7 +334,7 @@
                                 <div class="col-md-6">
                                   <div class="interstital_ads_block">
                                     <div class="interstital_ad_item">
-                                      <label class="control-label">Interstitial Ads :-</label>
+                                      <label class="control-label">Anúncios Intersticiais :-</label>
                                       <div class="row toggle_btn">
                                         <input type="checkbox" id="chk_interstitial" name="interstital_ad" value="true" class="cbx hidden" <?php if($settings_row['interstital_ad']=='true'){?>checked <?php }?>/>
                                         <label for="chk_interstitial" class="lbl"></label>
@@ -342,7 +342,7 @@
                                     </div>  
                                     <div class="col-md-12"> 
                                       <div class="form-group">
-                                        <p class="field_lable">Interstitial Ad Type :-</p>
+                                        <p class="field_lable">Tipo de Anúncio Intersticial :-</p>
                                         <div class="col-md-12"> 
                                           <select name="interstital_ad_type" id="interstital_ad_type" class="select2">
                                             <option value="admob" <?php if($settings_row['interstital_ad_type']=='admob'){ echo 'selected="selected"'; }?>>Admob</option>
@@ -352,7 +352,7 @@
                                         </div>
                                       </div>
                                       <div class="form-group">
-                                        <p class="field_lable">Interstitial Ad ID :-</p>
+                                        <p class="field_lable">ID do Anúncio Intersticial :-</p>
                                         <div class="col-md-12 interstital_ad_id" style="display: none">
                                           <input type="text" name="interstital_ad_id" id="interstital_ad_id" value="<?php echo $settings_row['interstital_ad_id'];?>" class="form-control">
                                         </div>
@@ -366,7 +366,7 @@
 
                                       </div>
                                       <div class="form-group">
-                                        <p class="field_lable">Interstitial Clicks :-</p>
+                                        <p class="field_lable">Cliques Intersticiais :-</p>
                                         <div class="col-md-12">
                                           <input type="text" name="interstital_ad_click" id="interstital_ad_click" value="<?php echo $settings_row['interstital_ad_click'];?>" class="form-control">
                                         </div>
@@ -382,7 +382,7 @@
                           </div>                        
                           <div class="form-group">
                             <div class="col-md-9">
-                            <button type="submit" name="admob_submit" class="btn btn-primary">Save</button>
+                            <button type="submit" name="admob_submit" class="btn btn-primary">Salvar</button>
                             </div>
                           </div>
                       </div>
@@ -398,12 +398,12 @@
                       <div class="form-group">
                         <label class="col-md-3 control-label">User Agent :-</label>
                         <div class="col-md-6">
-                          <input type="text" name="user_agent" id="user_agent" value="<?php echo $settings_row['user_agent'];?>" placeholder="Enter common user agent for channels" class="form-control">
+                          <input type="text" name="user_agent" id="user_agent" value="<?php echo $settings_row['user_agent'];?>" placeholder="Informe o user agent comum para os canais" class="form-control">
                         </div>
                       </div>              
                       <div class="form-group">
                       <div class="col-md-9 col-md-offset-3">
-                        <button type="submit" name="user_agent_submit" class="btn btn-primary">Save</button>
+                        <button type="submit" name="user_agent_submit" class="btn btn-primary">Salvar</button>
                       </div>
                       </div>
                     </div>
@@ -417,8 +417,8 @@
                     <div class="section">
                     <div class="section-body">
                       <div class="form-group">
-                        <label class="col-md-3 control-label">API Key :-
-                          <p class="control-label-help">(If you don't know <a href="http://www.omdbapi.com/apikey.aspx" target="_blank">click here</a>)</p>
+                        <label class="col-md-3 control-label">Chave da API :-
+                          <p class="control-label-help">(Se você não sabe, <a href="http://www.omdbapi.com/apikey.aspx" target="_blank">clique aqui</a>)</p>
                         </label>
                         <div class="col-md-6">
                           <input type="text" name="omdb_api_key" id="omdb_api_key" value="<?php echo $settings_row['omdb_api_key'];?>" class="form-control">
@@ -426,7 +426,7 @@
                       </div>              
                       <div class="form-group">
                       <div class="col-md-9 col-md-offset-3">
-                        <button type="submit" name="omdb_api_submit" class="btn btn-primary">Save</button>
+                        <button type="submit" name="omdb_api_submit" class="btn btn-primary">Salvar</button>
                       </div>
                       </div>
                     </div>
@@ -443,7 +443,7 @@
                           <div class="section-body">
                              
                             <div class="form-group">
-                              <label class="col-md-3 control-label">Latest Limit:-</label>
+                              <label class="col-md-3 control-label">Limite de Recentes:-</label>
                               <div class="col-md-6">
                                  
                                 <input type="number" name="api_latest_limit" id="api_latest_limit" value="<?php echo $settings_row['api_latest_limit'];?>" class="form-control"> 
@@ -451,7 +451,7 @@
                               
                             </div>
                             <div class="form-group">
-                              <label class="col-md-3 control-label">Page Limit:-</label>
+                              <label class="col-md-3 control-label">Limite por Página:-</label>
                               <div class="col-md-6">
                                  
                                 <input type="number" name="api_page_limit" id="api_page_limit" value="<?php echo $settings_row['api_page_limit'];?>" class="form-control"> 
@@ -459,13 +459,13 @@
                               
                             </div>
                             <div class="form-group">
-                              <label class="col-md-3 control-label">Category List Order By:-</label>
+                              <label class="col-md-3 control-label">Ordenar Lista de Categorias por:-</label>
                               <div class="col-md-6">
                                  
                                   
                                   <select name="api_cat_order_by" id="api_cat_order_by" class="select2">
                                     <option value="cid" <?php if($settings_row['api_cat_order_by']=='cid'){?>selected<?php }?>>ID</option>
-                                    <option value="category_name" <?php if($settings_row['api_cat_order_by']=='category_name'){?>selected<?php }?>>Name</option>
+                                    <option value="category_name" <?php if($settings_row['api_cat_order_by']=='category_name'){?>selected<?php }?>>Nome</option>
                         
                                   </select>
                                   
@@ -473,13 +473,13 @@
                              
                             </div>
                             <div class="form-group">
-                              <label class="col-md-3 control-label">Category Post Order By:-</label>
+                              <label class="col-md-3 control-label">Ordenar Publicações da Categoria por:-</label>
                               <div class="col-md-6">
                                  
                                   
                                   <select name="api_cat_post_order_by" id="api_cat_post_order_by" class="select2">
-                                    <option value="id" <?php if($settings_row['api_cat_post_order_by']=='id'){?>selected<?php }?>>Channel ID</option>
-                                    <option value="channel_title" <?php if($settings_row['api_cat_post_order_by']=='channel_title'){?>selected<?php }?>>Channel Name</option>
+                                    <option value="id" <?php if($settings_row['api_cat_post_order_by']=='id'){?>selected<?php }?>>ID do Canal</option>
+                                    <option value="channel_title" <?php if($settings_row['api_cat_post_order_by']=='channel_title'){?>selected<?php }?>>Nome do Canal</option>
                         
                                   </select>
                                   
@@ -487,13 +487,13 @@
                              
                             </div>
                             <div class="form-group">
-                              <label class="col-md-3 control-label">Language List Order By:-</label>
+                              <label class="col-md-3 control-label">Ordenar Lista de Idiomas por:-</label>
                               <div class="col-md-6">
                                  
                                   
                                   <select name="api_lan_order_by" id="api_lan_order_by" class="select2">
                                     <option value="id" <?php if($settings_row['api_lan_order_by']=='id'){?>selected<?php }?>>ID</option>
-                                    <option value="language_name" <?php if($settings_row['api_lan_order_by']=='language_name'){?>selected<?php }?>>Name</option>
+                                    <option value="language_name" <?php if($settings_row['api_lan_order_by']=='language_name'){?>selected<?php }?>>Nome</option>
                         
                                   </select>
                                   
@@ -501,11 +501,11 @@
                              
                             </div>
                             <div class="form-group">
-                              <label class="col-md-3 control-label">Genre List Order By:-</label>
+                              <label class="col-md-3 control-label">Ordenar Lista de Gêneros por:-</label>
                               <div class="col-md-6">
                                   <select name="api_gen_order_by" id="api_gen_order_by" class="select2">
                                     <option value="id" <?php if($settings_row['api_gen_order_by']=='id'){?>selected<?php }?>>ID</option>
-                                    <option value="genre_name" <?php if($settings_row['api_gen_order_by']=='genre_name'){?>selected<?php }?>>Name</option>
+                                    <option value="genre_name" <?php if($settings_row['api_gen_order_by']=='genre_name'){?>selected<?php }?>>Nome</option>
                                   </select>
                                   
                               </div>
@@ -514,7 +514,7 @@
                               
                             <div class="form-group">
                               <div class="col-md-9 col-md-offset-3">
-                                <button type="submit" name="api_submit" class="btn btn-primary">Save</button>
+                                <button type="submit" name="api_submit" class="btn btn-primary">Salvar</button>
                               </div>
                             </div>
                           </div>
@@ -532,14 +532,14 @@
                         {
                           ?>
                           <div class="form-group">
-                            <label class="col-md-3 control-label">App Privacy Policy URL :-</label>
+                            <label class="col-md-3 control-label">URL da Política de Privacidade do App :-</label>
                             <div class="col-md-9">
                               <input type="text" readonly class="form-control" value="<?=getBaseUrl().'privacy_policy.php'?>">
                             </div>
                           </div>
                         <?php } ?>
                         <div class="form-group">
-                          <label class="col-md-3 control-label">App Privacy Policy :-</label>
+                          <label class="col-md-3 control-label">Política de Privacidade do App :-</label>
                           <div class="col-md-9">
                             <textarea name="app_privacy_policy" id="privacy_policy" class="form-control"><?php echo $settings_row['app_privacy_policy'];?></textarea>
                             <script>CKEDITOR.replace( 'privacy_policy' );</script>
@@ -548,7 +548,7 @@
                         <br/>
                         <div class="form-group">
                           <div class="col-md-9 col-md-offset-3">
-                            <button type="submit" name="app_pri_poly" class="btn btn-primary">Save</button>
+                            <button type="submit" name="app_pri_poly" class="btn btn-primary">Salvar</button>
                           </div>
                         </div>
                       </div>

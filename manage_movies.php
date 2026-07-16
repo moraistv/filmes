@@ -1,6 +1,6 @@
 <?php 
 
-  $page_title="Manage Movies";
+  $page_title="Filmes";
   $current_page="movies";
   $active_page="movies";
 
@@ -156,11 +156,11 @@
           <div class="search_list">
             <div class="search_block">
               <form method="post" action="">
-                <input class="form-control input-sm" placeholder="Search..." aria-controls="DataTables_Table_0" type="search" name="search_value" value="<?php if(isset($_POST['search_value'])){ echo $_POST['search_value']; }?>" required>
+                <input class="form-control input-sm" placeholder="Pesquisar..." aria-controls="DataTables_Table_0" type="search" name="search_value" value="<?php if(isset($_POST['search_value'])){ echo $_POST['search_value']; }?>" required>
                 <button type="submit" name="search" class="btn-search"><i class="fa fa-search"></i></button>
               </form>  
             </div>
-            <div class="add_btn_primary"> <a href="add_movie.php?add=yes">Add Movie</a> </div>
+            <div class="add_btn_primary"> <a href="add_movie.php?add=yes">Adicionar Filme</a> </div>
           </div>
         </div>
         <div class="clearfix"></div>
@@ -168,7 +168,7 @@
           <div class="col-md-3">
             <div class="" style="padding: 0px 0px 5px;">
                 <select name="language" class="form-control select2 filter" style="padding: 5px 10px;height: 40px;">
-                  <option value="">All Language</option>
+                  <option value="">Todos os idiomas</option>
                   <?php
                     $sql_lang="SELECT * FROM tbl_language ORDER BY language_name";
                     $res_lang=mysqli_query($mysqli,$sql_lang);
@@ -185,7 +185,7 @@
           <div class="col-md-3">
             <div class="" style="padding: 0px 0px 5px;">
                 <select name="genre" class="form-control select2 filter" style="padding: 5px 10px;height: 40px;">
-                  <option value="">--Genre--</option>
+                  <option value="">-- Gênero --</option>
                   <?php 
                     $qry="SELECT * FROM tbl_genres ORDER BY gid DESC";
                     $res=mysqli_query($mysqli, $qry) or die(mysqli_error($mysqli));
@@ -204,16 +204,16 @@
           <div class="checkbox" style="width: 95px;margin-top: 5px;margin-left: 10px;right: 100px;position: absolute;">
             <input type="checkbox" id="checkall_input">
             <label for="checkall_input">
-                Select All
+                Selecionar tudo
             </label>
           </div>
           <div class="dropdown" style="float:right">
-            <button class="btn btn-primary dropdown-toggle btn_cust" type="button" data-toggle="dropdown">Action
+            <button class="btn btn-primary dropdown-toggle btn_cust" type="button" data-toggle="dropdown">Ações
             <span class="caret"></span></button>
             <ul class="dropdown-menu" style="right:0;left:auto;">
-              <li><a href="" class="actions" data-action="enable">Enable</a></li>
-              <li><a href="" class="actions" data-action="disable">Disable</a></li>
-              <li><a href="" class="actions" data-action="delete">Delete !</a></li>
+              <li><a href="" class="actions" data-action="enable">Ativar</a></li>
+              <li><a href="" class="actions" data-action="disable">Desativar</a></li>
+              <li><a href="" class="actions" data-action="delete">Excluir</a></li>
             </ul>
           </div>
         </div>
@@ -233,7 +233,7 @@
                 <?php if($row['is_slider']!="0"){?>
                    <a class="toggle_btn_a" data-id="<?=$row['id']?>" data-action="deactive" data-column="is_slider" data-toggle="tooltip" data-tooltip="Slider" style="margin-left: 5px"><div style="color:green;"><i class="fa fa-sliders"></i></div></a> 
                 <?php }else{?>
-                   <a class="toggle_btn_a" data-id="<?=$row['id']?>" data-action="active" data-column="is_slider" data-toggle="tooltip" data-tooltip="Set Slider" style="margin-left: 5px"><i class="fa fa-sliders"></i></a> 
+                   <a class="toggle_btn_a" data-id="<?=$row['id']?>" data-action="active" data-column="is_slider" data-toggle="tooltip" data-tooltip="Definir slider" style="margin-left: 5px"><i class="fa fa-sliders"></i></a> 
                 <?php }?>
 
                 <div class="checkbox" style="float: right;">
@@ -255,10 +255,10 @@
                     
                 </p>
                 <ul style="z-index: 1">
-                  <li><a href="javascript:void(0)" data-toggle="tooltip" data-tooltip="<?php echo $row['total_views'];?> Views"><i class="fa fa-eye"></i></a></li> 
+                  <li><a href="javascript:void(0)" data-toggle="tooltip" data-tooltip="<?php echo $row['total_views'];?> Visualizações"><i class="fa fa-eye"></i></a></li> 
                   
                   <li>
-                    <a href="javascript:void(0)" data-title="<?php if(strlen($row['movie_title']) > 25){ echo substr(stripslashes($row['movie_title']), 0, 25).'...';}else{ echo $row['movie_title'];} ?>" class="btn_show_rate" data-toggle="tooltip" data-tooltip="View Rates"><i class="fa fa-star"></i></a>
+                    <a href="javascript:void(0)" data-title="<?php if(strlen($row['movie_title']) > 25){ echo substr(stripslashes($row['movie_title']), 0, 25).'...';}else{ echo $row['movie_title'];} ?>" class="btn_show_rate" data-toggle="tooltip" data-tooltip="Ver avaliações"><i class="fa fa-star"></i></a>
 
                       <div class="rating_container" style="display: none">
                         <div class="list-group lg-alt lg-even-black">
@@ -322,15 +322,15 @@
                       </div>
                   </li>
                     
-                  <li><a href="add_movie.php?movie_id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Edit"><i class="fa fa-edit"></i></a></li>
-                  <li><a href="" class="btn_delete_a" data-id="<?php echo $row['id'];?>" data-toggle="tooltip" data-tooltip="Delete"><i class="fa fa-trash"></i></a></li>
+                  <li><a href="add_movie.php?movie_id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Editar"><i class="fa fa-edit"></i></a></li>
+                  <li><a href="" class="btn_delete_a" data-id="<?php echo $row['id'];?>" data-toggle="tooltip" data-tooltip="Excluir"><i class="fa fa-trash"></i></a></li>
 
                   <?php if($row['status']!="0"){?>
-                  <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?php echo $row['id'];?>" data-action="deactive" data-column="status" data-toggle="tooltip" data-tooltip="ENABLE"><img src="assets/images/btn_enabled.png" alt="wallpaper_1" /></a></div></li>
+                  <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?php echo $row['id'];?>" data-action="deactive" data-column="status" data-toggle="tooltip" data-tooltip="ATIVAR"><img src="assets/images/btn_enabled.png" alt="wallpaper_1" /></a></div></li>
 
                   <?php }else{?>
                   
-                  <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?=$row['id']?>" data-action="active" data-column="status" data-toggle="tooltip" data-tooltip="DISABLE"><img src="assets/images/btn_disabled.png" alt="wallpaper_1" /></a></div></li>
+                  <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?=$row['id']?>" data-action="active" data-column="status" data-toggle="tooltip" data-tooltip="DESATIVAR"><img src="assets/images/btn_disabled.png" alt="wallpaper_1" /></a></div></li>
               
                   <?php }?>
                 <ul>  
@@ -371,7 +371,7 @@
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
       </div>
     </div>
 
@@ -422,14 +422,14 @@
       var _table='tbl_movies';
 
       swal({
-          title: "Are you sure?",
-          text: "All data will be deleted of this movie.",
+          title: "Tem certeza?",
+          text: "Todos os dados deste filme serão excluídos.",
           type: "warning",
           showCancelButton: true,
           confirmButtonClass: "btn-danger",
           cancelButtonClass: "btn-warning",
-          confirmButtonText: "Yes",
-          cancelButtonText: "No",
+          confirmButtonText: "Sim",
+          cancelButtonText: "Não",
           closeOnConfirm: false,
           closeOnCancel: false,
           showLoaderOnConfirm: true
@@ -446,8 +446,8 @@
                   console.log(res);
                   if(res.status=='1'){
                     swal({
-                        title: "Successfully", 
-                        text: "Movie is deleted...", 
+                        title: "Sucesso", 
+                        text: "Filme excluído...", 
                         type: "success"
                     },function() {
                         location.reload();
@@ -473,14 +473,14 @@
         if(_ids!='')
         {
           swal({
-            title: "Action: "+$(this).text(),
-            text: "Do you really want to perform?",
+            title: "Ação: "+$(this).text(),
+            text: "Deseja realmente executar?",
             type: "warning",
             showCancelButton: true,
             confirmButtonClass: "btn-danger",
             cancelButtonClass: "btn-warning",
-            confirmButtonText: "Yes",
-            cancelButtonText: "No",
+            confirmButtonText: "Sim",
+            cancelButtonText: "Não",
             closeOnConfirm: false,
             closeOnCancel: false,
             showLoaderOnConfirm: true
@@ -500,8 +500,8 @@
                     $('.notifyjs-corner').empty();
                     if(res.status=='1'){
                       swal({
-                          title: "Successfully", 
-                          text: "You have successfully done", 
+                          title: "Sucesso", 
+                          text: "Operação concluída com sucesso", 
                           type: "success"
                       },function() {
                           location.reload();
@@ -517,7 +517,7 @@
           });
         }
         else{
-          swal("Sorry no movie selected !!")
+          swal("Nenhum item selecionado!")
         }
   });
 
@@ -544,7 +544,7 @@
     if($('input:checkbox').prop("checked") == true){
       $('.notifyjs-corner').empty();
       $.notify(
-        'Total '+totalItems+' item checked',
+        'Total de '+totalItems+' itens selecionados',
         { position:"top center",className: 'success'}
       );
     }
@@ -578,7 +578,7 @@
       $('.notifyjs-corner').empty();
 
       $.notify(
-        'Total '+totalItems+' item checked',
+        'Total de '+totalItems+' itens selecionados',
         { position:"top center",className: 'success'}
       );
 

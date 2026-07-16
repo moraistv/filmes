@@ -1,5 +1,5 @@
 <?php 
-  $page_title='Add Season'; 
+  $page_title='Adicionar Temporada'; 
   $current_page="season";
   $active_page="series";
 
@@ -61,10 +61,10 @@
                 <div class="section-body">
                   
                   <div class="form-group">
-                    <label class="col-md-3 control-label">Series :-</label>
+                    <label class="col-md-3 control-label">Série :-</label>
                     <div class="col-md-6">
                       <select name="series_id" id="series_id" class="select2" required>
-                        <option value="">--Select Series--</option>
+                        <option value="">-- Selecionar Série --</option>
                         <?php
                             while($data=mysqli_fetch_array($result_series))
                             {
@@ -78,24 +78,24 @@
                   </div> 
                   <div class="input-container">
                     <div class="form-group" style="margin-bottom: 10px">
-                      <label class="col-md-3 control-label">Season name :-</label>
+                      <label class="col-md-3 control-label">Nome da Temporada :-</label>
                       <div class="col-md-6">
                         <input type="text" name="season_name[]" class="form-control" style="margin-bottom: 5px" required>
-                        <a href="" class="btn_remove" style="float: right;color: red;">&times; Remove</a>
+                        <a href="" class="btn_remove" style="float: right;color: red;">&times; Remover</a>
                       </div>
                     </div>
                   </div>
                   <div id="dynamicInput"></div>
                   <div class="form-group">
                     <div class="col-md-9 col-md-offset-3">                      
-                      <button type="button" class="btn btn-success btn-xs add_more">Add More Season</button>
+                      <button type="button" class="btn btn-success btn-xs add_more">Adicionar mais Temporada</button>
                     </div>
                   </div>
 
                   <br>
                   <div class="form-group">
                     <div class="col-md-9 col-md-offset-3">
-                      <button type="submit" name="submit" class="btn btn-primary">Save</button>
+                      <button type="submit" name="submit" class="btn btn-primary">Salvar</button>
                     </div>
                   </div>
                 </div>

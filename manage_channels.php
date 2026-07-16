@@ -1,6 +1,6 @@
 <?php 
 
-  $page_title="Manage Channel";
+  $page_title="Canais";
   $current_page="channel";
   $active_page="channel";
 
@@ -105,11 +105,11 @@
           <div class="search_list">
             <div class="search_block">
               <form  method="post" action="">
-                <input class="form-control input-sm" placeholder="Search..." aria-controls="DataTables_Table_0" type="search" value="<?php if(isset($_POST['search_value'])){ echo $_POST['search_value']; } ?>" name="search_value" required>
+                <input class="form-control input-sm" placeholder="Pesquisar..." aria-controls="DataTables_Table_0" type="search" value="<?php if(isset($_POST['search_value'])){ echo $_POST['search_value']; } ?>" name="search_value" required>
                 <button type="submit" name="search" class="btn-search"><i class="fa fa-search"></i></button>
               </form>  
             </div>
-            <div class="add_btn_primary"> <a href="add_channel.php?add=yes">Add Channel</a> </div>
+            <div class="add_btn_primary"> <a href="add_channel.php?add=yes">Adicionar Canal</a> </div>
           </div>
         </div>
         <div class="clearfix"></div>
@@ -117,7 +117,7 @@
           <div class="col-md-3">
             <div class="" style="padding: 0px 0px 5px;">
                 <select name="category" class="form-control select2 filter" style="padding: 5px 10px;height: 40px;">
-                  <option value="">--Category--</option>
+                  <option value="">-- Categoria --</option>
                   <?php 
                     $qry="SELECT * FROM tbl_category ORDER BY cid DESC";
                     $res=mysqli_query($mysqli, $qry) or die(mysqli_error($mysqli));
@@ -136,16 +136,16 @@
           <div class="checkbox" style="width: 95px;margin-top: 5px;margin-left: 10px;right: 100px;position: absolute;">
             <input type="checkbox" id="checkall_input">
             <label for="checkall_input">
-                Select All
+                Selecionar tudo
             </label>
           </div>
           <div class="dropdown" style="float:right">
-            <button class="btn btn-primary dropdown-toggle btn_cust" type="button" data-toggle="dropdown">Action
+            <button class="btn btn-primary dropdown-toggle btn_cust" type="button" data-toggle="dropdown">Ações
             <span class="caret"></span></button>
             <ul class="dropdown-menu" style="right:0;left:auto;">
-              <li><a href="" class="actions" data-action="enable">Enable</a></li>
-              <li><a href="" class="actions" data-action="disable">Disable</a></li>
-              <li><a href="" class="actions" data-action="delete">Delete !</a></li>
+              <li><a href="" class="actions" data-action="enable">Ativar</a></li>
+              <li><a href="" class="actions" data-action="disable">Desativar</a></li>
+              <li><a href="" class="actions" data-action="delete">Excluir</a></li>
             </ul>
           </div>
         </div>
@@ -173,7 +173,7 @@
                 <?php if($row['slider_channel']!="0"){?>
                    <a class="toggle_btn_a" data-id="<?=$row['id']?>" data-action="deactive" data-column="slider_channel" data-toggle="tooltip" data-tooltip="Slider" style="margin-left: 5px"><div style="color:green;"><i class="fa fa-sliders"></i></div></a> 
                 <?php }else{?>
-                   <a class="toggle_btn_a" data-id="<?=$row['id']?>" data-action="active" data-column="slider_channel" data-toggle="tooltip" data-tooltip="Set Slider" style="margin-left: 5px"><i class="fa fa-sliders"></i></a> 
+                   <a class="toggle_btn_a" data-id="<?=$row['id']?>" data-action="active" data-column="slider_channel" data-toggle="tooltip" data-tooltip="Definir slider" style="margin-left: 5px"><i class="fa fa-sliders"></i></a> 
                 <?php }?>
                   
                 <div class="checkbox" style="float: right;">
@@ -186,10 +186,10 @@
               <div class="wall_image_title">
                  <p><?php echo $row['channel_title'];?></p>
                 <ul>
-                  <li><a href="javascript:void(0)" data-toggle="tooltip" data-tooltip="<?php echo $row['total_views'];?> Views"><i class="fa fa-eye"></i></a></li>
+                  <li><a href="javascript:void(0)" data-toggle="tooltip" data-tooltip="<?php echo $row['total_views'];?> Visualizações"><i class="fa fa-eye"></i></a></li>
 
                   <li>
-                      <a href="javascript:void(0)" data-title="<?php if(strlen($row['channel_title']) > 14){ echo substr(stripslashes($row['channel_title']), 0, 14).'...';  }else{ echo $row['channel_title']; } ?>" class="btn_show_rate" data-toggle="tooltip" data-tooltip="View Rates"><i class="fa fa-star"></i></a>
+                      <a href="javascript:void(0)" data-title="<?php if(strlen($row['channel_title']) > 14){ echo substr(stripslashes($row['channel_title']), 0, 14).'...';  }else{ echo $row['channel_title']; } ?>" class="btn_show_rate" data-toggle="tooltip" data-tooltip="Ver avaliações"><i class="fa fa-star"></i></a>
 
                       <div class="rating_container" style="display: none">
                         <div class="list-group lg-alt lg-even-black">
@@ -252,15 +252,15 @@
                           </div>
                       </div>
                   </li> 
-                  <li><a href="edit_channel.php?channel_id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>"  data-toggle="tooltip" data-tooltip="Edit"><i class="fa fa-edit"></i></a></li>
-                  <li><a href="" class="btn_delete_a" data-id="<?=$row['id']?>" data-toggle="tooltip" data-tooltip="Delete"><i class="fa fa-trash"></i></a></li>
+                  <li><a href="edit_channel.php?channel_id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>"  data-toggle="tooltip" data-tooltip="Editar"><i class="fa fa-edit"></i></a></li>
+                  <li><a href="" class="btn_delete_a" data-id="<?=$row['id']?>" data-toggle="tooltip" data-tooltip="Excluir"><i class="fa fa-trash"></i></a></li>
 
                   <?php if($row['status']!="0"){?>
-                  <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?php echo $row['id'];?>" data-action="deactive" data-column="status" data-toggle="tooltip" data-tooltip="ENABLE"><img src="assets/images/btn_enabled.png" alt="wallpaper_1" /></a></div></li>
+                  <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?php echo $row['id'];?>" data-action="deactive" data-column="status" data-toggle="tooltip" data-tooltip="ATIVAR"><img src="assets/images/btn_enabled.png" alt="wallpaper_1" /></a></div></li>
 
                   <?php }else{?>
                   
-                  <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?=$row['id']?>" data-action="active" data-column="status" data-toggle="tooltip" data-tooltip="DISABLE"><img src="assets/images/btn_disabled.png" alt="wallpaper_1" /></a></div></li>
+                  <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?=$row['id']?>" data-action="active" data-column="status" data-toggle="tooltip" data-tooltip="DESATIVAR"><img src="assets/images/btn_disabled.png" alt="wallpaper_1" /></a></div></li>
               
                   <?php }?>
                 <ul>  
@@ -300,7 +300,7 @@
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
       </div>
     </div>
 
@@ -351,14 +351,14 @@
     var _table='tbl_channels';
 
     swal({
-        title: "Are you sure?",
-        text: "Do you really want to delete this channel.",
+        title: "Tem certeza?",
+        text: "Deseja realmente excluir este canal?",
         type: "warning",
         showCancelButton: true,
         confirmButtonClass: "btn-danger",
         cancelButtonClass: "btn-warning",
-        confirmButtonText: "Yes",
-        cancelButtonText: "No",
+        confirmButtonText: "Sim",
+        cancelButtonText: "Não",
         closeOnConfirm: false,
         closeOnCancel: false,
         showLoaderOnConfirm: true
@@ -375,8 +375,8 @@
                 console.log(res);
                 if(res.status=='1'){
                   swal({
-                      title: "Successfully", 
-                      text: "Channel is deleted...", 
+                      title: "Sucesso", 
+                      text: "Canal excluído...", 
                       type: "success"
                   },function() {
                       location.reload();
@@ -404,13 +404,13 @@
         if(_ids!='')
         {
           swal({
-            title: "Do you really want to perform?",
+            title: "Deseja realmente executar?",
             type: "warning",
             showCancelButton: true,
             confirmButtonClass: "btn-danger",
             cancelButtonClass: "btn-warning",
-            confirmButtonText: "Yes",
-            cancelButtonText: "No",
+            confirmButtonText: "Sim",
+            cancelButtonText: "Não",
             closeOnConfirm: false,
             closeOnCancel: false,
             showLoaderOnConfirm: true
@@ -430,8 +430,8 @@
                     $('.notifyjs-corner').empty();
                     if(res.status=='1'){
                       swal({
-                          title: "Successfully", 
-                          text: "You have successfully done", 
+                          title: "Sucesso", 
+                          text: "Operação concluída com sucesso", 
                           type: "success"
                       },function() {
                           location.reload();
@@ -447,7 +447,7 @@
           });
         }
         else{
-          swal("Sorry no channel selected !!")
+          swal("Nenhum item selecionado!")
         }
   });
 
@@ -474,7 +474,7 @@
     if($('input:checkbox').prop("checked") == true){
       $('.notifyjs-corner').empty();
       $.notify(
-        'Total '+totalItems+' item checked',
+        'Total de '+totalItems+' itens selecionados',
         { position:"top center",className: 'success'}
       );
     }
@@ -508,7 +508,7 @@
       $('.notifyjs-corner').empty();
 
       $.notify(
-        'Total '+totalItems+' item checked',
+        'Total de '+totalItems+' itens selecionados',
         { position:"top center",className: 'success'}
       );
 

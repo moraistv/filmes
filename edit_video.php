@@ -136,13 +136,13 @@
                     $('.msg').text('');
                     var video_local = $('#video_local').val();
                     if (video_local == '') {
-                        alert('Please enter file name and select file');
+                        alert('Informe o nome do arquivo e selecione o arquivo');
                         return;
                     }
                     var formData = new FormData();
                     formData.append('video_local', $('#video_local')[0].files[0]);
                     $('#btn').attr('disabled', 'disabled');
-                     $('.msg').text('Uploading in progress...');
+                     $('.msg').text('Envio em andamento...');
                     $.ajax({
                         url: 'uploadscript.php',
                         data: formData,
@@ -165,7 +165,7 @@
                         success: function (data) {
                          
                             $('#video_file_name').val(data);
-                            $('.msg').text("File uploaded successfully!!");
+                            $('.msg').text("Arquivo enviado com sucesso!!");
                             $('#btn').removeAttr('disabled');
                         }
                     });
@@ -199,7 +199,7 @@ $(document).ready(function(e) {
         <div class="card">
           <div class="page_title_block">
             <div class="col-md-5 col-xs-12">
-              <div class="page_title">Edit Video</div>
+              <div class="page_title">Editar Vídeo</div>
             </div>
           </div>
           <div class="clearfix"></div>
@@ -222,47 +222,47 @@ $(document).ready(function(e) {
                 <div class="section-body">
                     
                   <div class="form-group">
-                    <label class="col-md-3 control-label">Video Title :-</label>
+                    <label class="col-md-3 control-label">Título do Vídeo :-</label>
                     <div class="col-md-6">
                       <input type="text" name="video_title" id="video_title" value="<?php echo $row['video_title']?>" class="form-control" required>
                     </div>
                   </div>
                     
                   <div class="form-group">
-                    <label class="col-md-3 control-label">Video Type :-</label>
+                    <label class="col-md-3 control-label">Tipo de Vídeo :-</label>
                     <div class="col-md-6">                       
                       <select name="video_type" id="video_type" style="width:280px; height:25px;" class="select2" required>
-                            <option value="">--Select Category--</option>
+                            <option value="">-- Selecionar --</option>
                             <option value="youtube" <?php if($row['video_type']=='youtube'){?>selected<?php }?>>Youtube</option>
                              
-                            <option value="server_url" <?php if($row['video_type']=='server_url'){?>selected<?php }?>>From Server</option>
-                            <option value="local" <?php if($row['video_type']=='local'){?>selected<?php }?>>From Local</option>
+                            <option value="server_url" <?php if($row['video_type']=='server_url'){?>selected<?php }?>>Do Servidor</option>
+                            <option value="local" <?php if($row['video_type']=='local'){?>selected<?php }?>>Do Local</option>
                       </select>
                     </div>
                   </div>
                   <div id="video_url_display" class="form-group" <?php if($row['video_type']=='local'){?>style="display:none;"<?php }else{?>style="display:block;"<?php }?>>
-                    <label class="col-md-3 control-label">Video URL :-</label>
+                    <label class="col-md-3 control-label">URL do Vídeo :-</label>
                     <div class="col-md-6">
                       <input type="text" name="video_url" id="video_url" value="<?php echo $row['video_url']?>" class="form-control">
                     </div>
                   </div>
                   <div id="video_local_display" class="form-group" <?php if($row['video_type']=='local'){?>style="display:block;"<?php }else{?>style="display:none;"<?php }?>>
-                    <label class="col-md-3 control-label">Video Upload :-</label>
+                    <label class="col-md-3 control-label">Envio de Vídeo :-</label>
                     <div class="col-md-6">
                     
                     <input type="hidden" name="video_file_name" id="video_file_name" value="" class="form-control">
                       <input type="file" name="video_local" id="video_local" value="" class="form-control">
-                      <div><label class="control-label">Current URL :-</label><?php echo $row['video_url']?></div><br>
+                      <div><label class="control-label">URL Atual :-</label><?php echo $row['video_url']?></div><br>
                       <div class="progress">
                             <div class="progress-bar progress-bar-success myprogress" role="progressbar" style="width:0%">0%</div>
                         </div>
 
                         <div class="msg"></div>
-                        <input type="button" id="btn" class="btn-success" value="Upload" />
+                        <input type="button" id="btn" class="btn-success" value="Enviar" />
                     </div>
                   </div><br>
                   <div id="thumbnail" class="form-group">
-                    <label class="col-md-3 control-label">Thumbnail Image:-</label>
+                    <label class="col-md-3 control-label">Imagem da Miniatura:-</label>
                     <div class="col-md-6">
                       <div class="fileupload_block">
                         <input type="file" name="video_thumbnail" value="" id="fileupload">
@@ -270,7 +270,7 @@ $(document).ready(function(e) {
                        <input type="hidden" name="video_thumbnail_name" id="video_thumbnail_name" value="<?php echo $row['video_thumbnail'];?>" class="form-control">
                             
                            <?php }?>
-                            <div class="fileupload_img"><img type="image" src="assets/images/add-image.png" alt="category image" /></div>
+                            <div class="fileupload_img"><img type="image" src="assets/images/add-image.png" alt="imagem da categoria" /></div>
                           
                       </div>
                     </div>
@@ -279,14 +279,14 @@ $(document).ready(function(e) {
                     <label class="col-md-3 control-label">&nbsp; </label>
                     <div class="col-md-6">
                         <?php if($row['video_thumbnail']!="") {?>
-                            <div class="block_wallpaper"><img src="images/<?php echo $row['video_thumbnail'];?>" alt="category image" /></div>
+                            <div class="block_wallpaper"><img src="images/<?php echo $row['video_thumbnail'];?>" alt="imagem da categoria" /></div>
                           <?php } ?>
                     </div>
                   </div><br>
                    
                   <div class="form-group">
                     <div class="col-md-9 col-md-offset-3">
-                      <button type="submit" name="submit" class="btn btn-primary">Save</button>
+                      <button type="submit" name="submit" class="btn btn-primary">Salvar</button>
                     </div>
                   </div>
                 </div>

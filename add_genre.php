@@ -1,9 +1,9 @@
 <?php 
 	if(isset($_GET['id'])){ 
-		$page_title= 'Edit Genre';
+		$page_title= 'Editar Gênero';
 	}
 	else{ 
-		$page_title='Add Genre'; 
+		$page_title='Adicionar Gênero'; 
 	}
 	$current_page="genre";
 	$active_page="movies";
@@ -113,7 +113,7 @@
         <div class="card">
           <div class="page_title_block">
             <div class="col-md-5 col-xs-12">
-              <div class="page_title"><?php if(isset($_GET['cat_id'])){?>Edit<?php }else{?>Add<?php }?> Genre</div>
+              <div class="page_title"><?php if(isset($_GET['cat_id'])){?>Editar<?php }else{?>Adicionar<?php }?> Gênero</div>
             </div>
           </div>
           <div class="clearfix"></div>
@@ -135,14 +135,14 @@
               <div class="section">
                 <div class="section-body">
                   <div class="form-group">
-                    <label class="col-md-3 control-label">Genre Name :-</label>
+                    <label class="col-md-3 control-label">Nome do Gênero :-</label>
                     <div class="col-md-6">
-                      <input type="text" name="genre_name" placeholder="Enter genre name" id="genre_name" value="<?php if(isset($_GET['g_id'])){echo $row['genre_name'];}?>" class="form-control" required>
+                      <input type="text" name="genre_name" placeholder="Informe o nome do gênero" id="genre_name" value="<?php if(isset($_GET['g_id'])){echo $row['genre_name'];}?>" class="form-control" required>
                     </div>
                   </div>
                   <div class="form-group">
-	                <label class="col-md-3 control-label">Select Image :-
-	                <p class="control-label-help">(Recommended resolution: 250x150,350x210)</p>
+	                <label class="col-md-3 control-label">Selecionar Imagem :-
+	                <p class="control-label-help">(Resolução recomendada: 250x150,350x210)</p>
 	                </label>
 	                <div class="col-md-6">
 	                  <div class="fileupload_block">
@@ -158,14 +158,14 @@
 	                    	}
 
 	                  ?>
-	                  	<img type="image" src="<?=$img_src?>" alt="poster image" style="width: 150px;height: 86px" />
+	                  	<img type="image" src="<?=$img_src?>" alt="imagem do pôster" style="width: 150px;height: 86px" />
 	                    </div>	 
 	                  </div>
 	                </div>
 	              </div>
                   <div class="form-group">
                     <div class="col-md-9 col-md-offset-3">
-                      <button type="submit" name="submit" class="btn btn-primary">Save</button>
+                      <button type="submit" name="submit" class="btn btn-primary">Salvar</button>
                     </div>
                   </div>
                 </div>
@@ -203,7 +203,7 @@
           $(this).val('');
           $('.notifyjs-corner').empty();
           $.notify(
-          'Only jpg/jpeg, png, gif and svg files are allowed!',
+          'Somente arquivos jpg/jpeg, png, gif e svg são permitidos!',
           { position:"top center",className: 'error'}
           );
         }

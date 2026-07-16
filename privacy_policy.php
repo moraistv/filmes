@@ -1,6 +1,6 @@
 <?php 
 	
-	$page_title="Privacy Policy";
+	$page_title="Política de Privacidade";
 	include("includes/connection.php");
 ?>
 
@@ -40,13 +40,13 @@
 <body>
 
 <div class="header">
-	<img src="images/<?php echo APP_LOGO;?>" alt="app logo"/>
+	<img src="images/<?php echo APP_LOGO;?>" alt="logo do app"/>
 	<h1><?php echo APP_NAME;?></h1>	
 </div>
 
 <div style="clear: both;"></div>
 
-<h2>Privacy Policy</h2>
+<h2>Política de Privacidade</h2>
 
 <?=stripslashes($settings_details['app_privacy_policy'])?>
 

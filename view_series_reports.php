@@ -1,5 +1,5 @@
 <?php
-	$page_title="View Series Reports";
+	$page_title="Ver Denúncias da Série";
 	$active_page="report";
 
 	include('includes/header.php'); 
@@ -59,13 +59,13 @@
 <div class="app-messaging-container">
 	<div class="app-messaging" id="collapseMessaging">
 	<div class="messaging">
-		<h3 style="padding-left: 20px">Report Section</h3>
+		<h3 style="padding-left: 20px">Seção de Denúncias</h3>
 		<div class="heading">
 			<div class="title" style="font-size: 16px">
 				<a class="btn-back" href="manage_reports.php">
 					<i class="fa fa-angle-left" aria-hidden="true"></i>
 				</a>
-				<strong>Title:</strong>&nbsp;&nbsp;<?=$row['series_name']?>
+				<strong>Título:</strong>&nbsp;&nbsp;<?=$row['series_name']?>
 			</div>
 		</div>
 		<ul class="chat" style="flex: unset;height: 500px;">
@@ -94,7 +94,7 @@
 			<div class="info" style="clear: both;">
 			<div class="datetime">
 				<span title="<?=date('d-m-Y',$value['report_on'])?>"><?=calculate_time_span($value['report_on'],true)?></span>
-				<a href="javascript:void(0)" title="Delete" class="btn_delete" data-id="<?=$value['id']?>" style="color: red;text-decoration: none;"><i class="fa fa-trash"></i> Delete</a>
+				<a href="javascript:void(0)" title="Excluir" class="btn_delete" data-id="<?=$value['id']?>" style="color: red;text-decoration: none;"><i class="fa fa-trash"></i> Excluir</a>
 			</div>
 			</div>
 			</li>
@@ -104,8 +104,8 @@
 		else{
 		?>
 		<div class="jumbotron" style="width: 100%; text-align: center;">
-		<h3>Sorry !</h3> 
-		<p>No comments available</p> 
+		<h3>Desculpe!</h3> 
+		<p>Nenhum comentário disponível</p> 
 		</div>
 		<?php
 		} 
@@ -129,14 +129,14 @@ include('includes/footer.php');
       var _id=$(this).data("id");
 
       swal({
-          title: "Are you sure?",
-          text: "Do you really want delete this.",
+          title: "Tem certeza?",
+          text: "Deseja realmente excluir isto?",
           type: "warning",
           showCancelButton: true,
           confirmButtonClass: "btn-danger",
           cancelButtonClass: "btn-warning",
-          confirmButtonText: "Yes",
-          cancelButtonText: "No",
+          confirmButtonText: "Sim",
+          cancelButtonText: "Não",
           closeOnConfirm: false,
           closeOnCancel: false,
           showLoaderOnConfirm: true
@@ -150,14 +150,14 @@ include('includes/footer.php');
               dataType:'json',
               data:{id:_id,'action':'removeReport'},
               error: function (request, error) {
-				swal('Something went to wrong !');
+				swal('Algo deu errado!');
 			  },
               success:function(res){
                   console.log(res);
                   if(res.status=='1'){
                     swal({
-                        title: "Successfully", 
-                        text: "Report is deleted...", 
+                        title: "Sucesso", 
+                        text: "Denúncia excluída...", 
                         type: "success"
                     },function() {
                         location.reload();

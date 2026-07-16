@@ -1,6 +1,6 @@
 <?php
     
-    $page_title="SMTP Settings";
+    $page_title="Configurações SMTP";
 
     include("includes/header.php");
     require("includes/function.php");
@@ -77,7 +77,7 @@
             <div class="section">
               <div class="section-body">
                 <div class="form-group">
-                  <label class="col-md-3 control-label">SMTP Type <span style="color: red">*</span>:-</label>
+                  <label class="col-md-3 control-label">Tipo SMTP <span style="color: red">*</span>:-</label>
                   <div class="col-md-6">
                     <div class="radio radio-inline" style="margin-top: 10px">
                       <input type="radio" name="smtp_type" id="gmail" value="gmail" <?php if ($row['smtp_type'] == 'gmail') {
@@ -115,7 +115,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-md-3 control-label">Email <span style="color: red">*</span>:-</label>
+                  <label class="col-md-3 control-label">E-mail <span style="color: red">*</span>:-</label>
                   <div class="col-md-6">
                     <input type="text" name="smtp_email[]" class="form-control" value="<?= $row['smtp_gemail'] ?>" placeholder="info@example.com" <?php if ($row['smtp_type'] == 'gmail') {
                       echo 'required';
@@ -124,7 +124,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="col-md-3 control-label">Password <span style="color: red">*</span>:-</label>
+                  <label class="col-md-3 control-label">Senha <span style="color: red">*</span>:-</label>
                   <div class="col-md-6">
                     <input type="password" name="smtp_password[]" class="form-control" value="" placeholder="********">
                   </div>
@@ -145,7 +145,7 @@
                   </select>
                 </div>
                 <div class="col-md-3">
-                  <input type="text" name="port_no[]" class="form-control" value="<?= $row['gport_no'] ?>" placeholder="Enter Port No." <?php if ($row['smtp_type'] == 'gmail') {
+                  <input type="text" name="port_no[]" class="form-control" value="<?= $row['gport_no'] ?>" placeholder="Informe o número da porta" <?php if ($row['smtp_type'] == 'gmail') {
                     echo 'required';
                   } ?>>
                 </div>
@@ -166,7 +166,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="col-md-3 control-label">Email <span style="color: red">*</span>:-</label>
+              <label class="col-md-3 control-label">E-mail <span style="color: red">*</span>:-</label>
               <div class="col-md-6">
                 <input type="text" name="smtp_email[]" id="smtp_email" class="form-control" value="<?= $row['smtp_email'] ?>" placeholder="info@example.com" <?php if ($row['smtp_type'] == 'server') {
                   echo 'required';
@@ -175,7 +175,7 @@
             </div>
 
             <div class="form-group">
-              <label class="col-md-3 control-label">Password <span style="color: red">*</span>:-</label>
+              <label class="col-md-3 control-label">Senha <span style="color: red">*</span>:-</label>
               <div class="col-md-6">
                 <input type="password" name="smtp_password[]" id="smtp_password" class="form-control" value="" placeholder="********">
               </div>
@@ -196,7 +196,7 @@
               </select>
             </div>
             <div class="col-md-3">
-              <input type="text" name="port_no[]" id="port_no" class="form-control" value="<?= $row['port_no'] ?>" placeholder="Enter Port No." <?php if ($row['smtp_type'] == 'server') {
+              <input type="text" name="port_no[]" id="port_no" class="form-control" value="<?= $row['port_no'] ?>" placeholder="Informe o número da porta" <?php if ($row['smtp_type'] == 'server') {
                 echo 'required';
               } ?>>
             </div>
@@ -208,7 +208,7 @@
       </div>
       <div class="form-group">
         <div class="col-md-9 col-md-offset-3">
-          <button type="submit" name="submit" class="btn btn-primary">Save</button>
+          <button type="submit" name="submit" class="btn btn-primary">Salvar</button>
         </div>
       </div>
     </div>
@@ -216,8 +216,8 @@
 
   <br />
   <div class="alert alert-danger alert-dismissible fade in" role="alert">
-    <h4 id="oh-snap!-you-got-an-error!">Note:<a class="anchorjs-link" href="#oh-snap!-you-got-an-error!"><span class="anchorjs-icon"></span></a></h4>
-    <p style="margin-bottom: 10px"><i class="fa fa-hand-o-right"></i> This email required otherwise <strong>forgot password</strong> OR <strong>email</strong> feature will not be work.</p>
+    <h4 id="oh-snap!-you-got-an-error!">Observação:<a class="anchorjs-link" href="#oh-snap!-you-got-an-error!"><span class="anchorjs-icon"></span></a></h4>
+    <p style="margin-bottom: 10px"><i class="fa fa-hand-o-right"></i> Este e-mail é obrigatório, caso contrário o recurso de <strong>recuperação de senha</strong> OU <strong>e-mail</strong> não funcionará.</p>
   </div>
 </div>
 </div>
@@ -241,13 +241,13 @@
     if (_val == 'gmail') {
 
       swal({
-        title: "Are you sure?",
+        title: "Tem certeza?",
         type: "warning",
         showCancelButton: true,
         confirmButtonClass: "btn-danger btn_edit",
         cancelButtonClass: "btn-warning btn_edit",
-        confirmButtonText: "Yes",
-        cancelButtonText: "No",
+        confirmButtonText: "Sim",
+        cancelButtonText: "Não",
         closeOnConfirm: false,
         closeOnCancel: false,
         showLoaderOnConfirm: false
@@ -279,13 +279,13 @@
     } else {
 
       swal({
-        title: "Are you sure?",
+        title: "Tem certeza?",
         type: "warning",
         showCancelButton: true,
         confirmButtonClass: "btn-danger btn_edit",
         cancelButtonClass: "btn-warning btn_edit",
-        confirmButtonText: "Yes",
-        cancelButtonText: "No",
+        confirmButtonText: "Sim",
+        cancelButtonText: "Não",
         closeOnConfirm: false,
         closeOnCancel: false,
         showLoaderOnConfirm: false

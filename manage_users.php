@@ -1,6 +1,6 @@
 <?php 
 
-$page_title="Manage Users";
+$page_title="Usuários";
 
 include('includes/header.php'); 
 include('includes/function.php');
@@ -60,27 +60,27 @@ else
 					<div class="search_list">
 						<div class="search_block">
 							<form  method="post" action="">
-								<input class="form-control input-sm" placeholder="Search..." aria-controls="DataTables_Table_0" type="search" value="<?=(isset($_POST['search_value'])) ? trim($_POST['search_value']) : ''?>" name="search_value" required>
+								<input class="form-control input-sm" placeholder="Pesquisar..." aria-controls="DataTables_Table_0" type="search" value="<?=(isset($_POST['search_value'])) ? trim($_POST['search_value']) : ''?>" name="search_value" required>
 								<button type="submit" name="user_search" class="btn-search"><i class="fa fa-search"></i></button>
 							</form>  
 						</div>
-						<div class="add_btn_primary"> <a href="add_user.php?add">Add User</a> </div>
+						<div class="add_btn_primary"> <a href="add_user.php?add">Adicionar Usuário</a> </div>
 					</div>
 				</div>
 				<div class="col-md-4 col-xs-12 text-right" style="float: right;">
 					<div class="checkbox" style="width: 95px;margin-top: 5px;margin-left: 10px;right: 100px;position: absolute;">
 						<input type="checkbox" id="checkall_input">
 						<label for="checkall_input">
-							Select All
+							Selecionar tudo
 						</label>
 					</div>
 					<div class="dropdown" style="float:right">
-						<button class="btn btn-primary dropdown-toggle btn_cust" type="button" data-toggle="dropdown">Action
+						<button class="btn btn-primary dropdown-toggle btn_cust" type="button" data-toggle="dropdown">Ações
 							<span class="caret"></span></button>
 							<ul class="dropdown-menu" style="right:0;left:auto;">
-								<li><a href="" class="actions" data-action="enable">Enable</a></li>
-								<li><a href="" class="actions" data-action="disable">Disable</a></li>
-								<li><a href="" class="actions" data-action="delete">Delete !</a></li>
+								<li><a href="" class="actions" data-action="enable">Ativar</a></li>
+								<li><a href="" class="actions" data-action="disable">Desativar</a></li>
+								<li><a href="" class="actions" data-action="delete">Excluir</a></li>
 							</ul>
 						</div>
 					</div>
@@ -91,12 +91,12 @@ else
 						<thead>
 							<tr>
 								<th style="width: 50px"></th>
-								<th>Name</th>						 
-								<th>Email</th>
-								<th>Phone</th>				   
-								<th>Register On</th>
+								<th>Nome</th>						 
+								<th>E-mail</th>
+								<th>Telefone</th>				   
+								<th>Registrado em</th>
 								<th>Status</th>				   
-								<th class="text-center">Action</th>
+								<th class="text-center">Ações</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -123,19 +123,19 @@ else
 										<td><?php echo ($users_row['register_on']!='') ? calculate_time_span($users_row['register_on'], true) : '';?></td>
 										<td>
 											<?php if($users_row['status']!="0"){?>
-												<a title="Change Status" class="toggle_btn_a" href="javascript:void(0)" data-id="<?=$users_row['id']?>" data-action="deactive" data-column="status"><span class="badge badge-success badge-icon"><i class="fa fa-check" aria-hidden="true"></i><span>Enable</span></span></a>
+												<a title="Alterar status" class="toggle_btn_a" href="javascript:void(0)" data-id="<?=$users_row['id']?>" data-action="deactive" data-column="status"><span class="badge badge-success badge-icon"><i class="fa fa-check" aria-hidden="true"></i><span>Ativado</span></span></a>
 
 											<?php }else{?>
-												<a title="Change Status" class="toggle_btn_a" href="javascript:void(0)" data-id="<?=$users_row['id']?>" data-action="active" data-column="status"><span class="badge badge-danger badge-icon"><i class="fa fa-check" aria-hidden="true"></i><span>Disable </span></span></a>
+												<a title="Alterar status" class="toggle_btn_a" href="javascript:void(0)" data-id="<?=$users_row['id']?>" data-action="active" data-column="status"><span class="badge badge-danger badge-icon"><i class="fa fa-check" aria-hidden="true"></i><span>Desativado </span></span></a>
 											<?php }?>
 										</td>
 
 										<td class="text-center">
-											<a href="add_user.php?user_id=<?php echo $users_row['id'];?>&redirect=<?=$redirectUrl?>" class="btn btn-primary btn_edit" data-toogle="tooltip" data-tooltip="Edit">
+											<a href="add_user.php?user_id=<?php echo $users_row['id'];?>&redirect=<?=$redirectUrl?>" class="btn btn-primary btn_edit" data-toogle="tooltip" data-tooltip="Editar">
 												<i class="fa fa-edit"></i>
 											</a>
 
-											<a href="" class="btn btn-danger btn_delete" data-id="<?=$users_row['id']?>" data-toogle="tooltip" data-tooltip="Delete">
+											<a href="" class="btn btn-danger btn_delete" data-id="<?=$users_row['id']?>" data-toogle="tooltip" data-tooltip="Excluir">
 												<i class="fa fa-trash"></i>
 											</a>
 										</td>
@@ -148,7 +148,7 @@ else
 								?>
 								<tr>
 									<td colspan="7">
-										<p class="not_data"><strong>Sorry!</strong> no data found</p>
+										<p class="not_data"><strong>Desculpe!</strong> nenhum dado encontrado</p>
 									</td>
 								</tr>
 								<?php
@@ -205,14 +205,14 @@ else
 			var _table='tbl_users';
 
 			swal({
-				title: "Are you sure?",
-				text: "All data will be deleted of this user.",
+				title: "Tem certeza?",
+				text: "Todos os dados deste usuário serão excluídos.",
 				type: "warning",
 				showCancelButton: true,
 				confirmButtonClass: "btn-danger",
 				cancelButtonClass: "btn-warning",
-				confirmButtonText: "Yes",
-				cancelButtonText: "No",
+				confirmButtonText: "Sim",
+				cancelButtonText: "Não",
 				closeOnConfirm: false,
 				closeOnCancel: false,
 				showLoaderOnConfirm: true
@@ -229,8 +229,8 @@ else
 							console.log(res);
 							if(res.status=='1'){
 								swal({
-									title: "Successfully", 
-									text: "User is deleted...", 
+									title: "Sucesso", 
+									text: "Usuário excluído...", 
 									type: "success"
 								},function() {
 									location.reload();
@@ -255,14 +255,14 @@ else
 			if(_ids!='')
 			{
 				swal({
-					title: "Action: "+$(this).text(),
-					text: "Do you really want to perform?",
+					title: "Ação: "+$(this).text(),
+					text: "Deseja realmente executar?",
 					type: "warning",
 					showCancelButton: true,
 					confirmButtonClass: "btn-danger",
 					cancelButtonClass: "btn-warning",
-					confirmButtonText: "Yes",
-					cancelButtonText: "No",
+					confirmButtonText: "Sim",
+					cancelButtonText: "Não",
 					closeOnConfirm: false,
 					closeOnCancel: false,
 					showLoaderOnConfirm: true
@@ -282,8 +282,8 @@ else
 								$('.notifyjs-corner').empty();
 								if(res.status=='1'){
 									swal({
-										title: "Successfully", 
-										text: "You have successfully done", 
+										title: "Sucesso", 
+										text: "Operação concluída com sucesso", 
 										type: "success"
 									},function() {
 										location.reload();
@@ -299,7 +299,7 @@ else
 				});
 			}
 			else{
-				swal("Sorry no users selected !!")
+				swal("Nenhum item selecionado!")
 			}
 		});
 
@@ -318,7 +318,7 @@ else
 			if($('input:checkbox').prop("checked") == true){
 				$('.notifyjs-corner').empty();
 				$.notify(
-					'Total '+totalItems+' item checked',
+					'Total de '+totalItems+' itens selecionados',
 					{ position:"top center",className: 'success'}
 					);
 			}
@@ -352,7 +352,7 @@ else
 			$('.notifyjs-corner').empty();
 
 			$.notify(
-				'Total '+totalItems+' item checked',
+				'Total de '+totalItems+' itens selecionados',
 				{ position:"top center",className: 'success'}
 				);
 

@@ -1,5 +1,5 @@
 <?php 
-  $page_title='Add Channel';
+  $page_title='Adicionar Canal';
 
   $current_page="channel";
   $active_page="channel";
@@ -35,7 +35,7 @@
       $obj_img->NewHeight = 390;
       if (!$obj_img->create_thumbnail_images()) 
       {
-        echo $_SESSION['msg']="Thumbnail not created... please upload image again";
+        echo $_SESSION['msg']="Miniatura não criada... por favor, envie a imagem novamente";
         exit;
       }
 
@@ -56,7 +56,7 @@
       $obj_img->NewHeight = 350;
       if (!$obj_img->create_thumbnail_images()) 
       {
-        echo $_SESSION['msg']="Thumbnail not created... please upload image again";
+        echo $_SESSION['msg']="Miniatura não criada... por favor, envie a imagem novamente";
         exit;
       }
 
@@ -102,10 +102,10 @@
           <div class="section">
             <div class="section-body">
               <div class="form-group">
-                <label class="col-md-3 control-label">Select Category :-</label>
+                <label class="col-md-3 control-label">Selecionar Categoria :-</label>
                 <div class="col-md-6">
                   <select name="category_id" id="category_id" class="select2">
-                    <option value="">--Select Category--</option>
+                    <option value="">-- Selecionar Categoria --</option>
       							<?php
       									while($row=mysqli_fetch_array($result))
       									{
@@ -118,43 +118,43 @@
                 </div>
               </div>                  
               <div class="form-group">
-                <label class="col-md-3 control-label">Channel Title :-</label>
+                <label class="col-md-3 control-label">Título do Canal :-</label>
                 <div class="col-md-6">
                   <input type="text" name="channel_title" id="channel_title" class="form-control">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-md-3 control-label">Android Type :-</label>
+                <label class="col-md-3 control-label">Tipo Android :-</label>
                 <div class="col-md-6">
                   <select name="channel_type" id="channel_type" class="select2">
-                    <option value="live_url">Live URL</option>
+                    <option value="live_url">URL ao vivo</option>
                     <option value="youtube">YouTube</option>
-                    <option value="embedded_url">Embedded URL (Open Load, Very Stream, Daily motion, Vimeo)</option>
+                    <option value="embedded_url">URL incorporada (Open Load, Very Stream, Daily motion, Vimeo)</option>
                   </select>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-md-3 control-label">Android Channel Url :-</label>
+                <label class="col-md-3 control-label">URL do Canal Android :-</label>
                 <div class="col-md-6">
                   <input type="text" name="channel_url" id="channel_url" class="form-control">
                 </div>
               </div>
               <div class="or_link_item">
-              <h2>OR</h2>
+              <h2>OU</h2>
               </div>
               <div class="form-group">
-                <label class="col-md-3 control-label">iOS Type :-</label>
+                <label class="col-md-3 control-label">Tipo iOS :-</label>
                 <div class="col-md-6">
                   <select name="channel_type_ios" id="channel_type_ios" class="select2">
-                    <option value="live_url">Live URL</option>
+                    <option value="live_url">URL ao vivo</option>
                     <option value="youtube">YouTube</option>
-                    <option value="embedded_url">Embedded URL (Open Load, Very Stream, Daily motion, Vimeo)</option>
+                    <option value="embedded_url">URL incorporada (Open Load, Very Stream, Daily motion, Vimeo)</option>
                      
                   </select>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-md-3 control-label">iOS Channel Url :-
+                <label class="col-md-3 control-label">URL do Canal iOS :-
                   <p class="control-label-help">(M3u8,MP4)</p>
                 </label>
                 <div class="col-md-6">
@@ -163,8 +163,8 @@
               </div>
 
               <div class="form-group">
-                <label class="col-md-3 control-label">Channel Poster Image:-
-                  <p class="control-label-help" id="square_lable_info">(Recommended resolution: 185x278 portrait)</p>
+                <label class="col-md-3 control-label">Imagem do Pôster do Canal:-
+                  <p class="control-label-help" id="square_lable_info">(Resolução recomendada: 185x278 retrato)</p>
                 </label>
                 <div class="col-md-6">
                   <div class="fileupload_block">
@@ -173,15 +173,15 @@
                       <?php 
                         $img_src='assets/images/series-poster.jpg';
                       ?>
-                      <img type="image" src="<?=$img_src?>" alt="poster image" style="width: 80px;height: 115px" />
+                      <img type="image" src="<?=$img_src?>" alt="imagem do pôster" style="width: 80px;height: 115px" />
                     </div>
                   </div>
                 </div>
               </div>
 
               <div class="form-group">
-                <label class="col-md-3 control-label">Channel Cover Image:-
-                  <p class="control-label-help" id="square_lable_info">(Recommended resolution: 300x150 landscape)</p>
+                <label class="col-md-3 control-label">Imagem de Capa do Canal:-
+                  <p class="control-label-help" id="square_lable_info">(Resolução recomendada: 300x150 paisagem)</p>
                 </label>
                 <div class="col-md-6">
                   <div class="fileupload_block">
@@ -190,7 +190,7 @@
                       <?php 
                         $img_src='assets/images/series-cover.jpg';
                       ?>
-                      <img type="image" src="<?=$img_src?>" alt="cover image" style="width: 150px;height: 86px" />
+                      <img type="image" src="<?=$img_src?>" alt="imagem de capa" style="width: 150px;height: 86px" />
                     </div>
                   </div>
                 </div>
@@ -198,7 +198,7 @@
 
               <div class="form-group">
                 <div class="col-md-3">
-                  <label class="control-label">Channel Description :-</label>
+                  <label class="control-label">Descrição do Canal :-</label>
                 </div>
                 <div class="col-md-6">
                   <textarea name="channel_desc" id="channel_desc" rows="5" class="form-control"></textarea>
@@ -212,23 +212,23 @@
                 <label class="col-md-3 control-label">User Agent :-</label>
                 <div class="col-md-6">
                   <select name="user_agent" id="user_agent" class="select2">
-                    <option value="false">False</option>
-                    <option value="true">True</option>
+                    <option value="false">Falso</option>
+                    <option value="true">Verdadeiro</option>
                   </select>
                 </div>
               </div>
               <div class="user_agent" style="display: none">
                   <div class="form-group">
-                    <label class="col-md-3 control-label">User Agent Type :-</label>
+                    <label class="col-md-3 control-label">Tipo de User Agent :-</label>
                     <div class="col-md-6">
                       <select name="user_agent_type" id="user_agent_type" class="select2">
-                        <option value="setting">Get from setting</option>
-                        <option value="custom">Custom</option>
+                        <option value="setting">Obter das configurações</option>
+                        <option value="custom">Personalizado</option>
                       </select>
                     </div>
                   </div>
                   <div class="form-group" style="display: none">
-                    <label class="col-md-3 control-label">User Agent Name :-</label>
+                    <label class="col-md-3 control-label">Nome do User Agent :-</label>
                     <div class="col-md-6">
                       <input type="text" name="user_agent_name" id="user_agent_name" class="form-control">
                     </div>
@@ -237,7 +237,7 @@
               
               <div class="form-group">
                 <div class="col-md-9 col-md-offset-3">
-                  <button type="submit" name="submit" class="btn btn-primary">Save</button>
+                  <button type="submit" name="submit" class="btn btn-primary">Salvar</button>
                 </div>
               </div>
             </div>
@@ -275,7 +275,7 @@
             $(this).val('');
             $('.notifyjs-corner').empty();
             $.notify(
-            'Only jpg/jpeg, png, gif and svg files are allowed!',
+            'Somente arquivos jpg/jpeg, png, gif e svg são permitidos!',
             { position:"top center",className: 'error'}
             );
           }
@@ -305,7 +305,7 @@
           $(this).val('');
           $('.notifyjs-corner').empty();
           $.notify(
-          'Only jpg/jpeg, png, gif and svg files are allowed!',
+          'Somente arquivos jpg/jpeg, png, gif e svg são permitidos!',
           { position:"top center",className: 'error'}
           );
         }

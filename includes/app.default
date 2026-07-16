@@ -49,22 +49,8 @@
   }
 
   
-  if($settings_details['envato_buyer_name']=='' OR $settings_details['envato_purchase_code']=='' OR $settings_details['envato_purchased_status']==0) {  
+  // Verificacao de licenca Envato removida: o painel opera sem licenciamento.
 
-    if($get_method['user_id']!=''){
-      $set['user_status']=get_user_status($get_method['user_id']);
-    }
-    else{
-      $set['user_status']="false";  
-    }
-
-    $set['LIVETV'][] =array('msg' => 'Purchase code verification failed!','success'=>'0');  
-    
-    header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
-    die();
-  }
-  
   
   function quality_info_data($post_id, $param, $type='movie'){
 

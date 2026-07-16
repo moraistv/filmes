@@ -19,14 +19,13 @@ fi
 rm -f includes/.lic
 ln -s ../runtime/.lic includes/.lic
 
-if [ ! -L api.php ]; then
-  if [ -f api.php ] && [ ! -f runtime/api.php ]; then
-    cp api.php runtime/api.php
-  fi
-  rm -f api.php
-  ln -s runtime/api.php api.php
-fi
+# A API do app (api.php) e gerada a partir do template versionado app.default.
+# Como e apenas codigo (nao dado do usuario), regeramos a cada deploy para
+# refletir atualizacoes e garantir que os includes relativos funcionem.
+rm -f api.php
+cp includes/app.default api.php
 
 chown -R www-data:www-data runtime images uploads
+chown www-data:www-data api.php
 
 exec docker-php-entrypoint "$@"

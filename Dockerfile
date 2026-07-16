@@ -10,11 +10,12 @@ RUN apt-get update \
         unzip \
     && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
     && docker-php-ext-install -j"$(nproc)" gd mysqli pdo_mysql zip \
-    && a2enmod rewrite \
+    && a2enmod rewrite deflate expires headers \
     && rm -rf /var/lib/apt/lists/*
 
 COPY . /var/www/html
 COPY docker/php.ini /usr/local/etc/php/conf.d/painel.ini
+COPY docker/apache-extra.conf /etc/apache2/conf-enabled/painel-extra.conf
 COPY docker/entrypoint.sh /usr/local/bin/painel-entrypoint
 
 RUN sed -i 's/\r$//' /usr/local/bin/painel-entrypoint \

@@ -290,7 +290,7 @@
     $set['LIVETV'] = $row;
 
     header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
 
     }
@@ -446,7 +446,7 @@
     $set['LIVETV'] = $row;
 
     header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
 
     }
@@ -506,7 +506,7 @@
     $set['LIVETV'] = $jsonObj;
 
       header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
     }
     else if($get_method['method_name']=="get_latest_movies")
@@ -581,7 +581,7 @@
     $set['LIVETV'] = $jsonObj;
 
       header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
     }
     else if($get_method['method_name']=="get_category")
@@ -613,7 +613,7 @@
     $set['LIVETV'] = $jsonObj;
 
       header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
     }
     else if($get_method['method_name']=="get_language")
@@ -643,7 +643,7 @@
     $set['LIVETV'] = $jsonObj;
 
       header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
     }
     else if($get_method['method_name']=="get_genre")
@@ -674,7 +674,7 @@
     $set['LIVETV'] = $jsonObj;
 
       header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
     }
     else if($get_method['method_name']=="get_movies")
@@ -734,7 +734,7 @@
     $set['LIVETV'] = $jsonObj;
 
       header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
     }
 
@@ -767,7 +767,7 @@
     $set['LIVETV'] = $jsonObj;
 
       header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
     }
     else if($get_method['method_name']=="get_episodes")
@@ -867,7 +867,7 @@
     $set['LIVETV'] = $jsonObj;
 
       header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
     }
     else if($get_method['method_name']=="get_movies_by_lang_id")
@@ -929,7 +929,7 @@
     $set['LIVETV'] = $jsonObj;
 
       header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
     }
     
@@ -1002,7 +1002,7 @@
     $set['LIVETV'] = $jsonObj;
 
       header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
     }
     
@@ -1051,7 +1051,7 @@
     $set['LIVETV'] = $jsonObj;   
 
       header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
     }
     else if($get_method['method_name']=="get_single_series")
@@ -1173,7 +1173,7 @@
     $set['LIVETV'] = $jsonObj;
 
       header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
     }
     else if($get_method['method_name']=="get_single_movie")
@@ -1370,7 +1370,7 @@
     $set['LIVETV'] = $jsonObj;
 
       header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
     }
     else if($get_method['method_name']=="get_single_channel")
@@ -1461,7 +1461,7 @@
     $set['LIVETV'] = $jsonObj;
  
       header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
   }
 
@@ -1575,7 +1575,7 @@
 
     $set['LIVETV'] = $jsonObj;
     header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
 
   }
@@ -1623,7 +1623,7 @@
     }
 
     header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
   }
   else if($get_method['method_name']=="get_search_movies")
@@ -1692,7 +1692,7 @@
     }
 
     header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
   }
   else if($get_method['method_name']=="get_search_channels")
@@ -1742,7 +1742,7 @@
     }
 
     header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
   }
   else if($get_method['method_name']=="user_report")
@@ -1768,7 +1768,7 @@
     }
 
     header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
   }
   else if($get_method['method_name']=="user_register")
@@ -1806,7 +1806,7 @@
     }
 
     header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
     }
   else if($get_method['method_name']=="user_login")
@@ -1871,7 +1871,7 @@
     }
 
     header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
 
   }
@@ -1885,7 +1885,7 @@
       $set['LIVETV'][]=array('user_id' => $row['id'],'name'=>$row['name'],'email'=>$row['email'],'phone'=>$row['phone'],'success'=>'1');
 
       header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
   }
   else if($get_method['method_name']=="user_profile_update")
@@ -1918,7 +1918,7 @@
     $set['LIVETV'][]=array('msg'=>$app_lang['update_success'],'success'=>'1');
 
     header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
   }
   else if($get_method['method_name']=="forgot_pass")
@@ -1987,7 +1987,7 @@
     }
 
       header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
   }
   else if($get_method['method_name']=="my_rating")
@@ -2014,7 +2014,7 @@
     $set['LIVETV'][] = $jsonObj;
       
       header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
       die();  
   }
   else if($get_method['method_name']=="user_rating")
@@ -2156,7 +2156,7 @@
     }
 
     header( 'Content-Type: application/json; charset=utf-8' );
-    echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+    echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
   }
   else if($get_method['method_name']=="user_comment")
@@ -2224,7 +2224,7 @@
     $set['LIVETV']=$jsonObj;
     
     header( 'Content-Type: application/json; charset=utf-8' );
-    echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+    echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
   }
   else if($get_method['method_name']=="get_user_comment")
@@ -2252,7 +2252,7 @@
         
     $set['LIVETV'] = $jsonObj;      
     header( 'Content-Type: application/json; charset=utf-8' );
-    echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+    echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
   }
   else if($get_method['method_name']=="get_videos")
@@ -2283,7 +2283,7 @@
     $set['LIVETV'] = $jsonObj;
 
     header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();  
   }
   else if($get_method['method_name']=="get_single_video")
@@ -2316,7 +2316,7 @@
     $set['LIVETV'] = $jsonObj;
 
     header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();  
   }
   else if ($get_method['method_name'] == "delete_user_account") 
@@ -2347,7 +2347,7 @@
       }
 
       header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
   }
   else if($get_method['method_name']=="get_app_details")
   {
@@ -2426,7 +2426,7 @@
     $set['LIVETV'] = $jsonObj;
     
     header( 'Content-Type: application/json; charset=utf-8' );
-      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
   }  
   else

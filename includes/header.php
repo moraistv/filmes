@@ -37,7 +37,7 @@
 <link rel="stylesheet" type="text/css" href="assets/css/theme/yellow.css">
 
 <link rel="stylesheet" type="text/css" href="assets/sweetalert/sweetalert.css">
-<link rel="stylesheet" type="text/css" href="assets/css/admin-modern.css?v=1.1.0">
+<link rel="stylesheet" type="text/css" href="assets/css/admin-modern.css?v=1.1.1">
 
  <script src="assets/ckeditor/ckeditor.js"></script>
 

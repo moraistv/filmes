@@ -2,7 +2,7 @@
 set -eu
 
 cd /var/www/html
-mkdir -p runtime images uploads
+mkdir -p runtime images uploads runtime/sessions
 
 # O diretorio images/ vive num volume persistente (sobrevive aos deploys),
 # entao arquivos NOVOS adicionados na imagem (ex.: logo-getcine.svg) nunca

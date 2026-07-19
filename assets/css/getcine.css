@@ -568,6 +568,8 @@ body.gc-login .gc-login-brand {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
   color: #fff;
   background: linear-gradient(160deg, #e41b17 0%, #f2650f 52%, #fdc108 120%);
   overflow: hidden;
@@ -612,8 +614,10 @@ body.gc-login .gc-login-brand .gc-tagline {
 }
 body.gc-login .gc-login-feats {
   list-style: none;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
+  width: fit-content;
+  text-align: left;
   position: relative;
   z-index: 1;
 }

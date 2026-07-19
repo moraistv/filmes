@@ -68,10 +68,12 @@
       </div>
 
       <label class="gc-label" for="password">Senha</label>
-      <div class="gc-field">
-        <i class="bi bi-lock gc-field-ic"></i>
-        <input type="password" name="password" id="password" placeholder="Digite sua senha" autocomplete="current-password" required>
-        <button type="button" class="gc-eye" id="togglePassword" aria-label="Mostrar senha" title="Mostrar senha">
+      <div class="gc-pass-row">
+        <span class="gc-input-wrap">
+          <i class="bi bi-lock gc-field-ic"></i>
+          <input type="password" name="password" id="password" placeholder="Digite sua senha" autocomplete="current-password" required>
+        </span>
+        <button type="button" class="gc-eye-btn" id="togglePassword" aria-label="Mostrar senha" title="Mostrar senha">
           <i class="bi bi-eye"></i>
         </button>
       </div>

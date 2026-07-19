@@ -698,7 +698,7 @@ body.gc-login .gc-field > i.gc-field-ic {
 body.gc-login .gc-field input {
   width: 100%;
   height: 50px;
-  padding: 0 46px 0 42px;
+  padding: 0 54px 0 42px;
   border: 1.5px solid #e5dad1;
   border-radius: 12px;
   background: #fbf8f6;
@@ -715,22 +715,27 @@ body.gc-login .gc-field input:focus {
 }
 body.gc-login .gc-field .gc-eye {
   position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 36px;
-  height: 36px;
+  right: 6px;
+  top: 6px;
+  bottom: 6px;
+  width: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+  margin: 0;
   border: 0;
   border-radius: 9px;
   background: transparent;
-  color: var(--gc-muted);
-  font-size: 16px;
+  color: #9a887c;
+  font-size: 17px;
+  line-height: 1;
   cursor: pointer;
+  transition: color .18s ease, background .18s ease;
 }
+body.gc-login .gc-field .gc-eye i { display: block; }
 body.gc-login .gc-field .gc-eye:hover { color: var(--gc-orange); background: #f4ece6; }
+body.gc-login .gc-field .gc-eye:focus { outline: none; color: var(--gc-orange); }
 
 body.gc-login .gc-login-btn {
   width: 100%;

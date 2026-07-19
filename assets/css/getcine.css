@@ -646,7 +646,10 @@ body.gc-login .gc-login-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
 }
+/* Rotulos dos campos voltam a alinhar a esquerda (fica estranho centralizado) */
+body.gc-login .gc-login-form form { text-align: left; }
 body.gc-login .gc-login-form h2 {
   margin: 0 0 6px;
   font-size: 24px;

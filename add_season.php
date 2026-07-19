@@ -27,7 +27,7 @@
     }
      
     $_SESSION['msg']="10";
-    header( "Location:manage_season.php");
+    header( "Location:temporadas");
     exit; 
 
   }

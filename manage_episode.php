@@ -24,12 +24,12 @@
 
         $query = "SELECT COUNT(*) as num FROM $tableName WHERE tbl_episode.`series_id`='$series_id' AND tbl_episode.`season_id`='$season_id'";
 
-        $targetpage = "manage_episode.php?series=$series_id&season=".$season_id; 
+        $targetpage = "episodios?series=$series_id&season=".$season_id; 
       }
       else{
         $query = "SELECT COUNT(*) as num FROM $tableName WHERE tbl_episode.`series_id`='$series_id'";
 
-        $targetpage = "manage_episode.php?series=$series_id";   
+        $targetpage = "episodios?series=$series_id";   
       }
       
 
@@ -82,7 +82,7 @@
    {
 	
 	     //Get all episodes 
-      $targetpage = "manage_episode.php"; 
+      $targetpage = "episodios"; 
       
       $query = "SELECT COUNT(*) as num FROM $tableName";
       $total_pages = mysqli_fetch_array(mysqli_query($mysqli,$query));
@@ -128,7 +128,7 @@
                     <button type="submit" name="data_search" class="btn-search"><i class="fa fa-search"></i></button>
               </form>  
             </div>
-            <div class="add_btn_primary"> <a href="add_episode.php?add=yes">Adicionar Episódio</a> </div>
+            <div class="add_btn_primary"> <a href="adicionar-episodio?add=yes">Adicionar Episódio</a> </div>
           </div>
         </div>
         <div class="clearfix"></div>
@@ -221,7 +221,7 @@
                 
                 <ul style="z-index: 1">
                     
-                  <li><a href="add_episode.php?episode_id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Editar"><i class="fa fa-edit"></i></a></li>
+                  <li><a href="adicionar-episodio?episode_id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Editar"><i class="fa fa-edit"></i></a></li>
                   <li><a href="" class="btn_delete_a" data-id="<?php echo $row['id'];?>" data-toggle="tooltip" data-tooltip="Excluir"><i class="fa fa-trash"></i></a></li>
 
                   <?php if($row['status']!="0"){?>

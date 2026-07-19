@@ -64,7 +64,7 @@
 		if(isset($_GET['post_id'])){
 			$post_id=(int)$_GET['post_id'];
 	
-			$targetpage = "manage_comments.php?post_id=".$post_id."&type=".$type;
+			$targetpage = "comentarios?post_id=".$post_id."&type=".$type;
 
 			$query = "SELECT COUNT(*) as num FROM $tableName WHERE `post_id`='$post_id' AND `type`='$type'";
 			$total_pages = mysqli_fetch_array(mysqli_query($mysqli,$query));
@@ -80,7 +80,7 @@
 
 			$user_id=(int)$_GET['user_id'];
 	
-			$targetpage = "manage_comments.php?user_id=".$user_id; 	
+			$targetpage = "comentarios?user_id=".$user_id; 	
 
 			$query = "SELECT COUNT(*) as num FROM $tableName WHERE `user_id`='$user_id'";
 			$total_pages = mysqli_fetch_array(mysqli_query($mysqli,$query));
@@ -93,7 +93,7 @@
 		}
 		else{
 
-			$targetpage = "manage_comments.php?type=".$type; 	
+			$targetpage = "comentarios?type=".$type; 	
 			 
 			$query = "SELECT COUNT(*) as num FROM $tableName WHERE `type`='$type'";
 			$total_pages = mysqli_fetch_array(mysqli_query($mysqli,$query));
@@ -107,7 +107,7 @@
 	}
 	else{	
 
-		$targetpage = "manage_comments.php"; 	
+		$targetpage = "comentarios"; 	
 		
 		$query = "SELECT COUNT(*) as num FROM $tableName";
 		$total_pages = mysqli_fetch_array(mysqli_query($mysqli,$query));
@@ -159,7 +159,7 @@
 			  </div>
 			  <div class="timeline-panel">
 				<div class="timeline-heading"> 
-					<a href="manage_comments.php?post_id=<?php echo $users_row['post_id'].'&type='.$users_row['type'];?>" title="">
+					<a href="comentarios?post_id=<?php echo $users_row['post_id'].'&type='.$users_row['type'];?>" title="">
 						<span class="label label-danger">
 							<?php echo get_post($users_row['post_id'],$users_row['type']);?>
 						</span> 
@@ -172,7 +172,7 @@
 				  <p><?php echo $users_row['comment_text'];?></p>
 				</div>
 				<hr>
-				<a href="manage_comments.php?user_id=<?php echo $users_row['user_id'];?>" title=""> <small class="label label-rose"> <span><?php echo $users_row['name'];?></span> </small> </a> <span class="pull-right about_time" title="<?php echo calculate_time_span($users_row['comment_on'],true);?>"><?php echo calculate_time_span($users_row['comment_on'],true);?></span>
+				<a href="comentarios?user_id=<?php echo $users_row['user_id'];?>" title=""> <small class="label label-rose"> <span><?php echo $users_row['name'];?></span> </small> </a> <span class="pull-right about_time" title="<?php echo calculate_time_span($users_row['comment_on'],true);?>"><?php echo calculate_time_span($users_row['comment_on'],true);?></span>
 			</div>
 			</li>
 		  </ul>

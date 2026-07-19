@@ -104,7 +104,7 @@
                       <tr>
                         <td><?php echo get_post($row['post_id'],$row['type'])['series_name'];?></td>
                         <td>
-                          <a href="view_series_reports.php?post_id=<?=$row['post_id']?>">
+                          <a href="denuncias-serie?post_id=<?=$row['post_id']?>">
                             <?php echo get_total_reports($row['post_id'],$row['type']);?> Denúncias
                           </a>
                         </td>
@@ -155,7 +155,7 @@
                     <tr>
                       <td><?php echo get_post($row['post_id'],$row['type'])['movie_title'];?></td>
                       <td>
-                        <a href="view_movie_reports.php?post_id=<?=$row['post_id']?>">
+                        <a href="denuncias-filme?post_id=<?=$row['post_id']?>">
                           <?php echo get_total_reports($row['post_id'],$row['type']);?> Denúncias
                         </a>
                       </td>
@@ -205,7 +205,7 @@
                       <tr>
                         <td><?php echo get_post($row['post_id'],$row['type'])['channel_title'];?></td>
                         <td>
-                          <a href="view_channel_reports.php?post_id=<?=$row['post_id']?>">
+                          <a href="denuncias-canal?post_id=<?=$row['post_id']?>">
                             <?php echo get_total_reports($row['post_id'],$row['type']);?> Denúncias
                           </a>
                         </td>

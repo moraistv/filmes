@@ -56,7 +56,7 @@
         $settings_edit=Update('tbl_settings', $data, "WHERE id = '1'");
 
         $_SESSION['msg']="11";
-        header( "Location:settings.php");
+        header( "Location:configuracoes");
         exit;
 
     }
@@ -85,7 +85,7 @@
 
 
         $_SESSION['msg']="11";
-        header( "Location:settings.php");
+        header( "Location:configuracoes");
         exit;
 
     }
@@ -99,7 +99,7 @@
         $settings_edit=Update('tbl_settings', $data, "WHERE id = '1'");
 
         $_SESSION['msg']="11";
-        header( "Location:settings.php");
+        header( "Location:configuracoes");
         exit;
 
     }
@@ -113,7 +113,7 @@
         $settings_edit=Update('tbl_settings', $data, "WHERE id = '1'");
 
         $_SESSION['msg']="11";
-        header( "Location:settings.php");
+        header( "Location:configuracoes");
         exit;
 
     }   
@@ -132,7 +132,7 @@
         $settings_edit=Update('tbl_settings', $data, "WHERE id = '1'");
 
         $_SESSION['msg']="11";
-        header( "Location:settings.php");
+        header( "Location:configuracoes");
         exit;
     }
     else if(isset($_POST['app_pri_poly']))
@@ -145,7 +145,7 @@
         $settings_edit=Update('tbl_settings', $data, "WHERE id = '1'");
 
         $_SESSION['msg']="11";
-        header( "Location:settings.php");
+        header( "Location:configuracoes");
         exit;
     }
 ?>

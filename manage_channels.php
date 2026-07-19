@@ -31,7 +31,7 @@
 
       $query = "SELECT COUNT(*) as num FROM $tableName WHERE `cat_id`='$category_id'";
 
-      $targetpage = "manage_channels.php?category=".$category_id; 
+      $targetpage = "canais?category=".$category_id; 
 
       $total_pages = mysqli_fetch_array(mysqli_query($mysqli,$query));
       $total_pages = $total_pages['num'];
@@ -54,7 +54,7 @@
   }
   else
   {  
-    $targetpage = "manage_channels.php";  
+    $targetpage = "canais";  
 
     $query = "SELECT COUNT(*) as num FROM $tableName";
     $total_pages = mysqli_fetch_array(mysqli_query($mysqli,$query));
@@ -109,7 +109,7 @@
                 <button type="submit" name="search" class="btn-search"><i class="fa fa-search"></i></button>
               </form>  
             </div>
-            <div class="add_btn_primary"> <a href="add_channel.php?add=yes">Adicionar Canal</a> </div>
+            <div class="add_btn_primary"> <a href="adicionar-canal?add=yes">Adicionar Canal</a> </div>
           </div>
         </div>
         <div class="clearfix"></div>
@@ -252,7 +252,7 @@
                           </div>
                       </div>
                   </li> 
-                  <li><a href="edit_channel.php?channel_id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>"  data-toggle="tooltip" data-tooltip="Editar"><i class="fa fa-edit"></i></a></li>
+                  <li><a href="editar-canal?channel_id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>"  data-toggle="tooltip" data-tooltip="Editar"><i class="fa fa-edit"></i></a></li>
                   <li><a href="" class="btn_delete_a" data-id="<?=$row['id']?>" data-toggle="tooltip" data-tooltip="Excluir"><i class="fa fa-trash"></i></a></li>
 
                   <?php if($row['status']!="0"){?>

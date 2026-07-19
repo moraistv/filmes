@@ -293,7 +293,7 @@
 
       $_SESSION['msg']="10";
    
-      header( "Location:manage_movies.php");
+      header( "Location:filmes");
       exit;
 	}
 
@@ -662,7 +662,7 @@
     if(isset($_GET['redirect']))
       header( "Location:".$_GET['redirect']);
     else  
-      header( "Location:add_movie.php?movie_id=".$movie_id);
+      header( "Location:adicionar-filme?movie_id=".$movie_id);
     exit;
     
   }
@@ -700,7 +700,7 @@
           <div class="alert alert-danger">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span></button>
-              Defina a chave da API OMDb <a href="settings.php#omdbapi_id" target="_blank">aqui</a>
+              Defina a chave da API OMDb <a href="configuracoes#omdbapi_id" target="_blank">aqui</a>
           </div>
           <br/>
           <?php }else{ ?>

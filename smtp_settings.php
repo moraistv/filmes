@@ -58,7 +58,7 @@
 
       $_SESSION['class'] = "success";
       $_SESSION['msg'] = "11";
-      header("Location:smtp_settings.php");
+      header("Location:smtp");
       exit;
     }
 

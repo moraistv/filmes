@@ -13,7 +13,7 @@
 
 	if(isset($_SESSION['admin_name']))
   {
-    header("Location:home.php");
+    header("Location:painel");
     exit;
   }
 ?>

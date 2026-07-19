@@ -140,7 +140,7 @@
         
     $_SESSION['msg']="17";
  
-    header( "Location:send_notification.php");
+    header( "Location:notificacoes");
     exit;
   }
 
@@ -155,7 +155,7 @@
       $settings_edit=Update('tbl_settings', $data, "WHERE id = '1'");
 
       $_SESSION['msg']="11";
-      header( "Location:send_notification.php");
+      header( "Location:notificacoes");
       exit;
   }
   

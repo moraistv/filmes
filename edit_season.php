@@ -37,7 +37,7 @@
     if(isset($_GET['redirect']))
       header( "Location:".$_GET['redirect']);
     else  
-      header( "Location:edit_season.php?id=".$id);
+      header( "Location:editar-temporada?id=".$id);
     exit;
 
   }

@@ -18,7 +18,7 @@
     $settings_edit = Update('tbl_settings', $data, "WHERE id = '1'");
 
     $_SESSION['msg'] = "11";
-    header("Location: verification.php");
+    header("Location: identificacao");
     exit;
   }
 

@@ -22,7 +22,7 @@
   {
 
     $tableName="tbl_series";   
-    $targetpage = "manage_series.php"; 
+    $targetpage = "series"; 
     $limit = 12; 
     
     $query = "SELECT COUNT(*) as num FROM $tableName";
@@ -82,7 +82,7 @@
                     <button type="submit" name="search" class="btn-search"><i class="fa fa-search"></i></button>
               </form>  
             </div>
-            <div class="add_btn_primary"> <a href="add_series.php?add=yes">Adicionar Série</a> </div>
+            <div class="add_btn_primary"> <a href="adicionar-serie?add=yes">Adicionar Série</a> </div>
           </div>
         </div>
       </div>
@@ -176,7 +176,7 @@
                   </li>
                   
 
-                  <li><a href="add_series.php?series_id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Editar"><i class="fa fa-edit"></i></a></li>               
+                  <li><a href="adicionar-serie?series_id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Editar"><i class="fa fa-edit"></i></a></li>               
                   <li><a href="" data-id="<?php echo $row['id'];?>" class="btn_delete_a" data-toggle="tooltip" data-tooltip="Excluir"><i class="fa fa-trash"></i></a></li>
                   
                   <?php if($row['status']!="0"){?>

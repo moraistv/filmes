@@ -80,7 +80,7 @@
  		$qry = Insert('tbl_channels',$data);			
 
 		$_SESSION['msg']="10"; 
-		header( "Location:manage_channels.php");
+		header( "Location:canais");
 		exit;	
  
 	}	

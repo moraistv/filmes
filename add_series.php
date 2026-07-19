@@ -98,7 +98,7 @@
 
 		$_SESSION['msg']="10";
  
-		header( "Location:manage_series.php");
+		header( "Location:series");
 		exit;	
 		
 	}
@@ -189,7 +189,7 @@
 		if(isset($_GET['redirect']))
 	      header( "Location:".$_GET['redirect']);
 	    else  
-	      header( "Location:add_series.php?series_id=".$post_series_id);
+	      header( "Location:adicionar-serie?series_id=".$post_series_id);
 	    exit;
 
 		exit;
@@ -215,7 +215,7 @@
 	        <div class="alert alert-danger">
 	            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 	            <span aria-hidden="true">&times;</span></button>
-	            Defina a chave da API OMDb <a href="settings.php#omdbapi_id" target="_blank">aqui</a>
+	            Defina a chave da API OMDb <a href="configuracoes#omdbapi_id" target="_blank">aqui</a>
 	        </div>
 	        <br/>
 	        <?php }else{ ?>

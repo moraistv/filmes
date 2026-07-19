@@ -91,43 +91,43 @@
 
 <div class="stat-grid">
 
-    <a href="manage_category.php" class="stat-card stat-orange">
+    <a href="categorias" class="stat-card stat-orange">
       <div class="stat-icon"><i class="bi bi-diagram-3-fill"></i></div>
       <div class="stat-value"><?php echo thousandsNumberFormat($total_category);?></div>
       <div class="stat-label">Categorias</div>
     </a>
 
-    <a href="manage_movies.php" class="stat-card stat-gold">
+    <a href="filmes" class="stat-card stat-gold">
       <div class="stat-icon"><i class="bi bi-film"></i></div>
       <div class="stat-value"><?php echo thousandsNumberFormat($total_movies);?></div>
       <div class="stat-label">Filmes</div>
     </a>
 
-    <a href="manage_series.php" class="stat-card stat-blue">
+    <a href="series" class="stat-card stat-blue">
       <div class="stat-icon"><i class="bi bi-collection-play-fill"></i></div>
       <div class="stat-value"><?php echo thousandsNumberFormat($total_series);?></div>
       <div class="stat-label">Séries</div>
     </a>
 
-    <a href="manage_channels.php" class="stat-card stat-pink">
+    <a href="canais" class="stat-card stat-pink">
       <div class="stat-icon"><i class="bi bi-broadcast"></i></div>
       <div class="stat-value"><?php echo thousandsNumberFormat($total_channels);?></div>
       <div class="stat-label">Canais</div>
     </a>
 
-    <a href="manage_comments.php" class="stat-card stat-red">
+    <a href="comentarios" class="stat-card stat-red">
       <div class="stat-icon"><i class="bi bi-chat-square-text-fill"></i></div>
       <div class="stat-value"><?php echo thousandsNumberFormat($total_comments);?></div>
       <div class="stat-label">Comentários</div>
     </a>
 
-    <a href="manage_reports.php" class="stat-card stat-red">
+    <a href="denuncias" class="stat-card stat-red">
       <div class="stat-icon"><i class="bi bi-flag-fill"></i></div>
       <div class="stat-value"><?php echo thousandsNumberFormat($total_reports);?></div>
       <div class="stat-label">Denúncias</div>
     </a>
 
-    <a href="manage_users.php" class="stat-card stat-green">
+    <a href="usuarios" class="stat-card stat-green">
       <div class="stat-icon"><i class="bi bi-people-fill"></i></div>
       <div class="stat-value"><?php echo thousandsNumberFormat($total_users);?></div>
       <div class="stat-label">Usuários</div>

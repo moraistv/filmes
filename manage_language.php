@@ -23,7 +23,7 @@
 	//Get all Category 
 	 
       $tableName="tbl_language";   
-      $targetpage = "manage_language.php"; 
+      $targetpage = "idiomas"; 
       $limit = 12; 
       
       $query = "SELECT COUNT(*) as num FROM $tableName";
@@ -72,7 +72,7 @@
     Delete('tbl_movies','language_id='.$id);
 
 		$_SESSION['msg']="12";
-    header( "Location:manage_language.php");
+    header( "Location:idiomas");
     exit;
 		
 	}	
@@ -104,7 +104,7 @@
                     <button type="submit" name="data_search" class="btn-search"><i class="fa fa-search"></i></button>
               </form>  
             </div>
-            <div class="add_btn_primary"> <a href="add_language.php?add=yes">Adicionar Idioma</a> </div>
+            <div class="add_btn_primary"> <a href="adicionar-idioma?add=yes">Adicionar Idioma</a> </div>
           </div>
         </div>
       </div>
@@ -119,9 +119,9 @@
           <div class="col-lg-3 col-sm-6 col-xs-12">
             <div class="block_wallpaper add_wall_category" style="border-radius: 10px;box-shadow: 0px 2px 5px #999">           
               <div class="wall_image_title">
-                <h2><a href="manage_movies.php?language=<?=$row['id']?>" style="text-shadow: 1px 1px 1px #000"><?php echo $row['language_name'];?> <span>(<?php echo get_total_item($row['id']);?>)</span></a></h2>
+                <h2><a href="filmes?language=<?=$row['id']?>" style="text-shadow: 1px 1px 1px #000"><?php echo $row['language_name'];?> <span>(<?php echo get_total_item($row['id']);?>)</span></a></h2>
                 <ul> 
-                  <li><a href="add_language.php?id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Editar"><i class="fa fa-edit"></i></a></li>               
+                  <li><a href="adicionar-idioma?id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Editar"><i class="fa fa-edit"></i></a></li>               
                   <li><a href="" data-id="<?php echo $row['id']?>" class="btn_delete_a" data-toggle="tooltip" data-tooltip="Excluir"><i class="fa fa-trash"></i></a></li>
                   
                   <?php if($row['status']!="0"){

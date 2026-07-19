@@ -25,7 +25,7 @@
 	{
 	 
 		$tableName="tbl_season";		
-		$targetpage = "manage_season.php"; 	
+		$targetpage = "temporadas"; 	
 		$limit = 15; 
 
 		$query = "SELECT COUNT(*) as num FROM $tableName";
@@ -68,7 +68,7 @@
                 <button type="submit" name="search" class="btn-search"><i class="fa fa-search"></i></button>
               </form>  
             </div>
-            <div class="add_btn_primary"> <a href="add_season.php?add=yes">Adicionar Temporada</a> </div>
+            <div class="add_btn_primary"> <a href="adicionar-temporada?add=yes">Adicionar Temporada</a> </div>
           </div>
         </div>
       </div>
@@ -92,7 +92,7 @@
                <td><?php echo $row['series_name'];?></td>
 	           <td><?php echo $row['season_name'];?></td>   
 	            
-               <td><a href="edit_season.php?id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>" class="btn btn-primary btn_edit" data-tooltip="Editar"><i class="fa fa-edit"></i></a>
+               <td><a href="editar-temporada?id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>" class="btn btn-primary btn_edit" data-tooltip="Editar"><i class="fa fa-edit"></i></a>
                 <a href="" data-id="<?php echo $row['id'];?>" data-tooltip="Excluir" class="btn btn-danger btn_delete btn_delete_a"><i class="fa fa-trash"></i></a></td>
             </tr>
            <?php

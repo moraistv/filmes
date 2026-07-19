@@ -40,7 +40,7 @@
  	      
 		$_SESSION['msg']="10";
  
-		header( "Location:manage_genres.php");
+		header( "Location:generos");
 		exit;
 		
 	}
@@ -103,7 +103,7 @@
 		if(isset($_GET['redirect']))
 	      header( "Location:".$_GET['redirect']);
 	    else  
-	      header( "Location:add_genre.php?g_id=".$post_g_id);
+	      header( "Location:adicionar-genero?g_id=".$post_g_id);
 	    exit;
  
 	}

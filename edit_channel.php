@@ -115,7 +115,7 @@
     if(isset($_GET['redirect']))
       header( "Location:".$_GET['redirect']);
     else  
-      header( "Location:edit_channel.php?channel_id=".$post_channel_id);
+      header( "Location:editar-canal?channel_id=".$post_channel_id);
     exit;		 
 		  
 	}	

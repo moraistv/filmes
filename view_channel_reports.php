@@ -64,7 +64,7 @@
 		<h3 style="padding-left: 20px">Seção de Denúncias</h3>
 		<div class="heading">
 			<div class="title" style="font-size: 16px">
-				<a class="btn-back" href="manage_reports.php">
+				<a class="btn-back" href="denuncias">
 					<i class="fa fa-angle-left" aria-hidden="true"></i>
 				</a>
 				<strong>Título:</strong>&nbsp;&nbsp;<?=$row['channel_title']?>

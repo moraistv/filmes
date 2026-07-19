@@ -21,12 +21,12 @@
         $genre_id=(int)$_GET['genre'];
         $query = "SELECT COUNT(*) as num FROM $tableName WHERE tbl_movies.`language_id`='$lang_id' AND FIND_IN_SET(".$genre_id.", tbl_movies.`genre_id`)";
 
-        $targetpage = "manage_movies.php?language=$lang_id&genre=".$genre_id; 
+        $targetpage = "filmes?language=$lang_id&genre=".$genre_id; 
       }
       else{
         $query = "SELECT COUNT(*) as num FROM $tableName WHERE tbl_movies.`language_id`='$lang_id'";
 
-        $targetpage = "manage_movies.php?language=$lang_id";   
+        $targetpage = "filmes?language=$lang_id";   
       }
       
 
@@ -66,7 +66,7 @@
 
       $query = "SELECT COUNT(*) as num FROM $tableName WHERE FIND_IN_SET(".$genre_id.", tbl_movies.`genre_id`)";
 
-      $targetpage = "manage_movies.php?genre=".$genre_id; 
+      $targetpage = "filmes?genre=".$genre_id; 
 
       $total_pages = mysqli_fetch_array(mysqli_query($mysqli,$query));
       $total_pages = $total_pages['num'];
@@ -102,7 +102,7 @@
   else
   { 
     
-    $targetpage = "manage_movies.php"; 
+    $targetpage = "filmes"; 
 
     $query = "SELECT COUNT(*) as num FROM $tableName";
     $total_pages = mysqli_fetch_array(mysqli_query($mysqli,$query));
@@ -161,7 +161,7 @@
                 <button type="submit" name="search" class="btn-search"><i class="fa fa-search"></i></button>
               </form>  
             </div>
-            <div class="add_btn_primary"> <a href="add_movie.php?add=yes">Adicionar Filme</a> </div>
+            <div class="add_btn_primary"> <a href="adicionar-filme?add=yes">Adicionar Filme</a> </div>
           </div>
         </div>
         <div class="clearfix"></div>
@@ -323,7 +323,7 @@
                       </div>
                   </li>
                     
-                  <li><a href="add_movie.php?movie_id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Editar"><i class="fa fa-edit"></i></a></li>
+                  <li><a href="adicionar-filme?movie_id=<?php echo $row['id'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Editar"><i class="fa fa-edit"></i></a></li>
                   <li><a href="" class="btn_delete_a" data-id="<?php echo $row['id'];?>" data-toggle="tooltip" data-tooltip="Excluir"><i class="fa fa-trash"></i></a></li>
 
                   <?php if($row['status']!="0"){?>

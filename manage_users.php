@@ -22,7 +22,7 @@ else
 {
 
 	$tableName="tbl_users";		
-	$targetpage = "manage_users.php"; 	
+	$targetpage = "usuarios"; 	
 	$limit = 15; 
 
 	$query = "SELECT COUNT(*) as num FROM $tableName";
@@ -64,7 +64,7 @@ else
 								<button type="submit" name="user_search" class="btn-search"><i class="fa fa-search"></i></button>
 							</form>  
 						</div>
-						<div class="add_btn_primary"> <a href="add_user.php?add">Adicionar Usuário</a> </div>
+						<div class="add_btn_primary"> <a href="adicionar-usuario?add">Adicionar Usuário</a> </div>
 					</div>
 				</div>
 				<div class="col-md-4 col-xs-12 text-right" style="float: right;">
@@ -131,7 +131,7 @@ else
 										</td>
 
 										<td class="text-center">
-											<a href="add_user.php?user_id=<?php echo $users_row['id'];?>&redirect=<?=$redirectUrl?>" class="btn btn-primary btn_edit" data-toogle="tooltip" data-tooltip="Editar">
+											<a href="adicionar-usuario?user_id=<?php echo $users_row['id'];?>&redirect=<?=$redirectUrl?>" class="btn btn-primary btn_edit" data-toogle="tooltip" data-tooltip="Editar">
 												<i class="fa fa-edit"></i>
 											</a>
 

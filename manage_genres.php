@@ -21,7 +21,7 @@
   {
    
       $tableName="tbl_genres";   
-      $targetpage = "manage_genres.php"; 
+      $targetpage = "generos"; 
       $limit = 12; 
       
       $query = "SELECT COUNT(*) as num FROM $tableName";
@@ -73,7 +73,7 @@
                     <button type="submit" name="data_search" class="btn-search"><i class="fa fa-search"></i></button>
               </form>  
             </div>
-            <div class="add_btn_primary"> <a href="add_genre.php?add=yes">Adicionar Gênero</a> </div>
+            <div class="add_btn_primary"> <a href="adicionar-genero?add=yes">Adicionar Gênero</a> </div>
           </div>
         </div>
       </div>
@@ -88,9 +88,9 @@
           <div class="col-lg-3 col-sm-6 col-xs-12">
             <div class="block_wallpaper add_wall_category" style="border-radius: 10px;box-shadow: 0px 2px 5px #999">           
               <div class="wall_image_title">
-                <h2><a href="manage_movies.php?genre=<?=$row['gid']?>" style="text-shadow: 1px 1px 1px #000"><?php echo $row['genre_name'];?> <span>(<?php echo get_total_item($row['gid']);?>)</span></a></h2>
+                <h2><a href="filmes?genre=<?=$row['gid']?>" style="text-shadow: 1px 1px 1px #000"><?php echo $row['genre_name'];?> <span>(<?php echo get_total_item($row['gid']);?>)</span></a></h2>
                 <ul>                
-                  <li><a href="add_genre.php?g_id=<?php echo $row['gid'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Editar"><i class="fa fa-edit"></i></a></li>               
+                  <li><a href="adicionar-genero?g_id=<?php echo $row['gid'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Editar"><i class="fa fa-edit"></i></a></li>               
                   <li><a href="" data-id="<?php echo $row['gid'];?>" class="btn_delete_a" data-toggle="tooltip" data-tooltip="Excluir"><i class="fa fa-trash"></i></a></li>
                 </ul>
               </div>

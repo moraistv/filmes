@@ -24,7 +24,7 @@
   	//Get all Category 
 
     $tableName="tbl_category";   
-    $targetpage = "manage_category.php"; 
+    $targetpage = "categorias"; 
     $limit = 12; 
 
     $query = "SELECT COUNT(*) as num FROM $tableName";
@@ -78,7 +78,7 @@
                 <button type="submit" name="data_search" class="btn-search"><i class="fa fa-search"></i></button>
               </form>  
             </div>
-            <div class="add_btn_primary"> <a href="add_category.php?add=yes">Adicionar Categoria</a> </div>
+            <div class="add_btn_primary"> <a href="adicionar-categoria?add=yes">Adicionar Categoria</a> </div>
           </div>
         </div>
       </div>
@@ -93,9 +93,9 @@
             <div class="col-lg-4 col-sm-6 col-xs-12">
               <div class="block_wallpaper add_wall_category">           
                 <div class="wall_image_title">
-                  <h2><a href="manage_channels.php?category=<?=$row['cid']?>" style="text-shadow: 1px 1px 1px #000"><?php echo $row['category_name'];?> <span>(<?php echo get_total_channels($row['cid']);?>)</span></a></h2>
+                  <h2><a href="canais?category=<?=$row['cid']?>" style="text-shadow: 1px 1px 1px #000"><?php echo $row['category_name'];?> <span>(<?php echo get_total_channels($row['cid']);?>)</span></a></h2>
                   <ul>                
-                    <li><a href="add_category.php?cat_id=<?php echo $row['cid'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Editar"><i class="fa fa-edit"></i></a></li>               
+                    <li><a href="adicionar-categoria?cat_id=<?php echo $row['cid'];?>&redirect=<?=$redirectUrl?>" data-toggle="tooltip" data-tooltip="Editar"><i class="fa fa-edit"></i></a></li>               
                     <li><a href="" data-id="<?php echo $row['cid'];?>" class="btn_delete_a" data-toggle="tooltip" data-tooltip="Excluir"><i class="fa fa-trash"></i></a></li>
 
                     <?php if($row['status']!="0"){?>

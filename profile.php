@@ -48,7 +48,7 @@
 		$channel_edit=Update('tbl_admin', $data, "WHERE id = '".$_SESSION['id']."'");
 
 		$_SESSION['msg']="11"; 
-		header( "Location:profile.php");
+		header( "Location:perfil");
 		exit;
 		 
 	}

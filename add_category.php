@@ -46,7 +46,7 @@
 
 		$_SESSION['msg']="10";
  
-		header( "Location:manage_category.php");
+		header( "Location:categorias");
 		exit;	
 		
 	}
@@ -112,7 +112,7 @@
 	    if(isset($_GET['redirect']))
 	      header( "Location:".$_GET['redirect']);
 	    else  
-	      header( "Location:add_category.php?cat_id=".$post_cat_id);
+	      header( "Location:adicionar-categoria?cat_id=".$post_cat_id);
 		
 		exit;
 	}

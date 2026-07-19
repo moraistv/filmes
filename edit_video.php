@@ -123,7 +123,7 @@
 
          
 		$_SESSION['msg']="11"; 
-		header( "Location:edit_video.php?video_id=".$post_video_id);
+		header( "Location:editar-video?video_id=".$post_video_id);
 		exit;	
 
 		 

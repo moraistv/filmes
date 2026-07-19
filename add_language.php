@@ -33,7 +33,7 @@
 
     $qry = Insert('tbl_language',$data);  
     $_SESSION['msg']="10";
-    header( "Location:manage_language.php");
+    header( "Location:idiomas");
     exit; 
 
   }
@@ -56,7 +56,7 @@
     if(isset($_GET['redirect']))
       header( "Location:".$_GET['redirect']);
     else  
-      header( "Location:add_language.php?id=".$post_id);
+      header( "Location:adicionar-idioma?id=".$post_id);
     exit;
  
   }

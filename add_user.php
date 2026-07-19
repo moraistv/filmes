@@ -23,7 +23,7 @@
     $qry = Insert('tbl_users',$data);
 
     $_SESSION['msg']="10";
-    header("location:manage_users.php");   
+    header("Location:usuarios");   
     exit;
     
   }
@@ -68,7 +68,7 @@
       header("Location:".$_GET['redirect']);
     }
     else{
-      header("Location:add_user.php?user_id=".$post_user_id);
+      header("Location:adicionar-usuario?user_id=".$post_user_id);
     }
     exit;
    

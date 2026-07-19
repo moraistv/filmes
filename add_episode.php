@@ -719,7 +719,7 @@
                       <?php  
                     }
                     ?>
-                    <div id="uploadPreview" style="<?php if(isset($_GET['episode_id']) && $row['episode_type']=='local'){ echo 'display: block;';}else{ echo 'display: none;';}?>background: #eee;text-align: center;">
+                    <div id="uploadPreview" class="media-preview-box" style="<?php if(isset($_GET['episode_id']) && $row['episode_type']=='local'){ echo 'display: block;';}else{ echo 'display: none;';}?>">
                       <video height="400" width="100%" class="video-preview" src="<?php echo $file_path.'uploads/'.$row['episode_url']?>" controls="controls"/>
                     </div>
                 </div>
@@ -728,7 +728,7 @@
               <div id="quality_holder" style="display: none">
                 <div class="form-group">
                   <div class="col-md-offset-3 col-md-8">
-                    <span style="color:#F00;font-weight: 500">(Você pode adicionar vídeo com diferentes qualidades)</span>
+                    <span class="field-note">(Você pode adicionar vídeo com diferentes qualidades)</span>
                     <br/>
                   </div>
                 </div>  
@@ -776,7 +776,7 @@
                         <?php  
                       }
                       ?>
-                      <div class="uploadPreview" style="<?php if(isset($_GET['episode_id']) && $row['movie_type']=='local' && $row['is_quality']=='true' && quality_info_data($row['id'], 'quality_480')!=''){ echo 'display: block;';}else{ echo 'display: none;';}?>background: #eee;text-align: center;">
+                      <div class="uploadPreview media-preview-box" style="<?php if(isset($_GET['episode_id']) && $row['movie_type']=='local' && $row['is_quality']=='true' && quality_info_data($row['id'], 'quality_480')!=''){ echo 'display: block;';}else{ echo 'display: none;';}?>">
                         <video height="250" width="100%" class="video-preview" src="<?=$file_path.'uploads/'.quality_info_data($row['id'], 'quality_480')?>" controls="controls"/>
                       </div>
 
@@ -801,7 +801,7 @@
                         <?php  
                       }
                       ?>
-                      <div class="uploadPreview" style="<?php if(isset($_GET['episode_id']) && $row['movie_type']=='local' && $row['is_quality']=='true' && quality_info_data($row['id'], 'quality_720')!=''){ echo 'display: block;';}else{ echo 'display: none;';}?>background: #eee;text-align: center;">
+                      <div class="uploadPreview media-preview-box" style="<?php if(isset($_GET['episode_id']) && $row['movie_type']=='local' && $row['is_quality']=='true' && quality_info_data($row['id'], 'quality_720')!=''){ echo 'display: block;';}else{ echo 'display: none;';}?>">
                         <video height="250" width="100%" class="video-preview" src="<?=$file_path.'uploads/'.quality_info_data($row['id'], 'quality_720')?>" controls="controls"/>
                       </div>
 
@@ -826,7 +826,7 @@
                         <?php  
                       }
                       ?>
-                      <div class="uploadPreview" style="<?php if(isset($_GET['episode_id']) && $row['movie_type']=='local' && $row['is_quality']=='true' && quality_info_data($row['id'], 'quality_1080')!=''){ echo 'display: block;';}else{ echo 'display: none;';}?>background: #eee;text-align: center;">
+                      <div class="uploadPreview media-preview-box" style="<?php if(isset($_GET['episode_id']) && $row['movie_type']=='local' && $row['is_quality']=='true' && quality_info_data($row['id'], 'quality_1080')!=''){ echo 'display: block;';}else{ echo 'display: none;';}?>">
                         <video height="250" width="100%" class="video-preview" src="<?=$file_path.'uploads/'.quality_info_data($row['id'], 'quality_1080')?>" controls="controls"/>
                       </div>
 

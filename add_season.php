@@ -81,7 +81,7 @@
                       <label class="col-md-3 control-label">Nome da Temporada :-</label>
                       <div class="col-md-6">
                         <input type="text" name="season_name[]" class="form-control" style="margin-bottom: 5px" required>
-                        <a href="" class="btn_remove" style="float: right;color: red;">&times; Remover</a>
+                        <a href="" class="btn_remove field-note" style="float: right;">&times; Remover</a>
                       </div>
                     </div>
                   </div>

@@ -225,7 +225,7 @@
 	            <p>
 	              <strong>Importar do IMDb</strong>
 	              <br/>
-	              <span style="font-size: 12px">(Recomendado: pesquise pelo IMDb ID para um resultado melhor)</span>
+	              <span class="field-note-muted">(Recomendado: pesquise pelo IMDb ID para um resultado melhor)</span>
 	            </p>
 	          </div>
 	          <div class="col-md-6">

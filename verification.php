@@ -29,7 +29,7 @@
   .field_lable {
     margin-bottom: 10px;
     margin-top: 10px;
-    color: #666;
+    color: var(--admin-muted);
     padding-left: 15px;
     font-size: 14px;
     line-height: 24px;

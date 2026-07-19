@@ -42,6 +42,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500;600;700;800;900&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 <link rel="stylesheet" type="text/css" href="assets/css/admin-modern.css?v=2.3.0">
+<link rel="stylesheet" type="text/css" href="assets/css/getcine.css?v=3.0.0">
 
  <script src="assets/ckeditor/ckeditor.js"></script>
 
@@ -103,128 +104,55 @@
 </head>
 <body class="admin-shell page-<?=htmlspecialchars(pathinfo($currentFile, PATHINFO_FILENAME), ENT_QUOTES, 'UTF-8')?>">
 <div class="app app-default">
-  <aside class="app-sidebar" id="sidebar">
-    <div class="sidebar-header"> <a class="sidebar-brand" href="painel"><img src="images/<?php echo APP_LOGO;?>" alt="Logo" /><span class="brand-label"><?php echo APP_NAME;?></span></a>
-      <button type="button" class="sidebar-toggle"> <i class="fa fa-times"></i> </button>
+  <aside class="gc-sidebar" id="sidebar">
+    <div class="gc-brand">
+      <a class="gc-brand-link" href="painel"><img src="images/<?php echo APP_LOGO;?>" alt="<?php echo APP_NAME;?>"><span><?php echo APP_NAME;?></span></a>
+      <button type="button" class="sidebar-toggle gc-burger-close" aria-label="Fechar menu"><i class="bi bi-x-lg"></i></button>
     </div>
-    <div class="sidebar-menu">
-      <ul class="sidebar-nav">
-        <li class="nav-section"><span>Visão geral</span></li>
-        <li <?php if(isset($active_page) && $active_page=="dashboard"){?>class="active"<?php }?>> <a href="painel">
-          <div class="icon"> <i class="bi bi-grid-1x2-fill" aria-hidden="true"></i> </div>
-          <div class="title">Painel</div>
-          </a> 
-        </li>
-        <li class="nav-section"><span>Filmes</span></li>
-        <li <?php if(isset($current_page) && $current_page=="movies"){?>class="active"<?php }?>> <a href="filmes">
-          <div class="icon"> <i class="bi bi-film" aria-hidden="true"></i> </div>
-          <div class="title">Filmes</div>
-          </a> 
-        </li>
-        <li <?php if(isset($current_page) && $current_page=="genre"){?>class="active"<?php }?>> <a href="generos">
-          <div class="icon"> <i class="bi bi-tags-fill" aria-hidden="true"></i> </div>
-          <div class="title">Gêneros</div>
-          </a> 
-        </li>
-        <li <?php if(isset($current_page) && $current_page=="language"){?>class="active"<?php }?>> <a href="idiomas">
-          <div class="icon"> <i class="bi bi-translate" aria-hidden="true"></i> </div>
-          <div class="title">Idiomas</div>
-          </a> 
-        </li>
 
-        <li class="nav-section"><span>Séries</span></li>
-        <li <?php if(isset($current_page) && $current_page=="series"){?>class="active"<?php }?>> <a href="series">
-          <div class="icon"> <i class="bi bi-collection-play-fill" aria-hidden="true"></i> </div>
-          <div class="title">Séries</div>
-          </a> 
-        </li>
-        <li <?php if(isset($current_page) && $current_page=="season"){?>class="active"<?php }?>> <a href="temporadas">
-          <div class="icon"> <i class="bi bi-collection-fill" aria-hidden="true"></i> </div>
-          <div class="title">Temporadas</div>
-          </a> 
-        </li>
-        <li <?php if(isset($current_page) && $current_page=="episode"){?>class="active"<?php }?>> <a href="episodios">
-          <div class="icon"> <i class="bi bi-play-btn-fill" aria-hidden="true"></i> </div>
-          <div class="title">Episódios</div>
-          </a> 
-        </li>
+    <nav class="gc-nav">
+      <p class="gc-nav-group">Visão geral</p>
+      <a class="gc-nav-link<?php if(isset($active_page) && $active_page=="dashboard"){echo ' is-active';}?>" href="painel"><i class="bi bi-grid-1x2-fill"></i><span>Painel</span></a>
 
-        <li class="nav-section"><span>TV ao vivo</span></li>
-        <li <?php if(isset($current_page) && $current_page=="category"){?>class="active"<?php }?>> <a href="categorias">
-          <div class="icon"> <i class="bi bi-diagram-3-fill" aria-hidden="true"></i> </div>
-          <div class="title">Categorias</div>
-          </a> 
-        </li>
-        <li <?php if(isset($current_page) && $current_page=="channel"){?>class="active"<?php }?>> <a href="canais">
-          <div class="icon"> <i class="bi bi-broadcast" aria-hidden="true"></i> </div>
-          <div class="title">Canais</div>
-          </a> 
-        </li>
+      <p class="gc-nav-group">Filmes</p>
+      <a class="gc-nav-link<?php if(isset($current_page) && $current_page=="movies"){echo ' is-active';}?>" href="filmes"><i class="bi bi-film"></i><span>Filmes</span></a>
+      <a class="gc-nav-link<?php if(isset($current_page) && $current_page=="genre"){echo ' is-active';}?>" href="generos"><i class="bi bi-tags-fill"></i><span>Gêneros</span></a>
+      <a class="gc-nav-link<?php if(isset($current_page) && $current_page=="language"){echo ' is-active';}?>" href="idiomas"><i class="bi bi-translate"></i><span>Idiomas</span></a>
 
-        <li class="nav-section"><span>Gestão</span></li>
-        <li <?php if($currentFile=="manage_users.php" or $currentFile=="add_user.php"){?>class="active"<?php }?>> <a href="usuarios">
-          <div class="icon"> <i class="bi bi-people-fill" aria-hidden="true"></i> </div>
-          <div class="title">Usuários</div>
-          </a> 
-        </li>
+      <p class="gc-nav-group">Séries</p>
+      <a class="gc-nav-link<?php if(isset($current_page) && $current_page=="series"){echo ' is-active';}?>" href="series"><i class="bi bi-collection-play-fill"></i><span>Séries</span></a>
+      <a class="gc-nav-link<?php if(isset($current_page) && $current_page=="season"){echo ' is-active';}?>" href="temporadas"><i class="bi bi-collection-fill"></i><span>Temporadas</span></a>
+      <a class="gc-nav-link<?php if(isset($current_page) && $current_page=="episode"){echo ' is-active';}?>" href="episodios"><i class="bi bi-play-btn-fill"></i><span>Episódios</span></a>
 
-        <li <?php if($currentFile=="manage_comments.php"){?>class="active"<?php }?>> <a href="comentarios">
-          <div class="icon"> <i class="bi bi-chat-square-text-fill" aria-hidden="true"></i> </div>
-          <div class="title">Comentários</div>
-          </a> 
-        </li>
+      <p class="gc-nav-group">TV ao vivo</p>
+      <a class="gc-nav-link<?php if(isset($current_page) && $current_page=="category"){echo ' is-active';}?>" href="categorias"><i class="bi bi-diagram-3-fill"></i><span>Categorias</span></a>
+      <a class="gc-nav-link<?php if(isset($current_page) && $current_page=="channel"){echo ' is-active';}?>" href="canais"><i class="bi bi-broadcast"></i><span>Canais</span></a>
 
-        <li <?php if($currentFile=="manage_reports.php" OR (isset($active_page) AND $active_page=='report')){?>class="active"<?php }?>> <a href="denuncias">
-          <div class="icon"> <i class="bi bi-flag-fill" aria-hidden="true"></i> </div>
-          <div class="title">Denúncias</div>
-          </a> 
-        </li>
-         
-        <li <?php if($currentFile=="send_notification.php"){?>class="active"<?php }?>> <a href="notificacoes">
-          <div class="icon"> <i class="bi bi-bell-fill" aria-hidden="true"></i> </div>
-          <div class="title">Notificações</div>
-          </a> 
-        </li>
+      <p class="gc-nav-group">Gestão</p>
+      <a class="gc-nav-link<?php if($currentFile=="manage_users.php" or $currentFile=="add_user.php"){echo ' is-active';}?>" href="usuarios"><i class="bi bi-people-fill"></i><span>Usuários</span></a>
+      <a class="gc-nav-link<?php if($currentFile=="manage_comments.php"){echo ' is-active';}?>" href="comentarios"><i class="bi bi-chat-square-text-fill"></i><span>Comentários</span></a>
+      <a class="gc-nav-link<?php if($currentFile=="manage_reports.php" OR (isset($active_page) AND $active_page=='report')){echo ' is-active';}?>" href="denuncias"><i class="bi bi-flag-fill"></i><span>Denúncias</span></a>
+      <a class="gc-nav-link<?php if($currentFile=="send_notification.php"){echo ' is-active';}?>" href="notificacoes"><i class="bi bi-bell-fill"></i><span>Notificações</span></a>
 
-        <li class="nav-section"><span>Sistema</span></li>
-        <li <?php if($currentFile=="smtp_settings.php"){?>class="active"<?php }?>> <a href="smtp">
-          <div class="icon"> <i class="bi bi-envelope-fill" aria-hidden="true"></i> </div>
-          <div class="title">SMTP</div>
-          </a> 
-        </li>
+      <p class="gc-nav-group">Sistema</p>
+      <a class="gc-nav-link<?php if($currentFile=="smtp_settings.php"){echo ' is-active';}?>" href="smtp"><i class="bi bi-envelope-fill"></i><span>SMTP</span></a>
+      <a class="gc-nav-link<?php if($currentFile=="settings.php"){echo ' is-active';}?>" href="configuracoes"><i class="bi bi-gear-fill"></i><span>Configurações</span></a>
+      <a class="gc-nav-link<?php if($currentFile=="verification.php"){echo ' is-active';}?>" href="identificacao"><i class="bi bi-patch-check-fill"></i><span>Identificação</span></a>
+      <?php if(file_exists('api.php') OR file_exists('ios_api.php')){?>
+      <a class="gc-nav-link<?php if($currentFile=="api_urls.php"){echo ' is-active';}?>" href="urls-api"><i class="bi bi-hdd-network-fill"></i><span>URLs da API</span></a>
+      <?php }?>
+    </nav>
 
-        <li <?php if($currentFile=="settings.php"){?>class="active"<?php }?>> <a href="configuracoes">
-          <div class="icon"> <i class="bi bi-gear-fill" aria-hidden="true"></i> </div>
-          <div class="title">Configurações</div>
-          </a> 
-        </li>
-
-        <li <?php if($currentFile=="verification.php"){?>class="active"<?php }?>> <a href="identificacao">
-          <div class="icon"> <i class="bi bi-patch-check-fill" aria-hidden="true"></i> </div>
-          <div class="title">Identificação</div>
-          </a> 
-        </li>
-
-        <?php if(file_exists('api.php') OR file_exists('ios_api.php')){?>
-        <li <?php if($currentFile=="api_urls.php"){?>class="active"<?php }?>> <a href="urls-api">
-          <div class="icon"> <i class="bi bi-hdd-network-fill" aria-hidden="true"></i> </div>
-          <div class="title">URLs da API</div>
-          </a> 
-        </li> 
-        <?php }?>
-         
-      </ul>
-    </div>
-    <div class="sidebar-account">
-      <a href="perfil" class="sidebar-account-link">
+    <div class="gc-user">
+      <a href="perfil" class="gc-user-link">
         <?php if(PROFILE_IMG){?>
           <img src="images/<?php echo PROFILE_IMG;?>" alt="Perfil">
         <?php }else{?>
           <img src="assets/images/profile.png" alt="Perfil">
         <?php }?>
-        <span class="sidebar-account-copy"><strong>Administrador</strong><small>Minha conta</small></span>
+        <span class="gc-user-copy"><strong>Administrador</strong><small>Minha conta</small></span>
       </a>
-      <a href="sair" class="sidebar-logout" title="Sair" aria-label="Sair"><i class="bi bi-box-arrow-right"></i></a>
+      <a href="sair" class="gc-user-out" title="Sair" aria-label="Sair"><i class="bi bi-box-arrow-right"></i></a>
     </div>
   </aside>   
   <div class="app-container">

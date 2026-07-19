@@ -82,61 +82,59 @@
 
 ?>
 
-<div class="dash-heading">
-  <div>
-    <h1>Visão geral</h1>
-    <p>Resumo do catálogo, engajamento e usuários do GetCine.</p>
-  </div>
+<div class="gc-head">
+  <h1>Visão geral</h1>
+  <p>Resumo do catálogo, engajamento e usuários do GetCine.</p>
 </div>
 
-<div class="stat-grid">
+<div class="gc-stats">
 
-    <a href="categorias" class="stat-card stat-orange">
-      <div class="stat-icon"><i class="bi bi-diagram-3-fill"></i></div>
-      <div class="stat-value"><?php echo thousandsNumberFormat($total_category);?></div>
-      <div class="stat-label">Categorias</div>
+    <a href="categorias" class="gc-stat c-orange">
+      <div class="gc-stat-ic"><i class="bi bi-diagram-3-fill"></i></div>
+      <div class="gc-stat-val"><?php echo thousandsNumberFormat($total_category);?></div>
+      <div class="gc-stat-lbl">Categorias</div>
     </a>
 
-    <a href="filmes" class="stat-card stat-gold">
-      <div class="stat-icon"><i class="bi bi-film"></i></div>
-      <div class="stat-value"><?php echo thousandsNumberFormat($total_movies);?></div>
-      <div class="stat-label">Filmes</div>
+    <a href="filmes" class="gc-stat c-gold">
+      <div class="gc-stat-ic"><i class="bi bi-film"></i></div>
+      <div class="gc-stat-val"><?php echo thousandsNumberFormat($total_movies);?></div>
+      <div class="gc-stat-lbl">Filmes</div>
     </a>
 
-    <a href="series" class="stat-card stat-blue">
-      <div class="stat-icon"><i class="bi bi-collection-play-fill"></i></div>
-      <div class="stat-value"><?php echo thousandsNumberFormat($total_series);?></div>
-      <div class="stat-label">Séries</div>
+    <a href="series" class="gc-stat c-blue">
+      <div class="gc-stat-ic"><i class="bi bi-collection-play-fill"></i></div>
+      <div class="gc-stat-val"><?php echo thousandsNumberFormat($total_series);?></div>
+      <div class="gc-stat-lbl">Séries</div>
     </a>
 
-    <a href="canais" class="stat-card stat-pink">
-      <div class="stat-icon"><i class="bi bi-broadcast"></i></div>
-      <div class="stat-value"><?php echo thousandsNumberFormat($total_channels);?></div>
-      <div class="stat-label">Canais</div>
+    <a href="canais" class="gc-stat c-pink">
+      <div class="gc-stat-ic"><i class="bi bi-broadcast"></i></div>
+      <div class="gc-stat-val"><?php echo thousandsNumberFormat($total_channels);?></div>
+      <div class="gc-stat-lbl">Canais</div>
     </a>
 
-    <a href="comentarios" class="stat-card stat-red">
-      <div class="stat-icon"><i class="bi bi-chat-square-text-fill"></i></div>
-      <div class="stat-value"><?php echo thousandsNumberFormat($total_comments);?></div>
-      <div class="stat-label">Comentários</div>
+    <a href="comentarios" class="gc-stat c-red">
+      <div class="gc-stat-ic"><i class="bi bi-chat-square-text-fill"></i></div>
+      <div class="gc-stat-val"><?php echo thousandsNumberFormat($total_comments);?></div>
+      <div class="gc-stat-lbl">Comentários</div>
     </a>
 
-    <a href="denuncias" class="stat-card stat-red">
-      <div class="stat-icon"><i class="bi bi-flag-fill"></i></div>
-      <div class="stat-value"><?php echo thousandsNumberFormat($total_reports);?></div>
-      <div class="stat-label">Denúncias</div>
+    <a href="denuncias" class="gc-stat c-red">
+      <div class="gc-stat-ic"><i class="bi bi-flag-fill"></i></div>
+      <div class="gc-stat-val"><?php echo thousandsNumberFormat($total_reports);?></div>
+      <div class="gc-stat-lbl">Denúncias</div>
     </a>
 
-    <a href="usuarios" class="stat-card stat-green">
-      <div class="stat-icon"><i class="bi bi-people-fill"></i></div>
-      <div class="stat-value"><?php echo thousandsNumberFormat($total_users);?></div>
-      <div class="stat-label">Usuários</div>
+    <a href="usuarios" class="gc-stat c-green">
+      <div class="gc-stat-ic"><i class="bi bi-people-fill"></i></div>
+      <div class="gc-stat-val"><?php echo thousandsNumberFormat($total_users);?></div>
+      <div class="gc-stat-lbl">Usuários</div>
     </a>
 
 </div>
 
-<div class="panel-card">
-  <div class="panel-head">
+<div class="gc-panel">
+  <div class="gc-panel-head">
     <div>
       <h3>Análise de usuários</h3>
       <p>Novos cadastros por mês</p>

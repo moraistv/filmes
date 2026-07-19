@@ -80,149 +80,129 @@
 
     $countStr=rtrim($countStr, ", ");
 
-?>       
+?>
 
-
-<div class="row">
-    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <a href="manage_category.php" class="card card-banner card-green-light">
-      <div class="card-body"> <i class="icon fa fa-sitemap fa-4x"></i>
-        <div class="content">
-          <div class="title">Categorias</div>
-          <div class="value"><span class="sign"></span><?php echo thousandsNumberFormat($total_category);?></div>
-        </div>
-      </div>
-      </a> 
-    </div>
-
-    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <a href="manage_movies.php" class="card card-banner card-yellow-light">
-      <div class="card-body"> <i class="icon fa fa-video-camera fa-4x"></i>
-        <div class="content">
-          <div class="title">Filmes</div>
-          <div class="value"><span class="sign"></span><?php echo thousandsNumberFormat($total_movies);?></div>
-        </div>
-      </div>
-      </a> 
-    </div>
-
-    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <a href="manage_series.php" class="card card-banner card-blue-light">
-      <div class="card-body"> <i class="icon fa fa-list fa-4x"></i>
-        <div class="content">
-          <div class="title">Séries</div>
-          <div class="value"><span class="sign"></span><?php echo thousandsNumberFormat($total_series);?></div>
-        </div>
-      </div>
-      </a> 
-    </div>
-
-    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <a href="manage_channels.php" class="card card-banner card-pink-light">
-      <div class="card-body"> <i class="icon fa fa-tv fa-4x"></i>
-        <div class="content">
-          <div class="title">Canais</div>
-          <div class="value"><span class="sign"></span><?php echo thousandsNumberFormat($total_channels);?></div>
-        </div>
-      </div>
-      </a> 
-    </div>
-
-    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <a href="manage_comments.php" class="card card-banner card-alicerose-light">
-      <div class="card-body"> <i class="icon fa fa-comments fa-4x"></i>
-        <div class="content">
-          <div class="title">Comentários</div>
-          <div class="value"><span class="sign"></span><?php echo thousandsNumberFormat($total_comments);?></div>
-        </div>
-      </div>
-      </a>
-    </div>
-
-    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <a href="manage_reports.php" class="card card-banner card-pink-light">
-      <div class="card-body"> <i class="icon fa fa-bug fa-4x"></i>
-        <div class="content">
-          <div class="title">Denúncias</div>
-          <div class="value"><span class="sign"></span><?php echo thousandsNumberFormat($total_reports);?></div>
-        </div>
-      </div>
-      </a>
-    </div>  
-
-    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <a href="manage_users.php" class="card card-banner card-orange-light">
-      <div class="card-body"> <i class="icon fa fa-users fa-4x"></i>
-        <div class="content">
-          <div class="title">Usuários</div>
-          <div class="value"><span class="sign"></span><?php echo thousandsNumberFormat($total_users);?></div>
-        </div>
-      </div>
-      </a> 
-    </div>
+<div class="dash-heading">
+  <div>
+    <h1>Visão geral</h1>
+    <p>Resumo do catálogo, engajamento e usuários do GetCine.</p>
+  </div>
 </div>
 
-<div class="row">
-  <div class="col-lg-12">
-    <div class="container-fluid" style="background: #FFF;box-shadow: 0px 5px 10px 0px #CCC;border-radius: 2px;">
-      <div class="col-lg-10">
-        <h3>Análise de usuários</h3>
-        <p>Novos cadastros</p>
-      </div>
-      <div class="col-lg-2" style="padding-top: 20px">
-        <form method="get" id="graphFilter">
-          <select class="form-control" name="filterByYear" style="box-shadow: none;height: auto;border-radius: 0px;font-size: 16px;">
-            <?php 
-              $currentYear=date('Y');
-              $minYear=2020;
+<div class="stat-grid">
 
-              for ($i=$currentYear; $i >= $minYear ; $i--) { 
-                ?>
-                <option value="<?=$i?>" <?=(isset($_GET['filterByYear']) && $_GET['filterByYear']==$i) ? 'selected' : ''?>><?=$i?></option>
-                <?php
-              }
-            ?>
-          </select>
-        </form>
-      </div>
-      <div class="col-lg-12">
+    <a href="manage_category.php" class="stat-card stat-orange">
+      <div class="stat-icon"><i class="bi bi-diagram-3-fill"></i></div>
+      <div class="stat-value"><?php echo thousandsNumberFormat($total_category);?></div>
+      <div class="stat-label">Categorias</div>
+    </a>
+
+    <a href="manage_movies.php" class="stat-card stat-gold">
+      <div class="stat-icon"><i class="bi bi-film"></i></div>
+      <div class="stat-value"><?php echo thousandsNumberFormat($total_movies);?></div>
+      <div class="stat-label">Filmes</div>
+    </a>
+
+    <a href="manage_series.php" class="stat-card stat-blue">
+      <div class="stat-icon"><i class="bi bi-collection-play-fill"></i></div>
+      <div class="stat-value"><?php echo thousandsNumberFormat($total_series);?></div>
+      <div class="stat-label">Séries</div>
+    </a>
+
+    <a href="manage_channels.php" class="stat-card stat-pink">
+      <div class="stat-icon"><i class="bi bi-broadcast"></i></div>
+      <div class="stat-value"><?php echo thousandsNumberFormat($total_channels);?></div>
+      <div class="stat-label">Canais</div>
+    </a>
+
+    <a href="manage_comments.php" class="stat-card stat-red">
+      <div class="stat-icon"><i class="bi bi-chat-square-text-fill"></i></div>
+      <div class="stat-value"><?php echo thousandsNumberFormat($total_comments);?></div>
+      <div class="stat-label">Comentários</div>
+    </a>
+
+    <a href="manage_reports.php" class="stat-card stat-red">
+      <div class="stat-icon"><i class="bi bi-flag-fill"></i></div>
+      <div class="stat-value"><?php echo thousandsNumberFormat($total_reports);?></div>
+      <div class="stat-label">Denúncias</div>
+    </a>
+
+    <a href="manage_users.php" class="stat-card stat-green">
+      <div class="stat-icon"><i class="bi bi-people-fill"></i></div>
+      <div class="stat-value"><?php echo thousandsNumberFormat($total_users);?></div>
+      <div class="stat-label">Usuários</div>
+    </a>
+
+</div>
+
+<div class="panel-card">
+  <div class="panel-head">
+    <div>
+      <h3>Análise de usuários</h3>
+      <p>Novos cadastros por mês</p>
+    </div>
+    <form method="get" id="graphFilter">
+      <select class="form-control" name="filterByYear">
         <?php 
-          if($no_data_status){
+          $currentYear=date('Y');
+          $minYear=2020;
+
+          for ($i=$currentYear; $i >= $minYear ; $i--) { 
             ?>
-            <h3 class="text-muted text-center" style="padding-bottom: 2em">Nenhum dado encontrado!</h3>
+            <option value="<?=$i?>" <?=(isset($_GET['filterByYear']) && $_GET['filterByYear']==$i) ? 'selected' : ''?>><?=$i?></option>
             <?php
           }
-          else{
-            ?>
-            <div id="registerChart">
-              <p style="text-align: center;"><i class="fa fa-spinner fa-spin" style="font-size:3em;color:#aaa;margin-bottom:50px" aria-hidden="true"></i></p>
-            </div>
-            <?php    
-          }
         ?>
-      </div>
-    </div>
+      </select>
+    </form>
+  </div>
+  <div>
+    <?php 
+      if($no_data_status){
+        ?>
+        <p class="empty-state"><i class="bi bi-bar-chart" style="font-size:2em;display:block;margin-bottom:10px;"></i>Nenhum dado encontrado!</p>
+        <?php
+      }
+      else{
+        ?>
+        <div id="registerChart">
+          <p style="text-align: center;"><i class="fa fa-spinner fa-spin" style="font-size:3em;color:#ccc;margin-bottom:50px" aria-hidden="true"></i></p>
+        </div>
+        <?php    
+      }
+    ?>
   </div>
 </div>
 
 <div class="row">
   <div class="col-lg-4">
-    <div class="container-fluid" style="background: #FFF;box-shadow: 0px 5px 10px 0px #CCC;border-radius: 2px">
-      <h3>Séries mais assistidas</h3>
-      <p>Conteúdos com mais visualizações.</p>
-      <table class="table table-hover">
+    <div class="panel-card">
+      <div class="panel-head">
+        <div>
+          <h3>Séries mais assistidas</h3>
+          <p>Conteúdos com mais visualizações</p>
+        </div>
+      </div>
+      <ul class="top-list">
         <?php 
           $sql="SELECT * FROM tbl_series WHERE `total_views` > 5 ORDER BY `total_views` DESC LIMIT 10";
           $res=mysqli_query($mysqli, $sql);
           if(mysqli_num_rows($res) > 0)
           {
-
+            $rank=0;
             while ($row=mysqli_fetch_assoc($res)) {
+              $rank++;
             ?>
-            <tr>
-              <td>
-                <div style="float: left;padding-right: 20px">
-                  <?php if($row['series_cover']!='' OR !file_exists('images/series/'.$row['series_cover'])){ ?>
-                    <img src="<?='images/series/'.$row['series_cover']?>" style="width: 40px;height: 40px;border-radius: 50%"/>  
-                  <?php }else{ ?>
-                    <img src="<?='images/'.APP_LOGO?>" style="width: 40px;height: 40px;border-radius: 50%"/>  
-                  <?php } ?>
-                </div>
-                <div>
-                  <a href="javascript:void(0)" title="<?=$row['series_name']?>" style="color: inherit;">
+            <li>
+              <span class="top-rank"><?=$rank?></span>
+              <?php if($row['series_cover']!='' OR !file_exists('images/series/'.$row['series_cover'])){ ?>
+                <img src="<?='images/series/'.$row['series_cover']?>" alt="">
+              <?php }else{ ?>
+                <img src="<?='images/'.APP_LOGO?>" alt="">
+              <?php } ?>
+              <div class="top-info">
+                <a href="javascript:void(0)" title="<?=$row['series_name']?>" style="text-decoration:none;">
+                  <span class="top-title">
                     <?php 
                       if(strlen($row['series_name']) > 25){
                         echo substr(stripslashes($row['series_name']), 0, 25).'...';  
@@ -230,50 +210,52 @@
                         echo $row['series_name'];
                       }
                     ?>
-                    <p style="font-weight: 500"><span class="label label-default" style="font-size: 10px;padding: 2px 8px;">Visualizações: <?=thousandsNumberFormat($row['total_views'])?></span></p> 
-                  </a>
-                </div>
-              </td>
-            </tr>
+                  </span>
+                </a>
+              </div>
+              <span class="top-views"><i class="bi bi-eye-fill"></i> <?=thousandsNumberFormat($row['total_views'])?></span>
+            </li>
             <?php }
               mysqli_free_result($res);
             }
             else{
               ?>
-              <tr>
-                <td class="text-center">Nenhum dado disponível.</td>
-              </tr>
+              <p class="empty-state">Nenhum dado disponível.</p>
               <?php
             }
         ?>
-      </table>
+      </ul>
     </div>
   </div>
   <div class="col-lg-4">
-    <div class="container-fluid" style="background: #FFF;box-shadow: 0px 5px 10px 0px #CCC;border-radius: 2px">
-      <h3>Filmes mais assistidos</h3>
-      <p>Conteúdos com mais visualizações.</p>
-      <table class="table table-hover">
+    <div class="panel-card">
+      <div class="panel-head">
+        <div>
+          <h3>Filmes mais assistidos</h3>
+          <p>Conteúdos com mais visualizações</p>
+        </div>
+      </div>
+      <ul class="top-list">
         <?php 
           $sql="SELECT * FROM tbl_movies WHERE `total_views` > 5 ORDER BY `total_views` DESC LIMIT 10";
           $res=mysqli_query($mysqli, $sql);
 
           if(mysqli_num_rows($res) > 0)
           {
-
+            $rank=0;
             while ($row=mysqli_fetch_assoc($res)) {
+              $rank++;
             ?>
-            <tr>
-              <td>
-                <div style="float: left;padding-right: 20px">
-                  <?php if($row['movie_cover']!='' OR !file_exists('images/movies/'.$row['movie_cover'])){ ?>
-                    <img src="<?='images/movies/'.$row['movie_cover']?>" style="width: 40px;height: 40px;border-radius: 50%"/>  
-                  <?php }else{ ?>
-                    <img src="<?='images/'.APP_LOGO?>" style="width: 40px;height: 40px;border-radius: 50%"/>  
-                  <?php } ?>
-                </div>
-                <div>
-                  <a href="javascript:void(0)" title="<?=$row['movie_title']?>" style="color: inherit;">
+            <li>
+              <span class="top-rank"><?=$rank?></span>
+              <?php if($row['movie_cover']!='' OR !file_exists('images/movies/'.$row['movie_cover'])){ ?>
+                <img src="<?='images/movies/'.$row['movie_cover']?>" alt="">
+              <?php }else{ ?>
+                <img src="<?='images/'.APP_LOGO?>" alt="">
+              <?php } ?>
+              <div class="top-info">
+                <a href="javascript:void(0)" title="<?=$row['movie_title']?>" style="text-decoration:none;">
+                  <span class="top-title">
                     <?php 
                       if(strlen($row['movie_title']) > 25){
                         echo substr(stripslashes($row['movie_title']), 0, 25).'...';  
@@ -281,52 +263,54 @@
                         echo $row['movie_title'];
                       }
                     ?>
-                    <p style="font-weight: 500"><span class="label label-default" style="font-size: 10px;padding: 2px 8px;">Visualizações: <?=thousandsNumberFormat($row['total_views'])?></span></p> 
-                  </a>
-                </div>
-              </td>
-            </tr>
+                  </span>
+                </a>
+              </div>
+              <span class="top-views"><i class="bi bi-eye-fill"></i> <?=thousandsNumberFormat($row['total_views'])?></span>
+            </li>
             <?php }
               mysqli_free_result($res);
 
             }
             else{
               ?>
-              <tr>
-                <td class="text-center">Nenhum dado disponível.</td>
-              </tr>
+              <p class="empty-state">Nenhum dado disponível.</p>
               <?php
             }
         ?>
-      </table>
+      </ul>
     </div>
   </div>
 
   <div class="col-lg-4">
-    <div class="container-fluid" style="background: #FFF;box-shadow: 0px 5px 10px 0px #CCC;border-radius: 2px">
-      <h3>Canais mais assistidos</h3>
-      <p>Conteúdos com mais visualizações.</p>
-      <table class="table table-hover">
+    <div class="panel-card">
+      <div class="panel-head">
+        <div>
+          <h3>Canais mais assistidos</h3>
+          <p>Conteúdos com mais visualizações</p>
+        </div>
+      </div>
+      <ul class="top-list">
         <?php 
           $sql="SELECT * FROM tbl_channels WHERE `total_views` > 5 ORDER BY `total_views` DESC LIMIT 10";
           $res=mysqli_query($mysqli, $sql);
 
           if(mysqli_num_rows($res) > 0)
           {
-
+            $rank=0;
             while ($row=mysqli_fetch_assoc($res)) {
+              $rank++;
             ?>
-            <tr>
-              <td>
-                <div style="float: left;padding-right: 20px">
-                  <?php if($row['channel_thumbnail']!='' OR !file_exists('images/'.$row['channel_thumbnail'])){ ?>
-                    <img src="<?='images/'.$row['channel_thumbnail']?>" style="width: 40px;height: 40px;border-radius: 50%"/>  
-                  <?php }else{ ?>
-                    <img src="<?='images/'.APP_LOGO?>" style="width: 40px;height: 40px;border-radius: 50%"/>  
-                  <?php } ?>
-                </div>
-                <div>
-                  <a href="javascript:void(0)" title="<?=$row['channel_title']?>" style="color: inherit;">
+            <li>
+              <span class="top-rank"><?=$rank?></span>
+              <?php if($row['channel_thumbnail']!='' OR !file_exists('images/'.$row['channel_thumbnail'])){ ?>
+                <img src="<?='images/'.$row['channel_thumbnail']?>" alt="">
+              <?php }else{ ?>
+                <img src="<?='images/'.APP_LOGO?>" alt="">
+              <?php } ?>
+              <div class="top-info">
+                <a href="javascript:void(0)" title="<?=$row['channel_title']?>" style="text-decoration:none;">
+                  <span class="top-title">
                     <?php 
                       if(strlen($row['channel_title']) > 25){
                         echo substr(stripslashes($row['channel_title']), 0, 25).'...';  
@@ -334,24 +318,22 @@
                         echo $row['channel_title'];
                       }
                     ?>
-                    <p style="font-weight: 500"><span class="label label-default" style="font-size: 10px;padding: 2px 8px;">Visualizações: <?=thousandsNumberFormat($row['total_views'])?></span></p> 
-                  </a>
-                </div>
-              </td>
-            </tr>
+                  </span>
+                </a>
+              </div>
+              <span class="top-views"><i class="bi bi-eye-fill"></i> <?=thousandsNumberFormat($row['total_views'])?></span>
+            </li>
             <?php }
               mysqli_free_result($res);
 
             }
             else{
               ?>
-              <tr>
-                <td class="text-center">Nenhum dado disponível.</td>
-              </tr>
+              <p class="empty-state">Nenhum dado disponível.</p>
               <?php
             }
         ?>
-      </table>
+      </ul>
     </div>
   </div>
 </div>
@@ -375,29 +357,33 @@
 
       var options = {
         curveType: 'function',
-        fontSize: 15,
+        fontName: 'Lexend Deca',
+        fontSize: 13,
+        colors: ['#e4470f'],
         hAxis: {
           title: "Meses de <?=(isset($_GET['filterByYear'])) ? (int)$_GET['filterByYear'] : date('Y')?>",
           titleTextStyle: {
-            color: '#000',
+            color: '#8a7a70',
             bold:'true',
             italic: false
           },
+          textStyle: { color: '#8a7a70' }
         },
         vAxis: {
           title: "Novos usuários",
           titleTextStyle: {
-            color: '#000',
+            color: '#8a7a70',
             bold:'true',
             italic: false,
           },
-          gridlines: { count: 5},
+          textStyle: { color: '#8a7a70' },
+          gridlines: { count: 5, color: '#ece3dc' },
           format: '#',
           viewWindowMode: "explicit", viewWindow:{ min: 0 },
         },
-        height: 400,
+        height: 380,
         chartArea:{
-          left:100,top:20,width:'100%',height:'auto'
+          left:80,top:20,width:'92%',height:'auto'
         },
         legend: {
             position: 'none'
@@ -410,6 +396,7 @@
         },
         pointSize: 5,
         pointShape: "circle",
+        backgroundColor: 'transparent',
 
       };
       var chart = new google.visualization.LineChart(document.getElementById('registerChart'));
@@ -431,4 +418,4 @@
     $("#graphFilter").submit();
   });
 
-</script>       
+</script>

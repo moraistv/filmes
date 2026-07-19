@@ -37,7 +37,11 @@
 <link rel="stylesheet" type="text/css" href="assets/css/theme/yellow.css">
 
 <link rel="stylesheet" type="text/css" href="assets/sweetalert/sweetalert.css">
-<link rel="stylesheet" type="text/css" href="assets/css/admin-modern.css?v=1.1.1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" type="text/css" href="assets/css/admin-modern.css?v=2.0.0">
 
  <script src="assets/ckeditor/ckeditor.js"></script>
 
@@ -107,16 +111,16 @@
       <ul class="sidebar-nav">
         <li class="nav-section"><span>Visão geral</span></li>
         <li <?php if(isset($active_page) && $active_page=="dashboard"){?>class="active"<?php }?>> <a href="home.php">
-          <div class="icon"> <i class="fa fa-dashboard" aria-hidden="true"></i> </div>
+          <div class="icon"> <i class="bi bi-grid-1x2-fill" aria-hidden="true"></i> </div>
           <div class="title">Painel</div>
           </a> 
         </li>
         <li class="nav-section"><span>Catálogo</span></li>
         <li class="dropdown-li movies <?php if(isset($active_page) && $active_page=="movies"){ echo 'active'; }?>">
           <a href="javascript:void(0)" class="dropdown-a">
-            <div class="icon"> <i class="fa fa-video-camera" aria-hidden="true"></i> </div>
+            <div class="icon"> <i class="bi bi-film" aria-hidden="true"></i> </div>
             <div class="title">Filmes</div>
-            <i class="fa fa-angle-right pull-right" style="padding-top: 7px;color: #fff;"></i>
+            <i class="bi bi-chevron-right pull-right dropdown-caret"></i>
           </a> 
         </li>
         <li class="cust-dropdown-container">
@@ -143,9 +147,9 @@
 
         <li class="dropdown-li series <?php if(isset($active_page) && $active_page=="series"){ echo 'active'; }?>">
           <a href="javascript:void(0)" class="dropdown-a">
-            <div class="icon"> <i class="fa fa-list" aria-hidden="true"></i> </div>
+            <div class="icon"> <i class="bi bi-collection-play-fill" aria-hidden="true"></i> </div>
             <div class="title">Séries</div>
-            <i class="fa fa-angle-right pull-right" style="padding-top: 7px;color: #fff;"></i>
+            <i class="bi bi-chevron-right pull-right dropdown-caret"></i>
           </a> 
         </li>
         <li class="cust-dropdown-container">
@@ -171,9 +175,9 @@
 
         <li class="dropdown-li channel <?php if(isset($active_page) && $active_page=="channel"){ echo 'active'; }?>">
           <a href="javascript:void(0)" class="dropdown-a">
-            <div class="icon"> <i class="fa fa-tv" aria-hidden="true"></i> </div>
+            <div class="icon"> <i class="bi bi-broadcast" aria-hidden="true"></i> </div>
             <div class="title">TV ao vivo</div>
-            <i class="fa fa-angle-right pull-right" style="padding-top: 7px;color: #fff;"></i>
+            <i class="bi bi-chevron-right pull-right dropdown-caret"></i>
           </a> 
         </li>
         <li class="cust-dropdown-container">
@@ -192,51 +196,51 @@
         </li>
         <li class="nav-section"><span>Gestão</span></li>
         <li <?php if($currentFile=="manage_users.php" or $currentFile=="add_user.php"){?>class="active"<?php }?>> <a href="manage_users.php">
-          <div class="icon"> <i class="fa fa-users" aria-hidden="true"></i> </div>
+          <div class="icon"> <i class="bi bi-people-fill" aria-hidden="true"></i> </div>
           <div class="title">Usuários</div>
           </a> 
         </li>
 
         <li <?php if($currentFile=="manage_comments.php"){?>class="active"<?php }?>> <a href="manage_comments.php">
-          <div class="icon"> <i class="fa fa-comments" aria-hidden="true"></i> </div>
+          <div class="icon"> <i class="bi bi-chat-square-text-fill" aria-hidden="true"></i> </div>
           <div class="title">Comentários</div>
           </a> 
         </li>
 
         <li <?php if($currentFile=="manage_reports.php" OR (isset($active_page) AND $active_page=='report')){?>class="active"<?php }?>> <a href="manage_reports.php">
-          <div class="icon"> <i class="fa fa-bug" aria-hidden="true"></i> </div>
+          <div class="icon"> <i class="bi bi-flag-fill" aria-hidden="true"></i> </div>
           <div class="title">Denúncias</div>
           </a> 
         </li>
          
         <li <?php if($currentFile=="send_notification.php"){?>class="active"<?php }?>> <a href="send_notification.php">
-          <div class="icon"> <i class="fa fa-bell" aria-hidden="true"></i> </div>
+          <div class="icon"> <i class="bi bi-bell-fill" aria-hidden="true"></i> </div>
           <div class="title">Notificações</div>
           </a> 
         </li>
 
         <li class="nav-section"><span>Sistema</span></li>
         <li <?php if($currentFile=="smtp_settings.php"){?>class="active"<?php }?>> <a href="smtp_settings.php">
-          <div class="icon"> <i class="fa fa-envelope" aria-hidden="true"></i> </div>
+          <div class="icon"> <i class="bi bi-envelope-fill" aria-hidden="true"></i> </div>
           <div class="title">Configurações de SMTP</div>
           </a> 
         </li>
 
         <li <?php if($currentFile=="settings.php"){?>class="active"<?php }?>> <a href="settings.php">
-          <div class="icon"> <i class="fa fa-cog" aria-hidden="true"></i> </div>
+          <div class="icon"> <i class="bi bi-gear-fill" aria-hidden="true"></i> </div>
           <div class="title">Configurações</div>
           </a> 
         </li>
 
         <li <?php if($currentFile=="verification.php"){?>class="active"<?php }?>> <a href="verification.php">
-          <div class="icon"> <i class="fa fa-check-square-o" aria-hidden="true"></i> </div>
+          <div class="icon"> <i class="bi bi-patch-check-fill" aria-hidden="true"></i> </div>
           <div class="title">Identificação do app</div>
           </a> 
         </li>
 
         <?php if(file_exists('api.php') OR file_exists('ios_api.php')){?>
         <li <?php if($currentFile=="api_urls.php"){?>class="active"<?php }?>> <a href="api_urls.php">
-          <div class="icon"> <i class="fa fa-exchange" aria-hidden="true"></i> </div>
+          <div class="icon"> <i class="bi bi-hdd-network-fill" aria-hidden="true"></i> </div>
           <div class="title">URLs da API</div>
           </a> 
         </li> 
@@ -253,7 +257,7 @@
         <?php }?>
         <span class="sidebar-account-copy"><strong>Administrador</strong><small>Minha conta</small></span>
       </a>
-      <a href="logout.php" class="sidebar-logout" title="Sair" aria-label="Sair"><i class="fa fa-sign-out"></i></a>
+      <a href="logout.php" class="sidebar-logout" title="Sair" aria-label="Sair"><i class="bi bi-box-arrow-right"></i></a>
     </div>
   </aside>   
   <div class="app-container">

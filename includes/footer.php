@@ -57,8 +57,8 @@
   if($(".dropdown-li").hasClass("active")){
     var _test='<?php echo $active_page; ?>';
     $("."+_test).next(".cust-dropdown-container").show();
-    $("."+_test).find(".title").next("i").removeClass("fa-angle-right");
-    $("."+_test).find(".title").next("i").addClass("fa-angle-down");
+    $("."+_test).find(".title").next("i").removeClass("bi-chevron-right fa-angle-right");
+    $("."+_test).find(".title").next("i").addClass("bi-chevron-down fa-angle-down");
   }
 
   $(document).ready(function(e){
@@ -68,17 +68,17 @@
 
       $(this).parents("ul").find(".cust-dropdown-container").slideUp();
 
-      $(this).parents("ul").find(".title").next("i").addClass("fa-angle-right");
-      $(this).parents("ul").find(".title").next("i").removeClass("fa-angle-down");
+      $(this).parents("ul").find(".title").next("i").addClass("bi-chevron-right fa-angle-right");
+      $(this).parents("ul").find(".title").next("i").removeClass("bi-chevron-down fa-angle-down");
 
       if($(this).parent("li").next(".cust-dropdown-container").css('display') !='none'){
           $(this).parent("li").next(".cust-dropdown-container").slideUp();
-          $(this).find(".title").next("i").addClass("fa-angle-right");
-          $(this).find(".title").next("i").removeClass("fa-angle-down");
+          $(this).find(".title").next("i").addClass("bi-chevron-right fa-angle-right");
+          $(this).find(".title").next("i").removeClass("bi-chevron-down fa-angle-down");
       }else{
         $(this).parent("li").next(".cust-dropdown-container").slideDown();
-        $(this).find(".title").next("i").removeClass("fa-angle-right");
-        $(this).find(".title").next("i").addClass("fa-angle-down");
+        $(this).find(".title").next("i").removeClass("bi-chevron-right fa-angle-right");
+        $(this).find(".title").next("i").addClass("bi-chevron-down fa-angle-down");
       }
 
     });

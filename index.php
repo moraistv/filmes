@@ -30,7 +30,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500;600;700;800;900&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-<link rel="stylesheet" type="text/css" href="assets/css/getcine.css?v=3.0.0">
+<link rel="stylesheet" type="text/css" href="assets/css/getcine.css?v=<?php echo @filemtime('assets/css/getcine.css') ?: time(); ?>">
 
 </head>
 <body class="gc-login">

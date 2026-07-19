@@ -28,4 +28,9 @@ cp includes/app.default api.php
 chown -R www-data:www-data runtime images uploads
 chown www-data:www-data api.php
 
+# Migracao idempotente: atualiza nome/logo do app no banco caso ainda
+# estejam com os valores default antigos do template (nao sobrescreve
+# customizacoes feitas pelo admin). Nao interrompe o deploy se falhar.
+php includes/force_brand_update.php || true
+
 exec docker-php-entrypoint "$@"

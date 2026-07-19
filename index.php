@@ -25,7 +25,7 @@
 <meta http-equiv="Content-Type"content="text/html;charset=UTF-8"/>
 <meta name="viewport"content="width=device-width, initial-scale=1.0">
 <title><?php echo APP_NAME;?> | Entrar</title>
-<link rel="icon" href="images/<?php echo APP_LOGO;?>" sizes="16x16">
+<link rel="icon" type="image/svg+xml" href="images/logo-getcine.svg">
 <link rel="stylesheet" type="text/css" href="assets/css/vendor.css">
 <link rel="stylesheet" type="text/css" href="assets/css/flat-admin.css">
 
@@ -34,7 +34,7 @@
 <link rel="stylesheet" type="text/css" href="assets/css/theme/blue.css">
 <link rel="stylesheet" type="text/css" href="assets/css/theme/red.css">
 <link rel="stylesheet" type="text/css" href="assets/css/theme/yellow.css">
-<link rel="stylesheet" type="text/css" href="assets/css/admin-modern.css?v=1.1.1">
+<link rel="stylesheet" type="text/css" href="assets/css/admin-modern.css?v=2.1.0">
 
 </head>
 <body class="login-shell">

@@ -26,7 +26,7 @@
 <meta http-equiv="Content-Type"content="text/html;charset=UTF-8"/>
 <meta name="viewport"content="width=device-width, initial-scale=1.0">
 <title><?php if(isset($page_title)){ echo $page_title.' | ';} ?><?php echo APP_NAME;?> </title>
-<link rel="icon" href="images/<?php echo APP_LOGO;?>" sizes="16x16">
+<link rel="icon" type="image/svg+xml" href="images/logo-getcine.svg">
 <link rel="stylesheet" type="text/css" href="assets/css/vendor.css">
 <link rel="stylesheet" type="text/css" href="assets/css/flat-admin.css">
 
@@ -41,7 +41,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500;600;700;800;900&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-<link rel="stylesheet" type="text/css" href="assets/css/admin-modern.css?v=2.0.0">
+<link rel="stylesheet" type="text/css" href="assets/css/admin-modern.css?v=2.1.0">
 
  <script src="assets/ckeditor/ckeditor.js"></script>
 
@@ -115,85 +115,52 @@
           <div class="title">Painel</div>
           </a> 
         </li>
-        <li class="nav-section"><span>Catálogo</span></li>
-        <li class="dropdown-li movies <?php if(isset($active_page) && $active_page=="movies"){ echo 'active'; }?>">
-          <a href="javascript:void(0)" class="dropdown-a">
-            <div class="icon"> <i class="bi bi-film" aria-hidden="true"></i> </div>
-            <div class="title">Filmes</div>
-            <i class="bi bi-chevron-right pull-right dropdown-caret"></i>
+        <li class="nav-section"><span>Filmes</span></li>
+        <li <?php if(isset($current_page) && $current_page=="movies"){?>class="active"<?php }?>> <a href="manage_movies.php">
+          <div class="icon"> <i class="bi bi-film" aria-hidden="true"></i> </div>
+          <div class="title">Filmes</div>
           </a> 
         </li>
-        <li class="cust-dropdown-container">
-
-          <ul class="cust-dropdown">
-            <li> 
-              <a href="manage_language.php" class="<?php if(isset($current_page) && $current_page=="language"){ echo 'active'; }?>">
-                <div class="title">Idiomas</div>
-              </a> 
-            </li>
-
-            <li>
-              <a href="manage_genres.php" class="<?php if(isset($current_page) && $current_page=="genre"){ echo 'active'; }?>">
-                <div class="title">Gêneros</div>
-              </a> 
-            </li> 
-             <li>
-              <a href="manage_movies.php" class="<?php if(isset($current_page) && $current_page=="movies"){ echo 'active'; }?>">
-                <div class="title">Filmes</div>
-              </a> 
-            </li>   
-          </ul>
-        </li>
-
-        <li class="dropdown-li series <?php if(isset($active_page) && $active_page=="series"){ echo 'active'; }?>">
-          <a href="javascript:void(0)" class="dropdown-a">
-            <div class="icon"> <i class="bi bi-collection-play-fill" aria-hidden="true"></i> </div>
-            <div class="title">Séries</div>
-            <i class="bi bi-chevron-right pull-right dropdown-caret"></i>
+        <li <?php if(isset($current_page) && $current_page=="genre"){?>class="active"<?php }?>> <a href="manage_genres.php">
+          <div class="icon"> <i class="bi bi-tags-fill" aria-hidden="true"></i> </div>
+          <div class="title">Gêneros</div>
           </a> 
         </li>
-        <li class="cust-dropdown-container">
-          <ul class="cust-dropdown">
-            <li> 
-              <a href="manage_series.php" class="<?php if(isset($current_page) && $current_page=="series"){ echo 'active'; }?>">
-                <div class="title">Séries</div>
-              </a> 
-            </li>
-
-            <li>
-              <a href="manage_season.php" class="<?php if(isset($current_page) && $current_page=="season"){ echo 'active'; }?>">
-                <div class="title">Temporadas</div>
-              </a> 
-            </li> 
-             <li>
-              <a href="manage_episode.php" class="<?php if(isset($current_page) && $current_page=="episode"){ echo 'active'; }?>">
-                <div class="title">Episódios</div>
-              </a> 
-            </li>   
-          </ul>
-        </li>
-
-        <li class="dropdown-li channel <?php if(isset($active_page) && $active_page=="channel"){ echo 'active'; }?>">
-          <a href="javascript:void(0)" class="dropdown-a">
-            <div class="icon"> <i class="bi bi-broadcast" aria-hidden="true"></i> </div>
-            <div class="title">TV ao vivo</div>
-            <i class="bi bi-chevron-right pull-right dropdown-caret"></i>
+        <li <?php if(isset($current_page) && $current_page=="language"){?>class="active"<?php }?>> <a href="manage_language.php">
+          <div class="icon"> <i class="bi bi-translate" aria-hidden="true"></i> </div>
+          <div class="title">Idiomas</div>
           </a> 
         </li>
-        <li class="cust-dropdown-container">
-          <ul class="cust-dropdown">
-            <li>
-              <a href="manage_category.php" class="<?php if(isset($current_page) && $current_page=="category"){ echo 'active'; }?>">
-                <div class="title">Categorias</div>
-              </a> 
-            </li> 
-             <li>
-              <a href="manage_channels.php" class="<?php if(isset($current_page) && $current_page=="channel"){ echo 'active'; }?>">
-                <div class="title">Canais</div>
-              </a> 
-            </li>   
-          </ul>
+
+        <li class="nav-section"><span>Séries</span></li>
+        <li <?php if(isset($current_page) && $current_page=="series"){?>class="active"<?php }?>> <a href="manage_series.php">
+          <div class="icon"> <i class="bi bi-collection-play-fill" aria-hidden="true"></i> </div>
+          <div class="title">Séries</div>
+          </a> 
         </li>
+        <li <?php if(isset($current_page) && $current_page=="season"){?>class="active"<?php }?>> <a href="manage_season.php">
+          <div class="icon"> <i class="bi bi-collection-fill" aria-hidden="true"></i> </div>
+          <div class="title">Temporadas</div>
+          </a> 
+        </li>
+        <li <?php if(isset($current_page) && $current_page=="episode"){?>class="active"<?php }?>> <a href="manage_episode.php">
+          <div class="icon"> <i class="bi bi-play-btn-fill" aria-hidden="true"></i> </div>
+          <div class="title">Episódios</div>
+          </a> 
+        </li>
+
+        <li class="nav-section"><span>TV ao vivo</span></li>
+        <li <?php if(isset($current_page) && $current_page=="category"){?>class="active"<?php }?>> <a href="manage_category.php">
+          <div class="icon"> <i class="bi bi-diagram-3-fill" aria-hidden="true"></i> </div>
+          <div class="title">Categorias</div>
+          </a> 
+        </li>
+        <li <?php if(isset($current_page) && $current_page=="channel"){?>class="active"<?php }?>> <a href="manage_channels.php">
+          <div class="icon"> <i class="bi bi-broadcast" aria-hidden="true"></i> </div>
+          <div class="title">Canais</div>
+          </a> 
+        </li>
+
         <li class="nav-section"><span>Gestão</span></li>
         <li <?php if($currentFile=="manage_users.php" or $currentFile=="add_user.php"){?>class="active"<?php }?>> <a href="manage_users.php">
           <div class="icon"> <i class="bi bi-people-fill" aria-hidden="true"></i> </div>

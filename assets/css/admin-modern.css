@@ -139,15 +139,16 @@ body.admin-shell aside.app-sidebar .sidebar-menu ul.sidebar-nav > li {
 }
 
 body.admin-shell aside.app-sidebar .sidebar-menu ul.sidebar-nav > li.nav-section {
-  margin: 20px 12px 7px;
+  margin: 16px 12px 6px;
   border-radius: 0;
   overflow: visible;
   color: #8a7368;
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: .15em;
+  letter-spacing: .1em;
   line-height: 1;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 body.admin-shell aside.app-sidebar .sidebar-menu ul.sidebar-nav > li.nav-section:first-child {
@@ -224,96 +225,6 @@ body.admin-shell aside.app-sidebar .sidebar-menu ul.sidebar-nav > li > a .title 
 body.admin-shell aside.app-sidebar .sidebar-menu ul.sidebar-nav > li.active > a .icon {
   background: rgba(253,193,8,.22);
   color: #ffd873;
-}
-
-body.admin-shell .dropdown-caret {
-  padding-top: 0 !important;
-  color: #85736a !important;
-  font-size: 11px !important;
-  transition: transform .2s ease;
-}
-
-body.admin-shell .dropdown-li.active .dropdown-caret,
-body.admin-shell .dropdown-a.open .dropdown-caret {
-  transform: rotate(90deg);
-  color: #ffd873 !important;
-}
-
-body.admin-shell .cust-dropdown-container {
-  margin: 0 0 4px !important;
-  padding: 0 6px 0 22px;
-  background: transparent;
-  border-radius: 10px;
-}
-
-body.admin-shell .cust-dropdown {
-  position: relative;
-  background: transparent;
-}
-
-body.admin-shell .cust-dropdown::before {
-  content: "";
-  position: absolute;
-  left: 7px;
-  top: 2px;
-  bottom: 2px;
-  width: 2px;
-  border-radius: 2px;
-  background: rgba(255,255,255,.08);
-}
-
-body.admin-shell .cust-dropdown li {
-  margin: 0;
-}
-
-body.admin-shell .cust-dropdown li a {
-  position: relative;
-  display: flex;
-  align-items: center;
-  min-height: 34px;
-  padding: 6px 10px 6px 22px;
-  color: #a3907f;
-  font-size: 12px;
-  font-weight: 500;
-  border-radius: 8px;
-}
-
-body.admin-shell .cust-dropdown li a::before {
-  content: "";
-  position: absolute;
-  left: 3px;
-  top: 50%;
-  width: 8px;
-  height: 8px;
-  border: 2px solid #3d2d22;
-  border-radius: 50%;
-  background: #1c1310;
-  transform: translateY(-50%);
-  transition: border-color .2s ease, background .2s ease;
-}
-
-body.admin-shell .cust-dropdown li a:hover,
-body.admin-shell .cust-dropdown li a.active {
-  color: #ffe4c2;
-  background: rgba(228,71,15,.12);
-}
-
-body.admin-shell .cust-dropdown li a:hover::before,
-body.admin-shell .cust-dropdown li a.active::before {
-  border-color: var(--brand-orange);
-  background: var(--brand-gradient);
-  box-shadow: 0 0 10px rgba(242,101,15,.6);
-}
-
-body.admin-shell .cust-dropdown li a .fa-angle-right,
-body.admin-shell .cust-dropdown li a .bi-chevron-right {
-  display: none;
-}
-
-body.admin-shell .cust-dropdown li a .title {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 body.admin-shell .sidebar-account {
@@ -488,6 +399,7 @@ body.admin-shell h1,
 body.admin-shell h2,
 body.admin-shell h3,
 body.admin-shell h4 {
+  margin-top: 0;
   color: var(--admin-text);
   font-weight: 700;
   letter-spacing: -.01em;
@@ -741,6 +653,21 @@ body.admin-shell .app-footer {
   }
 }
 
+/* Neutraliza qualquer margem/padding herdado do template antigo entre a
+   navbar e o conteudo da pagina (causa de vaos verticais grandes). O
+   template base aplicava margin-top:30px no primeiro elemento apos a nav. */
+body.admin-shell .app-container > nav + * {
+  margin-top: 0 !important;
+}
+
+body.admin-shell .app-container > .row {
+  margin-top: 0 !important;
+}
+
+body.admin-shell .app-container > .row:first-of-type {
+  padding-top: 0 !important;
+}
+
 /* ==========================================================================
    Dashboard (home.php)
    ========================================================================== */
@@ -754,7 +681,7 @@ body.page-home .dash-heading {
 }
 
 body.page-home .dash-heading h1 {
-  margin: 0;
+  margin: 0 !important;
   font-size: 21px;
   font-weight: 700;
 }

@@ -106,7 +106,7 @@
 <div class="app app-default">
   <aside class="gc-sidebar" id="sidebar">
     <div class="gc-brand">
-      <a class="gc-brand-link" href="painel"><img src="images/<?php echo APP_LOGO;?>" alt="<?php echo APP_NAME;?>"><span><?php echo APP_NAME;?></span></a>
+      <a class="gc-brand-link" href="painel"><img src="images/logo-getcine-white.svg" alt="<?php echo APP_NAME;?>"><span><?php echo APP_NAME;?></span></a>
       <button type="button" class="sidebar-toggle gc-burger-close" aria-label="Fechar menu"><i class="bi bi-x-lg"></i></button>
     </div>
 

@@ -38,7 +38,7 @@
 
   <!-- Painel de marca -->
   <aside class="gc-login-brand">
-    <div class="gc-login-logo"><img src="images/<?php echo APP_LOGO;?>" alt="<?php echo APP_NAME;?>"></div>
+    <div class="gc-login-logo"><img src="images/logo-getcine-white.svg" alt="<?php echo APP_NAME;?>"></div>
     <h1><?php echo APP_NAME;?></h1>
     <p class="gc-tagline">Gerencie filmes, séries e canais em um só lugar.</p>
     <ul class="gc-login-feats">

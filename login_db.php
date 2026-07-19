@@ -55,7 +55,7 @@ if ($authenticated) {
     session_regenerate_id(true);
     $_SESSION['id'] = $row['id'];
     $_SESSION['admin_name'] = $row['username'];
-    header("Location:home.php");
+    header("Location:painel");
     exit;
 }
 

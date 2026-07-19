@@ -758,3 +758,47 @@ body.gc-login .gc-login-foot {
   body.gc-login .gc-login-brand { display: none; }
   body.gc-login .gc-login-form { padding: 38px 30px; }
 }
+
+/* ==========================================================================
+   MOBILE — garante que o menu abra/feche de forma confiavel
+   ========================================================================== */
+.gc-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1045;
+  background: rgba(10, 6, 4, .55);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .22s ease, visibility .22s ease;
+}
+.gc-backdrop.show { opacity: 1; visibility: visible; }
+
+@media (min-width: 768px) {
+  /* No desktop nunca mostra o backdrop nem o botao de menu */
+  .gc-backdrop { display: none !important; }
+}
+
+@media (max-width: 767px) {
+  /* Menu por cima de tudo quando aberto */
+  #sidebar.gc-sidebar { z-index: 1060; }
+
+  /* Botao "hamburguer" da barra superior — sempre visivel e legivel */
+  body.admin-shell .navbar .navbar-mobile .sidebar-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    background: transparent !important;
+    color: var(--gc-primary) !important;
+    font-size: 22px !important;
+  }
+  body.admin-shell .navbar .navbar-mobile .sidebar-toggle i {
+    color: var(--gc-primary) !important;
+  }
+
+  /* Garante que a barra superior mobile apareca */
+  body.admin-shell .navbar .navbar-mobile {
+    display: flex !important;
+  }
+}

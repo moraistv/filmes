@@ -507,18 +507,84 @@ body.admin-shell .search_block {
 }
 
 body.admin-shell .search_block .form-control {
+  height: 40px;
+  min-height: 40px;
   padding-right: 42px;
+  border-radius: 99px !important;
+  background: var(--admin-surface-soft);
 }
 
 body.admin-shell .search_block .btn-search {
   position: absolute;
   top: 1px;
-  right: 1px;
-  width: 40px;
-  height: 40px;
+  right: 3px;
+  width: 38px;
+  height: 38px;
   border: 0;
   background: transparent;
   color: var(--admin-muted);
+  border-radius: 50%;
+}
+
+body.admin-shell .search_block .btn-search:hover {
+  color: var(--admin-primary);
+  background: var(--admin-primary-soft);
+}
+
+/* Filtros (selects de idioma/genero/categoria acima das listagens) */
+body.admin-shell #filterForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 14px 0 4px;
+}
+
+body.admin-shell #filterForm > div[class*="col-"] {
+  width: auto;
+  min-width: 180px;
+  flex: 1 1 200px;
+  padding: 0 !important;
+}
+
+body.admin-shell #filterForm select.form-control {
+  height: 40px !important;
+  min-height: 40px !important;
+  padding: 6px 12px !important;
+}
+
+/* Barra de acoes em massa (Selecionar tudo / dropdown de Acoes) */
+body.admin-shell .page_title_block .col-md-4.text-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+  float: none !important;
+  width: 100%;
+}
+
+body.admin-shell .page_title_block .checkbox {
+  position: static !important;
+  width: auto !important;
+  margin: 0 !important;
+  display: flex;
+  align-items: center;
+}
+
+body.admin-shell .page_title_block .checkbox label {
+  padding-left: 26px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--admin-muted);
+}
+
+body.admin-shell .page_title_block .dropdown {
+  float: none !important;
+}
+
+body.admin-shell .btn_cust {
+  border-radius: 9px !important;
 }
 
 /* ==========================================================================
@@ -580,17 +646,41 @@ body.admin-shell .block_wallpaper:hover {
 }
 
 body.admin-shell .wall_category_block {
-  background: #fff;
+  background: var(--admin-surface-soft);
   color: var(--admin-text);
   border-bottom: 1px solid var(--admin-border);
+  padding: 8px 10px !important;
 }
 
 body.admin-shell .wall_category_block h2 {
-  font-size: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--admin-muted);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+body.admin-shell .wall_category_block a,
+body.admin-shell .wall_category_block .toggle_btn_a {
+  color: var(--admin-muted);
+}
+
+body.admin-shell .wall_category_block a:hover {
+  background: var(--admin-primary) !important;
+  color: #fff !important;
 }
 
 body.admin-shell .wall_image_title {
   background: linear-gradient(180deg, transparent, rgba(20,10,6,.92)) !important;
+}
+
+body.admin-shell .wall_image_title ul li a {
+  color: var(--admin-primary);
+}
+
+body.admin-shell .wall_image_title ul li a:hover {
+  background: var(--admin-primary) !important;
+  color: #fff !important;
 }
 
 /* ==========================================================================

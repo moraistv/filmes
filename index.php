@@ -34,7 +34,7 @@
 <link rel="stylesheet" type="text/css" href="assets/css/theme/blue.css">
 <link rel="stylesheet" type="text/css" href="assets/css/theme/red.css">
 <link rel="stylesheet" type="text/css" href="assets/css/theme/yellow.css">
-<link rel="stylesheet" type="text/css" href="assets/css/admin-modern.css?v=2.2.0">
+<link rel="stylesheet" type="text/css" href="assets/css/admin-modern.css?v=2.3.0">
 
 </head>
 <body class="login-shell">

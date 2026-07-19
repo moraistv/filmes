@@ -41,7 +41,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500;600;700;800;900&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-<link rel="stylesheet" type="text/css" href="assets/css/admin-modern.css?v=2.2.0">
+<link rel="stylesheet" type="text/css" href="assets/css/admin-modern.css?v=2.3.0">
 
  <script src="assets/ckeditor/ckeditor.js"></script>
 

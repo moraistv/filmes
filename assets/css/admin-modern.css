@@ -1061,6 +1061,185 @@ body.page-home .empty-state {
 }
 
 /* ==========================================================================
+   Formularios de cadastro/edicao (add_*.php, edit_*.php, settings.php, etc.)
+   ========================================================================== */
+body.admin-shell .section {
+  padding: 4px 0 10px;
+}
+
+body.admin-shell .section-body {
+  max-width: 100%;
+}
+
+body.admin-shell .form-horizontal .form-group {
+  margin: 0 0 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed var(--admin-border);
+}
+
+body.admin-shell .form-horizontal .form-group:last-child {
+  border-bottom: 0;
+}
+
+body.admin-shell .form-horizontal .control-label {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--admin-text);
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+
+body.admin-shell .form-horizontal .control-label p,
+body.admin-shell .control-label-help {
+  margin: 4px 0 0;
+  font-size: 11.5px;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--admin-muted) !important;
+}
+
+/* Select2 */
+body.admin-shell .select2-container .select2-selection--single,
+body.admin-shell .select2-container .select2-selection--multiple {
+  min-height: 42px;
+  border: 1px solid #e5dad1 !important;
+  border-radius: 9px !important;
+  background: #fff;
+}
+
+body.admin-shell .select2-container .select2-selection--single .select2-selection__rendered {
+  line-height: 42px;
+  color: var(--admin-text);
+  padding-left: 12px;
+}
+
+body.admin-shell .select2-container .select2-selection--single .select2-selection__arrow {
+  height: 42px;
+}
+
+body.admin-shell .select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background: var(--admin-primary-soft);
+  border: 0;
+  border-radius: 7px;
+  color: var(--admin-primary-dark);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 8px;
+}
+
+body.admin-shell .select2-container--default.select2-container--focus .select2-selection--multiple,
+body.admin-shell .select2-dropdown {
+  border-color: var(--admin-primary) !important;
+  border-radius: 9px;
+}
+
+body.admin-shell .select2-results__option--highlighted[aria-selected] {
+  background: var(--admin-primary) !important;
+}
+
+/* Upload de arquivo */
+body.admin-shell .fileupload_block {
+  padding: 14px;
+  border: 1px dashed var(--admin-border);
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-surface-soft);
+}
+
+body.admin-shell .fileupload_img img {
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--admin-border);
+  object-fit: cover;
+}
+
+body.admin-shell input[type="file"] {
+  color: var(--admin-muted);
+  font-size: 12.5px;
+}
+
+body.admin-shell .uploadPreview {
+  margin-top: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--admin-border);
+}
+
+/* Abas (nav-tabs) usadas em Configuracoes/SMTP */
+body.admin-shell .nav-tabs {
+  border-bottom: 1px solid var(--admin-border);
+  padding: 0 10px;
+}
+
+body.admin-shell .nav-tabs > li > a {
+  margin-right: 4px;
+  border: 0;
+  border-radius: 9px 9px 0 0 !important;
+  color: var(--admin-muted);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 12px 18px;
+}
+
+body.admin-shell .nav-tabs > li > a:hover {
+  background: var(--admin-surface-soft);
+  border-color: transparent;
+  color: var(--admin-primary);
+}
+
+body.admin-shell .nav-tabs > li.active > a,
+body.admin-shell .nav-tabs > li.active > a:hover,
+body.admin-shell .nav-tabs > li.active > a:focus {
+  color: var(--admin-primary);
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-bottom-color: var(--admin-surface);
+}
+
+body.admin-shell .tab-content {
+  padding: 22px 4px 4px;
+}
+
+/* Botao "+ Adicionar mais" e remover */
+body.admin-shell .add_more,
+body.admin-shell .removeMore,
+body.admin-shell .btn_fetch {
+  border-radius: 9px !important;
+}
+
+body.admin-shell hr {
+  border-color: var(--admin-border);
+  margin: 18px 0;
+}
+
+/* Utilitarios para textos de aviso/ajuda inline, substituindo estilos
+   inline antigos como style="color:#F00;font-weight:500" */
+body.admin-shell .field-note {
+  display: block;
+  margin-top: 4px;
+  color: var(--admin-danger);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+body.admin-shell .field-note-muted {
+  display: block;
+  margin-top: 4px;
+  color: var(--admin-muted);
+  font-size: 11.5px;
+  font-weight: 500;
+}
+
+/* Caixa de preview de video/imagem, substituindo style="background:#eee" */
+body.admin-shell .media-preview-box {
+  background: var(--admin-surface-soft);
+  text-align: center;
+  border-radius: var(--admin-radius-sm);
+  border: 1px solid var(--admin-border);
+  overflow: hidden;
+}
+
+/* ==========================================================================
    Login
    ========================================================================== */
 body.login-shell {

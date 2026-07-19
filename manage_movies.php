@@ -15,12 +15,13 @@
   if(isset($_GET['language']))
   {
 
-      $lang_id=$_GET['language'];
+      $lang_id=(int)$_GET['language'];
       
       if(isset($_GET['genre'])){
-        $query = "SELECT COUNT(*) as num FROM $tableName WHERE tbl_movies.`language_id`='$lang_id' AND FIND_IN_SET(".$_GET['genre'].", tbl_movies.`genre_id`)";
+        $genre_id=(int)$_GET['genre'];
+        $query = "SELECT COUNT(*) as num FROM $tableName WHERE tbl_movies.`language_id`='$lang_id' AND FIND_IN_SET(".$genre_id.", tbl_movies.`genre_id`)";
 
-        $targetpage = "manage_movies.php?language=$lang_id&genre=".$_GET['genre']; 
+        $targetpage = "manage_movies.php?language=$lang_id&genre=".$genre_id; 
       }
       else{
         $query = "SELECT COUNT(*) as num FROM $tableName WHERE tbl_movies.`language_id`='$lang_id'";
@@ -50,7 +51,7 @@
 
       if(isset($_GET['genre'])){
 
-        $genre_id=$_GET['genre'];
+        $genre_id=(int)$_GET['genre'];
 
         $sql="SELECT tbl_language.`language_name`,tbl_movies.* FROM tbl_movies
             LEFT JOIN tbl_language ON tbl_movies.`language_id`= tbl_language.`id` 
@@ -61,7 +62,7 @@
   }
   else if(isset($_GET['genre']))
   {
-      $genre_id=$_GET['genre'];
+      $genre_id=(int)$_GET['genre'];
 
       $query = "SELECT COUNT(*) as num FROM $tableName WHERE FIND_IN_SET(".$genre_id.", tbl_movies.`genre_id`)";
 

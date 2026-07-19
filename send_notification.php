@@ -148,8 +148,8 @@
   {
 
       $data = array(
-        'onesignal_app_id' => $_POST['onesignal_app_id'],
-        'onesignal_rest_key' => $_POST['onesignal_rest_key'],
+        'onesignal_app_id' => addslashes($_POST['onesignal_app_id']),
+        'onesignal_rest_key' => addslashes($_POST['onesignal_rest_key']),
       );
 
       $settings_edit=Update('tbl_settings', $data, "WHERE id = '1'");

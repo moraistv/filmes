@@ -299,7 +299,8 @@
 
   if(isset($_GET['movie_id']))
   {  
-    $qry="SELECT * FROM tbl_movies where id='".$_GET['movie_id']."'";
+    $movie_id=(int)$_GET['movie_id'];
+    $qry="SELECT * FROM tbl_movies where id='".$movie_id."'";
     $result=mysqli_query($mysqli,$qry);
     $row=mysqli_fetch_assoc($result);
   }
@@ -309,15 +310,16 @@
     $title=addslashes(trim($_POST['movie_title']));
     $desc=addslashes(trim($_POST['movie_desc']));
 
-    $language_id=$_POST['language_id'];
-    $genre_id=implode(',', $_POST['genre_id']);
+    $language_id=(int)$_POST['language_id'];
+    $genre_id=implode(',', array_map('intval', (array)$_POST['genre_id']));
+    $video_file_type=addslashes($_POST['video_file_type']);
 
     if($_POST['video_file_type']=='youtube_url'){
 
-      $movie_url=$_POST['movie_url'];
+      $movie_url=addslashes($_POST['movie_url']);
       $youtube_video_url = addslashes($_POST['movie_url']);
       parse_str( parse_url( $youtube_video_url, PHP_URL_QUERY ), $array_of_vars );
-      $video_id=  $array_of_vars['v'];
+      $video_id=  addslashes($array_of_vars['v']);
 
       if($row['movie_type']=='local'){
         unlink('uploads/'.$row['movie_url']);
@@ -325,7 +327,7 @@
 
     }
     else if($_POST['video_file_type']=='server_url' OR $_POST['video_file_type']=='embedded_url'){
-      $movie_url=$_POST['movie_url'];
+      $movie_url=addslashes($_POST['movie_url']);
       $video_id='';
 
       if($row['movie_type']=='local'){
@@ -423,18 +425,18 @@
     $data = array( 
         'language_id'  =>  $language_id,
         'genre_id'  =>  $genre_id,
-        'movie_type'  =>  $_POST['video_file_type'],
+        'movie_type'  =>  $video_file_type,
         'movie_title'  =>  $title,
         'movie_poster'  =>  $movie_poster,
         'movie_cover'  =>  $movie_cover,
         'movie_url'  =>  $movie_url,
         'video_id'  =>  $video_id,
         'movie_desc'  =>  $desc,
-        'subtitle'  => $_POST['subtitle'],
-        'is_quality'  =>  $_POST['quality_status'],
+        'subtitle'  => addslashes($_POST['subtitle']),
+        'is_quality'  =>  addslashes($_POST['quality_status']),
     );
 
-    $edit=Update('tbl_movies', $data, "WHERE id = '".$_GET['movie_id']."'");
+    $edit=Update('tbl_movies', $data, "WHERE id = '".$movie_id."'");
 
 
     // quality videos
@@ -448,14 +450,14 @@
 
         $quality_480=$quality_720=$quality_1080='';
 
-        if(quality_info_data($_GET['movie_id'], 'post_upload_type')=='server_url'){
+        if(quality_info_data($movie_id, 'post_upload_type')=='server_url'){
           $data = array( 
             'quality_480'  =>  '',
             'quality_720'  =>  '',
             'quality_1080'  =>  '',
             );
 
-          $updateSql=Update('tbl_quality', $data, "WHERE `post_id` = '".$_GET['movie_id']."' AND `type`='movie'");
+          $updateSql=Update('tbl_quality', $data, "WHERE `post_id` = '".$movie_id."' AND `type`='movie'");
         }
 
         foreach($quality_arr as $key => $value) {
@@ -464,7 +466,7 @@
 
             if($_FILES['quality_local']['error'][$value]!=4){
 
-                unlink('uploads/'.quality_info_data($_GET['movie_id'], $param));
+                unlink('uploads/'.quality_info_data($movie_id, $param));
 
                 $ext = pathinfo($_FILES['quality_local']['name'][$value], PATHINFO_EXTENSION);
 
@@ -480,7 +482,7 @@
                 }                
             }
             else{
-                $video_url=quality_info_data($_GET['movie_id'], $param);
+                $video_url=quality_info_data($movie_id, $param);
             }
 
             if($value=='480'){
@@ -494,7 +496,7 @@
             }
         }
 
-        if(quality_info_data($_GET['movie_id'], 'id')!=''){
+        if(quality_info_data($movie_id, 'id')!=''){
           $data = array( 
             'post_upload_type'  =>  'local',
             'quality_480'  =>  $quality_480,
@@ -502,11 +504,11 @@
             'quality_1080'  =>  $quality_1080,
             );    
 
-          $updateSql=Update('tbl_quality', $data, "WHERE `post_id` = '".$_GET['movie_id']."' AND `type`='movie'");  
+          $updateSql=Update('tbl_quality', $data, "WHERE `post_id` = '".$movie_id."' AND `type`='movie'");  
         }
         else{
             $data = array( 
-            'post_id'  =>  $_GET['movie_id'],
+            'post_id'  =>  $movie_id,
             'post_upload_type'  =>  'local',
             'quality_480'  =>  $quality_480,
             'quality_720'  =>  $quality_720,
@@ -521,26 +523,26 @@
       }
       else{
 
-        if(quality_info_data($_GET['movie_id'], 'post_upload_type')=='local'){
+        if(quality_info_data($movie_id, 'post_upload_type')=='local'){
             
-            unlink('uploads/'.quality_info_data($_GET['movie_id'], 'quality_480'));
-            unlink('uploads/'.quality_info_data($_GET['movie_id'], 'quality_720'));
-            unlink('uploads/'.quality_info_data($_GET['movie_id'], 'quality_1080'));
+            unlink('uploads/'.quality_info_data($movie_id, 'quality_480'));
+            unlink('uploads/'.quality_info_data($movie_id, 'quality_720'));
+            unlink('uploads/'.quality_info_data($movie_id, 'quality_1080'));
         }
 
-        if(quality_info_data($_GET['movie_id'], 'id')!=''){
+        if(quality_info_data($movie_id, 'id')!=''){
           $data = array( 
             'post_upload_type'  =>  'server_url',
-            'quality_480'  =>  trim($_POST['quality_url']['480']),
-            'quality_720'  =>  trim($_POST['quality_url']['720']),
-            'quality_1080'  =>  trim($_POST['quality_url']['1080'])
+            'quality_480'  =>  addslashes(trim($_POST['quality_url']['480'])),
+            'quality_720'  =>  addslashes(trim($_POST['quality_url']['720'])),
+            'quality_1080'  =>  addslashes(trim($_POST['quality_url']['1080']))
             );    
 
-          $updateSql=Update('tbl_quality', $data, "WHERE `post_id` = '".$_GET['movie_id']."' AND `type`='movie'");  
+          $updateSql=Update('tbl_quality', $data, "WHERE `post_id` = '".$movie_id."' AND `type`='movie'");  
         }
         else{
             $data = array( 
-            'post_id'  =>  $_GET['movie_id'],
+            'post_id'  =>  $movie_id,
             'post_upload_type'  =>  'server_url',
             'quality_480'  =>  trim($_POST['quality_url']['480']),
             'quality_720'  =>  trim($_POST['quality_url']['720']),
@@ -563,6 +565,8 @@
         $index=1;
 
         foreach ($_POST['old_subtitle_id'] as $key_subtitle => $subtitle_id) {
+
+            $subtitle_id=(int)$subtitle_id;
 
             $index++;
 
@@ -640,7 +644,7 @@
             // add in subtitle table
 
             $data = array( 
-              'post_id'  =>  $_GET['movie_id'],
+              'post_id'  =>  $movie_id,
               'language'  =>  $_POST['subtitle_lang'][$lang_index],
               'subtitle_type'  =>  $_POST['subtitle_type'][$lang_index],
               'subtitle_url'  =>  $subtitle_url,
@@ -658,7 +662,7 @@
     if(isset($_GET['redirect']))
       header( "Location:".$_GET['redirect']);
     else  
-      header( "Location:add_movie.php?movie_id=".$_GET['movie_id']);
+      header( "Location:add_movie.php?movie_id=".$movie_id);
     exit;
     
   }

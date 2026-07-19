@@ -53,12 +53,14 @@
 	
 	if(isset($_GET['cat_id']))
 	{	 
-		$qry="SELECT * FROM tbl_category where cid='".$_GET['cat_id']."'";
+		$cat_id=(int)$_GET['cat_id'];
+		$qry="SELECT * FROM tbl_category where cid='".$cat_id."'";
 		$result=mysqli_query($mysqli,$qry);
 		$row=mysqli_fetch_assoc($result);
 	}
 	if(isset($_POST['submit']) and isset($_POST['cat_id']))
 	{
+		$post_cat_id=(int)$_POST['cat_id'];
 		 
 		if($_FILES['category_image']['name']!="")
 		{		
@@ -92,7 +94,7 @@
 				'category_image'  =>  $category_image
 			);
 
-			$category_edit=Update('tbl_category', $data, "WHERE cid = '".$_POST['cat_id']."'");
+			$category_edit=Update('tbl_category', $data, "WHERE cid = '".$post_cat_id."'");
 		}
 		else
 		{
@@ -101,7 +103,7 @@
 				'category_name'  =>  cleanInput($_POST['category_name'])
 			);	
 
-			$category_edit=Update('tbl_category', $data, "WHERE cid = '".$_POST['cat_id']."'");
+			$category_edit=Update('tbl_category', $data, "WHERE cid = '".$post_cat_id."'");
 
 		}
 
@@ -110,7 +112,7 @@
 	    if(isset($_GET['redirect']))
 	      header( "Location:".$_GET['redirect']);
 	    else  
-	      header( "Location:add_category.php?cat_id=".$_POST['cat_id']);
+	      header( "Location:add_category.php?cat_id=".$post_cat_id);
 		
 		exit;
 	}

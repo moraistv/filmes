@@ -261,7 +261,8 @@
 
   if(isset($_GET['episode_id']))
   {  
-    $qry="SELECT * FROM tbl_episode where id='".$_GET['episode_id']."'";
+    $episode_id=(int)$_GET['episode_id'];
+    $qry="SELECT * FROM tbl_episode where id='".$episode_id."'";
     $result=mysqli_query($mysqli,$qry);
     $row=mysqli_fetch_assoc($result);
   }
@@ -269,16 +270,17 @@
   { 
     $title=addslashes(trim($_POST['episode_title']));
 
-    $series_id=$_POST['series_id'];
-    $season_id=$_POST['season_id'];
+    $series_id=(int)$_POST['series_id'];
+    $season_id=(int)$_POST['season_id'];
+    $video_file_type=addslashes($_POST['video_file_type']);
 
 
     if($_POST['video_file_type']=='youtube_url'){
 
-      $episode_url=$_POST['episode_url'];
+      $episode_url=addslashes($_POST['episode_url']);
       $youtube_video_url = addslashes($_POST['episode_url']);
       parse_str( parse_url( $youtube_video_url, PHP_URL_QUERY ), $array_of_vars );
-      $video_id=  $array_of_vars['v'];
+      $video_id=  addslashes($array_of_vars['v']);
 
 
       if($row['episode_type']=='local'){
@@ -287,7 +289,7 @@
 
     }
     else if($_POST['video_file_type']=='server_url' OR $_POST['video_file_type']=='embedded_url'){
-      $episode_url=$_POST['episode_url'];
+      $episode_url=addslashes($_POST['episode_url']);
       $video_id='';
 
       if($row['episode_type']=='local'){
@@ -355,15 +357,15 @@
         'series_id'  =>  $series_id,
         'season_id'  =>  $season_id,
         'episode_title'  =>  $title,
-        'episode_type'  =>  $_POST['video_file_type'],
+        'episode_type'  =>  $video_file_type,
         'episode_url'  =>  $episode_url,
         'video_id'  =>  $video_id,
         'episode_poster'  =>  $episode_poster,
-        'subtitle'  => $_POST['subtitle'],
-        'is_quality'  =>  $_POST['quality_status'],
+        'subtitle'  => addslashes($_POST['subtitle']),
+        'is_quality'  =>  addslashes($_POST['quality_status']),
         );
 
-      $edit=Update('tbl_episode', $data, "WHERE id = '".$_GET['episode_id']."'");
+      $edit=Update('tbl_episode', $data, "WHERE id = '".$episode_id."'");
 
       // quality videos
       if(isset($_POST['quality_status']) && $_POST['quality_status']=='true'){
@@ -376,14 +378,14 @@
 
           $quality_480=$quality_720=$quality_1080='';
 
-          if(quality_info_data($_GET['episode_id'], 'post_upload_type')=='server_url'){
+          if(quality_info_data($episode_id, 'post_upload_type')=='server_url'){
             $data = array( 
               'quality_480'  =>  '',
               'quality_720'  =>  '',
               'quality_1080'  =>  '',
               );
 
-            $updateSql=Update('tbl_quality', $data, "WHERE `post_id` = '".$_GET['episode_id']."' AND `type`='episode'");
+            $updateSql=Update('tbl_quality', $data, "WHERE `post_id` = '".$episode_id."' AND `type`='episode'");
           }
 
           foreach($quality_arr as $key => $value) {
@@ -392,7 +394,7 @@
 
               if($_FILES['quality_local']['error'][$value]!=4){
 
-                  unlink('uploads/'.quality_info_data($_GET['episode_id'], $param));
+                  unlink('uploads/'.quality_info_data($episode_id, $param));
 
                   $ext = pathinfo($_FILES['quality_local']['name'][$value], PATHINFO_EXTENSION);
 
@@ -408,7 +410,7 @@
                   }                
               }
               else{
-                  $video_url=quality_info_data($_GET['episode_id'], $param);
+                  $video_url=quality_info_data($episode_id, $param);
               }
 
               if($value=='480'){
@@ -422,7 +424,7 @@
               }
           }
 
-          if(quality_info_data($_GET['episode_id'], 'id')!=''){
+          if(quality_info_data($episode_id, 'id')!=''){
             $data = array( 
               'post_upload_type'  =>  'local',
               'quality_480'  =>  $quality_480,
@@ -430,11 +432,11 @@
               'quality_1080'  =>  $quality_1080,
               );    
 
-            $updateSql=Update('tbl_quality', $data, "WHERE `post_id` = '".$_GET['episode_id']."' AND `type`='episode'");  
+            $updateSql=Update('tbl_quality', $data, "WHERE `post_id` = '".$episode_id."' AND `type`='episode'");  
           }
           else{
               $data = array( 
-              'post_id'  =>  $_GET['episode_id'],
+              'post_id'  =>  $episode_id,
               'post_upload_type'  =>  'local',
               'quality_480'  =>  $quality_480,
               'quality_720'  =>  $quality_720,
@@ -449,26 +451,26 @@
         }
         else{
 
-          if(quality_info_data($_GET['episode_id'], 'post_upload_type')=='local'){
+          if(quality_info_data($episode_id, 'post_upload_type')=='local'){
               
-              unlink('uploads/'.quality_info_data($_GET['episode_id'], 'quality_480'));
-              unlink('uploads/'.quality_info_data($_GET['episode_id'], 'quality_720'));
-              unlink('uploads/'.quality_info_data($_GET['episode_id'], 'quality_1080'));
+              unlink('uploads/'.quality_info_data($episode_id, 'quality_480'));
+              unlink('uploads/'.quality_info_data($episode_id, 'quality_720'));
+              unlink('uploads/'.quality_info_data($episode_id, 'quality_1080'));
           }
 
-          if(quality_info_data($_GET['episode_id'], 'id')!=''){
+          if(quality_info_data($episode_id, 'id')!=''){
             $data = array( 
               'post_upload_type'  =>  'server_url',
-              'quality_480'  =>  trim($_POST['quality_url']['480']),
-              'quality_720'  =>  trim($_POST['quality_url']['720']),
-              'quality_1080'  =>  trim($_POST['quality_url']['1080'])
+              'quality_480'  =>  addslashes(trim($_POST['quality_url']['480'])),
+              'quality_720'  =>  addslashes(trim($_POST['quality_url']['720'])),
+              'quality_1080'  =>  addslashes(trim($_POST['quality_url']['1080']))
               );    
 
-            $updateSql=Update('tbl_quality', $data, "WHERE `post_id` = '".$_GET['episode_id']."' AND `type`='episode'");  
+            $updateSql=Update('tbl_quality', $data, "WHERE `post_id` = '".$episode_id."' AND `type`='episode'");  
           }
           else{
               $data = array( 
-              'post_id'  =>  $_GET['episode_id'],
+              'post_id'  =>  $episode_id,
               'post_upload_type'  =>  'server_url',
               'quality_480'  =>  trim($_POST['quality_url']['480']),
               'quality_720'  =>  trim($_POST['quality_url']['720']),
@@ -490,6 +492,8 @@
           $index=1;
 
           foreach ($_POST['old_subtitle_id'] as $key_subtitle => $subtitle_id) {
+
+              $subtitle_id=(int)$subtitle_id;
 
               $index++;
 
@@ -566,7 +570,7 @@
               // add in subtitle table
 
               $data = array( 
-                'post_id'  =>  $_GET['episode_id'],
+                'post_id'  =>  $episode_id,
                 'language'  =>  $_POST['subtitle_lang'][$lang_index],
                 'subtitle_type'  =>  $_POST['subtitle_type'][$lang_index],
                 'subtitle_url'  =>  $subtitle_url,

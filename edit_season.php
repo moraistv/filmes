@@ -13,7 +13,7 @@
   $result_series=mysqli_query($mysqli,$sql);
 
 
-  $id=$_GET['id'];
+  $id=(int)$_GET['id'];
   $sql="SELECT * FROM tbl_season WHERE id='$id'";
   $res=mysqli_query($mysqli,$sql);
   $row=mysqli_fetch_assoc($res);

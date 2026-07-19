@@ -12,7 +12,7 @@
     
   if (isset($_POST['package_submit'])) {
     $data = array(
-        'package_name' => trim($_POST['package_name'])
+        'package_name' => addslashes(trim($_POST['package_name']))
     );
 
     $settings_edit = Update('tbl_settings', $data, "WHERE id = '1'");

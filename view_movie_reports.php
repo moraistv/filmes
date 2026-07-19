@@ -18,7 +18,7 @@
 		return stripslashes($row['total_comments']);
 	}
 
- 	$id=trim($_GET['post_id']);
+ 	$id=(int)$_GET['post_id'];
 
 	$sql="SELECT tbl_language.`language_name`,tbl_movies.* FROM tbl_movies
           LEFT JOIN tbl_language ON tbl_movies.`language_id`=tbl_language.`id` 

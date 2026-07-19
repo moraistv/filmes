@@ -139,7 +139,7 @@
     {
 
         $data = array(
-          'app_privacy_policy'  =>  trim($_POST['app_privacy_policy'])
+          'app_privacy_policy'  =>  addslashes(trim($_POST['app_privacy_policy']))
         );
 
         $settings_edit=Update('tbl_settings', $data, "WHERE id = '1'");

@@ -424,8 +424,40 @@
             }
         }
         
-        return $data_arr;
+        return sanitize_api_input($data_arr);
         
+    }
+
+    // Escapa recursivamente todos os valores de string recebidos da API antes que
+    // qualquer metodo em app.default os utilize em uma consulta SQL. Isso protege
+    // dezenas de consultas que hoje concatenam $get_method[...] diretamente, sem
+    // precisar reescrever cada uma individualmente.
+    //
+    // 'password' fica de fora de proposito: no fluxo do app ele so e usado apos
+    // passar por md5() (nunca cru em uma query), entao escapa-lo aqui mudaria o
+    // hash resultante e quebraria login/cadastro. 'sign' e 'salt' tambem ficam de
+    // fora pois ja foram validados como hash MD5 acima.
+    function sanitize_api_input($value, $skip_key = null)
+    {
+        global $mysqli;
+
+        if (is_array($value)) {
+            $sanitized = array();
+            foreach ($value as $key => $item) {
+                if ($key === 'password' || $key === 'sign' || $key === 'salt') {
+                    $sanitized[$key] = $item;
+                } else {
+                    $sanitized[$key] = sanitize_api_input($item);
+                }
+            }
+            return $sanitized;
+        }
+
+        if (is_string($value)) {
+            return mysqli_real_escape_string($mysqli, $value);
+        }
+
+        return $value;
     }
 
     function verify_envato_purchase_code($product_code)

@@ -47,14 +47,16 @@
 	
 	if(isset($_GET['g_id']))
 	{
+		$g_id=(int)$_GET['g_id'];
 			 
-		$qry="SELECT * FROM tbl_genres where gid='".$_GET['g_id']."'";
+		$qry="SELECT * FROM tbl_genres where gid='".$g_id."'";
 		$result=mysqli_query($mysqli,$qry);
 		$row=mysqli_fetch_assoc($result);
 
 	}
 	if(isset($_POST['submit']) and isset($_POST['g_id']))
 	{
+		$post_g_id=(int)$_POST['g_id'];
 		 
 		 if($_FILES['genre_image']['name']!="")
 		 {		
@@ -82,7 +84,7 @@
 				'genre_image'  =>  $genre_image
 			);
 
-			$genre_edit=Update('tbl_genres', $data, "WHERE gid = '".$_POST['g_id']."'");
+			$genre_edit=Update('tbl_genres', $data, "WHERE gid = '".$post_g_id."'");
 
 		 }
 		 else
@@ -92,7 +94,7 @@
 	          'genre_name'  =>  cleanInput($_POST['genre_name'])
 			);	
 
-	         $genre_edit=Update('tbl_genres', $data, "WHERE gid = '".$_POST['g_id']."'");
+	         $genre_edit=Update('tbl_genres', $data, "WHERE gid = '".$post_g_id."'");
 
 		 }
 		 
@@ -101,7 +103,7 @@
 		if(isset($_GET['redirect']))
 	      header( "Location:".$_GET['redirect']);
 	    else  
-	      header( "Location:add_genre.php?g_id=".$_POST['g_id']);
+	      header( "Location:add_genre.php?g_id=".$post_g_id);
 	    exit;
  
 	}

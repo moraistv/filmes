@@ -6,7 +6,8 @@
 	require_once("thumbnail_images.class.php");
 	
 	
-	  $viv_qry="SELECT * FROM  tbl_channels WHERE id='".$_GET['channel_id']."'";
+	  $channel_id=(int)$_GET['channel_id'];
+    $viv_qry="SELECT * FROM  tbl_channels WHERE id='".$channel_id."'";
     $viv_res=mysqli_query($mysqli,$viv_qry);
     $viv_row=mysqli_fetch_assoc($viv_res);
 	 	
@@ -71,27 +72,27 @@
             </tr>
             <tr>
               <td width="50%" align="right" style="padding:5px;"><img src="assets/images/star.png" style="height:30px;width:30px"> <img src="assets/images/star.png" style="height:30px;width:30px"> <img src="assets/images/star.png" style="height:30px;width:30px"> <img src="assets/images/star.png" style="height:30px;width:30px"> <img src="assets/images/star.png" style="height:30px;width:30px"></td>
-              <td width="30px" align="center"><?php echo rate_count($_GET['channel_id'],5);?></td>
+              <td width="30px" align="center"><?php echo rate_count($channel_id,5);?></td>
               <td align="left" style="padding:10px"><span style="display:block;height:15px;background-color:#ea1f62;width:0%"></span></td>
             </tr>
             <tr>
               <td width="50%" align="right" style="padding:5px;"><img src="assets/images/star_e.png" style="height:30px;width:30px"> <img src="assets/images/star.png" style="height:30px;width:30px"> <img src="assets/images/star.png" style="height:30px;width:30px"> <img src="assets/images/star.png" style="height:30px;width:30px"> <img src="assets/images/star.png" style="height:30px;width:30px"></td>
-              <td width="30px" align="center"><?php echo rate_count($_GET['channel_id'],4);?></td>
+              <td width="30px" align="center"><?php echo rate_count($channel_id,4);?></td>
               <td align="left" style="padding:10px"><span style="display:block;height:15px;background-color:#ea1f62;width:0%"></span></td>
             </tr>
             <tr>
               <td width="50%" align="right" style="padding:5px;"><img src="assets/images/star_e.png" style="height:30px;width:30px"> <img src="assets/images/star_e.png" style="height:30px;width:30px"> <img src="assets/images/star.png" style="height:30px;width:30px"> <img src="assets/images/star.png" style="height:30px;width:30px"> <img src="assets/images/star.png" style="height:30px;width:30px"></td>
-              <td width="30px" align="center"><?php echo rate_count($_GET['channel_id'],3);?></td>
+              <td width="30px" align="center"><?php echo rate_count($channel_id,3);?></td>
               <td align="left" style="padding:10px"><span style="display:block;height:15px;background-color:#ea1f62;width:0%"></span></td>
             </tr>
             <tr>
               <td width="50%" align="right" style="padding:5px;"><img src="assets/images/star_e.png" style="height:30px;width:30px"> <img src="assets/images/star_e.png" style="height:30px;width:30px"> <img src="assets/images/star_e.png" style="height:30px;width:30px"> <img src="assets/images/star.png" style="height:30px;width:30px"> <img src="assets/images/star.png" style="height:30px;width:30px"></td>
-              <td width="30px" align="center"><?php echo rate_count($_GET['channel_id'],2);?></td>
+              <td width="30px" align="center"><?php echo rate_count($channel_id,2);?></td>
               <td align="left" style="padding:10px"><span style="display:block;height:15px;background-color:#ea1f62;width:0%"></span></td>
             </tr>
             <tr>
               <td width="50%" align="right" style="padding:5px;"><img src="assets/images/star_e.png" style="height:30px;width:30px"> <img src="assets/images/star_e.png" style="height:30px;width:30px"> <img src="assets/images/star_e.png" style="height:30px;width:30px"> <img src="assets/images/star_e.png" style="height:30px;width:30px"> <img src="assets/images/star.png" style="height:30px;width:30px"></td>
-              <td width="30px" align="center"><?php echo rate_count($_GET['channel_id'],1);?></td>
+              <td width="30px" align="center"><?php echo rate_count($channel_id,1);?></td>
               <td align="left" style="padding:10px"><span style="display:block;height:15px;background-color:#ea1f62;width:0%"></span></td>
             </tr>
             </tbody>

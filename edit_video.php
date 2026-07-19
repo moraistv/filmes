@@ -9,7 +9,8 @@
 	$cat_qry="SELECT * FROM tbl_category ORDER BY category_name";
 	$cat_result=mysqli_query($mysqli,$cat_qry); 
 
-  $qry="SELECT * FROM tbl_video where id='".$_GET['video_id']."'";
+  $video_id=(int)$_GET['video_id'];
+  $qry="SELECT * FROM tbl_video where id='".$video_id."'";
   $result=mysqli_query($mysqli,$qry);
   $row=mysqli_fetch_assoc($result);
 	
@@ -20,11 +21,11 @@
         if ($_POST['video_type']=='youtube')
         {
 
-              $video_url=$_POST['video_url'];
+              $video_url=addslashes($_POST['video_url']);
 
               $youtube_video_url = addslashes($_POST['video_url']);
               parse_str( parse_url( $youtube_video_url, PHP_URL_QUERY ), $array_of_vars );
-              $video_id=  $array_of_vars['v'];
+              $video_id=  addslashes($array_of_vars['v']);
 
               if($_FILES['video_thumbnail']['name']!="")
             { 
@@ -48,7 +49,7 @@
         
         if ($_POST['video_type']=='server_url')
         {
-              $video_url=$_POST['video_url'];
+              $video_url=addslashes($_POST['video_url']);
 
             if($_FILES['video_thumbnail']['name']!="")
             { 
@@ -78,12 +79,12 @@
             {
                 $file_path = 'http://'.$_SERVER['SERVER_NAME'] . dirname($_SERVER['REQUEST_URI']).'/uploads/';
               
-                $video_url=$file_path.$_POST['video_file_name'];
+                $video_url=addslashes($file_path.$_POST['video_file_name']);
 
             }
             else
             {
-                $video_url=$_POST['video_url'];
+                $video_url=addslashes($_POST['video_url']);
             }
             
             if($_FILES['video_thumbnail']['name']!="")
@@ -109,18 +110,20 @@
 
           
         $data = array( 
-           'video_type'  =>  $_POST['video_type'],
-          'video_title'  =>  $_POST['video_title'],
+           'video_type'  =>  addslashes($_POST['video_type']),
+          'video_title'  =>  addslashes($_POST['video_title']),
           'video_url'  =>  $video_url,
           'video_id'  =>  $video_id,
           'video_thumbnail'  =>  $video_thumbnail           
           );
   		 		 
-    $qry=Update('tbl_video', $data, "WHERE id = '".$_POST['video_id']."'");
+    $post_video_id=(int)$_POST['video_id'];
+
+    $qry=Update('tbl_video', $data, "WHERE id = '".$post_video_id."'");
 
          
 		$_SESSION['msg']="11"; 
-		header( "Location:edit_video.php?video_id=".$_POST['video_id']);
+		header( "Location:edit_video.php?video_id=".$post_video_id);
 		exit;	
 
 		 

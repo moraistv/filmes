@@ -105,12 +105,14 @@
 	
 	if(isset($_GET['series_id']))
 	{	 
-		$qry="SELECT * FROM tbl_series where id='".$_GET['series_id']."'";
+		$series_id=(int)$_GET['series_id'];
+		$qry="SELECT * FROM tbl_series where id='".$series_id."'";
 		$result=mysqli_query($mysqli,$qry);
 		$row=mysqli_fetch_assoc($result);
 	}
 	if(isset($_POST['submit']) and isset($_POST['series_id']))
 	{	
+		$post_series_id=(int)$_POST['series_id'];
 		$title=addslashes(trim($_POST['series_name']));
 		$desc=addslashes(trim($_POST['series_desc']));
 		
@@ -179,7 +181,7 @@
 			   	'series_cover'  =>  $series_cover
 			    );
 
-		$edit=Update('tbl_series', $data, "WHERE id = '".$_POST['series_id']."'");
+		$edit=Update('tbl_series', $data, "WHERE id = '".$post_series_id."'");
 
 		$_SESSION['msg']="11"; 
 		
@@ -187,7 +189,7 @@
 		if(isset($_GET['redirect']))
 	      header( "Location:".$_GET['redirect']);
 	    else  
-	      header( "Location:add_series.php?series_id=".$_POST['series_id']);
+	      header( "Location:add_series.php?series_id=".$post_series_id);
 	    exit;
 
 		exit;

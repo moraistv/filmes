@@ -5,6 +5,28 @@
 
 	$response=array();
 
+	// Whitelists de identificadores SQL (nomes de tabela/coluna) aceitos vindos do
+	// POST em processData.php. Nomes de tabela/coluna nao podem ser protegidos por
+	// escape de string, entao validamos contra uma lista fechada dos valores que o
+	// front-end (data-*/JS) de fato envia hoje. Qualquer valor fora da lista e
+	// rejeitado antes de tocar o banco.
+	$allowed_tables = array(
+		'tbl_users', 'tbl_series', 'tbl_season', 'tbl_movies', 'tbl_language',
+		'tbl_genres', 'tbl_episode', 'tbl_channels', 'tbl_category'
+	);
+	$allowed_columns = array('status', 'is_slider', 'slider_channel');
+	$allowed_tbl_ids = array('id', 'cid');
+	$allowed_quality_columns = array('quality_480', 'quality_720', 'quality_1080');
+
+	function reject_invalid_identifier()
+	{
+		global $response;
+		$response['status'] = -2;
+		$response['message'] = 'Ocorreu um erro!';
+		echo json_encode($response);
+		exit();
+	}
+
 	// get total comments
 	function total_comments($news_id)
 	{
@@ -18,11 +40,15 @@
 
 	switch ($_POST['action']) {
 		case 'toggle_status':
-			$id=$_POST['id'];
+			$id=(int)$_POST['id'];
 			$for_action=$_POST['for_action'];
 			$column=$_POST['column'];
 			$tbl_id=$_POST['tbl_id'];
 			$table_nm=$_POST['table'];
+
+			if(!in_array($table_nm, $allowed_tables, true) || !in_array($column, $allowed_columns, true) || !in_array($tbl_id, $allowed_tbl_ids, true)){
+				reject_invalid_identifier();
+			}
 
 			if($for_action=='active'){
 				$data = array($column  =>  '1');
@@ -53,7 +79,7 @@
 			break;
 
 		case 'removeComment':
-			$id=$_POST['id'];
+			$id=(int)$_POST['id'];
 
 			Delete('tbl_comments','id='.$id);
 
@@ -63,7 +89,7 @@
 			break;
 
 		case 'removeAllComment':
-			$news_id=$_POST['news_id'];
+			$news_id=(int)$_POST['news_id'];
 
 			Delete('tbl_comments','news_id='.$news_id);
 
@@ -72,7 +98,7 @@
 			break;
 
 		case 'removeReport':
-			$id=$_POST['id'];
+			$id=(int)$_POST['id'];
 
 			Delete('tbl_reports','id='.$id);
 
@@ -82,8 +108,8 @@
 			break;
 
 		case 'removeAllReports':
-			$id=$_POST['id'];
-			$type=$_POST['type'];
+			$id=(int)$_POST['id'];
+			$type=mysqli_real_escape_string($mysqli,$_POST['type']);
 
 			$deleteSql="DELETE FROM tbl_reports WHERE `post_id`='$id' AND `type`='$type'";
 			
@@ -101,7 +127,7 @@
 			break;
 
 		case 'getSeason':
-			$id=$_POST['id'];
+			$id=(int)$_POST['id'];
 
 			$sql="SELECT * FROM tbl_season WHERE series_id='$id'";
 			$res=mysqli_query($mysqli,$sql);
@@ -118,13 +144,17 @@
 
 		case 'multi_delete':
 
-			$ids=implode(",", $_POST['id']);
+			$ids=implode(",", array_map('intval', (array)$_POST['id']));
 
 			if($ids==''){
-				$ids=$_POST['id'];
+				$ids=(int)$_POST['id'];
 			}
 
 			$tbl_nm=$_POST['tbl_nm'];
+
+			if(!in_array($tbl_nm, $allowed_tables, true)){
+				reject_invalid_identifier();
+			}
 
 			if($tbl_nm=='tbl_movies'){
 				$sql="SELECT * FROM $tbl_nm WHERE `id` IN ($ids)";
@@ -553,10 +583,10 @@
 			break;
 		
 		case 'remove_subtitle':
-			$id=$_POST['id'];
+			$id=(int)$_POST['id'];
 
-			$type=$_POST['type'];
-			$post_id=$_POST['post_id'];
+			$type=mysqli_real_escape_string($mysqli,$_POST['type']);
+			$post_id=(int)$_POST['post_id'];
 
 			$sql="SELECT * FROM tbl_subtitles WHERE `id` = '$id'";
 			$res=mysqli_query($mysqli, $sql);
@@ -581,8 +611,12 @@
 
 		case 'remove_quality':
 
-			$id=$_POST['id'];
+			$id=(int)$_POST['id'];
 			$column=$_POST['column'];
+
+			if(!in_array($column, $allowed_quality_columns, true)){
+				reject_invalid_identifier();
+			}
 
 			$sql="SELECT * FROM tbl_quality WHERE `id` = '$id'";
 			$res=mysqli_query($mysqli, $sql);
@@ -614,8 +648,12 @@
 		case 'multi_action':
 
 			$action=$_POST['for_action'];
-			$ids=implode(",", $_POST['id']);
+			$ids=implode(",", array_map('intval', (array)$_POST['id']));
 			$table=$_POST['table'];
+
+			if(!in_array($table, $allowed_tables, true)){
+				reject_invalid_identifier();
+			}
 
 			if($action=='enable'){
 

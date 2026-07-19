@@ -89,6 +89,10 @@ imagecopyresampled($NewImg,$NewImg_castr,0,0,0,0,$NewWidth,$NewHeight,$OldWidth_
 imagedestroy($NewImg_castr);
 imagedestroy($OldImg);
 if (!$this->imagejpeg_new($NewImg,$PathImgNew)) return (false);
+// Gera tambem uma copia .webp ao lado da miniatura, para servidores/CDNs
+// que fazem negociacao de conteudo por extensao. Nao afeta o fluxo
+// original: se o WebP falhar por qualquer motivo, ignoramos em silencio.
+$this->create_webp_sibling($NewImg, $PathImgNew);
 imagedestroy($NewImg);
 }
 }
@@ -98,6 +102,20 @@ return(false);
 }
 
 return(true);
+}
+
+// Cria um arquivo <nome>.webp ao lado do thumbnail gerado, mantendo o
+// arquivo original intacto (uso aditivo, nao substitui nada existente).
+function create_webp_sibling($GdImage, $PathImgNew) {
+if (!function_exists('imagewebp')) {
+return;
+}
+try {
+$webpPath = $PathImgNew . '.webp';
+@imagewebp($GdImage, $webpPath, 82);
+} catch (\Throwable $e) {
+// Silencioso: geracao de WebP e um extra, nunca deve quebrar o upload.
+}
 }
 
 }

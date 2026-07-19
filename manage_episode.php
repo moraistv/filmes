@@ -16,11 +16,11 @@
   if(isset($_GET['series']))
   {
 
-      $series_id=$_GET['series'];
+      $series_id=(int)$_GET['series'];
       
       if(isset($_GET['season'])){
 
-        $season_id=$_GET['season'];
+        $season_id=(int)$_GET['season'];
 
         $query = "SELECT COUNT(*) as num FROM $tableName WHERE tbl_episode.`series_id`='$series_id' AND tbl_episode.`season_id`='$season_id'";
 
@@ -55,7 +55,7 @@
 
       if(isset($_GET['season'])){
 
-        $season_id=$_GET['season'];
+        $season_id=(int)$_GET['season'];
 
         $sql="SELECT episode.*, series.`series_name`, season.`season_name`  FROM tbl_episode episode
             LEFT JOIN tbl_series series ON episode.`series_id`=series.`id`
@@ -156,7 +156,8 @@
                   <option value="">-- Temporada --</option>
                   <?php
                     if(isset($_GET['series'])){
-                      $sql="SELECT * FROM tbl_season WHERE `series_id`='".$_GET['series']."' ORDER BY `season_name` ASC";
+                      $filter_series_id=(int)$_GET['series'];
+                      $sql="SELECT * FROM tbl_season WHERE `series_id`='".$filter_series_id."' ORDER BY `season_name` ASC";
                       $res_season=mysqli_query($mysqli, $sql) or die(mysqli_error($mysqli));
                       while ($data=mysqli_fetch_assoc($res_season)) {
                         ?>

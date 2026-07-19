@@ -18,7 +18,7 @@
 		return stripslashes($row['total_comments']);
 	}
 
- 	$id=trim($_GET['post_id']);
+ 	$id=(int)$_GET['post_id'];
 
 	$sql="SELECT * FROM tbl_series WHERE `id`='$id' ORDER BY tbl_series.`id` DESC";
 

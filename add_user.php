@@ -30,13 +30,15 @@
   
   if(isset($_GET['user_id']))
   {
-    $user_qry="SELECT * FROM tbl_users where id='".$_GET['user_id']."'";
+    $user_id=(int)$_GET['user_id'];
+    $user_qry="SELECT * FROM tbl_users where id='".$user_id."'";
     $user_result=mysqli_query($mysqli,$user_qry);
     $user_row=mysqli_fetch_assoc($user_result);
   }
   
   if(isset($_POST['submit']) and isset($_POST['user_id']))
   {
+    $post_user_id=(int)$_POST['user_id'];
       
     if($_POST['password']!="")
     {
@@ -58,7 +60,7 @@
     }
  
     
-    $user_edit=Update('tbl_users', $data, "WHERE id = '".$_POST['user_id']."'");
+    $user_edit=Update('tbl_users', $data, "WHERE id = '".$post_user_id."'");
     
     $_SESSION['msg']="11";
 
@@ -66,7 +68,7 @@
       header("Location:".$_GET['redirect']);
     }
     else{
-      header("Location:add_user.php?user_id=".$_POST['user_id']);
+      header("Location:add_user.php?user_id=".$post_user_id);
     }
     exit;
    

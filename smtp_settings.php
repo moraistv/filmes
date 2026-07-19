@@ -16,7 +16,7 @@
 
       $password = '';
       if ($_POST['smtp_password'][$key] != '') {
-        $password = $_POST['smtp_password'][$key];
+        $password = addslashes($_POST['smtp_password'][$key]);
       } else {
         if ($key == 0) {
           $password = $row['smtp_gpassword'];
@@ -29,21 +29,21 @@
 
         $data = array(
           'smtp_type'  =>  'gmail',
-          'smtp_ghost'  =>  $_POST['smtp_host'][$key],
-          'smtp_gemail'  =>  $_POST['smtp_email'][$key],
+          'smtp_ghost'  =>  addslashes($_POST['smtp_host'][$key]),
+          'smtp_gemail'  =>  addslashes($_POST['smtp_email'][$key]),
           'smtp_gpassword'  =>  $password,
-          'smtp_gsecure'  =>  $_POST['smtp_secure'][$key],
-          'gport_no'  =>  $_POST['port_no'][$key]
+          'smtp_gsecure'  =>  addslashes($_POST['smtp_secure'][$key]),
+          'gport_no'  =>  addslashes($_POST['port_no'][$key])
         );
       } else {
 
         $data = array(
           'smtp_type'  =>  'server',
-          'smtp_host'  =>  $_POST['smtp_host'][$key],
-          'smtp_email'  =>  $_POST['smtp_email'][$key],
+          'smtp_host'  =>  addslashes($_POST['smtp_host'][$key]),
+          'smtp_email'  =>  addslashes($_POST['smtp_email'][$key]),
           'smtp_password'  =>  $password,
-          'smtp_secure'  =>  $_POST['smtp_secure'][$key],
-          'port_no'  =>  $_POST['port_no'][$key]
+          'smtp_secure'  =>  addslashes($_POST['smtp_secure'][$key]),
+          'port_no'  =>  addslashes($_POST['port_no'][$key])
         );
       }
 

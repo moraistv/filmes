@@ -14,20 +14,20 @@
 	 
   if(isset($_POST["search"]))
   {
-  	$channel_name=$_POST['search_value']; 
+  	$channel_name=mysqli_real_escape_string($mysqli,$_POST['search_value']); 
   	
     $qry="SELECT * FROM tbl_channels,tbl_category WHERE cat_id=cid and channel_title LIKE '%".$channel_name."%' ORDER BY tbl_channels.id DESC"; 
   	 
   }
   else if($_POST['cat_id']!=''){
 
-    $cat_id=$_POST['cat_id'];
+    $cat_id=(int)$_POST['cat_id'];
     $qry="SELECT tbl_channels.*,tbl_category.`category_name` FROM tbl_channels
           LEFT JOIN tbl_category ON tbl_channels.`cat_id`= tbl_category.`cid` WHERE tbl_channels.`cat_id`='$cat_id' ORDER BY tbl_channels.`id` DESC";  
   }
   else if(isset($_GET['category']))
   {
-      $category_id=$_GET['category'];
+      $category_id=(int)$_GET['category'];
 
       $query = "SELECT COUNT(*) as num FROM $tableName WHERE `cat_id`='$category_id'";
 

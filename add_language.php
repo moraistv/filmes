@@ -15,7 +15,7 @@
   require_once("thumbnail_images.class.php");
 
   if(isset($_GET['id'])){
-    $id=$_GET['id'];
+    $id=(int)$_GET['id'];
     $sql="SELECT * FROM tbl_language WHERE id='$id'";
     $res=mysqli_query($mysqli,$sql);
     $row=mysqli_fetch_assoc($res);
@@ -39,6 +39,7 @@
   }
   if(isset($_POST['submit']) and isset($_POST['id']))
   {
+    $post_id=(int)$_POST['id'];
 
     $name=addslashes(trim($_POST['language_name']));
     $color=addslashes(trim($_POST['bg_color']));
@@ -47,7 +48,7 @@
           'language_background'  =>  $color
     );  
 
-    $update=Update('tbl_language', $data, "WHERE id = '".$_POST['id']."'");
+    $update=Update('tbl_language', $data, "WHERE id = '".$post_id."'");
  
     
     $_SESSION['msg']="11"; 
@@ -55,7 +56,7 @@
     if(isset($_GET['redirect']))
       header( "Location:".$_GET['redirect']);
     else  
-      header( "Location:add_language.php?id=".$_POST['id']);
+      header( "Location:add_language.php?id=".$post_id);
     exit;
  
   }

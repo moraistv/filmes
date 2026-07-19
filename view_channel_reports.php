@@ -18,7 +18,7 @@
 		return stripslashes($row['total_comments']);
 	}
 
- 	$id=trim($_GET['post_id']);
+ 	$id=(int)$_GET['post_id'];
 
 	$sql="SELECT tbl_channels.*,tbl_category.`category_name` FROM tbl_channels
           LEFT JOIN tbl_category ON tbl_channels.`cat_id`= tbl_category.`cid` 

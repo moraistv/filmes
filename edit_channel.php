@@ -18,7 +18,8 @@
 	
 	if(isset($_GET['channel_id']))
 	{
-		$viv_qry="SELECT * FROM  tbl_channels WHERE id='".$_GET['channel_id']."'";
+		$channel_id=(int)$_GET['channel_id'];
+		$viv_qry="SELECT * FROM  tbl_channels WHERE id='".$channel_id."'";
 		$viv_res=mysqli_query($mysqli,$viv_qry);
 		$viv_row=mysqli_fetch_assoc($viv_res);
 		 
@@ -89,22 +90,24 @@
     $agent_name=($_POST['user_agent_type']=='custom') ? trim($_POST['user_agent_name']) : '';
 	          
     $data = array( 
-      'cat_id'  =>  $_POST['category_id'],
-      'channel_type'  =>  $_POST['channel_type'],
-      'channel_title'  =>  $_POST['channel_title'],
-      'channel_url'  =>  $_POST['channel_url'],
-      'channel_type_ios'  =>  $_POST['channel_type_ios'],
-      'channel_url_ios'  =>  $_POST['channel_url_ios'],
+      'cat_id'  =>  (int)$_POST['category_id'],
+      'channel_type'  =>  addslashes($_POST['channel_type']),
+      'channel_title'  =>  addslashes($_POST['channel_title']),
+      'channel_url'  =>  addslashes($_POST['channel_url']),
+      'channel_type_ios'  =>  addslashes($_POST['channel_type_ios']),
+      'channel_url_ios'  =>  addslashes($_POST['channel_url_ios']),
       'channel_desc'  =>  addslashes($_POST['channel_desc']),
       'channel_poster'  =>  $channel_poster,
       'channel_thumbnail'  =>  $channel_cover,
-      'user_agent'  =>  trim($_POST['user_agent']),
-      'user_agent_type'  =>  trim($_POST['user_agent_type']),
-      'user_agent_name'  =>  $agent_name,
+      'user_agent'  =>  addslashes(trim($_POST['user_agent'])),
+      'user_agent_type'  =>  addslashes(trim($_POST['user_agent_type'])),
+      'user_agent_name'  =>  addslashes($agent_name),
     );	
 		
 		
-		$channel_edit=Update('tbl_channels', $data, "WHERE id = '".$_POST['channel_id']."'"); 
+		$post_channel_id=(int)$_POST['channel_id'];
+
+		$channel_edit=Update('tbl_channels', $data, "WHERE id = '".$post_channel_id."'"); 
 
 		$_SESSION['msg']="11"; 
 		
@@ -112,7 +115,7 @@
     if(isset($_GET['redirect']))
       header( "Location:".$_GET['redirect']);
     else  
-      header( "Location:edit_channel.php?channel_id=".$_POST['channel_id']);
+      header( "Location:edit_channel.php?channel_id=".$post_channel_id);
     exit;		 
 		  
 	}	

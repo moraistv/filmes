@@ -51,7 +51,7 @@
 	if(isset($_GET['language_id']))
 	{ 
  
-    $id=$_GET['language_id'];
+    $id=(int)$_GET['language_id'];
     Delete('tbl_language','id='.$id);
       
     $res_movie=mysqli_query($mysqli,"SELECT * FROM tbl_movies WHERE `language_id`='$id'");

@@ -59,10 +59,10 @@
 	
 	if(isset($_GET['type'])){
 
-		$type=$_GET['type'];
+		$type=mysqli_real_escape_string($mysqli,$_GET['type']);
 
 		if(isset($_GET['post_id'])){
-			$post_id=$_GET['post_id'];
+			$post_id=(int)$_GET['post_id'];
 	
 			$targetpage = "manage_comments.php?post_id=".$post_id."&type=".$type;
 
@@ -78,7 +78,7 @@
 		}
 		else if(isset($_GET['user_id'])){
 
-			$user_id=$_GET['user_id'];
+			$user_id=(int)$_GET['user_id'];
 	
 			$targetpage = "manage_comments.php?user_id=".$user_id; 	
 

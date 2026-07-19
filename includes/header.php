@@ -128,18 +128,18 @@
           <ul class="cust-dropdown">
             <li> 
               <a href="manage_language.php" class="<?php if(isset($current_page) && $current_page=="language"){ echo 'active'; }?>">
-                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Idiomas</div>
+                <div class="title">Idiomas</div>
               </a> 
             </li>
 
             <li>
               <a href="manage_genres.php" class="<?php if(isset($current_page) && $current_page=="genre"){ echo 'active'; }?>">
-                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Gêneros</div>
+                <div class="title">Gêneros</div>
               </a> 
             </li> 
              <li>
               <a href="manage_movies.php" class="<?php if(isset($current_page) && $current_page=="movies"){ echo 'active'; }?>">
-                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Filmes</div>
+                <div class="title">Filmes</div>
               </a> 
             </li>   
           </ul>
@@ -156,18 +156,18 @@
           <ul class="cust-dropdown">
             <li> 
               <a href="manage_series.php" class="<?php if(isset($current_page) && $current_page=="series"){ echo 'active'; }?>">
-                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Séries</div>
+                <div class="title">Séries</div>
               </a> 
             </li>
 
             <li>
               <a href="manage_season.php" class="<?php if(isset($current_page) && $current_page=="season"){ echo 'active'; }?>">
-                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Temporadas</div>
+                <div class="title">Temporadas</div>
               </a> 
             </li> 
              <li>
               <a href="manage_episode.php" class="<?php if(isset($current_page) && $current_page=="episode"){ echo 'active'; }?>">
-                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Episódios</div>
+                <div class="title">Episódios</div>
               </a> 
             </li>   
           </ul>
@@ -184,12 +184,12 @@
           <ul class="cust-dropdown">
             <li>
               <a href="manage_category.php" class="<?php if(isset($current_page) && $current_page=="category"){ echo 'active'; }?>">
-                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Categorias</div>
+                <div class="title">Categorias</div>
               </a> 
             </li> 
              <li>
               <a href="manage_channels.php" class="<?php if(isset($current_page) && $current_page=="channel"){ echo 'active'; }?>">
-                <div class="title"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Canais</div>
+                <div class="title">Canais</div>
               </a> 
             </li>   
           </ul>
@@ -222,7 +222,7 @@
         <li class="nav-section"><span>Sistema</span></li>
         <li <?php if($currentFile=="smtp_settings.php"){?>class="active"<?php }?>> <a href="smtp_settings.php">
           <div class="icon"> <i class="bi bi-envelope-fill" aria-hidden="true"></i> </div>
-          <div class="title">Configurações de SMTP</div>
+          <div class="title">SMTP</div>
           </a> 
         </li>
 
@@ -234,7 +234,7 @@
 
         <li <?php if($currentFile=="verification.php"){?>class="active"<?php }?>> <a href="verification.php">
           <div class="icon"> <i class="bi bi-patch-check-fill" aria-hidden="true"></i> </div>
-          <div class="title">Identificação do app</div>
+          <div class="title">Identificação</div>
           </a> 
         </li>
 

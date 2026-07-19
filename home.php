@@ -381,9 +381,9 @@
           format: '#',
           viewWindowMode: "explicit", viewWindow:{ min: 0 },
         },
-        height: 380,
+        height: 300,
         chartArea:{
-          left:80,top:20,width:'92%',height:'auto'
+          left:70,top:14,width:'93%',height:'auto'
         },
         legend: {
             position: 'none'

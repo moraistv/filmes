@@ -213,6 +213,10 @@ body.admin-shell aside.app-sidebar .sidebar-menu ul.sidebar-nav > li > a .icon i
 
 body.admin-shell aside.app-sidebar .sidebar-menu ul.sidebar-nav > li > a .title {
   flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 12.5px;
   letter-spacing: 0;
 }
@@ -236,8 +240,8 @@ body.admin-shell .dropdown-a.open .dropdown-caret {
 }
 
 body.admin-shell .cust-dropdown-container {
-  margin: 2px 0 6px !important;
-  padding: 2px 8px 4px 30px;
+  margin: 0 0 4px !important;
+  padding: 0 6px 0 22px;
   background: transparent;
   border-radius: 10px;
 }
@@ -250,17 +254,24 @@ body.admin-shell .cust-dropdown {
 body.admin-shell .cust-dropdown::before {
   content: "";
   position: absolute;
-  left: 15px;
-  top: 4px;
-  bottom: 4px;
+  left: 7px;
+  top: 2px;
+  bottom: 2px;
   width: 2px;
   border-radius: 2px;
   background: rgba(255,255,255,.08);
 }
 
+body.admin-shell .cust-dropdown li {
+  margin: 0;
+}
+
 body.admin-shell .cust-dropdown li a {
   position: relative;
-  padding: 8px 10px 8px 26px;
+  display: flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 6px 10px 6px 22px;
   color: #a3907f;
   font-size: 12px;
   font-weight: 500;
@@ -270,7 +281,7 @@ body.admin-shell .cust-dropdown li a {
 body.admin-shell .cust-dropdown li a::before {
   content: "";
   position: absolute;
-  left: 11px;
+  left: 3px;
   top: 50%;
   width: 8px;
   height: 8px;
@@ -300,7 +311,9 @@ body.admin-shell .cust-dropdown li a .bi-chevron-right {
 }
 
 body.admin-shell .cust-dropdown li a .title {
-  margin-left: -6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 body.admin-shell .sidebar-account {
@@ -383,7 +396,7 @@ body.admin-shell .sidebar-logout:hover {
    ========================================================================== */
 body.admin-shell .navbar {
   min-height: 78px;
-  margin: 0 0 28px;
+  margin: 0 0 20px;
   background: rgba(255,255,255,.94);
   border: 0;
   border-bottom: 1px solid rgba(236,227,220,.9);
@@ -456,8 +469,8 @@ body.admin-shell .card.mrg_bottom {
 }
 
 body.admin-shell .page_title_block {
-  min-height: 82px;
-  padding: 20px 21px 16px;
+  min-height: 68px;
+  padding: 15px 21px 13px;
   background: transparent;
   border-bottom: 1px solid var(--admin-border);
   border-radius: var(--admin-radius) var(--admin-radius) 0 0;
@@ -732,7 +745,7 @@ body.admin-shell .app-footer {
    Dashboard (home.php)
    ========================================================================== */
 body.page-home .dash-heading {
-  margin: 4px 0 24px;
+  margin: 0 0 16px;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -742,21 +755,21 @@ body.page-home .dash-heading {
 
 body.page-home .dash-heading h1 {
   margin: 0;
-  font-size: 24px;
+  font-size: 21px;
   font-weight: 700;
 }
 
 body.page-home .dash-heading p {
   margin: 0;
   color: var(--admin-muted);
-  font-size: 13px;
+  font-size: 12.5px;
 }
 
 body.page-home .stat-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-  margin-bottom: 26px;
+  gap: 14px;
+  margin-bottom: 18px;
 }
 
 @media (max-width: 1199px) {
@@ -772,10 +785,10 @@ body.page-home .stat-grid {
 body.page-home .stat-card {
   position: relative;
   display: block;
-  padding: 20px;
+  padding: 16px 18px;
   background: var(--admin-surface);
   border: 1px solid var(--admin-border);
-  border-radius: var(--admin-radius);
+  border-radius: var(--admin-radius-sm);
   box-shadow: var(--admin-shadow);
   overflow: hidden;
   text-decoration: none;
@@ -801,23 +814,23 @@ body.page-home .stat-card::after {
 body.page-home .stat-card .stat-icon {
   position: relative;
   z-index: 1;
-  width: 46px;
-  height: 46px;
+  width: 38px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 14px;
-  border-radius: 13px;
+  margin-bottom: 10px;
+  border-radius: 11px;
   background: var(--stat-soft, var(--admin-primary-soft));
   color: var(--stat-color, var(--admin-primary));
-  font-size: 20px;
+  font-size: 17px;
 }
 
 body.page-home .stat-card .stat-value {
   position: relative;
   z-index: 1;
-  margin: 0 0 2px;
-  font-size: 28px;
+  margin: 0 0 1px;
+  font-size: 24px;
   line-height: 1;
   font-weight: 800;
   letter-spacing: -.02em;
@@ -843,10 +856,10 @@ body.page-home .stat-card.stat-pink  { --stat-soft: var(--admin-pink-soft);    -
 body.page-home .panel-card {
   background: var(--admin-surface);
   border: 1px solid var(--admin-border);
-  border-radius: var(--admin-radius);
+  border-radius: var(--admin-radius-sm);
   box-shadow: var(--admin-shadow);
-  padding: 22px;
-  margin-bottom: 24px;
+  padding: 18px;
+  margin-bottom: 18px;
 }
 
 body.page-home .panel-card .panel-head {
@@ -854,7 +867,7 @@ body.page-home .panel-card .panel-head {
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 body.page-home .panel-card .panel-head h3 {

@@ -4,6 +4,15 @@ set -eu
 cd /var/www/html
 mkdir -p runtime images uploads
 
+# O diretorio images/ vive num volume persistente (sobrevive aos deploys),
+# entao arquivos NOVOS adicionados na imagem (ex.: logo-getcine.svg) nunca
+# chegavam ao volume ja existente. Aqui copiamos da copia "de fabrica"
+# (images.dist, gerada no build) para o volume, sem sobrescrever arquivos
+# que ja existem la (uploads de filmes/series feitos pelo admin).
+if [ -d images.dist ]; then
+  cp -rn images.dist/. images/ 2>/dev/null || true
+fi
+
 if [ ! -f runtime/connection.php ]; then
   cp includes/connection.php runtime/connection.php
 fi

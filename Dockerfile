@@ -18,6 +18,12 @@ COPY docker/php.ini /usr/local/etc/php/conf.d/painel.ini
 COPY docker/apache-extra.conf /etc/apache2/conf-enabled/painel-extra.conf
 COPY docker/entrypoint.sh /usr/local/bin/painel-entrypoint
 
+# Guarda uma copia "de fabrica" da pasta images/ fora do caminho que sera
+# coberto pelo volume persistente. O entrypoint usa essa copia para trazer
+# arquivos novos (ex.: logo atualizado) para o volume a cada deploy, sem
+# sobrescrever uploads que os usuarios ja fizeram pelo painel.
+RUN cp -r /var/www/html/images /var/www/html/images.dist
+
 RUN sed -i 's/\r$//' /usr/local/bin/painel-entrypoint \
     && chmod +x /usr/local/bin/painel-entrypoint \
     && chown -R www-data:www-data /var/www/html

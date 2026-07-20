@@ -67,12 +67,22 @@
 		}
 
 		// for series cover
-		$series_cover=rand(0,99999)."_".$_FILES['series_cover']['name'];
-		$pic1=$_FILES['series_cover']['tmp_name'];
+		if(empty($_POST['cover_img']) || $_FILES['series_cover']['error']!=4){
+			$series_cover=rand(0,99999)."_".$_FILES['series_cover']['name'];
+			$pic1=$_FILES['series_cover']['tmp_name'];
 
-					
-		$tpath1='images/series/'.$series_cover; 
-		copy($pic1,$tpath1);
+			$tpath1='images/series/'.$series_cover;
+			copy($pic1,$tpath1);
+		}
+		else{
+			// capa importada por URL (TMDB)
+			$get_file_name = parse_url($_POST['cover_img'], PHP_URL_PATH);
+			$ext = pathinfo($get_file_name, PATHINFO_EXTENSION);
+			if($ext=='') { $ext='jpg'; }
+			$series_cover=date('dmYhis').'_'.rand(0,99999).".".$ext;
+			$tpath1='images/series/'.$series_cover;
+			grab_image($_POST['cover_img'], $tpath1);
+		}
 
 		$thumbpath='images/series/thumbs/'.$series_cover;
 			
@@ -285,6 +295,7 @@
                     <div class="col-md-6">
                       <div class="fileupload_block">
                         <input type="file" name="series_cover" value="" accept=".png, .jpg, .jpeg, .svg, .gif" <?php echo (!isset($_GET['series_id'])) ? 'required="require"' : '' ?> id="fileupload">
+                        <input type="hidden" name="cover_img" value="">
                         <div class="fileupload_img">
                         	<?php 
                         		$img_src="";
@@ -296,7 +307,7 @@
                         		}
 
                         	?>
-                          <img type="image" src="<?=$img_src?>" alt="imagem de capa" style="width: 150px;height: 86px" />
+                          <img type="image" src="<?=$img_src?>" class="cover_img" alt="imagem de capa" style="width: 150px;height: 86px" />
                         </div>
                       </div>
                     </div>
@@ -439,6 +450,14 @@
                 $("input[name='series_name']").val(res.title);
                 $("input[name='poster_img']").val(res.thumbnail);
                 $(".poster_img").attr('src', res.thumbnail);
+
+                // Imagem de capa (TMDB)
+                if(res.cover){
+                  $("input[name='series_cover']").attr("required",false);
+                  $("input[name='cover_img']").val(res.cover);
+                  $(".cover_img").attr('src', res.cover);
+                }
+
                 $("textarea[name='series_desc']").val(res.plot);
                 CKEDITOR.instances['series_desc'].setData(res.plot);
             }

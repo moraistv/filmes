@@ -107,7 +107,8 @@
     {
 
         $data = array(
-            'omdb_api_key' => cleanInput($_POST['omdb_api_key'])
+            'omdb_api_key' => cleanInput($_POST['omdb_api_key']),
+            'tmdb_api_key' => cleanInput($_POST['tmdb_api_key'])
         );
 
         $settings_edit=Update('tbl_settings', $data, "WHERE id = '1'");
@@ -417,13 +418,21 @@
                     <div class="section">
                     <div class="section-body">
                       <div class="form-group">
-                        <label class="col-md-3 control-label">Chave da API :-
+                        <label class="col-md-3 control-label">Chave da API OMDb :-
                           <p class="control-label-help">(Se você não sabe, <a href="http://www.omdbapi.com/apikey.aspx" target="_blank">clique aqui</a>)</p>
                         </label>
                         <div class="col-md-6">
                           <input type="text" name="omdb_api_key" id="omdb_api_key" value="<?php echo $settings_row['omdb_api_key'];?>" class="form-control">
                         </div>
-                      </div>              
+                      </div>
+                      <div class="form-group">
+                        <label class="col-md-3 control-label">Chave da API TMDB :-
+                          <p class="control-label-help">Recomendada: traz título/sinopse em português e imagem de capa. (Chave gratuita, <a href="https://www.themoviedb.org/settings/api" target="_blank">clique aqui</a>)</p>
+                        </label>
+                        <div class="col-md-6">
+                          <input type="text" name="tmdb_api_key" id="tmdb_api_key" value="<?php echo isset($settings_row['tmdb_api_key']) ? $settings_row['tmdb_api_key'] : '';?>" class="form-control" placeholder="Deixe vazio para usar apenas o OMDb (inglês, sem capa)">
+                        </div>
+                      </div>
                       <div class="form-group">
                       <div class="col-md-9 col-md-offset-3">
                         <button type="submit" name="omdb_api_submit" class="btn btn-primary">Salvar</button>

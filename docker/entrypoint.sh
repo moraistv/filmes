@@ -41,5 +41,6 @@ chown www-data:www-data api.php
 # estejam com os valores default antigos do template (nao sobrescreve
 # customizacoes feitas pelo admin). Nao interrompe o deploy se falhar.
 php includes/force_brand_update.php || true
+php includes/migrate_tmdb.php || true
 
 exec docker-php-entrypoint "$@"

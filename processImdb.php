@@ -1,255 +1,310 @@
-<?php 
+<?php
 	require("includes/connection.php");
 	require("includes/function.php");
 	require("language/language.php");
 
-	$setting_qry="SELECT omdb_api_key FROM tbl_settings where id='1'";
-    $setting_result=mysqli_query($mysqli,$setting_qry);
-    $settings_details=mysqli_fetch_assoc($setting_result);
+	// Le as chaves de API. Usa SELECT * para nao quebrar caso a coluna
+	// tmdb_api_key ainda nao exista (a migracao a cria no deploy).
+	$setting_result = mysqli_query($mysqli, "SELECT * FROM tbl_settings WHERE id='1'");
+	$settings_details = mysqli_fetch_assoc($setting_result);
 
-    $omdb_api_key=$settings_details['omdb_api_key'];
+	$omdb_api_key = isset($settings_details['omdb_api_key']) ? $settings_details['omdb_api_key'] : '';
+	$tmdb_api_key = isset($settings_details['tmdb_api_key']) ? $settings_details['tmdb_api_key'] : '';
 
-    function is_genre_info($name)
-	{ 
-		global $mysqli;   
+	// Bases de imagem do TMDB
+	define('TMDB_POSTER', 'https://image.tmdb.org/t/p/w500');
+	define('TMDB_BACKDROP', 'https://image.tmdb.org/t/p/w1280');
+	define('TMDB_STILL', 'https://image.tmdb.org/t/p/w780');
 
-		$sql="SELECT * FROM tbl_genres WHERE genre_name LIKE '%$name%'";
-		 
-		$res=mysqli_query($mysqli,$sql);
-
-		if($res->num_rows > 0){
-			$row=mysqli_fetch_assoc($res);
+	function is_genre_info($name)
+	{
+		global $mysqli;
+		$name = mysqli_real_escape_string($mysqli, $name);
+		$sql = "SELECT * FROM tbl_genres WHERE genre_name LIKE '%$name%'";
+		$res = mysqli_query($mysqli, $sql);
+		if ($res && $res->num_rows > 0) {
+			$row = mysqli_fetch_assoc($res);
 			return $row['gid'];
 		}
-		else{
-			return 0;
-		}
+		return 0;
 	}
 
 	function is_language_info($name)
-	{ 
-		global $mysqli;   
-
-		$sql="SELECT * FROM tbl_language WHERE language_name LIKE '%$name%'";
-		 
-		$res=mysqli_query($mysqli,$sql);
-
-		if($res->num_rows > 0){
-			$row=mysqli_fetch_assoc($res);
+	{
+		global $mysqli;
+		$name = mysqli_real_escape_string($mysqli, $name);
+		$sql = "SELECT * FROM tbl_language WHERE language_name LIKE '%$name%'";
+		$res = mysqli_query($mysqli, $sql);
+		if ($res && $res->num_rows > 0) {
+			$row = mysqli_fetch_assoc($res);
 			return $row['id'];
 		}
-		else{
-			return 0;
-		}
+		return 0;
 	}
 
-	$response=array();
+	// Requisicao GET JSON simples
+	function http_get_json($url)
+	{
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 25);
+		$r = curl_exec($ch);
+		curl_close($ch);
+		return json_decode($r);
+	}
 
-	switch ($_POST['action']) {
+	// Converte codigo de idioma do TMDB (ex.: "en") em nome PT para casar
+	// com a tabela tbl_language do painel.
+	function tmdb_lang_name($code)
+	{
+		$map = array(
+			'en' => 'Inglês', 'pt' => 'Português', 'es' => 'Espanhol',
+			'fr' => 'Francês', 'de' => 'Alemão', 'it' => 'Italiano',
+			'ja' => 'Japonês', 'ko' => 'Coreano', 'zh' => 'Chinês',
+			'ru' => 'Russo', 'hi' => 'Hindi', 'ar' => 'Árabe',
+		);
+		return isset($map[$code]) ? $map[$code] : $code;
+	}
 
-		case 'getEpisodeDetails' :
-		{
-			$string= $_POST['id'];
+	// Extrai o IMDb ID (ttXXXXXXX) ou devolve o texto para busca por titulo
+	function parse_imdb_input($string)
+	{
+		preg_match_all("/tt\\d{7,8}/", $string, $ids);
+		if (isset($ids[0][0])) {
+			return array('is_imdb' => true, 'value' => $ids[0][0]);
+		}
+		return array('is_imdb' => false, 'value' => trim($string));
+	}
 
-	        preg_match_all("/tt\\d{7,8}/", $string, $ids);
+	$response = array();
+	$action = isset($_POST['action']) ? $_POST['action'] : '';
+	$input = isset($_POST['id']) ? $_POST['id'] : '';
 
-	        if(isset($ids[0][0]))
-	        {   
-	            $search_by='i';
-	            $imbd_id_title=$ids[0][0];
-	        }
-	        else
-	        {   
-	            $search_by='t';
-	            $imbd_id_title=str_replace(' ', '+', $string);
-	        }
-	        //exit;
-
-	        $type= 'episode';
-
-	        $ch = curl_init();
-	        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	        curl_setopt($ch, CURLOPT_URL, 'http://www.omdbapi.com/?'.$search_by.'='.$imbd_id_title.'&apikey='.$omdb_api_key.'&plot=full&type='.$type.'');
-	        $result = curl_exec($ch);
-	        curl_close($ch);
-
-	        $obj = json_decode($result);
-
-	        if(isset($obj->Response) && $obj->Response=="True")
-	        {   
-
-	            $response['status']    = '1';
-	            $response['message']    = 'Data imported successfully.';
-	            $response['class']    = 'success';
-
-	            $response['title']          = $obj->Title;
-	            
-	            $image_path=$obj->Poster;
-	            $response['thumbnail'] = $image_path;
-
-	            $get_file_name = parse_url($image_path, PHP_URL_PATH);
-
-	            // extracted basename
-	            $response['thumbnail_name']  = basename($get_file_name);
-
-	        }
-	        else
-	        {
-	            $response['status']    = '0';
-	            $response['message']    = $obj->Error;
-	            $response['class']    = 'error';
-	        }
-
-	        echo json_encode($response);
-	        break;
+	// ==========================================================================
+	//  Importacao via TMDB (portugues + capa). Retorna null se nao encontrar
+	//  ou se nao houver chave TMDB configurada (para cair no fallback OMDb).
+	// ==========================================================================
+	function tmdb_fetch($kind, $input, $tmdb_api_key)
+	{
+		if ($tmdb_api_key == '') {
+			return null;
 		}
 
-		case 'getSeriesDetails' :
-		{
-			$string= $_POST['id'];
+		$parsed = parse_imdb_input($input);
+		$tmdbId = null;
+		$mediaType = ($kind == 'series' || $kind == 'episode') ? 'tv' : 'movie';
 
-	        preg_match_all("/tt\\d{7,8}/", $string, $ids);
+		if ($parsed['is_imdb']) {
+			$find = http_get_json('https://api.themoviedb.org/3/find/' . $parsed['value'] . '?api_key=' . $tmdb_api_key . '&external_source=imdb_id&language=pt-BR');
 
-	        if(isset($ids[0][0]))
-	        {   
-	            $search_by='i';
-	            $imbd_id_title=$ids[0][0];
-	        }
-	        else
-	        {   
-	            $search_by='t';
-	            $imbd_id_title=str_replace(' ', '+', $string);
-	        }
-	        //exit;
+			if ($kind == 'episode') {
+				if (isset($find->tv_episode_results[0])) {
+					return tmdb_episode_from_find($find->tv_episode_results[0]);
+				}
+				return null;
+			}
 
-	        $type= 'series';
-
-	        $ch = curl_init();
-	        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	        curl_setopt($ch, CURLOPT_URL, 'http://www.omdbapi.com/?'.$search_by.'='.$imbd_id_title.'&apikey='.$omdb_api_key.'&plot=short&type='.$type.'');
-	        $result = curl_exec($ch);
-	        curl_close($ch);
-
-	        $obj = json_decode($result);
-
-	        // print_r($obj);
-
-	        if(isset($obj->Response) && $obj->Response=="True")
-	        {   
-
-	            $response['status']    = '1';
-	            $response['message']    = 'Data imported successfully.';
-	            $response['class']    = 'success';
-
-	            $response['title']          = $obj->Title;
-	            
-	            $image_path=$obj->Poster;
-	            $response['thumbnail'] = $image_path;
-
-	            $get_file_name = parse_url($image_path, PHP_URL_PATH);
-
-	            // extracted basename
-	            $response['thumbnail_name']  = basename($get_file_name);
-
-	            $response['plot']  = $obj->Plot;
-
-	        }
-	        else
-	        {
-	            $response['status']    = '0';
-	            $response['message']    = $obj->Error;
-	            $response['class']    = 'error';
-	        }
-
-	        echo json_encode($response);
-	        break;
+			$key = ($mediaType == 'tv') ? 'tv_results' : 'movie_results';
+			if (isset($find->$key[0]->id)) {
+				$tmdbId = $find->$key[0]->id;
+			}
+		} else {
+			$search = http_get_json('https://api.themoviedb.org/3/search/' . $mediaType . '?api_key=' . $tmdb_api_key . '&language=pt-BR&query=' . urlencode($parsed['value']));
+			if (isset($search->results[0]->id)) {
+				$tmdbId = $search->results[0]->id;
+			}
 		}
 
-		case 'getMovieDetails' :
+		if (!$tmdbId) {
+			return null;
+		}
+
+		$details = http_get_json('https://api.themoviedb.org/3/' . $mediaType . '/' . $tmdbId . '?api_key=' . $tmdb_api_key . '&language=pt-BR');
+		if (!isset($details->id)) {
+			return null;
+		}
+
+		$out = array();
+		$out['title'] = ($mediaType == 'tv') ? (isset($details->name) ? $details->name : '') : (isset($details->title) ? $details->title : '');
+
+		// Sinopse em PT; se vier vazia, busca em ingles como reserva
+		$plot = isset($details->overview) ? trim($details->overview) : '';
+		if ($plot == '') {
+			$en = http_get_json('https://api.themoviedb.org/3/' . $mediaType . '/' . $tmdbId . '?api_key=' . $tmdb_api_key);
+			$plot = isset($en->overview) ? trim($en->overview) : '';
+		}
+		$out['plot'] = $plot;
+
+		$out['thumbnail'] = (!empty($details->poster_path)) ? TMDB_POSTER . $details->poster_path : '';
+		$out['cover'] = (!empty($details->backdrop_path)) ? TMDB_BACKDROP . $details->backdrop_path : '';
+
+		// Genero (TMDB ja devolve nomes em PT quando language=pt-BR)
+		$genre = array();
+		if (isset($details->genres) && is_array($details->genres)) {
+			foreach ($details->genres as $g) {
+				$gid = is_genre_info($g->name);
+				if ($gid) {
+					$genre[] = $gid;
+				}
+			}
+		}
+		$out['genre'] = $genre;
+
+		// Idioma
+		$langName = isset($details->original_language) ? tmdb_lang_name($details->original_language) : '';
+		$out['language'] = $langName ? is_language_info($langName) : '';
+
+		return $out;
+	}
+
+	function tmdb_episode_from_find($ep)
+	{
+		$out = array();
+		$out['title'] = isset($ep->name) ? $ep->name : '';
+		$out['plot'] = isset($ep->overview) ? trim($ep->overview) : '';
+		$out['thumbnail'] = (!empty($ep->still_path)) ? TMDB_STILL . $ep->still_path : '';
+		$out['cover'] = '';
+		return $out;
+	}
+
+	switch ($action) {
+
+		case 'getEpisodeDetails':
 		{
-			$string= $_POST['id'];
+			$tmdb = tmdb_fetch('episode', $input, $tmdb_api_key);
+			if ($tmdb !== null && $tmdb['title'] != '') {
+				$response['status'] = '1';
+				$response['message'] = 'Dados importados com sucesso.';
+				$response['class'] = 'success';
+				$response['title'] = $tmdb['title'];
+				$response['plot'] = $tmdb['plot'];
+				$response['thumbnail'] = $tmdb['thumbnail'];
+				$response['cover'] = $tmdb['cover'];
+				$response['thumbnail_name'] = basename(parse_url($tmdb['thumbnail'], PHP_URL_PATH));
+				echo json_encode($response);
+				break;
+			}
 
-	        preg_match_all("/tt\\d{7,8}/", $string, $ids);
+			// Fallback OMDb
+			$p = parse_imdb_input($input);
+			$search_by = $p['is_imdb'] ? 'i' : 't';
+			$imbd_id_title = $p['is_imdb'] ? $p['value'] : str_replace(' ', '+', $p['value']);
+			$obj = http_get_json('http://www.omdbapi.com/?' . $search_by . '=' . $imbd_id_title . '&apikey=' . $omdb_api_key . '&plot=full&type=episode');
 
-	        if(isset($ids[0][0]))
-	        {   
-	            $search_by='i';
-	            $imbd_id_title=$ids[0][0];
-	        }
-	        else
-	        {   
-	            $search_by='t';
-	            $imbd_id_title=str_replace(' ', '+', $string);
-	        }
-	        //exit;
+			if (isset($obj->Response) && $obj->Response == "True") {
+				$response['status'] = '1';
+				$response['message'] = 'Dados importados com sucesso.';
+				$response['class'] = 'success';
+				$response['title'] = $obj->Title;
+				$response['thumbnail'] = $obj->Poster;
+				$response['cover'] = '';
+				$response['thumbnail_name'] = basename(parse_url($obj->Poster, PHP_URL_PATH));
+			} else {
+				$response['status'] = '0';
+				$response['message'] = isset($obj->Error) ? $obj->Error : 'Nada encontrado.';
+				$response['class'] = 'error';
+			}
+			echo json_encode($response);
+			break;
+		}
 
-	        $type= 'movie';
+		case 'getSeriesDetails':
+		{
+			$tmdb = tmdb_fetch('series', $input, $tmdb_api_key);
+			if ($tmdb !== null && $tmdb['title'] != '') {
+				$response['status'] = '1';
+				$response['message'] = 'Dados importados com sucesso.';
+				$response['class'] = 'success';
+				$response['title'] = $tmdb['title'];
+				$response['plot'] = $tmdb['plot'];
+				$response['thumbnail'] = $tmdb['thumbnail'];
+				$response['cover'] = $tmdb['cover'];
+				$response['thumbnail_name'] = basename(parse_url($tmdb['thumbnail'], PHP_URL_PATH));
+				echo json_encode($response);
+				break;
+			}
 
-	        $ch = curl_init();
-	        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	        curl_setopt($ch, CURLOPT_URL, 'http://www.omdbapi.com/?'.$search_by.'='.$imbd_id_title.'&apikey='.$omdb_api_key.'&plot=full&type='.$type.'');
-	        $result = curl_exec($ch);
-	        curl_close($ch);
+			// Fallback OMDb
+			$p = parse_imdb_input($input);
+			$search_by = $p['is_imdb'] ? 'i' : 't';
+			$imbd_id_title = $p['is_imdb'] ? $p['value'] : str_replace(' ', '+', $p['value']);
+			$obj = http_get_json('http://www.omdbapi.com/?' . $search_by . '=' . $imbd_id_title . '&apikey=' . $omdb_api_key . '&plot=short&type=series');
 
-	        $obj = json_decode($result);
+			if (isset($obj->Response) && $obj->Response == "True") {
+				$response['status'] = '1';
+				$response['message'] = 'Dados importados com sucesso.';
+				$response['class'] = 'success';
+				$response['title'] = $obj->Title;
+				$response['thumbnail'] = $obj->Poster;
+				$response['cover'] = '';
+				$response['thumbnail_name'] = basename(parse_url($obj->Poster, PHP_URL_PATH));
+				$response['plot'] = $obj->Plot;
+			} else {
+				$response['status'] = '0';
+				$response['message'] = isset($obj->Error) ? $obj->Error : 'Nada encontrado.';
+				$response['class'] = 'error';
+			}
+			echo json_encode($response);
+			break;
+		}
 
-	        // print_r($obj);
+		case 'getMovieDetails':
+		{
+			$tmdb = tmdb_fetch('movie', $input, $tmdb_api_key);
+			if ($tmdb !== null && $tmdb['title'] != '') {
+				$response['status'] = '1';
+				$response['message'] = 'Dados importados com sucesso.';
+				$response['class'] = 'success';
+				$response['title'] = $tmdb['title'];
+				$response['language'] = $tmdb['language'];
+				$response['genre'] = $tmdb['genre'];
+				$response['plot'] = $tmdb['plot'];
+				$response['thumbnail'] = $tmdb['thumbnail'];
+				$response['cover'] = $tmdb['cover'];
+				$response['thumbnail_name'] = basename(parse_url($tmdb['thumbnail'], PHP_URL_PATH));
+				echo json_encode($response);
+				break;
+			}
 
-	        if(isset($obj->Response) && $obj->Response=="True")
-	        {   
+			// Fallback OMDb
+			$p = parse_imdb_input($input);
+			$search_by = $p['is_imdb'] ? 'i' : 't';
+			$imbd_id_title = $p['is_imdb'] ? $p['value'] : str_replace(' ', '+', $p['value']);
+			$obj = http_get_json('http://www.omdbapi.com/?' . $search_by . '=' . $imbd_id_title . '&apikey=' . $omdb_api_key . '&plot=full&type=movie');
 
-	            $response['status']    = '1';
-	            $response['message']    = 'Data imported successfully.';
-	            $response['class']    = 'success';
+			if (isset($obj->Response) && $obj->Response == "True") {
+				$response['status'] = '1';
+				$response['message'] = 'Dados importados com sucesso.';
+				$response['class'] = 'success';
+				$response['title'] = $obj->Title;
 
-	            $response['title']          = $obj->Title;
+				$lang_list = explode(',', $obj->Language)[0];
+				$response['language'] = is_language_info($lang_list) ? is_language_info($lang_list) : '';
 
-	            //Get Lang
-	            $lang_list=explode(',', $obj->Language)[0];
-	            $response['language'] = is_language_info($lang_list) ? is_language_info($lang_list) : '';   
-	            
-	            //Get Genre
-	            $genre_names = $obj->Genre;
+				$genre = array();
+				foreach (explode(", ", $obj->Genre) as $gname) {
+					if (is_genre_info($gname)) {
+						$genre[] = is_genre_info($gname);
+					}
+				}
+				$response['genre'] = $genre;
 
-	            foreach(explode(", ",$genre_names) as $gname)
-	            { 
-	            	if(is_genre_info($gname)){
-	            		$genre[]=is_genre_info($gname);
-	            	}
-	            }
-
-	            $response['genre']=$genre;
-	            
-	            $image_path=$obj->Poster;
-	            $response['thumbnail'] = $image_path;
-
-	            $get_file_name = parse_url($image_path, PHP_URL_PATH);
-
-	            // extracted basename
-	            $response['thumbnail_name']  = basename($get_file_name);
-
-	            $response['plot']  = $obj->Plot;
-
-	        }
-	        else
-	        {
-	            $response['status']    = '0';
-	            $response['message']    = $obj->Error;
-	            $response['class']    = 'error';
-	        }
-
-	        echo json_encode($response);
-	        break;
+				$response['thumbnail'] = $obj->Poster;
+				$response['cover'] = '';
+				$response['thumbnail_name'] = basename(parse_url($obj->Poster, PHP_URL_PATH));
+				$response['plot'] = $obj->Plot;
+			} else {
+				$response['status'] = '0';
+				$response['message'] = isset($obj->Error) ? $obj->Error : 'Nada encontrado.';
+				$response['class'] = 'error';
+			}
+			echo json_encode($response);
+			break;
 		}
 
 		default:
-			# code...
 			break;
-
-		
 	}
-
 ?>

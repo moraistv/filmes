@@ -19,3 +19,13 @@ if ($col && mysqli_num_rows($col) == 0) {
 } else {
     echo "Coluna tmdb_api_key ja existe.\n";
 }
+
+// Garante que exista o idioma "Português" (o seed original so trazia
+// English/Hindi). Nao remove nada — a limpeza dos demais idiomas fica a
+// cargo do admin pela tela Idiomas, para nao afetar conteudo existente.
+$hasPt = mysqli_query($mysqli, "SELECT id FROM tbl_language WHERE language_name LIKE '%Portugu%'");
+if ($hasPt && mysqli_num_rows($hasPt) == 0) {
+    if (mysqli_query($mysqli, "INSERT INTO tbl_language (language_name, language_background, status) VALUES ('Português', '11762E', 1)")) {
+        echo "Idioma Portugues adicionado.\n";
+    }
+}

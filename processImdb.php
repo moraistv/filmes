@@ -55,17 +55,39 @@
 		return json_decode($r);
 	}
 
-	// Converte codigo de idioma do TMDB (ex.: "en") em nome PT para casar
-	// com a tabela tbl_language do painel.
-	function tmdb_lang_name($code)
+	// Converte o codigo de idioma do TMDB (ex.: "en") em uma lista de nomes
+	// candidatos (PT e EN) para casar com a tabela tbl_language do painel,
+	// que pode ter os nomes tanto em portugues quanto em ingles.
+	function tmdb_lang_candidates($code)
 	{
 		$map = array(
-			'en' => 'Inglês', 'pt' => 'Português', 'es' => 'Espanhol',
-			'fr' => 'Francês', 'de' => 'Alemão', 'it' => 'Italiano',
-			'ja' => 'Japonês', 'ko' => 'Coreano', 'zh' => 'Chinês',
-			'ru' => 'Russo', 'hi' => 'Hindi', 'ar' => 'Árabe',
+			'en' => array('Inglês', 'English'),
+			'pt' => array('Português', 'Portuguese'),
+			'es' => array('Espanhol', 'Spanish', 'Español'),
+			'fr' => array('Francês', 'French'),
+			'de' => array('Alemão', 'German'),
+			'it' => array('Italiano', 'Italian'),
+			'ja' => array('Japonês', 'Japanese'),
+			'ko' => array('Coreano', 'Korean'),
+			'zh' => array('Chinês', 'Chinese', 'Mandarin'),
+			'ru' => array('Russo', 'Russian'),
+			'hi' => array('Hindi'),
+			'ar' => array('Árabe', 'Arabic'),
 		);
-		return isset($map[$code]) ? $map[$code] : $code;
+		return isset($map[$code]) ? $map[$code] : array($code);
+	}
+
+	// Resolve o id do idioma no painel a partir do codigo do TMDB, testando
+	// cada nome candidato ate encontrar um cadastrado.
+	function resolve_language_id($code)
+	{
+		foreach (tmdb_lang_candidates($code) as $name) {
+			$id = is_language_info($name);
+			if ($id) {
+				return $id;
+			}
+		}
+		return '';
 	}
 
 	// Extrai o IMDb ID (ttXXXXXXX) ou devolve o texto para busca por titulo
@@ -152,9 +174,8 @@
 		}
 		$out['genre'] = $genre;
 
-		// Idioma
-		$langName = isset($details->original_language) ? tmdb_lang_name($details->original_language) : '';
-		$out['language'] = $langName ? is_language_info($langName) : '';
+		// Idioma (casa com nome em PT ou EN cadastrado no painel)
+		$out['language'] = isset($details->original_language) ? resolve_language_id($details->original_language) : '';
 
 		return $out;
 	}

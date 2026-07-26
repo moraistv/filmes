@@ -1078,6 +1078,11 @@
       $row['total_rate'] = $data['total_rate'];
       $row['rate_avg'] = $data['rate_avg'];
 
+      $row['director'] = isset($data['director']) ? $data['director'] : '';
+      $row['casts'] = isset($data['casts']) ? $data['casts'] : '';
+      $row['country'] = isset($data['country']) ? $data['country'] : '';
+      $row['release_date'] = isset($data['release_date']) ? $data['release_date'] : '';
+
       // for seasons
       $sql="SELECT * FROM tbl_season WHERE `status`='1' AND `series_id` = '$series_id'";
 
@@ -1238,6 +1243,11 @@
 
       $row['language_name'] = $data['language_name'];
       $row['language_background'] = '#'.$data['language_background'];
+
+      $row['director'] = isset($data['director']) ? $data['director'] : '';
+      $row['casts'] = isset($data['casts']) ? $data['casts'] : '';
+      $row['country'] = isset($data['country']) ? $data['country'] : '';
+      $row['release_date'] = isset($data['release_date']) ? $data['release_date'] : '';
 
       $sql="SELECT movie.*, lang.`language_name`, lang.`language_background` FROM tbl_movies movie
         LEFT JOIN tbl_language lang ON movie.`language_id`=lang.`id`

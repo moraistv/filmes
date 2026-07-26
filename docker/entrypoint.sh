@@ -43,5 +43,6 @@ chown www-data:www-data api.php
 php includes/force_brand_update.php || true
 php includes/migrate_tmdb.php || true
 php includes/migrate_matches.php || true
+php includes/migrate_meta.php || true
 
 exec docker-php-entrypoint "$@"

@@ -143,7 +143,7 @@
 			return null;
 		}
 
-		$details = http_get_json('https://api.themoviedb.org/3/' . $mediaType . '/' . $tmdbId . '?api_key=' . $tmdb_api_key . '&language=pt-BR');
+		$details = http_get_json('https://api.themoviedb.org/3/' . $mediaType . '/' . $tmdbId . '?api_key=' . $tmdb_api_key . '&language=pt-BR&append_to_response=credits');
 		if (!isset($details->id)) {
 			return null;
 		}
@@ -176,6 +176,50 @@
 
 		// Idioma (casa com nome em PT ou EN cadastrado no painel)
 		$out['language'] = isset($details->original_language) ? resolve_language_id($details->original_language) : '';
+
+		// Diretor
+		$director = '';
+		if ($mediaType == 'movie') {
+			if (isset($details->credits->crew)) {
+				foreach ($details->credits->crew as $c) {
+					if (isset($c->job) && $c->job == 'Director') { $director = $c->name; break; }
+				}
+			}
+		} else {
+			if (isset($details->created_by) && count($details->created_by) > 0) {
+				$dn = array();
+				foreach ($details->created_by as $c) { $dn[] = $c->name; }
+				$director = implode(', ', $dn);
+			}
+		}
+		$out['director'] = $director;
+
+		// Elenco (ate 5 nomes)
+		$cast = array();
+		if (isset($details->credits->cast)) {
+			$ci = 0;
+			foreach ($details->credits->cast as $c) {
+				$cast[] = $c->name;
+				if (++$ci >= 5) break;
+			}
+		}
+		$out['casts'] = implode(', ', $cast);
+
+		// Pais
+		$country = '';
+		if (isset($details->production_countries) && count($details->production_countries) > 0) {
+			$cs = array();
+			foreach ($details->production_countries as $pc) { $cs[] = $pc->name; }
+			$country = implode(', ', $cs);
+		} elseif (isset($details->origin_country) && count($details->origin_country) > 0) {
+			$country = implode(', ', $details->origin_country);
+		}
+		$out['country'] = $country;
+
+		// Data de lancamento
+		$out['release_date'] = ($mediaType == 'movie')
+			? (isset($details->release_date) ? $details->release_date : '')
+			: (isset($details->first_air_date) ? $details->first_air_date : '');
 
 		return $out;
 	}
@@ -242,6 +286,10 @@
 				$response['plot'] = $tmdb['plot'];
 				$response['thumbnail'] = $tmdb['thumbnail'];
 				$response['cover'] = $tmdb['cover'];
+				$response['director'] = $tmdb['director'];
+				$response['casts'] = $tmdb['casts'];
+				$response['country'] = $tmdb['country'];
+				$response['release_date'] = $tmdb['release_date'];
 				$response['thumbnail_name'] = basename(parse_url($tmdb['thumbnail'], PHP_URL_PATH));
 				echo json_encode($response);
 				break;
@@ -260,6 +308,10 @@
 				$response['title'] = $obj->Title;
 				$response['thumbnail'] = $obj->Poster;
 				$response['cover'] = '';
+				$response['director'] = isset($obj->Director) ? $obj->Director : '';
+				$response['casts'] = isset($obj->Actors) ? $obj->Actors : '';
+				$response['country'] = isset($obj->Country) ? $obj->Country : '';
+				$response['release_date'] = isset($obj->Released) ? $obj->Released : (isset($obj->Year) ? $obj->Year : '');
 				$response['thumbnail_name'] = basename(parse_url($obj->Poster, PHP_URL_PATH));
 				$response['plot'] = $obj->Plot;
 			} else {
@@ -284,6 +336,10 @@
 				$response['plot'] = $tmdb['plot'];
 				$response['thumbnail'] = $tmdb['thumbnail'];
 				$response['cover'] = $tmdb['cover'];
+				$response['director'] = $tmdb['director'];
+				$response['casts'] = $tmdb['casts'];
+				$response['country'] = $tmdb['country'];
+				$response['release_date'] = $tmdb['release_date'];
 				$response['thumbnail_name'] = basename(parse_url($tmdb['thumbnail'], PHP_URL_PATH));
 				echo json_encode($response);
 				break;
@@ -314,6 +370,10 @@
 
 				$response['thumbnail'] = $obj->Poster;
 				$response['cover'] = '';
+				$response['director'] = isset($obj->Director) ? $obj->Director : '';
+				$response['casts'] = isset($obj->Actors) ? $obj->Actors : '';
+				$response['country'] = isset($obj->Country) ? $obj->Country : '';
+				$response['release_date'] = isset($obj->Released) ? $obj->Released : (isset($obj->Year) ? $obj->Year : '');
 				$response['thumbnail_name'] = basename(parse_url($obj->Poster, PHP_URL_PATH));
 				$response['plot'] = $obj->Plot;
 			} else {

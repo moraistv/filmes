@@ -101,7 +101,11 @@
 			    'series_name'  =>  $title,
 			    'series_desc'  =>  $desc,
 			   	'series_poster'  =>  $series_poster,
-			   	'series_cover'  =>  $series_cover
+			   	'series_cover'  =>  $series_cover,
+			   	'director'  =>  isset($_POST['director']) ? addslashes(trim($_POST['director'])) : '',
+			   	'casts'  =>  isset($_POST['casts']) ? addslashes(trim($_POST['casts'])) : '',
+			   	'country'  =>  isset($_POST['country']) ? addslashes(trim($_POST['country'])) : '',
+			   	'release_date'  =>  isset($_POST['release_date']) ? addslashes(trim($_POST['release_date'])) : ''
 			    );		
 
  		$qry = Insert('tbl_series',$data);			
@@ -188,7 +192,11 @@
 			    'series_name'  =>  $title,
 			    'series_desc'  =>  $desc,
 			   	'series_poster'  =>  $series_poster,
-			   	'series_cover'  =>  $series_cover
+			   	'series_cover'  =>  $series_cover,
+			   	'director'  =>  isset($_POST['director']) ? addslashes(trim($_POST['director'])) : '',
+			   	'casts'  =>  isset($_POST['casts']) ? addslashes(trim($_POST['casts'])) : '',
+			   	'country'  =>  isset($_POST['country']) ? addslashes(trim($_POST['country'])) : '',
+			   	'release_date'  =>  isset($_POST['release_date']) ? addslashes(trim($_POST['release_date'])) : ''
 			    );
 
 		$edit=Update('tbl_series', $data, "WHERE id = '".$post_series_id."'");
@@ -321,6 +329,31 @@
                       <script>
                         CKEDITOR.replace('series_desc');
                       </script>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Diretor :-</label>
+                    <div class="col-md-6">
+                      <input type="text" name="director" id="director" class="form-control" value="<?php echo (isset($_GET['series_id']) && isset($row['director'])) ? htmlspecialchars($row['director'], ENT_QUOTES, 'UTF-8') : ''; ?>">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Elenco :-</label>
+                    <div class="col-md-6">
+                      <input type="text" name="casts" id="casts" class="form-control" placeholder="Nomes separados por vírgula" value="<?php echo (isset($_GET['series_id']) && isset($row['casts'])) ? htmlspecialchars($row['casts'], ENT_QUOTES, 'UTF-8') : ''; ?>">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">País :-</label>
+                    <div class="col-md-6">
+                      <input type="text" name="country" id="country" class="form-control" value="<?php echo (isset($_GET['series_id']) && isset($row['country'])) ? htmlspecialchars($row['country'], ENT_QUOTES, 'UTF-8') : ''; ?>">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Data de lançamento :-</label>
+                    <div class="col-md-6">
+                      <input type="text" name="release_date" id="release_date" class="form-control" placeholder="AAAA-MM-DD" value="<?php echo (isset($_GET['series_id']) && isset($row['release_date'])) ? htmlspecialchars($row['release_date'], ENT_QUOTES, 'UTF-8') : ''; ?>">
                     </div>
                   </div>
                   <br/>
@@ -457,6 +490,12 @@
                   $("input[name='cover_img']").val(res.cover);
                   $(".cover_img").attr('src', res.cover);
                 }
+
+                // Metadados (diretor, elenco, pais, data)
+                if(res.director) $("input[name='director']").val(res.director);
+                if(res.casts) $("input[name='casts']").val(res.casts);
+                if(res.country) $("input[name='country']").val(res.country);
+                if(res.release_date) $("input[name='release_date']").val(res.release_date);
 
                 $("textarea[name='series_desc']").val(res.plot);
                 CKEDITOR.instances['series_desc'].setData(res.plot);

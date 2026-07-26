@@ -2429,6 +2429,38 @@
       echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
   }  
+  else if($get_method['method_name']=="get_matches")
+  {
+      $jsonObj = array();
+
+      // Retorna jogos de hoje em diante (a agenda some sozinha quando nao
+      // ha mais jogos). Ordena pelo horario mais proximo.
+      $query = "SELECT * FROM tbl_matches WHERE `status`='1' AND `match_time` >= DATE_SUB(NOW(), INTERVAL 3 HOUR) ORDER BY `match_time` ASC LIMIT 50";
+      $sql = mysqli_query($mysqli,$query) or die(mysqli_error($mysqli));
+
+      while($data = mysqli_fetch_assoc($sql))
+      {
+        $row = array();
+        $row['id'] = $data['id'];
+        $row['league'] = $data['league'];
+        $row['team1_name'] = $data['team1_name'];
+        $row['team1_logo'] = $data['team1_logo'];
+        $row['team2_name'] = $data['team2_name'];
+        $row['team2_logo'] = $data['team2_logo'];
+        $row['match_time'] = $data['match_time'];
+        $row['match_day'] = date('d/m', strtotime($data['match_time']));
+        $row['match_hour'] = date('H:i', strtotime($data['match_time']));
+        $row['stream_url'] = $data['stream_url'];
+        $row['stream_type'] = $data['stream_type'];
+        array_push($jsonObj,$row);
+      }
+
+      $set['LIVETV'] = $jsonObj;
+
+      header( 'Content-Type: application/json; charset=utf-8' );
+      echo $val = str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
+    die();
+  }
   else
   {
     $get_method = checkSignSalt($_POST['data']);

@@ -127,6 +127,7 @@
       <p class="gc-nav-group">TV ao vivo</p>
       <a class="gc-nav-link<?php if(isset($current_page) && $current_page=="category"){echo ' is-active';}?>" href="categorias"><i class="bi bi-diagram-3-fill"></i><span>Categorias</span></a>
       <a class="gc-nav-link<?php if(isset($current_page) && $current_page=="channel"){echo ' is-active';}?>" href="canais"><i class="bi bi-broadcast"></i><span>Canais</span></a>
+      <a class="gc-nav-link<?php if(isset($current_page) && $current_page=="matches"){echo ' is-active';}?>" href="jogos"><i class="bi bi-calendar-event-fill"></i><span>Jogos</span></a>
 
       <p class="gc-nav-group">Gestão</p>
       <a class="gc-nav-link<?php if($currentFile=="manage_users.php" or $currentFile=="add_user.php"){echo ' is-active';}?>" href="usuarios"><i class="bi bi-people-fill"></i><span>Usuários</span></a>

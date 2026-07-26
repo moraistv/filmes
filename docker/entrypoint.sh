@@ -42,5 +42,6 @@ chown www-data:www-data api.php
 # customizacoes feitas pelo admin). Nao interrompe o deploy se falhar.
 php includes/force_brand_update.php || true
 php includes/migrate_tmdb.php || true
+php includes/migrate_matches.php || true
 
 exec docker-php-entrypoint "$@"

@@ -25,3 +25,7 @@ foreach (array('tbl_movies', 'tbl_series') as $table) {
     add_col_if_missing($mysqli, $table, 'country', "VARCHAR(191) NOT NULL DEFAULT ''");
     add_col_if_missing($mysqli, $table, 'release_date', "VARCHAR(40) NOT NULL DEFAULT ''");
 }
+
+// Series ainda nao tinha genero associado (so filmes tinham). Necessario
+// para exibir series por categoria/genero em carrossel no app, igual filmes.
+add_col_if_missing($mysqli, 'tbl_series', 'genre_id', "VARCHAR(191) NOT NULL DEFAULT ''");

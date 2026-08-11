@@ -283,6 +283,7 @@
 				$response['message'] = 'Dados importados com sucesso.';
 				$response['class'] = 'success';
 				$response['title'] = $tmdb['title'];
+				$response['genre'] = $tmdb['genre'];
 				$response['plot'] = $tmdb['plot'];
 				$response['thumbnail'] = $tmdb['thumbnail'];
 				$response['cover'] = $tmdb['cover'];
@@ -308,6 +309,15 @@
 				$response['title'] = $obj->Title;
 				$response['thumbnail'] = $obj->Poster;
 				$response['cover'] = '';
+
+				$genre = array();
+				if (isset($obj->Genre)) {
+					foreach (explode(", ", $obj->Genre) as $gname) {
+						if (is_genre_info($gname)) { $genre[] = is_genre_info($gname); }
+					}
+				}
+				$response['genre'] = $genre;
+
 				$response['director'] = isset($obj->Director) ? $obj->Director : '';
 				$response['casts'] = isset($obj->Actors) ? $obj->Actors : '';
 				$response['country'] = isset($obj->Country) ? $obj->Country : '';

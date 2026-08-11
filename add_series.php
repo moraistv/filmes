@@ -13,7 +13,10 @@
 	require("language/language.php");
 
 	require_once("thumbnail_images.class.php");
-	
+
+	$genre_qry="SELECT * FROM tbl_genres ORDER BY genre_name";
+	$genre_result=mysqli_query($mysqli,$genre_qry);
+
 	if(isset($_POST['submit']) and isset($_GET['add']))
 	{
 		
@@ -102,6 +105,7 @@
 			    'series_desc'  =>  $desc,
 			   	'series_poster'  =>  $series_poster,
 			   	'series_cover'  =>  $series_cover,
+			   	'genre_id'  =>  isset($_POST['genre_id']) ? implode(',', array_map('intval', (array)$_POST['genre_id'])) : '',
 			   	'director'  =>  isset($_POST['director']) ? addslashes(trim($_POST['director'])) : '',
 			   	'casts'  =>  isset($_POST['casts']) ? addslashes(trim($_POST['casts'])) : '',
 			   	'country'  =>  isset($_POST['country']) ? addslashes(trim($_POST['country'])) : '',
@@ -193,6 +197,7 @@
 			    'series_desc'  =>  $desc,
 			   	'series_poster'  =>  $series_poster,
 			   	'series_cover'  =>  $series_cover,
+			   	'genre_id'  =>  isset($_POST['genre_id']) ? implode(',', array_map('intval', (array)$_POST['genre_id'])) : '',
 			   	'director'  =>  isset($_POST['director']) ? addslashes(trim($_POST['director'])) : '',
 			   	'casts'  =>  isset($_POST['casts']) ? addslashes(trim($_POST['casts'])) : '',
 			   	'country'  =>  isset($_POST['country']) ? addslashes(trim($_POST['country'])) : '',
@@ -267,6 +272,23 @@
                     <label class="col-md-3 control-label">Nome da Série :-</label>
                     <div class="col-md-6">
                       <input type="text" name="series_name" id="series_name" value="<?php if(isset($_GET['series_id'])){echo $row['series_name'];}?>" class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Gênero :-</label>
+                    <div class="col-md-6">
+                      <select name="genre_id[]" id="genre_id" class="select2" required multiple="">
+                        <option value="">-- Selecionar Gênero --</option>
+                        <?php
+                            while($genre_row=mysqli_fetch_array($genre_result))
+                            {
+                                $genre_list = isset($row['genre_id']) ? explode(",", $row['genre_id']) : array();
+                        ?>
+                        <option value="<?php echo $genre_row['gid'];?>" <?php foreach($genre_list as $ids){ if($genre_row['gid']==$ids){ echo 'selected'; } } ?>><?php echo $genre_row['genre_name'];?></option>
+                        <?php
+                            }
+                        ?>
+                      </select>
                     </div>
                   </div>
                   <div class="form-group">
@@ -496,6 +518,7 @@
                 if(res.casts) $("input[name='casts']").val(res.casts);
                 if(res.country) $("input[name='country']").val(res.country);
                 if(res.release_date) $("input[name='release_date']").val(res.release_date);
+                if(res.genre) $('#genre_id').val(res.genre).change();
 
                 $("textarea[name='series_desc']").val(res.plot);
                 CKEDITOR.instances['series_desc'].setData(res.plot);

@@ -1005,7 +1005,138 @@
       echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
     die();
     }
-    
+
+    else if($get_method['method_name']=="get_series_by_gen_id")
+    {
+      $page_limit=API_PAGE_LIMIT;
+      $limit=($get_method['page']-1) * $page_limit;
+
+      $genre_id=explode(',', $get_method['genre_id']);
+      $jsonObj= array();
+
+      if($genre_id[0]!=''){
+        $column='';
+        foreach ($genre_id as $key => $value) {
+          $column.='FIND_IN_SET('.(int)$value.', series.`genre_id`) OR ';
+        }
+        $column=rtrim($column,'OR ');
+
+        $query="SELECT * FROM tbl_series series WHERE ($column) AND series.`status`='1' ORDER BY series.`id` DESC LIMIT $limit, $page_limit";
+
+        $sql = mysqli_query($mysqli,$query) or die(mysqli_error($mysqli));
+
+        while($data = mysqli_fetch_assoc($sql))
+        {
+          $row['id'] = $data['id'];
+          $row['series_name'] = $data['series_name'];
+          $row['series_desc'] = addslashes($data['series_desc']);
+          $row['series_poster'] = $file_path.'images/series/'.$data['series_poster'];
+          $row['series_poster_thumb'] = $file_path.'images/series/thumbs/'.$data['series_poster'];
+          $row['series_cover'] = $file_path.'images/series/'.$data['series_cover'];
+          $row['series_cover_thumb'] = $file_path.'images/series/thumbs/'.$data['series_cover'];
+          $row['total_views'] = $data['total_views'];
+          $row['total_rate'] = $data['total_rate'];
+          $row['rate_avg'] = $data['rate_avg'];
+          array_push($jsonObj,$row);
+        }
+      }
+
+      $set['LIVETV'] = $jsonObj;
+
+      header( 'Content-Type: application/json; charset=utf-8' );
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
+    die();
+    }
+
+    else if($get_method['method_name']=="get_latest_series")
+    {
+      $page_limit=API_PAGE_LIMIT;
+      $limit=($get_method['page']-1) * $page_limit;
+      $jsonObj= array();
+
+      $query="SELECT * FROM tbl_series WHERE `status`='1' ORDER BY `id` DESC LIMIT $limit, $page_limit";
+      $sql = mysqli_query($mysqli,$query) or die(mysqli_error($mysqli));
+
+      while($data = mysqli_fetch_assoc($sql))
+      {
+        $row['id'] = $data['id'];
+        $row['series_name'] = $data['series_name'];
+        $row['series_desc'] = addslashes($data['series_desc']);
+        $row['series_poster'] = $file_path.'images/series/'.$data['series_poster'];
+        $row['series_poster_thumb'] = $file_path.'images/series/thumbs/'.$data['series_poster'];
+        $row['series_cover'] = $file_path.'images/series/'.$data['series_cover'];
+        $row['series_cover_thumb'] = $file_path.'images/series/thumbs/'.$data['series_cover'];
+        $row['total_views'] = $data['total_views'];
+        $row['total_rate'] = $data['total_rate'];
+        $row['rate_avg'] = $data['rate_avg'];
+        array_push($jsonObj,$row);
+      }
+
+      $set['LIVETV'] = $jsonObj;
+
+      header( 'Content-Type: application/json; charset=utf-8' );
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
+    die();
+    }
+
+    else if($get_method['method_name']=="get_new_release_movies")
+    {
+      // "Lancamentos": filmes ordenados pela data de lancamento (release_date)
+      // informada no cadastro/importacao, mais recentes primeiro.
+      $page_limit=API_PAGE_LIMIT;
+      $limit=($get_method['page']-1) * $page_limit;
+      $jsonObj= array();
+
+      $query="SELECT movie.*, lang.`language_name`, lang.`language_background` FROM tbl_movies movie
+        LEFT JOIN tbl_language lang ON movie.`language_id`=lang.`id`
+        WHERE movie.`status`='1' AND lang.`status`='1' AND movie.`release_date` <> ''
+        ORDER BY movie.`release_date` DESC LIMIT $limit, $page_limit";
+      $sql = mysqli_query($mysqli,$query) or die(mysqli_error($mysqli));
+
+      while($data = mysqli_fetch_assoc($sql))
+      {
+        $row['id'] = $data['id'];
+        $row['movie_title'] = $data['movie_title'];
+        $row['movie_poster'] = $file_path.'images/movies/'.$data['movie_poster'];
+        $row['movie_poster_thumb'] = $file_path.'images/movies/thumbs/'.$data['movie_poster'];
+        $row['language_name'] = $data['language_name'];
+        $row['language_background'] = '#'.$data['language_background'];
+        array_push($jsonObj,$row);
+      }
+
+      $set['LIVETV'] = $jsonObj;
+
+      header( 'Content-Type: application/json; charset=utf-8' );
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
+    die();
+    }
+
+    else if($get_method['method_name']=="get_new_release_series")
+    {
+      $page_limit=API_PAGE_LIMIT;
+      $limit=($get_method['page']-1) * $page_limit;
+      $jsonObj= array();
+
+      $query="SELECT * FROM tbl_series WHERE `status`='1' AND `release_date` <> ''
+        ORDER BY `release_date` DESC LIMIT $limit, $page_limit";
+      $sql = mysqli_query($mysqli,$query) or die(mysqli_error($mysqli));
+
+      while($data = mysqli_fetch_assoc($sql))
+      {
+        $row['id'] = $data['id'];
+        $row['series_name'] = $data['series_name'];
+        $row['series_poster'] = $file_path.'images/series/'.$data['series_poster'];
+        $row['series_poster_thumb'] = $file_path.'images/series/thumbs/'.$data['series_poster'];
+        array_push($jsonObj,$row);
+      }
+
+      $set['LIVETV'] = $jsonObj;
+
+      header( 'Content-Type: application/json; charset=utf-8' );
+      echo $val= str_replace('\\/', '/', json_encode($set,JSON_UNESCAPED_UNICODE));
+    die();
+    }
+
     else if($get_method['method_name']=="get_channels_by_cat_id")
     {   
       $post_order_by=API_CAT_POST_ORDER_BY;

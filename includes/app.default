@@ -42,7 +42,7 @@
     $language = mb_strtoupper(trim((string)$language_name), 'UTF-8');
     $dubbed = strpos($language, 'DUB') !== false || strpos($language, 'PORTUG') !== false || $language === 'PT' || strpos($language, 'PT-BR') !== false;
     $subtitled = strpos($language, 'LEG') !== false || strpos($language, 'SUB') !== false || $subtitle_status === 'true';
-    if ($dubbed && $subtitled) return 'DUBLADO/LEGENDADO';
+    if ($dubbed && $subtitled) return 'DUB | LEG';
     if ($subtitled) return 'LEGENDADO';
     if ($dubbed) return 'DUBLADO';
     // Conteudo em idioma estrangeiro sem marcador explicito e tratado como
@@ -55,7 +55,7 @@
     $series_id = (int)$series_id;
     $res = mysqli_query($mysqli, "SELECT SUM(subtitle='true') AS subtitled, SUM(subtitle<>'true') AS dubbed FROM tbl_episode WHERE series_id=$series_id AND status='1'");
     $row = $res ? mysqli_fetch_assoc($res) : array('subtitled' => 0, 'dubbed' => 0);
-    if (!empty($row['subtitled']) && !empty($row['dubbed'])) return 'DUBLADO/LEGENDADO';
+    if (!empty($row['subtitled']) && !empty($row['dubbed'])) return 'DUB | LEG';
     if (!empty($row['subtitled'])) return 'LEGENDADO';
     return 'DUBLADO';
   }

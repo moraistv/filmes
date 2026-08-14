@@ -37,7 +37,7 @@
   background: linear-gradient(200deg, var(--gc-side-bg2) 0%, var(--gc-side-bg) 100%);
   border: 0;
   box-shadow: 10px 0 40px rgba(10, 6, 4, .28);
-  font-family: "Lexend Deca", "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: "Google Sans Flex", "Google Sans", Roboto, "Segoe UI", Arial, sans-serif;
 }
 
 /* Marca */
@@ -249,6 +249,245 @@
   }
   #sidebar.gc-sidebar.active { transform: translateX(0); }
   #sidebar.gc-sidebar .gc-burger-close { display: inline-flex; }
+}
+
+/* ========================================================================== 
+   GetCine Admin 3.0 — Google Sans + linguagem visual do aplicativo
+   ========================================================================== */
+:root {
+  --gc-red: #41c2ff;
+  --gc-orange: #41c2ff;
+  --gc-gold: #79d5ff;
+  --gc-primary: #149fdf;
+  --gc-grad: linear-gradient(135deg, #41c2ff 0%, #149fdf 100%);
+  --gc-side-bg: #0f0f0f;
+  --gc-side-bg2: #171717;
+  --gc-ink: #17181a;
+  --gc-muted: #70757d;
+  --gc-line: #e5e8ec;
+  --gc-bg: #f6f8fa;
+  --gc-card: #ffffff;
+}
+
+html,
+body.admin-shell,
+body.admin-shell button,
+body.admin-shell input,
+body.admin-shell select,
+body.admin-shell textarea,
+body.admin-shell .select2-container,
+body.admin-shell .sweet-alert,
+body.admin-shell .modal {
+  font-family: "Google Sans Flex", "Google Sans", Roboto, "Segoe UI", Arial, sans-serif !important;
+  font-optical-sizing: auto;
+}
+
+body.admin-shell {
+  background: var(--gc-bg) !important;
+  color: var(--gc-ink);
+  font-size: 14px;
+  letter-spacing: -.005em;
+}
+
+body.admin-shell .app-container {
+  background:
+    radial-gradient(circle at 95% 0, rgba(65, 194, 255, .10), transparent 28rem),
+    var(--gc-bg) !important;
+}
+
+#sidebar.gc-sidebar {
+  background: linear-gradient(180deg, #171717 0%, #0f0f0f 100%);
+  border-right: 1px solid rgba(255,255,255,.06);
+  box-shadow: 12px 0 38px rgba(0,0,0,.16);
+}
+
+#sidebar.gc-sidebar .gc-brand-link img {
+  background: #0f0f0f;
+  border: 1px solid rgba(65,194,255,.35);
+  box-shadow: 0 0 0 4px rgba(65,194,255,.08);
+}
+
+#sidebar.gc-sidebar .gc-nav-group { color: #77818b; }
+#sidebar.gc-sidebar .gc-nav-link { color: #b8bec6; }
+#sidebar.gc-sidebar .gc-nav-link i { color: #77818b; }
+#sidebar.gc-sidebar .gc-nav-link:hover {
+  color: #fff;
+  background: rgba(255,255,255,.055);
+}
+#sidebar.gc-sidebar .gc-nav-link:hover i { color: #41c2ff; }
+#sidebar.gc-sidebar .gc-nav-link.is-active {
+  color: #fff;
+  background: linear-gradient(90deg, rgba(65,194,255,.22), rgba(65,194,255,.08));
+  box-shadow: inset 3px 0 0 #41c2ff;
+}
+#sidebar.gc-sidebar .gc-nav-link.is-active i { color: #41c2ff; }
+#sidebar.gc-sidebar .gc-user { border-top-color: rgba(255,255,255,.07); }
+
+body.admin-shell #navbar.navbar {
+  background: rgba(255,255,255,.88) !important;
+  border: 1px solid rgba(225,229,234,.9) !important;
+  box-shadow: 0 8px 30px rgba(20,32,45,.06) !important;
+  backdrop-filter: blur(16px);
+}
+
+body.admin-shell .navbar-title,
+body.admin-shell h1,
+body.admin-shell h2,
+body.admin-shell h3,
+body.admin-shell h4,
+body.admin-shell h5,
+body.admin-shell h6 {
+  color: var(--gc-ink);
+  letter-spacing: -.025em;
+}
+
+body.admin-shell .card,
+body.admin-shell .panel,
+body.admin-shell .section,
+body.admin-shell .card.card-banner,
+body.admin-shell .card.card-tab,
+body.admin-shell .tile,
+body.admin-shell .dashboard-card {
+  border: 1px solid var(--gc-line) !important;
+  border-radius: 18px !important;
+  background: var(--gc-card) !important;
+  box-shadow: 0 8px 28px rgba(19,32,45,.055) !important;
+}
+
+body.admin-shell .card:hover,
+body.admin-shell .dashboard-card:hover {
+  border-color: rgba(65,194,255,.42) !important;
+  box-shadow: 0 14px 38px rgba(20,80,110,.10) !important;
+}
+
+body.admin-shell .card .card-header,
+body.admin-shell .panel .panel-heading {
+  padding: 20px 22px;
+  border-bottom: 1px solid var(--gc-line) !important;
+  background: transparent !important;
+}
+
+body.admin-shell .form-control,
+body.admin-shell .select2-selection,
+body.admin-shell input[type="text"],
+body.admin-shell input[type="email"],
+body.admin-shell input[type="password"],
+body.admin-shell input[type="number"],
+body.admin-shell input[type="url"],
+body.admin-shell input[type="date"],
+body.admin-shell textarea,
+body.admin-shell select {
+  min-height: 44px;
+  border: 1px solid #dfe3e8 !important;
+  border-radius: 11px !important;
+  background: #fbfcfd !important;
+  color: var(--gc-ink) !important;
+  box-shadow: none !important;
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+body.admin-shell textarea { min-height: 110px; }
+body.admin-shell .form-control:focus,
+body.admin-shell input:focus,
+body.admin-shell textarea:focus,
+body.admin-shell select:focus {
+  border-color: #41c2ff !important;
+  background: #fff !important;
+  box-shadow: 0 0 0 4px rgba(65,194,255,.14) !important;
+}
+
+body.admin-shell label,
+body.admin-shell .control-label {
+  margin-bottom: 7px;
+  color: #3d434a !important;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+body.admin-shell .btn {
+  min-height: 40px;
+  padding: 9px 16px;
+  border-radius: 10px !important;
+  font-weight: 650;
+  letter-spacing: -.01em;
+  box-shadow: none !important;
+}
+body.admin-shell .btn-primary,
+body.admin-shell .btn-success,
+body.admin-shell .btn-info,
+body.admin-shell .btn_save,
+body.admin-shell button[type="submit"] {
+  border-color: #149fdf !important;
+  background: linear-gradient(135deg, #41c2ff, #149fdf) !important;
+  color: #07141b !important;
+}
+body.admin-shell .btn-primary:hover,
+body.admin-shell .btn-success:hover,
+body.admin-shell .btn-info:hover,
+body.admin-shell button[type="submit"]:hover {
+  transform: translateY(-1px);
+  filter: brightness(.97);
+  box-shadow: 0 8px 22px rgba(20,159,223,.24) !important;
+}
+body.admin-shell .btn-danger { background: #ef4444 !important; border-color: #ef4444 !important; }
+body.admin-shell .btn-default { background: #fff !important; border-color: #dfe3e8 !important; color: #343a40 !important; }
+
+body.admin-shell .table-responsive {
+  border: 1px solid var(--gc-line);
+  border-radius: 14px;
+  background: #fff;
+  overflow: hidden;
+}
+body.admin-shell table.table { margin-bottom: 0; }
+body.admin-shell table.table > thead > tr > th {
+  padding: 14px 16px !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--gc-line) !important;
+  background: #f7f9fb !important;
+  color: #66707a !important;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: .065em;
+  text-transform: uppercase;
+}
+body.admin-shell table.table > tbody > tr > td {
+  padding: 14px 16px !important;
+  border-top: 1px solid #edf0f3 !important;
+  color: #30363c;
+  vertical-align: middle;
+}
+body.admin-shell table.table > tbody > tr:hover > td { background: #f5fbfe !important; }
+
+body.admin-shell .pagination > li > a,
+body.admin-shell .pagination > li > span {
+  margin: 0 3px;
+  border: 1px solid var(--gc-line);
+  border-radius: 9px !important;
+  color: #4a525a;
+}
+body.admin-shell .pagination > .active > a,
+body.admin-shell .pagination > .active > span {
+  border-color: #41c2ff !important;
+  background: #41c2ff !important;
+  color: #07141b !important;
+}
+
+body.admin-shell .dropdown-menu,
+body.admin-shell .modal-content {
+  border: 1px solid var(--gc-line);
+  border-radius: 14px !important;
+  box-shadow: 0 18px 55px rgba(15,23,32,.14) !important;
+}
+
+body.admin-shell .alert { border: 0; border-radius: 12px; }
+body.admin-shell .badge,
+body.admin-shell .label { border-radius: 999px; font-weight: 650; }
+
+@media (max-width: 767px) {
+  body.admin-shell .app-container { padding: 12px 12px 74px !important; }
+  body.admin-shell #navbar.navbar { border-radius: 14px !important; }
+  body.admin-shell .card,
+  body.admin-shell .panel { border-radius: 14px !important; }
 }
 
 /* ==========================================================================
@@ -542,7 +781,7 @@ body.gc-login {
   align-items: center;
   justify-content: center;
   padding: 24px;
-  font-family: "Lexend Deca", "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: "Google Sans Flex", "Google Sans", Roboto, "Segoe UI", Arial, sans-serif;
   color: var(--gc-ink);
   background:
     radial-gradient(circle at 12% 18%, rgba(242, 101, 15, .22), transparent 42%),
@@ -851,4 +1090,64 @@ body.gc-login .gc-login-foot {
   body.admin-shell .navbar .navbar-mobile {
     display: flex !important;
   }
+}
+
+/* Camada final: mantém a identidade preto/azul acima das regras legadas. */
+body.admin-shell,
+body.admin-shell *,
+body.gc-login,
+body.gc-login * {
+  font-family: "Google Sans Flex", "Google Sans", Roboto, "Segoe UI", Arial, sans-serif;
+}
+
+#sidebar.gc-sidebar {
+  background: linear-gradient(180deg, #171717 0%, #0f0f0f 100%) !important;
+}
+
+#sidebar.gc-sidebar .gc-nav-link.is-active {
+  background: linear-gradient(90deg, rgba(65, 194, 255, .22), rgba(65, 194, 255, .07)) !important;
+  box-shadow: inset 3px 0 0 #41c2ff !important;
+}
+
+#sidebar.gc-sidebar .gc-nav-link.is-active::before {
+  background: #41c2ff !important;
+  box-shadow: 0 0 14px rgba(65, 194, 255, .48) !important;
+}
+
+#sidebar.gc-sidebar .gc-nav-link.is-active i,
+#sidebar.gc-sidebar .gc-nav-link:hover i,
+body.admin-shell a:not(.btn):hover {
+  color: #41c2ff;
+}
+
+body.page-home .gc-stat .gc-stat-ic,
+body.page-home .top-rank,
+body.page-home .gc-top .gc-rank {
+  background: linear-gradient(135deg, #41c2ff, #149fdf) !important;
+  color: #07141b !important;
+}
+
+body.gc-login {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(65, 194, 255, .18), transparent 42%),
+    #0f0f0f !important;
+}
+
+body.gc-login .gc-login-brand {
+  background: linear-gradient(160deg, #171717 0%, #0f0f0f 65%, #102733 120%) !important;
+}
+
+body.gc-login .gc-login-btn {
+  background: linear-gradient(135deg, #41c2ff, #149fdf) !important;
+  color: #07141b !important;
+}
+
+body.gc-login .gc-login-btn:hover {
+  box-shadow: 0 12px 26px rgba(65, 194, 255, .28) !important;
+}
+
+body.gc-login .gc-field input:focus,
+body.gc-login .gc-input-wrap input:focus {
+  border-color: #41c2ff !important;
+  box-shadow: 0 0 0 4px rgba(65, 194, 255, .14) !important;
 }

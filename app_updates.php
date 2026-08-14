@@ -129,7 +129,8 @@
 <style>
   .update-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:22px}
   .update-stat{background:#151515;border:1px solid #292929;border-radius:14px;padding:18px;color:#fff}.update-stat small{display:block;color:#8f98a3;text-transform:uppercase;font-weight:700;letter-spacing:.08em}.update-stat strong{display:block;font-size:28px;margin-top:5px;color:#41c2ff}
-  .update-help{background:rgba(65,194,255,.08);border:1px solid rgba(65,194,255,.25);border-radius:12px;padding:14px 16px;margin-bottom:20px;color:#d8f4ff}
+  .update-help{background:rgba(65,194,255,.08);border:1px solid rgba(65,194,255,.25);border-radius:12px;padding:14px 16px;margin-bottom:20px;color:#0f0f0f}
+  .update-help code{color:#0f0f0f;font-weight:700}
   .update-badge{display:inline-flex;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:800}.is-live{background:#173d2b;color:#66e49a}.is-off{background:#292929;color:#9ea5ad}.is-required{background:#481e24;color:#ff7b88}.is-optional{background:#1c3442;color:#69cffd}
   @media(max-width:760px){.update-grid{grid-template-columns:1fr}}
 </style>

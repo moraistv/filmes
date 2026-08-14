@@ -131,7 +131,9 @@
   .update-stat{background:#151515;border:1px solid #292929;border-radius:14px;padding:18px;color:#fff}.update-stat small{display:block;color:#8f98a3;text-transform:uppercase;font-weight:700;letter-spacing:.08em}.update-stat strong{display:block;font-size:28px;margin-top:5px;color:#41c2ff}
   .update-help{background:rgba(65,194,255,.08);border:1px solid rgba(65,194,255,.25);border-radius:12px;padding:14px 16px;margin-bottom:20px;color:#0f0f0f}
   .update-help code{color:#0f0f0f;font-weight:700}
+  .update-success{background:#e8f8ee;border:1px solid #9edcb5;border-radius:12px;color:#176b37;padding:14px 18px;margin-bottom:15px;font-weight:700}
   .update-badge{display:inline-flex;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:800}.is-live{background:#173d2b;color:#66e49a}.is-off{background:#292929;color:#9ea5ad}.is-required{background:#481e24;color:#ff7b88}.is-optional{background:#1c3442;color:#69cffd}
+  .update-actions{display:flex;flex-wrap:wrap;gap:6px}.update-actions .btn{min-width:auto;padding:6px 10px;font-size:12px;font-weight:700;border-radius:8px}
   @media(max-width:760px){.update-grid{grid-template-columns:1fr}}
 </style>
 
@@ -147,7 +149,7 @@
     <div class="card-body" style="padding:22px">
       <div class="update-help"><strong>Como funciona:</strong> o aplicativo compara o <code>versionCode</code> instalado com o publicado aqui. Use sempre um número maior a cada APK. Atualização obrigatória bloqueia o aplicativo; opcional permite escolher “Agora não”.</div>
       <?php if($error){ ?><div class="alert alert-danger"><?=htmlspecialchars($error, ENT_QUOTES, 'UTF-8')?></div><?php } ?>
-      <?php if(isset($_GET['saved'])){ ?><div class="alert alert-success">Atualização publicada com sucesso.</div><?php } ?>
+      <?php if(isset($_GET['saved'])){ ?><div class="update-success">Atualização publicada com sucesso.</div><?php } ?>
       <form method="post" enctype="multipart/form-data" class="form form-horizontal">
         <input type="hidden" name="update_id" value="<?=intval($edit['id'] ?? 0)?>"><input type="hidden" name="existing_apk_file" value="<?=htmlspecialchars($edit['apk_file'] ?? '', ENT_QUOTES, 'UTF-8')?>">
         <div class="form-group"><label class="col-md-3 control-label">Código da versão</label><div class="col-md-3"><input type="number" min="1" name="version_code" class="form-control" value="<?=htmlspecialchars($edit['version_code'] ?? '', ENT_QUOTES, 'UTF-8')?>" placeholder="Ex.: 3" required></div><div class="col-md-5"><p class="help-block">Número interno crescente. A versão atual deste APK será 2.</p></div></div>
@@ -171,7 +173,7 @@
       <td><span class="update-badge <?=$row['is_required']?'is-required':'is-optional'?>"><?=$row['is_required']?'Obrigatória':'Opcional'?></span></td>
       <td><?=$row['source_type']==='play_store'?'Google Play':'APK direto'?></td>
       <td><span class="update-badge <?=$row['is_active']?'is-live':'is-off'?>"><?=$row['is_active']?'Ativa':'Arquivada'?></span></td>
-      <td><a href="atualizacoes?edit=<?=$row['id']?>" class="btn btn-primary btn-xs" title="Editar"><i class="fa fa-edit"></i></a> <?php if($row['is_active']){ ?><a href="atualizacoes?deactivate=<?=$row['id']?>" class="btn btn-warning btn-xs" title="Desativar"><i class="fa fa-pause"></i></a><?php }else{ ?><a href="atualizacoes?activate=<?=$row['id']?>" class="btn btn-success btn-xs" title="Ativar"><i class="fa fa-check"></i></a><?php } ?> <a href="atualizacoes?remove=<?=$row['id']?>" class="btn btn-danger btn-xs" onclick="return confirm('Excluir esta atualização do histórico?')"><i class="fa fa-trash"></i></a></td>
+      <td><div class="update-actions"><a href="atualizacoes?edit=<?=$row['id']?>" class="btn btn-primary btn-xs">Editar</a><?php if($row['is_active']){ ?><a href="atualizacoes?deactivate=<?=$row['id']?>" class="btn btn-warning btn-xs">Desativar</a><?php }else{ ?><a href="atualizacoes?activate=<?=$row['id']?>" class="btn btn-success btn-xs">Ativar</a><?php } ?><a href="atualizacoes?remove=<?=$row['id']?>" class="btn btn-danger btn-xs" onclick="return confirm('Excluir esta atualização do histórico?')">Excluir</a></div></td>
     </tr><?php }}else{ ?><tr><td colspan="6" style="text-align:center;padding:28px">Nenhuma atualização publicada.</td></tr><?php } ?>
     </tbody></table></div></div>
   </div>

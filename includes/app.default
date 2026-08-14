@@ -668,6 +668,7 @@
       $row['language_background'] = '#'.$data['language_background'];
       $row['genre_name'] = api_genre_names($data['genre_id']);
       $row['release_date'] = isset($data['release_date']) ? $data['release_date'] : '';
+      $row['audio_label'] = api_series_audio_label($data['id']);
       $row['audio_label'] = api_movie_audio_label($data['language_name'], isset($data['subtitle']) ? $data['subtitle'] : 'false');
        
 
@@ -858,6 +859,7 @@
       $row['series_cover_thumb'] = $file_path.'images/series/thumbs/'.$data['series_cover'];
       $row['genre_name'] = api_genre_names(isset($data['genre_id']) ? $data['genre_id'] : '');
       $row['release_date'] = isset($data['release_date']) ? $data['release_date'] : '';
+      $row['audio_label'] = api_movie_audio_label($data['language_name'], isset($data['subtitle']) ? $data['subtitle'] : 'false');
       $row['audio_label'] = api_series_audio_label($data['id']);
 
       array_push($jsonObj,$row);

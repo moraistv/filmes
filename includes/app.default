@@ -290,6 +290,45 @@
     mysqli_free_result($res);
     $row['tv_series']=$jsonObj;
 
+    // Top 10 reais, ordenados pelo contador de visualizacoes.
+    $jsonObj = array();
+    $sql="SELECT movie.*, lang.`language_name`, lang.`language_background` FROM tbl_movies movie
+      LEFT JOIN tbl_language lang ON movie.`language_id`=lang.`id`
+      WHERE movie.`status`='1' ORDER BY movie.`total_views` DESC, movie.`id` DESC LIMIT 0,10";
+    $res = mysqli_query($mysqli,$sql) or die(mysqli_error($mysqli));
+    while($data_row = mysqli_fetch_assoc($res)) {
+      $data=array();
+      $data['id']=$data_row['id'];
+      $data['movie_title']=$data_row['movie_title'];
+      $data['movie_poster']=$file_path.'images/movies/'.$data_row['movie_poster'];
+      $data['language_name']=$data_row['language_name'];
+      $data['language_background']='#'.$data_row['language_background'];
+      $data['genre_name']=api_genre_names($data_row['genre_id']);
+      $data['release_date']=isset($data_row['release_date']) ? $data_row['release_date'] : '';
+      $data['audio_label']=api_movie_audio_label($data_row['language_name'], isset($data_row['subtitle']) ? $data_row['subtitle'] : 'false');
+      $data['total_views']=(int)$data_row['total_views'];
+      $jsonObj[]=$data;
+    }
+    mysqli_free_result($res);
+    $row['top_movies']=$jsonObj;
+
+    $jsonObj = array();
+    $sql="SELECT * FROM tbl_series WHERE `status`='1' ORDER BY `total_views` DESC, `id` DESC LIMIT 0,10";
+    $res = mysqli_query($mysqli,$sql) or die(mysqli_error($mysqli));
+    while($data_row = mysqli_fetch_assoc($res)) {
+      $data=array();
+      $data['id']=$data_row['id'];
+      $data['series_name']=$data_row['series_name'];
+      $data['series_poster']=$file_path.'images/series/'.$data_row['series_poster'];
+      $data['genre_name']=api_genre_names(isset($data_row['genre_id']) ? $data_row['genre_id'] : '');
+      $data['release_date']=isset($data_row['release_date']) ? $data_row['release_date'] : '';
+      $data['audio_label']=api_series_audio_label($data_row['id']);
+      $data['total_views']=(int)$data_row['total_views'];
+      $jsonObj[]=$data;
+    }
+    mysqli_free_result($res);
+    $row['top_series']=$jsonObj;
+
     // latest channels ..
     $jsonObj = array();
     $data=array();

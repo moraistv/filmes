@@ -42,14 +42,17 @@
   // Metadados compactos usados pelos cards do aplicativo.
   function api_genre_names($genre_ids) {
     global $mysqli;
+    static $cache = array();
     if (empty($genre_ids)) return '';
     $ids = array_filter(array_map('intval', explode(',', $genre_ids)));
     if (empty($ids)) return '';
+    $cache_key = implode(',', $ids);
+    if (isset($cache[$cache_key])) return $cache[$cache_key];
     $sql = "SELECT genre_name FROM tbl_genres WHERE gid IN (".implode(',', $ids).") ORDER BY FIELD(gid,".implode(',', $ids).")";
     $res = mysqli_query($mysqli, $sql);
     $names = array();
     if ($res) while ($genre = mysqli_fetch_assoc($res)) $names[] = $genre['genre_name'];
-    return implode(', ', $names);
+    return $cache[$cache_key] = implode(', ', $names);
   }
 
   function api_movie_audio_label($language_name, $subtitle_status) {
@@ -66,12 +69,14 @@
 
   function api_series_audio_label($series_id) {
     global $mysqli;
+    static $cache = array();
     $series_id = (int)$series_id;
+    if (isset($cache[$series_id])) return $cache[$series_id];
     $res = mysqli_query($mysqli, "SELECT SUM(subtitle='true') AS subtitled, SUM(subtitle<>'true') AS dubbed FROM tbl_episode WHERE series_id=$series_id AND status='1'");
     $row = $res ? mysqli_fetch_assoc($res) : array('subtitled' => 0, 'dubbed' => 0);
-    if (!empty($row['subtitled']) && !empty($row['dubbed'])) return 'DUB | LEG';
-    if (!empty($row['subtitled'])) return 'LEGENDADO';
-    return 'DUBLADO';
+    if (!empty($row['subtitled']) && !empty($row['dubbed'])) return $cache[$series_id] = 'DUB | LEG';
+    if (!empty($row['subtitled'])) return $cache[$series_id] = 'LEGENDADO';
+    return $cache[$series_id] = 'DUBLADO';
   }
 
   function get_user_status($user_id)
@@ -315,6 +320,7 @@
       $data['id']=$data_row['id'];
       $data['movie_title']=$data_row['movie_title'];
       $data['movie_poster']=$file_path.'images/movies/'.$data_row['movie_poster'];
+      $data['movie_poster_thumb']=$file_path.'images/movies/thumbs/'.$data_row['movie_poster'];
       $data['language_name']=$data_row['language_name'];
       $data['language_background']='#'.$data_row['language_background'];
       $data['genre_name']=api_genre_names($data_row['genre_id']);
@@ -334,6 +340,7 @@
       $data['id']=$data_row['id'];
       $data['series_name']=$data_row['series_name'];
       $data['series_poster']=$file_path.'images/series/'.$data_row['series_poster'];
+      $data['series_poster_thumb']=$file_path.'images/series/thumbs/'.$data_row['series_poster'];
       $data['genre_name']=api_genre_names(isset($data_row['genre_id']) ? $data_row['genre_id'] : '');
       $data['release_date']=isset($data_row['release_date']) ? $data_row['release_date'] : '';
       $data['audio_label']=api_series_audio_label($data_row['id']);

@@ -17,14 +17,56 @@
     update_url TEXT NOT NULL,
     apk_file VARCHAR(255) NOT NULL DEFAULT '',
     is_active TINYINT(1) NOT NULL DEFAULT 1,
+    push_status VARCHAR(30) NOT NULL DEFAULT 'not_sent',
+    push_sent_at DATETIME NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     KEY idx_app_update_active_version (is_active, version_code)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
+  mysqli_query($mysqli, "ALTER TABLE tbl_app_updates ADD COLUMN IF NOT EXISTS push_status VARCHAR(30) NOT NULL DEFAULT 'not_sent' AFTER is_active");
+  mysqli_query($mysqli, "ALTER TABLE tbl_app_updates ADD COLUMN IF NOT EXISTS push_sent_at DATETIME NULL AFTER push_status");
 
   $uploadDir = __DIR__.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'updates';
   if(!is_dir($uploadDir)){ @mkdir($uploadDir, 0775, true); }
   $error = '';
+
+  function sendMandatoryUpdatePush($versionName, $notes, $versionCode) {
+    if(!defined('ONESIGNAL_APP_ID') || !defined('ONESIGNAL_REST_KEY') || trim(ONESIGNAL_APP_ID)==='' || trim(ONESIGNAL_REST_KEY)==='') {
+      return array('status'=>'not_configured', 'response'=>'Credenciais do OneSignal não configuradas.');
+    }
+    $message = trim(preg_replace('/\s+/', ' ', strip_tags($notes)));
+    $message = function_exists('mb_substr') ? mb_substr($message, 0, 180, 'UTF-8') : substr($message, 0, 180);
+    if($message===''){ $message = 'Uma nova versão obrigatória do GetCine está disponível.'; }
+    $payload = array(
+      'app_id' => ONESIGNAL_APP_ID,
+      'target_channel' => 'push',
+      'included_segments' => array('Subscribed Users'),
+      'headings' => array('en'=>'Atualização obrigatória disponível', 'pt'=>'Atualização obrigatória disponível'),
+      'contents' => array('en'=>$message, 'pt'=>$message),
+      'data' => array('type'=>'app_update', 'post_id'=>'0', 'external_link'=>'false', 'version_code'=>(string)$versionCode),
+      'android_group' => 'mandatory_app_update',
+      'collapse_id' => 'getcine-update-'.$versionCode
+    );
+    $ch = curl_init('https://api.onesignal.com/notifications');
+    curl_setopt_array($ch, array(
+      CURLOPT_HTTPHEADER => array('Content-Type: application/json; charset=utf-8', 'Authorization: Key '.trim(ONESIGNAL_REST_KEY)),
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_POST => true,
+      CURLOPT_POSTFIELDS => json_encode($payload, JSON_UNESCAPED_UNICODE),
+      CURLOPT_CONNECTTIMEOUT => 8,
+      CURLOPT_TIMEOUT => 15
+    ));
+    $response = curl_exec($ch);
+    $httpCode = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $curlError = curl_error($ch);
+    curl_close($ch);
+    $decoded = json_decode((string)$response, true);
+    $sent = $httpCode >= 200 && $httpCode < 300 && !empty($decoded['id']);
+    return array(
+      'status'=>$sent ? 'sent' : 'failed',
+      'response'=>$curlError ?: (string)$response
+    );
+  }
 
   if(isset($_GET['activate'])) {
     $id = (int)$_GET['activate'];
@@ -112,8 +154,19 @@
         mysqli_stmt_bind_param($stmt, "isssisss", $versionCode, $versionName, $title, $notes, $required, $source, $url, $apkFile);
       }
       if(mysqli_stmt_execute($stmt)) {
+        $savedId = $id > 0 ? $id : (int)mysqli_insert_id($mysqli);
         mysqli_stmt_close($stmt);
-        header("Location:atualizacoes?saved=1"); exit;
+        $pushStatus = 'not_required';
+        if($required) {
+          $pushResult = sendMandatoryUpdatePush($versionName, $notes, $versionCode);
+          $pushStatus = $pushResult['status'];
+          $sentAtSql = $pushStatus === 'sent' ? 'NOW()' : 'NULL';
+          $safePushStatus = mysqli_real_escape_string($mysqli, $pushStatus);
+          mysqli_query($mysqli, "UPDATE tbl_app_updates SET push_status='{$safePushStatus}', push_sent_at={$sentAtSql} WHERE id=".$savedId);
+        } else {
+          mysqli_query($mysqli, "UPDATE tbl_app_updates SET push_status='not_required', push_sent_at=NULL WHERE id=".$savedId);
+        }
+        header("Location:atualizacoes?saved=1&push=".urlencode($pushStatus)); exit;
       }
       $error = mysqli_errno($mysqli) === 1062
         ? 'Já existe uma atualização com esse código de versão.'
@@ -133,6 +186,7 @@
   .update-help code{color:#0f0f0f;font-weight:700}
   .update-success{background:#e8f8ee;border:1px solid #9edcb5;border-radius:12px;color:#176b37;padding:14px 18px;margin-bottom:15px;font-weight:700}
   .update-badge{display:inline-flex;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:800}.is-live{background:#173d2b;color:#66e49a}.is-off{background:#292929;color:#9ea5ad}.is-required{background:#481e24;color:#ff7b88}.is-optional{background:#1c3442;color:#69cffd}
+  .push-sent{background:#173d2b;color:#66e49a}.push-failed{background:#481e24;color:#ff7b88}.push-pending{background:#292929;color:#aeb5bd}
   .update-actions{display:flex;flex-wrap:wrap;gap:6px}.update-actions .btn{min-width:auto;padding:6px 10px;font-size:12px;font-weight:700;border-radius:8px}
   @media(max-width:760px){.update-grid{grid-template-columns:1fr}}
 </style>
@@ -150,6 +204,8 @@
       <div class="update-help"><strong>Como funciona:</strong> o aplicativo compara o <code>versionCode</code> instalado com o publicado aqui. Use sempre um número maior a cada APK. Atualização obrigatória bloqueia o aplicativo; opcional permite escolher “Agora não”.</div>
       <?php if($error){ ?><div class="alert alert-danger"><?=htmlspecialchars($error, ENT_QUOTES, 'UTF-8')?></div><?php } ?>
       <?php if(isset($_GET['saved'])){ ?><div class="update-success">Atualização publicada com sucesso.</div><?php } ?>
+      <?php if(($_GET['push'] ?? '')==='sent'){ ?><div class="update-success">Push de atualização obrigatória enviado automaticamente.</div><?php } ?>
+      <?php if(in_array(($_GET['push'] ?? ''), array('failed','not_configured'), true)){ ?><div class="alert alert-warning">A atualização foi publicada, mas o push não foi enviado. Confira as credenciais do OneSignal em Notificações.</div><?php } ?>
       <form method="post" enctype="multipart/form-data" class="form form-horizontal">
         <input type="hidden" name="update_id" value="<?=intval($edit['id'] ?? 0)?>"><input type="hidden" name="existing_apk_file" value="<?=htmlspecialchars($edit['apk_file'] ?? '', ENT_QUOTES, 'UTF-8')?>">
         <div class="form-group"><label class="col-md-3 control-label">Código da versão</label><div class="col-md-3"><input type="number" min="1" name="version_code" class="form-control" value="<?=htmlspecialchars($edit['version_code'] ?? '', ENT_QUOTES, 'UTF-8')?>" placeholder="Ex.: 3" required></div><div class="col-md-5"><p class="help-block">Número interno crescente. A versão atual deste APK será 2.</p></div></div>
@@ -166,15 +222,16 @@
   </div>
 
   <div class="card"><div class="page_title_block"><div class="col-md-8 col-xs-12"><div class="page_title">Histórico de atualizações</div></div></div><div class="clearfix"></div>
-    <div class="card-body" style="padding:20px"><div class="table-responsive"><table class="table table-striped"><thead><tr><th>Versão</th><th>Publicação</th><th>Tipo</th><th>Origem</th><th>Status</th><th style="width:150px">Ações</th></tr></thead><tbody>
+    <div class="card-body" style="padding:20px"><div class="table-responsive"><table class="table table-striped"><thead><tr><th>Versão</th><th>Publicação</th><th>Tipo</th><th>Origem</th><th>Status</th><th>Push</th><th style="width:260px">Ações</th></tr></thead><tbody>
     <?php if($history && mysqli_num_rows($history)){ while($row=mysqli_fetch_assoc($history)){ ?><tr>
       <td><strong><?=htmlspecialchars($row['version_name'], ENT_QUOTES, 'UTF-8')?></strong><br><small>versionCode <?=intval($row['version_code'])?></small></td>
       <td><?=date('d/m/Y H:i', strtotime($row['created_at']))?><br><small><?=htmlspecialchars($row['title'], ENT_QUOTES, 'UTF-8')?></small></td>
       <td><span class="update-badge <?=$row['is_required']?'is-required':'is-optional'?>"><?=$row['is_required']?'Obrigatória':'Opcional'?></span></td>
       <td><?=$row['source_type']==='play_store'?'Google Play':'APK direto'?></td>
       <td><span class="update-badge <?=$row['is_active']?'is-live':'is-off'?>"><?=$row['is_active']?'Ativa':'Arquivada'?></span></td>
+      <td><?php $ps=$row['push_status'] ?? 'not_sent'; ?><span class="update-badge <?=$ps==='sent'?'push-sent':($ps==='failed'?'push-failed':'push-pending')?>"><?=$ps==='sent'?'Enviado':($ps==='failed'?'Falhou':($ps==='not_configured'?'Não configurado':'Não se aplica'))?></span><?php if(!empty($row['push_sent_at'])){ ?><br><small><?=date('d/m/Y H:i', strtotime($row['push_sent_at']))?></small><?php } ?></td>
       <td><div class="update-actions"><a href="atualizacoes?edit=<?=$row['id']?>" class="btn btn-primary btn-xs">Editar</a><?php if($row['is_active']){ ?><a href="atualizacoes?deactivate=<?=$row['id']?>" class="btn btn-warning btn-xs">Desativar</a><?php }else{ ?><a href="atualizacoes?activate=<?=$row['id']?>" class="btn btn-success btn-xs">Ativar</a><?php } ?><a href="atualizacoes?remove=<?=$row['id']?>" class="btn btn-danger btn-xs" onclick="return confirm('Excluir esta atualização do histórico?')">Excluir</a></div></td>
-    </tr><?php }}else{ ?><tr><td colspan="6" style="text-align:center;padding:28px">Nenhuma atualização publicada.</td></tr><?php } ?>
+    </tr><?php }}else{ ?><tr><td colspan="7" style="text-align:center;padding:28px">Nenhuma atualização publicada.</td></tr><?php } ?>
     </tbody></table></div></div>
   </div>
 </div></div>

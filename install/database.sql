@@ -400,6 +400,8 @@ CREATE TABLE `tbl_app_updates` (
   `update_url` text NOT NULL,
   `apk_file` varchar(255) NOT NULL DEFAULT '',
   `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `push_status` varchar(30) NOT NULL DEFAULT 'not_sent',
+  `push_sent_at` datetime DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),

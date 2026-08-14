@@ -12,6 +12,8 @@ $sql = "CREATE TABLE IF NOT EXISTS tbl_app_updates (
   update_url TEXT NOT NULL,
   apk_file VARCHAR(255) NOT NULL DEFAULT '',
   is_active TINYINT(1) NOT NULL DEFAULT 1,
+  push_status VARCHAR(30) NOT NULL DEFAULT 'not_sent',
+  push_sent_at DATETIME NULL,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
@@ -23,6 +25,9 @@ if (!mysqli_query($mysqli, $sql)) {
   fwrite(STDERR, "Falha ao criar tbl_app_updates: ".mysqli_error($mysqli).PHP_EOL);
   exit(1);
 }
+
+mysqli_query($mysqli, "ALTER TABLE tbl_app_updates ADD COLUMN IF NOT EXISTS push_status VARCHAR(30) NOT NULL DEFAULT 'not_sent' AFTER is_active");
+mysqli_query($mysqli, "ALTER TABLE tbl_app_updates ADD COLUMN IF NOT EXISTS push_sent_at DATETIME NULL AFTER push_status");
 
 echo "Tabela tbl_app_updates pronta.\n";
 ?>

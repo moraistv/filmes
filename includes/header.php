@@ -136,6 +136,7 @@
       <a class="gc-nav-link<?php if($currentFile=="send_notification.php"){echo ' is-active';}?>" href="notificacoes"><i class="bi bi-bell-fill"></i><span>Notificações</span></a>
 
       <p class="gc-nav-group">Sistema</p>
+      <a class="gc-nav-link<?php if($currentFile=="app_updates.php"){echo ' is-active';}?>" href="atualizacoes"><i class="bi bi-cloud-arrow-up-fill"></i><span>Atualizações</span></a>
       <a class="gc-nav-link<?php if($currentFile=="smtp_settings.php"){echo ' is-active';}?>" href="smtp"><i class="bi bi-envelope-fill"></i><span>SMTP</span></a>
       <a class="gc-nav-link<?php if($currentFile=="settings.php"){echo ' is-active';}?>" href="configuracoes"><i class="bi bi-gear-fill"></i><span>Configurações</span></a>
       <a class="gc-nav-link<?php if($currentFile=="verification.php"){echo ' is-active';}?>" href="identificacao"><i class="bi bi-patch-check-fill"></i><span>Identificação</span></a>

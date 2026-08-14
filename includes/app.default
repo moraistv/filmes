@@ -2619,6 +2619,38 @@
       header( 'Content-Type: application/json; charset=utf-8' );
       echo $val= str_replace('\\/', '/', json_encode(api_decode_entities($set),JSON_UNESCAPED_UNICODE));
   }
+  else if($get_method['method_name']=="get_app_update")
+  {
+      $current_version = isset($get_method['version_code']) ? (int)$get_method['version_code'] : 0;
+      $jsonObj = array();
+      $query = "SELECT * FROM tbl_app_updates WHERE is_active='1' ORDER BY version_code DESC, id DESC LIMIT 1";
+      $res = mysqli_query($mysqli, $query);
+      $data = $res ? mysqli_fetch_assoc($res) : null;
+
+      if($data && (int)$data['version_code'] > $current_version) {
+        $download_url = trim($data['update_url']);
+        if($data['source_type'] === 'apk' && !empty($data['apk_file'])) {
+          $download_url = $file_path.'uploads/updates/'.rawurlencode($data['apk_file']);
+        }
+        $jsonObj[] = array(
+          'update_available' => true,
+          'version_code' => (int)$data['version_code'],
+          'version_name' => $data['version_name'],
+          'title' => $data['title'],
+          'release_notes' => $data['release_notes'],
+          'is_required' => (bool)$data['is_required'],
+          'source_type' => $data['source_type'],
+          'download_url' => $download_url
+        );
+      } else {
+        $jsonObj[] = array('update_available' => false, 'current_version_code' => $current_version);
+      }
+
+      $set['LIVETV'] = $jsonObj;
+      header('Content-Type: application/json; charset=utf-8');
+      echo str_replace('\\/', '/', json_encode(api_decode_entities($set), JSON_UNESCAPED_UNICODE));
+      die();
+  }
   else if($get_method['method_name']=="get_app_details")
   {
       $jsonObj= array();  

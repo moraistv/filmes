@@ -389,6 +389,30 @@ INSERT INTO `tbl_series` (`id`, `series_name`, `series_desc`, `series_poster`, `
 -- Table structure for table `tbl_settings`
 --
 
+CREATE TABLE `tbl_app_updates` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `version_code` int(11) NOT NULL,
+  `version_name` varchar(50) NOT NULL,
+  `title` varchar(160) NOT NULL,
+  `release_notes` text NOT NULL,
+  `is_required` tinyint(1) NOT NULL DEFAULT 0,
+  `source_type` varchar(20) NOT NULL DEFAULT 'apk',
+  `update_url` text NOT NULL,
+  `apk_file` varchar(255) NOT NULL DEFAULT '',
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_app_update_version_code` (`version_code`),
+  KEY `idx_app_update_active_version` (`is_active`,`version_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_settings`
+--
+
 CREATE TABLE `tbl_settings` (
   `id` int(11) NOT NULL,
   `envato_buyer_name` varchar(255) NOT NULL,

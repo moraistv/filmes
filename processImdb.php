@@ -29,6 +29,22 @@
 		return 0;
 	}
 
+	// Mantem o catalogo de generos completo: se o TMDB/IMDb devolver um
+	// genero novo, ele passa a existir no painel e ja fica selecionado.
+	function ensure_genre_info($name)
+	{
+		global $mysqli;
+		$name = trim($name);
+		if ($name == '') return 0;
+		$id = is_genre_info($name);
+		if ($id) return $id;
+		$escaped = mysqli_real_escape_string($mysqli, $name);
+		if (mysqli_query($mysqli, "INSERT INTO tbl_genres (genre_name, genre_image) VALUES ('$escaped', '')")) {
+			return mysqli_insert_id($mysqli);
+		}
+		return 0;
+	}
+
 	function is_language_info($name)
 	{
 		global $mysqli;
@@ -143,13 +159,21 @@
 			return null;
 		}
 
-		$details = http_get_json('https://api.themoviedb.org/3/' . $mediaType . '/' . $tmdbId . '?api_key=' . $tmdb_api_key . '&language=pt-BR&append_to_response=credits');
+		$details = http_get_json('https://api.themoviedb.org/3/' . $mediaType . '/' . $tmdbId . '?api_key=' . $tmdb_api_key . '&language=pt-BR&append_to_response=credits,external_ids,videos,content_ratings,release_dates');
 		if (!isset($details->id)) {
 			return null;
 		}
 
 		$out = array();
 		$out['title'] = ($mediaType == 'tv') ? (isset($details->name) ? $details->name : '') : (isset($details->title) ? $details->title : '');
+		$out['original_title'] = ($mediaType == 'tv') ? (isset($details->original_name) ? $details->original_name : '') : (isset($details->original_title) ? $details->original_title : '');
+		$out['tmdb_id'] = $details->id;
+		$out['imdb_id'] = isset($details->external_ids->imdb_id) ? $details->external_ids->imdb_id : ($parsed['is_imdb'] ? $parsed['value'] : '');
+		$out['tagline'] = isset($details->tagline) ? trim($details->tagline) : '';
+		$out['rating'] = isset($details->vote_average) ? $details->vote_average : '';
+		$out['votes'] = isset($details->vote_count) ? $details->vote_count : '';
+		$out['runtime'] = isset($details->runtime) ? $details->runtime : ((isset($details->episode_run_time[0])) ? $details->episode_run_time[0] : '');
+		$out['status'] = isset($details->status) ? $details->status : '';
 
 		// Sinopse em PT; se vier vazia, busca em ingles como reserva
 		$plot = isset($details->overview) ? trim($details->overview) : '';
@@ -166,7 +190,7 @@
 		$genre = array();
 		if (isset($details->genres) && is_array($details->genres)) {
 			foreach ($details->genres as $g) {
-				$gid = is_genre_info($g->name);
+				$gid = ensure_genre_info($g->name);
 				if ($gid) {
 					$genre[] = $gid;
 				}
@@ -220,6 +244,33 @@
 		$out['release_date'] = ($mediaType == 'movie')
 			? (isset($details->release_date) ? $details->release_date : '')
 			: (isset($details->first_air_date) ? $details->first_air_date : '');
+
+		$out['trailer'] = '';
+		if (isset($details->videos->results)) {
+			foreach ($details->videos->results as $video) {
+				if (isset($video->site, $video->type, $video->key) && $video->site == 'YouTube' && ($video->type == 'Trailer' || $video->type == 'Teaser')) {
+					$out['trailer'] = 'https://www.youtube.com/watch?v=' . $video->key;
+					break;
+				}
+			}
+		}
+
+		// Complementa lacunas do TMDB com o OMDb/IMDb, quando disponivel.
+		global $omdb_api_key;
+		if ($omdb_api_key != '' && $out['imdb_id'] != '') {
+			$omdb = http_get_json('https://www.omdbapi.com/?i=' . urlencode($out['imdb_id']) . '&apikey=' . $omdb_api_key . '&plot=full');
+			if (isset($omdb->Response) && $omdb->Response == 'True') {
+				if ($out['plot'] == '' && isset($omdb->Plot) && $omdb->Plot != 'N/A') $out['plot'] = $omdb->Plot;
+				if ($out['director'] == '' && isset($omdb->Director) && $omdb->Director != 'N/A') $out['director'] = $omdb->Director;
+				if ($out['casts'] == '' && isset($omdb->Actors) && $omdb->Actors != 'N/A') $out['casts'] = $omdb->Actors;
+				if ($out['country'] == '' && isset($omdb->Country) && $omdb->Country != 'N/A') $out['country'] = $omdb->Country;
+				if ($out['release_date'] == '' && isset($omdb->Released) && $omdb->Released != 'N/A') $out['release_date'] = $omdb->Released;
+				if ($out['thumbnail'] == '' && isset($omdb->Poster) && $omdb->Poster != 'N/A') $out['thumbnail'] = $omdb->Poster;
+				if ($out['rating'] == '' && isset($omdb->imdbRating) && $omdb->imdbRating != 'N/A') $out['rating'] = $omdb->imdbRating;
+				if ($out['votes'] == '' && isset($omdb->imdbVotes) && $omdb->imdbVotes != 'N/A') $out['votes'] = $omdb->imdbVotes;
+				if ($out['runtime'] == '' && isset($omdb->Runtime) && $omdb->Runtime != 'N/A') $out['runtime'] = $omdb->Runtime;
+			}
+		}
 
 		return $out;
 	}
@@ -291,6 +342,15 @@
 				$response['casts'] = $tmdb['casts'];
 				$response['country'] = $tmdb['country'];
 				$response['release_date'] = $tmdb['release_date'];
+				$response['original_title'] = $tmdb['original_title'];
+				$response['tmdb_id'] = $tmdb['tmdb_id'];
+				$response['imdb_id'] = $tmdb['imdb_id'];
+				$response['tagline'] = $tmdb['tagline'];
+				$response['rating'] = $tmdb['rating'];
+				$response['votes'] = $tmdb['votes'];
+				$response['runtime'] = $tmdb['runtime'];
+				$response['trailer'] = $tmdb['trailer'];
+				$response['production_status'] = $tmdb['status'];
 				$response['thumbnail_name'] = basename(parse_url($tmdb['thumbnail'], PHP_URL_PATH));
 				echo json_encode($response);
 				break;
@@ -313,7 +373,8 @@
 				$genre = array();
 				if (isset($obj->Genre)) {
 					foreach (explode(", ", $obj->Genre) as $gname) {
-						if (is_genre_info($gname)) { $genre[] = is_genre_info($gname); }
+						$genre_id = ensure_genre_info($gname);
+						if ($genre_id) { $genre[] = $genre_id; }
 					}
 				}
 				$response['genre'] = $genre;
@@ -350,6 +411,15 @@
 				$response['casts'] = $tmdb['casts'];
 				$response['country'] = $tmdb['country'];
 				$response['release_date'] = $tmdb['release_date'];
+				$response['original_title'] = $tmdb['original_title'];
+				$response['tmdb_id'] = $tmdb['tmdb_id'];
+				$response['imdb_id'] = $tmdb['imdb_id'];
+				$response['tagline'] = $tmdb['tagline'];
+				$response['rating'] = $tmdb['rating'];
+				$response['votes'] = $tmdb['votes'];
+				$response['runtime'] = $tmdb['runtime'];
+				$response['trailer'] = $tmdb['trailer'];
+				$response['production_status'] = $tmdb['status'];
 				$response['thumbnail_name'] = basename(parse_url($tmdb['thumbnail'], PHP_URL_PATH));
 				echo json_encode($response);
 				break;
@@ -372,9 +442,8 @@
 
 				$genre = array();
 				foreach (explode(", ", $obj->Genre) as $gname) {
-					if (is_genre_info($gname)) {
-						$genre[] = is_genre_info($gname);
-					}
+					$genre_id = ensure_genre_info($gname);
+					if ($genre_id) $genre[] = $genre_id;
 				}
 				$response['genre'] = $genre;
 

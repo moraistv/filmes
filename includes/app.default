@@ -25,6 +25,39 @@
       return $randomString;
   }
 
+  // Metadados compactos usados pelos cards do aplicativo.
+  function api_genre_names($genre_ids) {
+    global $mysqli;
+    if (empty($genre_ids)) return '';
+    $ids = array_filter(array_map('intval', explode(',', $genre_ids)));
+    if (empty($ids)) return '';
+    $sql = "SELECT genre_name FROM tbl_genres WHERE gid IN (".implode(',', $ids).") ORDER BY FIELD(gid,".implode(',', $ids).")";
+    $res = mysqli_query($mysqli, $sql);
+    $names = array();
+    if ($res) while ($genre = mysqli_fetch_assoc($res)) $names[] = $genre['genre_name'];
+    return implode(', ', $names);
+  }
+
+  function api_movie_audio_label($language_name, $subtitle_status) {
+    $language = mb_strtoupper(trim((string)$language_name), 'UTF-8');
+    $dubbed = strpos($language, 'DUB') !== false || strpos($language, 'PORTUG') !== false || $language === 'PT' || strpos($language, 'PT-BR') !== false;
+    $subtitled = strpos($language, 'LEG') !== false || strpos($language, 'SUB') !== false || $subtitle_status === 'true';
+    if ($dubbed && $subtitled) return 'DUBLADO/LEGENDADO';
+    if ($subtitled) return 'LEGENDADO';
+    if ($dubbed) return 'DUBLADO';
+    return $language;
+  }
+
+  function api_series_audio_label($series_id) {
+    global $mysqli;
+    $series_id = (int)$series_id;
+    $res = mysqli_query($mysqli, "SELECT SUM(subtitle='true') AS subtitled, SUM(subtitle<>'true') AS dubbed FROM tbl_episode WHERE series_id=$series_id AND status='1'");
+    $row = $res ? mysqli_fetch_assoc($res) : array('subtitled' => 0, 'dubbed' => 0);
+    if (!empty($row['subtitled']) && !empty($row['dubbed'])) return 'DUBLADO/LEGENDADO';
+    if (!empty($row['subtitled'])) return 'LEGENDADO';
+    return 'DUBLADO';
+  }
+
   function get_user_status($user_id)
   {
     global $mysqli;
@@ -215,6 +248,9 @@
 
       $data['language_name'] = $data_row['language_name'];
       $data['language_background'] = '#'.$data_row['language_background'];
+      $data['genre_name'] = api_genre_names($data_row['genre_id']);
+      $data['release_date'] = isset($data_row['release_date']) ? $data_row['release_date'] : '';
+      $data['audio_label'] = api_movie_audio_label($data_row['language_name'], isset($data_row['subtitle']) ? $data_row['subtitle'] : 'false');
        
 
       array_push($jsonObj,$data);
@@ -241,6 +277,9 @@
       $data['series_poster_thumb'] = $file_path.'images/series/thumbs/'.$data_row['series_poster'];
       $data['series_cover'] = $file_path.'images/series/'.$data_row['series_cover'];
       $data['series_cover_thumb'] = $file_path.'images/series/thumbs/'.$data_row['series_cover'];
+      $data['genre_name'] = api_genre_names(isset($data_row['genre_id']) ? $data_row['genre_id'] : '');
+      $data['release_date'] = isset($data_row['release_date']) ? $data_row['release_date'] : '';
+      $data['audio_label'] = api_series_audio_label($data_row['id']);
 
       array_push($jsonObj,$data);
     
@@ -572,6 +611,9 @@
 
       $row['language_name'] = $data['language_name'];
       $row['language_background'] = '#'.$data['language_background'];
+      $row['genre_name'] = api_genre_names($data['genre_id']);
+      $row['release_date'] = isset($data['release_date']) ? $data['release_date'] : '';
+      $row['audio_label'] = api_movie_audio_label($data['language_name'], isset($data['subtitle']) ? $data['subtitle'] : 'false');
        
 
       array_push($jsonObj,$row);
@@ -759,6 +801,9 @@
       $row['series_poster_thumb'] = $file_path.'images/series/thumbs/'.$data['series_poster'];
       $row['series_cover'] = $file_path.'images/series/'.$data['series_cover'];
       $row['series_cover_thumb'] = $file_path.'images/series/thumbs/'.$data['series_cover'];
+      $row['genre_name'] = api_genre_names(isset($data['genre_id']) ? $data['genre_id'] : '');
+      $row['release_date'] = isset($data['release_date']) ? $data['release_date'] : '';
+      $row['audio_label'] = api_series_audio_label($data['id']);
 
       array_push($jsonObj,$row);
     
@@ -994,6 +1039,9 @@
 
       $row['language_name'] = $data['language_name'];
       $row['language_background'] = '#'.$data['language_background'];
+      $row['genre_name'] = api_genre_names($data['genre_id']);
+      $row['release_date'] = isset($data['release_date']) ? $data['release_date'] : '';
+      $row['audio_label'] = api_movie_audio_label($data['language_name'], isset($data['subtitle']) ? $data['subtitle'] : 'false');
        
       array_push($jsonObj,$row);
     
@@ -1037,6 +1085,9 @@
           $row['total_views'] = $data['total_views'];
           $row['total_rate'] = $data['total_rate'];
           $row['rate_avg'] = $data['rate_avg'];
+          $row['genre_name'] = api_genre_names(isset($data['genre_id']) ? $data['genre_id'] : '');
+          $row['release_date'] = isset($data['release_date']) ? $data['release_date'] : '';
+          $row['audio_label'] = api_series_audio_label($data['id']);
           array_push($jsonObj,$row);
         }
       }
@@ -1101,6 +1152,9 @@
         $row['movie_poster_thumb'] = $file_path.'images/movies/thumbs/'.$data['movie_poster'];
         $row['language_name'] = $data['language_name'];
         $row['language_background'] = '#'.$data['language_background'];
+        $row['genre_name'] = api_genre_names($data['genre_id']);
+        $row['release_date'] = isset($data['release_date']) ? $data['release_date'] : '';
+        $row['audio_label'] = api_movie_audio_label($data['language_name'], isset($data['subtitle']) ? $data['subtitle'] : 'false');
         array_push($jsonObj,$row);
       }
 
@@ -1127,6 +1181,9 @@
         $row['series_name'] = $data['series_name'];
         $row['series_poster'] = $file_path.'images/series/'.$data['series_poster'];
         $row['series_poster_thumb'] = $file_path.'images/series/thumbs/'.$data['series_poster'];
+        $row['genre_name'] = api_genre_names(isset($data['genre_id']) ? $data['genre_id'] : '');
+        $row['release_date'] = isset($data['release_date']) ? $data['release_date'] : '';
+        $row['audio_label'] = api_series_audio_label($data['id']);
         array_push($jsonObj,$row);
       }
 

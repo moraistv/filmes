@@ -29,7 +29,8 @@
 		echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 	}
 
-	mysqli_query($mysqli,"SET NAMES 'utf8'");	 
+	// UTF-8 completo em toda leitura e escrita do painel/API.
+	mysqli_set_charset($mysqli, 'utf8mb4');
 
 	//Settings
 	$setting_qry="SELECT * FROM tbl_settings where id='1'";

@@ -45,7 +45,9 @@
     if ($dubbed && $subtitled) return 'DUBLADO/LEGENDADO';
     if ($subtitled) return 'LEGENDADO';
     if ($dubbed) return 'DUBLADO';
-    return $language;
+    // Conteudo em idioma estrangeiro sem marcador explicito e tratado como
+    // legendado ate que o administrador informe outra faixa de audio.
+    return 'LEGENDADO';
   }
 
   function api_series_audio_label($series_id) {

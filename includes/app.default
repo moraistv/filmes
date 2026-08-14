@@ -2626,6 +2626,9 @@
       $query = "SELECT * FROM tbl_app_updates WHERE is_active='1' ORDER BY version_code DESC, id DESC LIMIT 1";
       $res = mysqli_query($mysqli, $query);
       $data = $res ? mysqli_fetch_assoc($res) : null;
+      if(!$res) {
+        error_log('get_app_update query failed: '.mysqli_error($mysqli));
+      }
 
       if($data && (int)$data['version_code'] > $current_version) {
         $download_url = trim($data['update_url']);
@@ -2643,7 +2646,14 @@
           'download_url' => $download_url
         );
       } else {
-        $jsonObj[] = array('update_available' => false, 'current_version_code' => $current_version);
+        $countRes = mysqli_query($mysqli, "SELECT COUNT(*) AS total FROM tbl_app_updates");
+        $countRow = $countRes ? mysqli_fetch_assoc($countRes) : array('total'=>0);
+        $jsonObj[] = array(
+          'update_available' => false,
+          'current_version_code' => $current_version,
+          'update_registry_ready' => (bool)$res,
+          'published_updates' => (int)$countRow['total']
+        );
       }
 
       $set['LIVETV'] = $jsonObj;

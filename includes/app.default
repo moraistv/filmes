@@ -14,6 +14,14 @@
   date_default_timezone_set("Asia/Kolkata");
   
   $file_path = getBaseUrl();
+  // O proxy do container informa HTTP internamente, embora o acesso publico seja
+  // HTTPS. Evita um redirecionamento adicional em cada capa carregada pelo app.
+  if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) === 'https') {
+    $file_path = preg_replace('/^http:/i', 'https:', $file_path);
+  }
+  if (strpos($file_path, 'http://smorais.online') === 0) {
+    $file_path = 'https://'.substr($file_path, 7);
+  }
 
   function generateRandomPassword($length = 10) {
       $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

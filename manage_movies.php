@@ -156,6 +156,10 @@
   body.admin-shell .wall_category_block .gc-slider-label{display:inline-flex;align-items:center;height:26px;padding:0 9px;border-radius:8px;background:#e8f7ff;color:#087fb6;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
   body.admin-shell .wall_category_block .toggle_btn_a:hover .gc-slider-label{background:#41c2ff;color:#071116}
   body.admin-shell .block_wallpaper .toggle_btn{margin:0!important}
+  body.admin-shell .block_wallpaper .toggle_btn a{width:auto!important;height:34px!important;padding:0!important;background:transparent!important;border-radius:0!important;line-height:34px!important}
+  body.admin-shell .block_wallpaper .gc-status-label{display:inline-flex;align-items:center;height:34px;padding:0 9px;border-radius:9px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;border:1px solid}
+  body.admin-shell .block_wallpaper .gc-status-label.is-active{background:rgba(40,190,105,.14);border-color:rgba(55,220,125,.45);color:#62e49a}
+  body.admin-shell .block_wallpaper .gc-status-label.is-inactive{background:rgba(255,88,103,.14);border-color:rgba(255,88,103,.45);color:#ff8f99}
 </style>
 
 <div class="row">
@@ -339,11 +343,11 @@
                   <li><a href="" class="btn_delete_a" data-id="<?php echo $row['id'];?>" data-toggle="tooltip" data-tooltip="Excluir filme"><span class="gc-action-label">Excluir</span></a></li>
 
                   <?php if($row['status']!="0"){?>
-                  <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?php echo $row['id'];?>" data-action="deactive" data-column="status" data-toggle="tooltip" data-tooltip="Desativar filme"><img src="assets/images/btn_enabled.png" alt="Filme ativo" /></a></div></li>
+                  <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?php echo $row['id'];?>" data-action="deactive" data-column="status" data-toggle="tooltip" data-tooltip="Desativar filme"><span class="gc-status-label is-active">Ativo</span></a></div></li>
 
                   <?php }else{?>
                   
-                  <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?=$row['id']?>" data-action="active" data-column="status" data-toggle="tooltip" data-tooltip="Ativar filme"><img src="assets/images/btn_disabled.png" alt="Filme inativo" /></a></div></li>
+                  <li><div class="row toggle_btn"><a href="javascript:void(0)" data-id="<?=$row['id']?>" data-action="active" data-column="status" data-toggle="tooltip" data-tooltip="Ativar filme"><span class="gc-status-label is-inactive">Inativo</span></a></div></li>
               
                   <?php }?>
                 </ul>
